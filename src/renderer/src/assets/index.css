@@ -3,75 +3,102 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================================
+   AURORA CIC — Combat Information Center Theme
+   Deep void blacks, tactical cyan, amber warnings
+   ============================================================ */
+
+@font-face {
+  font-family: 'CIC';
+  src: local('Consolas'), local('SF Mono'), local('Monaco');
+}
+
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: oklch(0.08 0.01 240);
+  --foreground: oklch(0.85 0.02 200);
+  --card: oklch(0.1 0.012 240);
+  --card-foreground: oklch(0.85 0.02 200);
+  --popover: oklch(0.09 0.015 240);
+  --popover-foreground: oklch(0.85 0.02 200);
+  --primary: oklch(0.75 0.15 195);
+  --primary-foreground: oklch(0.12 0.02 240);
+  --secondary: oklch(0.15 0.02 240);
+  --secondary-foreground: oklch(0.75 0.05 200);
+  --muted: oklch(0.14 0.015 240);
+  --muted-foreground: oklch(0.55 0.03 200);
+  --accent: oklch(0.18 0.025 240);
+  --accent-foreground: oklch(0.8 0.1 195);
+  --destructive: oklch(0.55 0.22 30);
+  --destructive-foreground: oklch(0.65 0.25 30);
+  --border: oklch(0.2 0.03 220);
+  --input: oklch(0.15 0.02 230);
+  --ring: oklch(0.65 0.12 195);
+
+  /* CIC-specific palette */
+  --cic-void: #030810;
+  --cic-deep: #060e1a;
+  --cic-panel: #0a1628;
+  --cic-panel-edge: #122240;
+  --cic-cyan: #00e5ff;
+  --cic-cyan-dim: #0088aa;
+  --cic-cyan-glow: rgba(0, 229, 255, 0.15);
+  --cic-amber: #ffb300;
+  --cic-amber-dim: #996b00;
+  --cic-amber-glow: rgba(255, 179, 0, 0.1);
+  --cic-green: #00e676;
+  --cic-red: #ff1744;
+  --cic-grid: rgba(0, 229, 255, 0.04);
+  --cic-scanline: rgba(0, 229, 255, 0.015);
+
+  --chart-1: oklch(0.7 0.15 195);
+  --chart-2: oklch(0.7 0.15 160);
+  --chart-3: oklch(0.75 0.18 80);
+  --chart-4: oklch(0.6 0.2 300);
+  --chart-5: oklch(0.65 0.22 30);
+  --radius: 0.25rem;
+  --sidebar: oklch(0.09 0.015 240);
+  --sidebar-foreground: oklch(0.75 0.05 200);
+  --sidebar-primary: oklch(0.7 0.15 195);
+  --sidebar-primary-foreground: oklch(0.95 0.01 200);
+  --sidebar-accent: oklch(0.14 0.02 230);
+  --sidebar-accent-foreground: oklch(0.8 0.08 195);
+  --sidebar-border: oklch(0.18 0.025 230);
+  --sidebar-ring: oklch(0.6 0.1 195);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: oklch(0.08 0.01 240);
+  --foreground: oklch(0.85 0.02 200);
+  --card: oklch(0.1 0.012 240);
+  --card-foreground: oklch(0.85 0.02 200);
+  --popover: oklch(0.09 0.015 240);
+  --popover-foreground: oklch(0.85 0.02 200);
+  --primary: oklch(0.75 0.15 195);
+  --primary-foreground: oklch(0.12 0.02 240);
+  --secondary: oklch(0.15 0.02 240);
+  --secondary-foreground: oklch(0.75 0.05 200);
+  --muted: oklch(0.14 0.015 240);
+  --muted-foreground: oklch(0.55 0.03 200);
+  --accent: oklch(0.18 0.025 240);
+  --accent-foreground: oklch(0.8 0.1 195);
+  --destructive: oklch(0.45 0.2 30);
+  --destructive-foreground: oklch(0.65 0.25 30);
+  --border: oklch(0.2 0.03 220);
+  --input: oklch(0.15 0.02 230);
+  --ring: oklch(0.65 0.12 195);
+  --chart-1: oklch(0.7 0.15 195);
+  --chart-2: oklch(0.7 0.15 160);
+  --chart-3: oklch(0.75 0.18 80);
+  --chart-4: oklch(0.6 0.2 300);
+  --chart-5: oklch(0.65 0.22 30);
+  --sidebar: oklch(0.09 0.015 240);
+  --sidebar-foreground: oklch(0.75 0.05 200);
+  --sidebar-primary: oklch(0.7 0.15 195);
+  --sidebar-primary-foreground: oklch(0.95 0.01 200);
+  --sidebar-accent: oklch(0.14 0.02 230);
+  --sidebar-accent-foreground: oklch(0.8 0.08 195);
+  --sidebar-border: oklch(0.18 0.025 230);
+  --sidebar-ring: oklch(0.6 0.1 195);
 }
 
 @theme inline {
@@ -99,10 +126,10 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -119,6 +146,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
   }
 
   /* Hide number input spinner arrows */
@@ -131,4 +161,248 @@
     -moz-appearance: textfield;
     appearance: textfield;
   }
+
+  /* Custom scrollbar — tactical thin */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--cic-cyan-dim);
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--cic-cyan);
+  }
+}
+
+/* ============================================================
+   CIC Panel System
+   ============================================================ */
+
+.cic-panel {
+  background: linear-gradient(135deg, var(--cic-panel) 0%, var(--cic-deep) 100%);
+  border: 1px solid var(--cic-panel-edge);
+  border-radius: 2px;
+  position: relative;
+}
+
+.cic-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cic-cyan-dim), transparent);
+  opacity: 0.5;
+}
+
+.cic-panel-header {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--cic-panel-edge);
+  font-family: 'Consolas', 'SF Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--cic-cyan-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cic-panel-header::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--cic-cyan);
+  border-radius: 1px;
+  box-shadow: 0 0 6px var(--cic-cyan);
+}
+
+/* ============================================================
+   CIC Button Variants
+   ============================================================ */
+
+.cic-btn {
+  font-family: 'Consolas', 'SF Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  background: var(--cic-panel);
+  border: 1px solid var(--cic-panel-edge);
+  color: var(--cic-cyan-dim);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.cic-btn:hover {
+  border-color: var(--cic-cyan);
+  color: var(--cic-cyan);
+  background: rgba(0, 229, 255, 0.05);
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.15), inset 0 0 8px rgba(0, 229, 255, 0.05);
+}
+
+.cic-btn.active {
+  border-color: var(--cic-cyan);
+  color: var(--cic-cyan);
+  background: rgba(0, 229, 255, 0.1);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.2), inset 0 0 12px rgba(0, 229, 255, 0.08);
+}
+
+.cic-btn-amber {
+  color: var(--cic-amber-dim);
+  border-color: var(--cic-amber-dim);
+}
+
+.cic-btn-amber:hover, .cic-btn-amber.active {
+  border-color: var(--cic-amber);
+  color: var(--cic-amber);
+  background: rgba(255, 179, 0, 0.08);
+  box-shadow: 0 0 8px var(--cic-amber-glow);
+}
+
+/* ============================================================
+   CIC Toggle Checkbox
+   ============================================================ */
+
+.cic-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: 'Consolas', 'SF Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  transition: background 0.1s;
+}
+
+.cic-toggle:hover {
+  background: rgba(0, 229, 255, 0.04);
+}
+
+.cic-toggle input[type='checkbox'] {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--cic-panel-edge);
+  background: var(--cic-deep);
+  border-radius: 1px;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cic-toggle input[type='checkbox']:checked {
+  background: var(--cic-cyan);
+  border-color: var(--cic-cyan);
+  box-shadow: 0 0 4px rgba(0, 229, 255, 0.4);
+}
+
+.cic-toggle input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  width: 3px;
+  height: 5px;
+  border: solid var(--cic-deep);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+.cic-toggle-label {
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.1s;
+}
+
+.cic-toggle-label.checked {
+  color: rgba(0, 229, 255, 0.7);
+}
+
+/* ============================================================
+   CIC Glow & Status Indicators
+   ============================================================ */
+
+.cic-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cic-status-dot.online {
+  background: var(--cic-green);
+  box-shadow: 0 0 6px var(--cic-green), 0 0 12px rgba(0, 230, 118, 0.3);
+  animation: cic-pulse 2s ease-in-out infinite;
+}
+
+.cic-status-dot.offline {
+  background: var(--cic-red);
+  box-shadow: 0 0 4px var(--cic-red);
+}
+
+@keyframes cic-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ============================================================
+   CIC Map Background
+   ============================================================ */
+
+.cic-map-bg {
+  background:
+    radial-gradient(ellipse at center, var(--cic-deep) 0%, var(--cic-void) 70%),
+    var(--cic-void);
+  position: relative;
+}
+
+/* ============================================================
+   CIC Data Font
+   ============================================================ */
+
+.cic-data {
+  font-family: 'Consolas', 'SF Mono', 'Monaco', monospace;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+
+.cic-label {
+  font-family: 'Consolas', 'SF Mono', 'Monaco', monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--cic-cyan-dim);
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+
+@keyframes cic-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cic-animate-in {
+  animation: cic-fade-in 0.2s ease-out;
+}
+
+/* ============================================================
+   Selection highlight
+   ============================================================ */
+
+::selection {
+  background: rgba(0, 229, 255, 0.25);
+  color: white;
 }

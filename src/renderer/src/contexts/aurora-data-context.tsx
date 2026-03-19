@@ -7,6 +7,12 @@ interface TableInfo {
   rows: number
 }
 
+// Body type mapping from Aurora DB:
+// BodyClass 1 = Planet:    BodyTypeID 2=Terrestrial, 3=Dwarf, 4=GasGiant, 5=SuperJovian
+// BodyClass 2 = Moon:      BodyTypeID 7=Small, 8=SmallTerrestrial, 9=Large, 10=LargeTerrestrial
+// BodyClass 3 = Asteroid:  BodyTypeID 1=Asteroid
+// BodyClass 5 = Comet:     BodyTypeID 14=Comet
+
 // Mapped system body from live memory (kc type)
 export interface MemorySystemBody {
   SystemBodyID: number
@@ -16,7 +22,7 @@ export interface MemorySystemBody {
   OrbitNumber: number
   ParentBodyID: number
   ParentBodyType: number
-  BodyClass: string
+  BodyClass: string   // sub-type string from memory: "Terrestrial", "GasGiant", "Comet", etc.
   Name: string
   OrbitalDistance: number
   Bearing: number
@@ -141,6 +147,7 @@ export function AuroraDataProvider({
     queryFn: () => window.api.bridge.getAllTables(),
     enabled: false
   })
+
 
   const value = useMemo<AuroraDataContextValue>(
     () => ({

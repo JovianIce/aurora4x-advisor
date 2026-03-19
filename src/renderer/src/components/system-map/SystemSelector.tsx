@@ -1,11 +1,4 @@
 import React from 'react'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@components/ui/select'
 import { useMemorySystems } from '../../contexts/aurora-data-context'
 
 interface SystemSelectorProps {
@@ -24,27 +17,35 @@ export function SystemSelector({
   const { data: systems, isLoading } = useMemorySystems(gameId, raceId)
 
   if (!gameId) {
-    return <div className="text-sm text-muted-foreground">Select a game first</div>
+    return <span className="cic-label">No game linked</span>
   }
 
   return (
-    <Select
+    <select
       value={value?.toString() ?? ''}
-      onValueChange={(v) => onChange(Number(v))}
+      onChange={(e) => e.target.value && onChange(Number(e.target.value))}
       disabled={isLoading || !systems?.length}
+      className="cic-data"
+      style={{
+        background: 'var(--cic-panel)',
+        border: '1px solid var(--cic-panel-edge)',
+        borderRadius: '2px',
+        color: value ? 'var(--cic-cyan)' : 'var(--cic-cyan-dim)',
+        padding: '4px 8px',
+        fontSize: '11px',
+        minWidth: '160px',
+        cursor: 'pointer',
+        outline: 'none'
+      }}
     >
-      <SelectTrigger className="w-64">
-        <SelectValue placeholder={isLoading ? 'Loading systems...' : 'Select a star system'} />
-      </SelectTrigger>
-      <SelectContent>
-        {systems
-          ?.sort((a, b) => a.Name.localeCompare(b.Name))
-          .map((sys) => (
-            <SelectItem key={sys.SystemID} value={sys.SystemID.toString()}>
-              {sys.Name}
-            </SelectItem>
-          ))}
-      </SelectContent>
-    </Select>
+      <option value="">{isLoading ? 'Loading...' : '— Select System —'}</option>
+      {systems
+        ?.sort((a, b) => a.Name.localeCompare(b.Name))
+        .map((sys) => (
+          <option key={sys.SystemID} value={sys.SystemID.toString()}>
+            {sys.Name}
+          </option>
+        ))}
+    </select>
   )
 }

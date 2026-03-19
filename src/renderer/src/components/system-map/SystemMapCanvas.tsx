@@ -1,16 +1,17 @@
 import React, { useRef, useEffect, useCallback, useReducer } from 'react'
 import type { SystemBody } from '@shared/types'
 import {
-  orbitalToCartesian,
   auToCanvas,
   type ViewportState,
   type CartesianPoint
 } from '../../lib/orbital-math'
+import type { MapDisplayOptions } from './DisplayOptions'
 
 interface SystemMapCanvasProps {
   bodies: SystemBody[]
   width: number
   height: number
+  displayOptions: MapDisplayOptions
 }
 
 type ViewportAction =
@@ -19,10 +20,13 @@ type ViewportAction =
   | { type: 'resize'; width: number; height: number }
   | { type: 'reset'; width: number; height: number }
 
-// BodyTypeID values that get orbits drawn
-const ORBIT_BODY_TYPES = new Set([1, 2, 4, 5, 10])
 const KM_PER_AU = 149_597_870.7
-const MOON_ZOOM_THRESHOLD = 15000 // px/AU - moons only visible past this
+const MOON_ZOOM_THRESHOLD = 15000 // px/AU — moons only visible past this zoom level
+
+// Bodies with PlanetNumber >= 100 are comets/asteroids — they orbit the star, not a planet
+function isMoon(body: SystemBody): boolean {
+  return body.OrbitNumber > 0 && body.PlanetNumber < 100
+}
 
 function viewportReducer(state: ViewportState, action: ViewportAction): ViewportState {
   switch (action.type) {
@@ -54,10 +58,51 @@ function viewportReducer(state: ViewportState, action: ViewportAction): Viewport
   }
 }
 
+// Classify body for display option checks
+function getBodyCategory(body: SystemBody): 'planet' | 'dwarf' | 'moon' | 'asteroid' | 'comet' {
+  if (body.PlanetNumber >= 100) {
+    return body.BodyTypeID === 14 ? 'comet' : 'asteroid'
+  }
+  if (isMoon(body)) return 'moon'
+  if (body.BodyTypeID === 3) return 'dwarf' // Dwarf planet
+  return 'planet'
+}
+
+function shouldShowBody(body: SystemBody, opts: MapDisplayOptions, scale?: number): boolean {
+  switch (getBodyCategory(body)) {
+    case 'planet': return opts.showPlanets
+    case 'dwarf': return opts.showDwarfPlanets
+    case 'moon': return opts.showMoons && (!scale || scale >= MOON_ZOOM_THRESHOLD)
+    case 'asteroid': return opts.showAsteroids
+    case 'comet': return opts.showComets
+  }
+}
+
+function shouldShowOrbit(body: SystemBody, opts: MapDisplayOptions): boolean {
+  switch (getBodyCategory(body)) {
+    case 'planet': return opts.showPlanetOrbits
+    case 'dwarf': return opts.showDwarfOrbits
+    case 'moon': return opts.showMoonOrbits
+    case 'asteroid': return opts.showAsteroidOrbits
+    case 'comet': return opts.showCometOrbits
+  }
+}
+
+function shouldShowName(body: SystemBody, opts: MapDisplayOptions): boolean {
+  switch (getBodyCategory(body)) {
+    case 'planet': return opts.showPlanetNames
+    case 'dwarf': return opts.showDwarfNames
+    case 'moon': return opts.showMoonNames
+    case 'asteroid': return opts.showAsteroidNames
+    case 'comet': return opts.showCometNames
+  }
+}
+
 export function SystemMapCanvas({
   bodies,
   width,
-  height
+  height,
+  displayOptions
 }: SystemMapCanvasProps): React.JSX.Element {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const isDragging = useRef(false)
@@ -114,35 +159,46 @@ export function SystemMapCanvas({
       // Use real positions directly - no interpolation
       const posMap = positions.current
 
-      // Background
-      ctx.fillStyle = '#08080f'
+      // Background — CIC void
+      ctx.fillStyle = '#030810'
       ctx.fillRect(0, 0, width, height)
 
-      // Star at center
+      // Star at center — CIC amber glow
       const starScreen = auToCanvas({ x: 0, y: 0 }, viewport)
+
+      // Glow halo
+      const starGlow = ctx.createRadialGradient(starScreen.cx, starScreen.cy, 0, starScreen.cx, starScreen.cy, 20)
+      starGlow.addColorStop(0, 'rgba(255, 179, 0, 0.3)')
+      starGlow.addColorStop(0.5, 'rgba(255, 179, 0, 0.05)')
+      starGlow.addColorStop(1, 'transparent')
+      ctx.fillStyle = starGlow
+      ctx.fillRect(starScreen.cx - 20, starScreen.cy - 20, 40, 40)
+
       ctx.beginPath()
-      ctx.arc(starScreen.cx, starScreen.cy, 6, 0, Math.PI * 2)
-      ctx.fillStyle = '#ffd700'
+      ctx.arc(starScreen.cx, starScreen.cy, 5, 0, Math.PI * 2)
+      ctx.fillStyle = '#ffb300'
       ctx.fill()
-      ctx.fillStyle = '#ffd700'
-      ctx.font = '11px monospace'
-      ctx.fillText('Star', starScreen.cx + 10, starScreen.cy + 4)
 
-      const showMoons = viewport.scale >= MOON_ZOOM_THRESHOLD
+      if (displayOptions.showStarNames) {
+        ctx.fillStyle = 'rgba(255, 179, 0, 0.7)'
+        ctx.font = '10px Consolas, monospace'
+        ctx.fillText('Star', starScreen.cx + 10, starScreen.cy + 3)
+      }
 
+      // Map PlanetNumber -> parent body (for moon orbit drawing)
       const planetByNumber = new Map<number, SystemBody>()
       for (const body of bodies) {
-        if (body.OrbitNumber === 0 && body.PlanetNumber > 0) {
+        if (!isMoon(body) && body.PlanetNumber > 0 && body.PlanetNumber < 100) {
           planetByNumber.set(body.PlanetNumber, body)
         }
       }
 
       // Draw orbits (elliptical using Eccentricity)
       for (const body of bodies) {
-        if (!ORBIT_BODY_TYPES.has(body.BodyTypeID)) continue
-        if (body.OrbitNumber > 0 && !showMoons) continue
+        if (!shouldShowBody(body, displayOptions, viewport.scale)) continue
+        if (!shouldShowOrbit(body, displayOptions)) continue
 
-        if (body.OrbitNumber === 0) {
+        if (!isMoon(body)) {
           const a = body.OrbitalDistance // semi-major axis in AU
           const e = body.Eccentricity || 0
           const b = a * Math.sqrt(1 - e * e) // semi-minor axis
@@ -162,7 +218,7 @@ export function SystemMapCanvas({
             const ellipseCx = starScreen.cx + Math.cos(dirRad) * offsetPx
             const ellipseCy = starScreen.cy + Math.sin(dirRad) * offsetPx
 
-            ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)'
+            ctx.strokeStyle = 'rgba(0, 229, 255, 0.06)'
             ctx.lineWidth = 1
             ctx.beginPath()
             ctx.ellipse(ellipseCx, ellipseCy, semiMajorPx, semiMinorPx, dirRad, 0, Math.PI * 2)
@@ -176,7 +232,7 @@ export function SystemMapCanvas({
               const parentScreen = auToCanvas(parentPos, viewport)
               const moonOrbitRadius = (body.DistanceToParent / KM_PER_AU) * viewport.scale
               if (moonOrbitRadius > 1 && moonOrbitRadius < width * 2) {
-                ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)'
+                ctx.strokeStyle = 'rgba(0, 229, 255, 0.04)'
                 ctx.lineWidth = 1
                 ctx.beginPath()
                 ctx.arc(parentScreen.cx, parentScreen.cy, moonOrbitRadius, 0, Math.PI * 2)
@@ -189,7 +245,7 @@ export function SystemMapCanvas({
 
       // Draw bodies
       for (const body of bodies) {
-        if (body.OrbitNumber > 0 && !showMoons) continue
+        if (!shouldShowBody(body, displayOptions, viewport.scale)) continue
 
         const pos = posMap.get(body.SystemBodyID)
         if (!pos) continue
@@ -198,7 +254,7 @@ export function SystemMapCanvas({
         if (screen.cx < -50 || screen.cx > width + 50 || screen.cy < -50 || screen.cy > height + 50)
           continue
 
-        const moon = body.OrbitNumber > 0
+        const moon = isMoon(body)
         const radius = moon ? 2.5 : 4
         const color = getBodyColor(body.BodyClass)
 
@@ -207,23 +263,24 @@ export function SystemMapCanvas({
         ctx.fillStyle = color
         ctx.fill()
 
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.7)'
-        ctx.font = moon ? '9px monospace' : '10px monospace'
-        ctx.fillText(body.Name || `Body ${body.SystemBodyID}`, screen.cx + radius + 4, screen.cy + 3)
+        if (shouldShowName(body, displayOptions)) {
+          ctx.fillStyle = moon ? 'rgba(0, 229, 255, 0.35)' : 'rgba(0, 229, 255, 0.6)'
+          ctx.font = moon ? '8px Consolas, monospace' : '9px Consolas, monospace'
+          ctx.fillText(body.Name || `Body ${body.SystemBodyID}`, screen.cx + radius + 4, screen.cy + 3)
+        }
       }
 
-      // HUD
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.3)'
-      ctx.font = '10px monospace'
-      ctx.fillText(`Scale: ${formatScale(viewport.scale)}`, 10, height - 10)
-      ctx.fillText(`Bodies: ${bodies.length}`, 10, height - 24)
+      // HUD — rendered in canvas for crisp overlay
+      ctx.fillStyle = 'rgba(0, 229, 255, 0.25)'
+      ctx.font = '9px Consolas, monospace'
+      ctx.fillText(`SCALE ${formatScale(viewport.scale)}`, 10, height - 8)
 
       animFrameRef.current = requestAnimationFrame(draw)
     }
 
     animFrameRef.current = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(animFrameRef.current)
-  }, [bodies, viewport, width, height])
+  }, [bodies, viewport, width, height, displayOptions])
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     isDragging.current = true
@@ -242,15 +299,25 @@ export function SystemMapCanvas({
     isDragging.current = false
   }, [])
 
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    e.preventDefault()
-    const rect = (e.target as HTMLCanvasElement).getBoundingClientRect()
-    dispatch({
-      type: 'zoom',
-      delta: e.deltaY,
-      mouseX: e.clientX - rect.left,
-      mouseY: e.clientY - rect.top
-    })
+  // Attach wheel listener with passive:false so preventDefault works
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const onWheel = (e: WheelEvent): void => {
+      e.preventDefault()
+      e.stopPropagation()
+      const rect = canvas.getBoundingClientRect()
+      dispatch({
+        type: 'zoom',
+        delta: e.deltaY,
+        mouseX: e.clientX - rect.left,
+        mouseY: e.clientY - rect.top
+      })
+    }
+
+    canvas.addEventListener('wheel', onWheel, { passive: false })
+    return () => canvas.removeEventListener('wheel', onWheel)
   }, [])
 
   return (
@@ -261,29 +328,27 @@ export function SystemMapCanvas({
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      onWheel={handleWheel}
+
     />
   )
 }
 
-function getBodyColor(bodyClass: number): string {
-  switch (bodyClass) {
-    case 1:
-      return '#4a9eff' // Terrestrial
-    case 2:
-      return '#ff6b35' // Gas Giant
-    case 3:
-      return '#8b5cf6' // Ice Giant
-    case 4:
-      return '#6b7280' // Asteroid
-    case 5:
-      return '#94a3b8' // Dwarf Planet
-    case 6:
-      return '#fbbf24' // Super-Jovian
-    case 7:
-      return '#ef4444' // Comet
-    default:
-      return '#9ca3af'
+function getBodyColor(bodyTypeId: number): string {
+  switch (bodyTypeId) {
+    // Planets — warm tones stand out against cool CIC palette
+    case 2: return '#e07840'   // Terrestrial
+    case 3: return '#78909c'   // Dwarf Planet
+    case 4: return '#d4a030'   // Gas Giant
+    case 5: return '#ffa726'   // Super-Jovian
+    // Moons — subtle cool grays
+    case 7: return '#546e7a'   // Moon - Small
+    case 8: return '#607d8b'   // Moon
+    case 9: return '#78909c'   // Moon large
+    case 10: return '#90a4ae'  // Moon - Terrestrial
+    // Other
+    case 1: return '#455a64'   // Asteroid
+    case 14: return '#00bcd4'  // Comet — matches CIC cyan
+    default: return '#607d8b'
   }
 }
 
