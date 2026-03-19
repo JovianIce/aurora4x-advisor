@@ -129,3 +129,124 @@ export interface StarSystem {
   Xcor: number
   Ycor: number
 }
+
+// Action execution types
+export type ActionType =
+  | 'ClickButton'
+  | 'OpenForm'
+  | 'ReadControl'
+  | 'SetControl'
+  | 'InspectForm'
+  | 'Composite'
+
+export interface ActionRequest {
+  Action: ActionType
+  /** For ClickButton: AuroraButton enum name. For OpenForm/InspectForm: AuroraType enum name. */
+  Target?: string
+  /** For ReadControl/SetControl: the AuroraType form name. */
+  FormName?: string
+  /** For ReadControl/SetControl: the WinForms control name. */
+  ControlName?: string
+  /** For SetControl: the value to set. */
+  Value?: unknown
+  /** For Composite: ordered list of sub-actions. */
+  Steps?: ActionRequest[]
+}
+
+export interface ActionResult {
+  Success: boolean
+  Error?: string
+  Data?: unknown
+}
+
+export interface ControlInfo {
+  Name: string
+  Type: string
+  Text: string
+  Value?: unknown
+  Enabled: boolean
+  Visible: boolean
+  ParentName: string
+  Children?: ControlInfo[]
+}
+
+/** Known Aurora button names that can be clicked via ActionExecutor */
+export type AuroraButton =
+  | 'SubPulse'
+  | 'SubPulse5S'
+  | 'SubPulse30S'
+  | 'SubPulse2M'
+  | 'SubPulse5M'
+  | 'SubPulse20M'
+  | 'SubPulse1H'
+  | 'SubPulse3H'
+  | 'SubPulse8H'
+  | 'SubPulse1D'
+  | 'SubPulse5D'
+  | 'SubPulse30D'
+  | 'Increment'
+  | 'Increment5S'
+  | 'Increment30S'
+  | 'Increment2M'
+  | 'Increment5M'
+  | 'Increment20M'
+  | 'Increment1H'
+  | 'Increment3H'
+  | 'Increment8H'
+  | 'Increment1D'
+  | 'Increment5D'
+  | 'Increment30D'
+  | 'ToolbarColony'
+  | 'ToolbarIndustry'
+  | 'ToolbarMining'
+  | 'ToolbarResearch'
+  | 'ToolbarWealth'
+  | 'ToolbarClass'
+  | 'ToolbarProject'
+  | 'ToolbarFleet'
+  | 'ToolbarMissileDesign'
+  | 'ToolbarTurrent'
+  | 'ToolbarGroundForces'
+  | 'ToolbarCommanders'
+  | 'ToolbarMedals'
+  | 'ToolbarRace'
+  | 'ToolbarSystem'
+  | 'ToolbarGalactic'
+  | 'ToolbarComparison'
+  | 'ToolbarIntelligence'
+  | 'ToolbarTechnology'
+  | 'ToolbarSurvey'
+  | 'ToolbarSector'
+  | 'ToolbarEvents'
+  | 'ToolbarRefreshTactical'
+  | 'ToolbarSave'
+  | 'ToolbarGame'
+  | 'ToolbarAuto'
+  | 'ZoomIn'
+  | 'ZoomOut'
+  | 'Up'
+  | 'Down'
+  | 'Left'
+  | 'Right'
+
+/** Known Aurora form types that can be opened/inspected */
+export type AuroraFormType =
+  | 'EconomicsForm'
+  | 'ClassDesignForm'
+  | 'CreateProjectForm'
+  | 'FleetWindowForm'
+  | 'MissileDesignForm'
+  | 'TurretDesignForm'
+  | 'GroundUnitDesignForm'
+  | 'CommandersWindowForm'
+  | 'MedalsForm'
+  | 'RaceWindowForm'
+  | 'SystemViewForm'
+  | 'GalacticMapForm'
+  | 'RaceComparisonForm'
+  | 'DiplomacyForm'
+  | 'TechnologyViewForm'
+  | 'MineralsForm'
+  | 'SectorsForm'
+  | 'EventsForm'
+  | 'GameDetailsForm'

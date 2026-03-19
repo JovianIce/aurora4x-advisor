@@ -1,6 +1,6 @@
 import WebSocket from 'ws'
 import { BrowserWindow } from 'electron'
-import type { BridgeStatus } from '@shared/types'
+import type { BridgeStatus, ActionRequest } from '@shared/types'
 
 interface PendingRequest {
   resolve: (value: unknown) => void
@@ -108,6 +108,26 @@ class AuroraBridge {
       Payload: systemId != null ? JSON.stringify({ SystemId: systemId }) : null
     }
     return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
+  }
+
+  async executeAction(action: ActionRequest): Promise<unknown> {
+    const id = this.nextId()
+    const request = {
+      Id: id,
+      Type: 'action',
+      Payload: JSON.stringify(action)
+    }
+    return this.sendRequest(id, request)
+  }
+
+  async inspectForm(formName: string): Promise<unknown> {
+    const id = this.nextId()
+    const request = {
+      Id: id,
+      Type: 'inspect',
+      Payload: JSON.stringify({ FormName: formName })
+    }
+    return this.sendRequest(id, request)
   }
 
   async ping(): Promise<boolean> {

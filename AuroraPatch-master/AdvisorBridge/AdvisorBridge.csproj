@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionExecutor.cs" />
+    <Compile Include="ActionProtocol.cs" />
     <Compile Include="AdvisorBridge.cs" />
     <Compile Include="BridgeServer.cs" />
     <Compile Include="MemoryReader.cs" />

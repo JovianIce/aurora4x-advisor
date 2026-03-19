@@ -15,6 +15,7 @@ namespace AdvisorBridge
         private readonly Lib.DatabaseManager _db;
         private readonly AuroraPatch.Patch _patch;
         private readonly MemoryReader _memoryReader;
+        private readonly ActionExecutor _actionExecutor;
         private HttpListener _listener;
         private CancellationTokenSource _cts;
         private readonly ConcurrentDictionary<string, WebSocket> _clients = new ConcurrentDictionary<string, WebSocket>();
@@ -31,6 +32,7 @@ namespace AdvisorBridge
             _db = db;
             _patch = patch;
             _memoryReader = new MemoryReader(lib, patch);
+            _actionExecutor = new ActionExecutor(lib, patch);
         }
 
         public void Start(int port = 47842)
@@ -221,6 +223,14 @@ namespace AdvisorBridge
 
                 case "globalsearch":
                     response = HandleGlobalSearch(request);
+                    break;
+
+                case "action":
+                    response = HandleAction(request);
+                    break;
+
+                case "inspect":
+                    response = HandleInspect(request);
                     break;
 
                 default:
@@ -429,6 +439,69 @@ namespace AdvisorBridge
                 _patch.LogError($"GlobalSearch error: {ex.Message}");
                 return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
             }
+        }
+
+        private BridgeResponse HandleAction(BridgeRequest request)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(request.Payload))
+                    return BridgeResponse.Fail(request.Id, "result", "Missing action payload");
+
+                var actionRequest = JsonConvert.DeserializeObject<ActionRequest>(request.Payload);
+                var result = _actionExecutor.Execute(actionRequest);
+
+                if (result.Success)
+                    return BridgeResponse.Ok(request.Id, "result", result.Data);
+                else
+                    return BridgeResponse.Fail(request.Id, "result", result.Error);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"Action error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Action failed: {ex.Message}");
+            }
+        }
+
+        private BridgeResponse HandleInspect(BridgeRequest request)
+        {
+            try
+            {
+                string formName = "EconomicsForm";
+                if (!string.IsNullOrEmpty(request.Payload))
+                {
+                    try
+                    {
+                        var payload = JsonConvert.DeserializeObject<InspectPayload>(request.Payload);
+                        if (!string.IsNullOrEmpty(payload?.FormName))
+                            formName = payload.FormName;
+                    }
+                    catch { }
+                }
+
+                var actionRequest = new ActionRequest
+                {
+                    Action = ActionType.InspectForm,
+                    Target = formName
+                };
+
+                var result = _actionExecutor.Execute(actionRequest);
+
+                if (result.Success)
+                    return BridgeResponse.Ok(request.Id, "result", result.Data);
+                else
+                    return BridgeResponse.Fail(request.Id, "result", result.Error);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"Inspect error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Inspect failed: {ex.Message}");
+            }
+        }
+
+        private class InspectPayload
+        {
+            public string FormName { get; set; }
         }
 
         private class GlobalSearchPayload

@@ -9,7 +9,10 @@ import type {
   AppSettings,
   BridgeStatus,
   SystemBody,
-  StarSystem
+  StarSystem,
+  ActionRequest,
+  ActionResult,
+  ControlInfo
 } from '@shared/types'
 
 interface Profile {
@@ -120,6 +123,8 @@ interface BridgeAPI {
   globalSearch: (values: number[]) => Promise<Record<string, unknown>[]>
   getMemoryBodies2: (systemId?: number) => Promise<Record<string, unknown>[]>
   ping: () => Promise<boolean>
+  executeAction: (action: ActionRequest) => Promise<unknown>
+  inspectForm: (formName: string) => Promise<{ form: string; controls: ControlInfo[] }>
   onPush: (callback: (data: unknown) => void) => () => void
 }
 

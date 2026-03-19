@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { useGame } from '@renderer/hooks/use-game'
 import { SystemMapTab } from './SystemMapTab'
 import { TableExplorerTab } from './TableExplorerTab'
+import { DashboardOverview } from './DashboardOverview'
 import { BridgeStatusIndicator } from '../../system-map/BridgeStatusIndicator'
 
 export function DashboardLayout(): React.JSX.Element {
   const navigate = useNavigate()
   const { currentGame } = useGame()
-  const [activeView, setActiveView] = useState<'map' | 'tables'>('map')
+  const [activeView, setActiveView] = useState<'map' | 'tables' | 'advisor'>('map')
 
   useEffect(() => {
     if (!currentGame) {
@@ -30,8 +31,8 @@ export function DashboardLayout(): React.JSX.Element {
           borderBottom: '1px solid var(--cic-panel-edge)'
         }}
       >
-        {/* Left: Game info */}
-        <div className="flex items-center gap-4">
+        {/* Left: Game info — padded left for sidebar trigger button */}
+        <div className="flex items-center gap-4" style={{ marginLeft: '130px' }}>
           <div className="flex items-center gap-2">
             <div
               className="cic-label"
@@ -66,6 +67,12 @@ export function DashboardLayout(): React.JSX.Element {
           >
             Data Core
           </button>
+          <button
+            className={`cic-btn ${activeView === 'advisor' ? 'active' : ''}`}
+            onClick={() => setActiveView('advisor')}
+          >
+            Advisor
+          </button>
         </div>
 
         {/* Right: Status */}
@@ -84,6 +91,10 @@ export function DashboardLayout(): React.JSX.Element {
       <div className="flex-1 min-h-0">
         {activeView === 'map' ? (
           <SystemMapTab game={currentGame} />
+        ) : activeView === 'advisor' ? (
+          <div className="p-4 h-full overflow-auto">
+            <DashboardOverview />
+          </div>
         ) : (
           <div className="p-4 h-full overflow-auto">
             <TableExplorerTab />

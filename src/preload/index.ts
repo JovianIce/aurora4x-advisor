@@ -81,6 +81,8 @@ const api = {
     globalSearch: (values: number[]) => ipcRenderer.invoke('bridge:globalSearch', values),
     getMemoryBodies2: (systemId?: number) => ipcRenderer.invoke('bridge:getMemoryBodies2', systemId),
     ping: () => ipcRenderer.invoke('bridge:ping'),
+    executeAction: (action: unknown) => ipcRenderer.invoke('bridge:executeAction', action),
+    inspectForm: (formName: string) => ipcRenderer.invoke('bridge:inspectForm', formName),
     onPush: (callback: (data: unknown) => void): (() => void) => {
       const subscription = (_event: IpcRendererEvent, data: unknown): void => callback(data)
       ipcRenderer.on('bridge:push', subscription)

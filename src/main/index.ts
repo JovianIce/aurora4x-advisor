@@ -352,6 +352,14 @@ app.whenReady().then(async () => {
     return auroraBridge.ping()
   })
 
+  ipcMain.handle('bridge:executeAction', async (_event, action) => {
+    return auroraBridge.executeAction(action)
+  })
+
+  ipcMain.handle('bridge:inspectForm', async (_event, formName: string) => {
+    return auroraBridge.inspectForm(formName)
+  })
+
   // Initialize database watcher from settings
   loadSettings().then((settings) => {
     if (settings.auroraDbPath && settings.watchEnabled) {
