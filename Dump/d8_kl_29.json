@@ -1,0 +1,296 @@
+{
+  "_field": "d8",
+  "_type": "kl",
+  "_collectionType": "List",
+  "_count": 29,
+  "_dumped": 29,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "int"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "enum"
+    },
+    {
+      "name": "d",
+      "type": "enum"
+    },
+    {
+      "name": "e",
+      "type": "enum"
+    },
+    {
+      "name": "f",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": 2,
+      "b": 40,
+      "c": "h",
+      "d": "k",
+      "e": "a",
+      "f": "Nitrogen - Oxygen"
+    },
+    {
+      "_index": 1,
+      "a": 2,
+      "b": 55,
+      "c": "h",
+      "d": "k",
+      "e": "n",
+      "f": "Nitrogen - Oxygen - CO2"
+    },
+    {
+      "_index": 2,
+      "a": 2,
+      "b": 60,
+      "c": "h",
+      "d": "n",
+      "e": "k",
+      "f": "Nitrogen - CO2 - Oxygen"
+    },
+    {
+      "_index": 3,
+      "a": 2,
+      "b": 70,
+      "c": "h",
+      "d": "n",
+      "e": "a",
+      "f": "Nitrogen - CO2"
+    },
+    {
+      "_index": 4,
+      "a": 2,
+      "b": 80,
+      "c": "n",
+      "d": "h",
+      "e": "a",
+      "f": "CO2 - Nitrogen"
+    },
+    {
+      "_index": 5,
+      "a": 2,
+      "b": 85,
+      "c": "h",
+      "d": "d",
+      "e": "e",
+      "f": "Nitrogen - Methane - Ammonia"
+    },
+    {
+      "_index": 6,
+      "a": 2,
+      "b": 90,
+      "c": "h",
+      "d": "e",
+      "e": "d",
+      "f": "Nitrogen - Ammonia - Methane"
+    },
+    {
+      "_index": 7,
+      "a": 2,
+      "b": 91,
+      "c": "d",
+      "d": "h",
+      "e": "e",
+      "f": "Methane - Nitrogen - Ammonia"
+    },
+    {
+      "_index": 8,
+      "a": 2,
+      "b": 92,
+      "c": "e",
+      "d": "h",
+      "e": "d",
+      "f": "Ammonia - Nitrogen - Methane"
+    },
+    {
+      "_index": 9,
+      "a": 2,
+      "b": 93,
+      "c": "d",
+      "d": "e",
+      "e": "h",
+      "f": "Methane - Ammonia - Nitrogen"
+    },
+    {
+      "_index": 10,
+      "a": 2,
+      "b": 94,
+      "c": "e",
+      "d": "d",
+      "e": "h",
+      "f": "Ammonia - Methane - Nitrogen"
+    },
+    {
+      "_index": 11,
+      "a": 2,
+      "b": 95,
+      "c": "h",
+      "d": "d",
+      "e": "a",
+      "f": "Nitrogen - Methane"
+    },
+    {
+      "_index": 12,
+      "a": 2,
+      "b": 96,
+      "c": "h",
+      "d": "e",
+      "e": "a",
+      "f": "Nitrogen - Nitrogen"
+    },
+    {
+      "_index": 13,
+      "a": 2,
+      "b": 97,
+      "c": "d",
+      "d": "h",
+      "e": "a",
+      "f": "Methane - Nitrogen"
+    },
+    {
+      "_index": 14,
+      "a": 2,
+      "b": 98,
+      "c": "e",
+      "d": "h",
+      "e": "a",
+      "f": "Ammonia - Nitrogen"
+    },
+    {
+      "_index": 15,
+      "a": 2,
+      "b": 99,
+      "c": "e",
+      "d": "d",
+      "e": "a",
+      "f": "Ammonia - Methane"
+    },
+    {
+      "_index": 16,
+      "a": 2,
+      "b": 100,
+      "c": "d",
+      "d": "e",
+      "e": "a",
+      "f": "Methane - Ammonia"
+    },
+    {
+      "_index": 17,
+      "a": 1,
+      "b": 60,
+      "c": "h",
+      "d": "n",
+      "e": "a",
+      "f": "Nitrogen - CO2"
+    },
+    {
+      "_index": 18,
+      "a": 1,
+      "b": 80,
+      "c": "n",
+      "d": "h",
+      "e": "a",
+      "f": "CO2 - Nitrogen"
+    },
+    {
+      "_index": 19,
+      "a": 1,
+      "b": 90,
+      "c": "o",
+      "d": "p",
+      "e": "a",
+      "f": "Nitrogen Dioxide - Sulphur Dioxide"
+    },
+    {
+      "_index": 20,
+      "a": 1,
+      "b": 100,
+      "c": "o",
+      "d": "a",
+      "e": "a",
+      "f": "Nitrogen Dioxide"
+    },
+    {
+      "_index": 21,
+      "a": 3,
+      "b": 60,
+      "c": "h",
+      "d": "d",
+      "e": "a",
+      "f": "Nitrogen - Methane"
+    },
+    {
+      "_index": 22,
+      "a": 3,
+      "b": 80,
+      "c": "b",
+      "d": "c",
+      "e": "h",
+      "f": "Hydrogen - Helium"
+    },
+    {
+      "_index": 23,
+      "a": 3,
+      "b": 90,
+      "c": "h",
+      "d": "n",
+      "e": "a",
+      "f": "Nitrogen - CO2"
+    },
+    {
+      "_index": 24,
+      "a": 3,
+      "b": 100,
+      "c": "c",
+      "d": "b",
+      "e": "a",
+      "f": "Helium - Hydrogen"
+    },
+    {
+      "_index": 25,
+      "a": 4,
+      "b": 65,
+      "c": "b",
+      "d": "c",
+      "e": "a",
+      "f": "Hydrogen - Helium"
+    },
+    {
+      "_index": 26,
+      "a": 4,
+      "b": 80,
+      "c": "b",
+      "d": "a",
+      "e": "a",
+      "f": "Hydrogen"
+    },
+    {
+      "_index": 27,
+      "a": 4,
+      "b": 95,
+      "c": "c",
+      "d": "b",
+      "e": "a",
+      "f": "Helium - Hydrogen"
+    },
+    {
+      "_index": 28,
+      "a": 4,
+      "b": 100,
+      "c": "g",
+      "d": "a",
+      "e": "a",
+      "f": "Neon"
+    }
+  ]
+}

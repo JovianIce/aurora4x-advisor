@@ -110,6 +110,68 @@ class AuroraBridge {
     return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
   }
 
+  async getKnownSystems(): Promise<{ SystemID: number; Name: string }[]> {
+    const id = this.nextId()
+    const request = { Id: id, Type: 'getKnownSystems', Payload: null }
+    return this.sendRequest(id, request) as Promise<{ SystemID: number; Name: string }[]>
+  }
+
+  async getFleets(): Promise<Record<string, unknown>[]> {
+    const id = this.nextId()
+    const request = { Id: id, Type: 'getFleets', Payload: null }
+    return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
+  }
+
+  async getShips(fleetId?: number): Promise<Record<string, unknown>[]> {
+    const id = this.nextId()
+    const request = {
+      Id: id,
+      Type: 'getShips',
+      Payload: fleetId != null ? JSON.stringify({ FleetId: fleetId }) : null
+    }
+    return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
+  }
+
+  async enumerateGameState(): Promise<unknown[]> {
+    const id = this.nextId()
+    const request = { Id: id, Type: 'enumerateGameState', Payload: null }
+    return this.sendRequest(id, request) as Promise<unknown[]>
+  }
+
+  async enumerateCollections(): Promise<unknown[]> {
+    const id = this.nextId()
+    const request = { Id: id, Type: 'enumerateCollections', Payload: null }
+    return this.sendRequest(id, request) as Promise<unknown[]>
+  }
+
+  async readCollection(params: {
+    Field: string
+    Offset?: number
+    Limit?: number
+    Fields?: string[]
+    IncludeRefs?: boolean
+    FilterField?: string
+    FilterValue?: string
+  }): Promise<unknown[]> {
+    const id = this.nextId()
+    const request = {
+      Id: id,
+      Type: 'readCollection',
+      Payload: JSON.stringify(params)
+    }
+    return this.sendRequest(id, request) as Promise<unknown[]>
+  }
+
+  async readField(fieldName: string): Promise<unknown> {
+    const id = this.nextId()
+    const request = {
+      Id: id,
+      Type: 'readField',
+      Payload: JSON.stringify({ Field: fieldName })
+    }
+    return this.sendRequest(id, request)
+  }
+
   async executeAction(action: ActionRequest): Promise<unknown> {
     const id = this.nextId()
     const request = {

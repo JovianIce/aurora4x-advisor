@@ -1,0 +1,384 @@
+{
+  "_field": "cz",
+  "_type": "h5",
+  "_collectionType": "Dict",
+  "_count": 51,
+  "_dumped": 51,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "decimal"
+    },
+    {
+      "name": "c",
+      "type": "bool"
+    },
+    {
+      "name": "d",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "a",
+      "b": 12,
+      "c": false,
+      "d": "Ground Unit Maintenance"
+    },
+    {
+      "_index": 1,
+      "a": "b",
+      "b": 8,
+      "c": false,
+      "d": "Ordnance Production"
+    },
+    {
+      "_index": 2,
+      "a": "c",
+      "b": 9,
+      "c": false,
+      "d": "Fighter Production"
+    },
+    {
+      "_index": 3,
+      "a": "d",
+      "b": 7,
+      "c": false,
+      "d": "Installation Construction"
+    },
+    {
+      "_index": 4,
+      "a": "e",
+      "b": 5,
+      "c": false,
+      "d": "Shipbuilding"
+    },
+    {
+      "_index": 5,
+      "a": "f",
+      "b": 10,
+      "c": false,
+      "d": "Ground Unit Training"
+    },
+    {
+      "_index": 6,
+      "a": "g",
+      "b": 6,
+      "c": false,
+      "d": "Research"
+    },
+    {
+      "_index": 7,
+      "a": "h",
+      "b": 1,
+      "c": true,
+      "d": "Starting Wealth"
+    },
+    {
+      "_index": 8,
+      "a": "9",
+      "b": 3,
+      "c": true,
+      "d": "Trade Income"
+    },
+    {
+      "_index": 9,
+      "a": "10",
+      "b": 4,
+      "c": true,
+      "d": "Tariff Income"
+    },
+    {
+      "_index": 10,
+      "a": "i",
+      "b": 2,
+      "c": true,
+      "d": "Worker Taxes"
+    },
+    {
+      "_index": 11,
+      "a": "12",
+      "b": 11,
+      "c": false,
+      "d": "Maintenance Facility Operation"
+    },
+    {
+      "_index": 12,
+      "a": "14",
+      "b": 14,
+      "c": false,
+      "d": "Purchase of Minerals"
+    },
+    {
+      "_index": 13,
+      "a": "15",
+      "b": 15,
+      "c": true,
+      "d": "Sale of Minerals"
+    },
+    {
+      "_index": 14,
+      "a": "16",
+      "b": 16,
+      "c": false,
+      "d": "Purchase of Installations"
+    },
+    {
+      "_index": 15,
+      "a": "17",
+      "b": 17,
+      "c": true,
+      "d": "Sale of Installations"
+    },
+    {
+      "_index": 16,
+      "a": "18",
+      "b": 18,
+      "c": false,
+      "d": "Purchase of Ordnance"
+    },
+    {
+      "_index": 17,
+      "a": "19",
+      "b": 19,
+      "c": true,
+      "d": "Sale of Ordnance"
+    },
+    {
+      "_index": 18,
+      "a": "20",
+      "b": 20,
+      "c": true,
+      "d": "Sale of Fighters"
+    },
+    {
+      "_index": 19,
+      "a": "21",
+      "b": 21,
+      "c": false,
+      "d": "Purchase of Fighters"
+    },
+    {
+      "_index": 20,
+      "a": "22",
+      "b": 22,
+      "c": true,
+      "d": "Sale of Technology"
+    },
+    {
+      "_index": 21,
+      "a": "23",
+      "b": 23,
+      "c": false,
+      "d": "Purchase of Technology"
+    },
+    {
+      "_index": 22,
+      "a": "24",
+      "b": 24,
+      "c": true,
+      "d": "Sale of Ships"
+    },
+    {
+      "_index": 23,
+      "a": "25",
+      "b": 25,
+      "c": false,
+      "d": "Purchase of Ships"
+    },
+    {
+      "_index": 24,
+      "a": "j",
+      "b": 26,
+      "c": true,
+      "d": "Scrap"
+    },
+    {
+      "_index": 25,
+      "a": "k",
+      "b": 27,
+      "c": false,
+      "d": "Shipyard Modifications"
+    },
+    {
+      "_index": 26,
+      "a": "l",
+      "b": 28,
+      "c": false,
+      "d": "Maintenance Supplies"
+    },
+    {
+      "_index": 27,
+      "a": "29",
+      "b": 29,
+      "c": false,
+      "d": "Purchase of Civilian Ships"
+    },
+    {
+      "_index": 28,
+      "a": "m",
+      "b": 30,
+      "c": true,
+      "d": "Looted from Conquered Population"
+    },
+    {
+      "_index": 29,
+      "a": "n",
+      "b": 31,
+      "c": false,
+      "d": "Lost due to Conquered Population "
+    },
+    {
+      "_index": 30,
+      "a": "o",
+      "b": 32,
+      "c": true,
+      "d": "Tax on Shipping Trade Goods"
+    },
+    {
+      "_index": 31,
+      "a": "p",
+      "b": 34,
+      "c": true,
+      "d": "Tax on Exports"
+    },
+    {
+      "_index": 32,
+      "a": "q",
+      "b": 33,
+      "c": true,
+      "d": "Tax on Shipping Colonists"
+    },
+    {
+      "_index": 33,
+      "a": "r",
+      "b": 35,
+      "c": true,
+      "d": "Tax on Civilian Mining"
+    },
+    {
+      "_index": 34,
+      "a": "s",
+      "b": 36,
+      "c": false,
+      "d": "Purchase of Civilian Minerals"
+    },
+    {
+      "_index": 35,
+      "a": "37",
+      "b": 37,
+      "c": false,
+      "d": "Foreign Aid"
+    },
+    {
+      "_index": 36,
+      "a": "38",
+      "b": 38,
+      "c": true,
+      "d": "Foreign Aid Received"
+    },
+    {
+      "_index": 37,
+      "a": "t",
+      "b": 2.5,
+      "c": true,
+      "d": "Financial Centres"
+    },
+    {
+      "_index": 38,
+      "a": "u",
+      "b": 9.1,
+      "c": false,
+      "d": "Ship Component Production"
+    },
+    {
+      "_index": 39,
+      "a": "v",
+      "b": 5.5,
+      "c": false,
+      "d": "PDC-related Construction"
+    },
+    {
+      "_index": 40,
+      "a": "42",
+      "b": 34.1,
+      "c": false,
+      "d": "Shipping Line Subsidy"
+    },
+    {
+      "_index": 41,
+      "a": "w",
+      "b": 33.1,
+      "c": true,
+      "d": "Tax on Passenger Liners"
+    },
+    {
+      "_index": 42,
+      "a": "x",
+      "b": 35.9,
+      "c": false,
+      "d": "Civilian Contracts"
+    },
+    {
+      "_index": 43,
+      "a": "y",
+      "b": 5.5,
+      "c": false,
+      "d": "Orbital Habitat Construction"
+    },
+    {
+      "_index": 44,
+      "a": "46",
+      "b": 35.1,
+      "c": false,
+      "d": "Purchase of Civilian Fuel"
+    },
+    {
+      "_index": 45,
+      "a": "z",
+      "b": 36,
+      "c": true,
+      "d": "Tax on Civilian Fuel"
+    },
+    {
+      "_index": 46,
+      "a": "48",
+      "b": 37,
+      "c": false,
+      "d": "Maintenance Facility Production"
+    },
+    {
+      "_index": 47,
+      "a": "aa",
+      "b": 25.5,
+      "c": false,
+      "d": "Ship Repairs"
+    },
+    {
+      "_index": 48,
+      "a": "ab",
+      "b": 25.25,
+      "c": false,
+      "d": "Ship Refits"
+    },
+    {
+      "_index": 49,
+      "a": "ac",
+      "b": 29.5,
+      "c": true,
+      "d": "Recovered from Ruins"
+    },
+    {
+      "_index": 50,
+      "a": "ad",
+      "b": 29.75,
+      "c": true,
+      "d": "Lost to Independence"
+    }
+  ]
+}

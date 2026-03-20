@@ -1,0 +1,168 @@
+{
+  "_field": "c7",
+  "_type": "kw",
+  "_collectionType": "Dict",
+  "_count": 9,
+  "_dumped": 9,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "string"
+    },
+    {
+      "name": "c",
+      "type": "decimal"
+    },
+    {
+      "name": "d",
+      "type": "decimal"
+    },
+    {
+      "name": "e",
+      "type": "decimal"
+    },
+    {
+      "name": "f",
+      "type": "decimal"
+    },
+    {
+      "name": "g",
+      "type": "decimal"
+    },
+    {
+      "name": "h",
+      "type": "bool"
+    },
+    {
+      "name": "i",
+      "type": "bool"
+    },
+    {
+      "name": "j",
+      "type": "bool"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "a",
+      "b": "Other",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    },
+    {
+      "_index": 1,
+      "a": "c",
+      "b": "Propulsion",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    },
+    {
+      "_index": 2,
+      "a": "e",
+      "b": "Sensor Systems",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    },
+    {
+      "_index": 3,
+      "a": "f",
+      "b": "Defence",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    },
+    {
+      "_index": 4,
+      "a": "g",
+      "b": "Essential Systems",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    },
+    {
+      "_index": 5,
+      "a": "h",
+      "b": "Transport and Logistics",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    },
+    {
+      "_index": 6,
+      "a": "i",
+      "b": "Production",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    },
+    {
+      "_index": 7,
+      "a": "b",
+      "b": "Combat - Beam",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    },
+    {
+      "_index": 8,
+      "a": "d",
+      "b": "Combat - Missile",
+      "c": 0,
+      "d": 0,
+      "e": 0,
+      "f": 0,
+      "g": 0,
+      "h": false,
+      "i": false,
+      "j": false
+    }
+  ]
+}

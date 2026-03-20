@@ -1,0 +1,3079 @@
+{
+  "_field": "ca",
+  "_type": "fv",
+  "_collectionType": "Dict",
+  "_count": 304,
+  "_dumped": 304,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "int"
+    },
+    {
+      "name": "b",
+      "type": "enum"
+    },
+    {
+      "name": "c",
+      "type": "bool"
+    },
+    {
+      "name": "d",
+      "type": "bool"
+    },
+    {
+      "name": "e",
+      "type": "string"
+    },
+    {
+      "name": "f",
+      "type": "string"
+    },
+    {
+      "name": "g",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": 1,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Escort",
+      "f": "ES",
+      "g": "Escort  ES"
+    },
+    {
+      "_index": 1,
+      "a": 2,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Corvette",
+      "f": "CT",
+      "g": "Corvette  CT"
+    },
+    {
+      "_index": 2,
+      "a": 3,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Frigate",
+      "f": "FF",
+      "g": "Frigate  FF"
+    },
+    {
+      "_index": 3,
+      "a": 4,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Missile Frigate",
+      "f": "FFG",
+      "g": "Missile Frigate  FFG"
+    },
+    {
+      "_index": 4,
+      "a": 5,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Destroyer",
+      "f": "DD",
+      "g": "Destroyer  DD"
+    },
+    {
+      "_index": 5,
+      "a": 6,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Missile Destroyer",
+      "f": "DDG",
+      "g": "Missile Destroyer  DDG"
+    },
+    {
+      "_index": 6,
+      "a": 7,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Light Cruiser",
+      "f": "CL",
+      "g": "Light Cruiser  CL"
+    },
+    {
+      "_index": 7,
+      "a": 8,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Heavy Cruiser",
+      "f": "CA",
+      "g": "Heavy Cruiser  CA"
+    },
+    {
+      "_index": 8,
+      "a": 9,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Battlecruiser",
+      "f": "BC",
+      "g": "Battlecruiser  BC"
+    },
+    {
+      "_index": 9,
+      "a": 10,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Battleship",
+      "f": "BB",
+      "g": "Battleship  BB"
+    },
+    {
+      "_index": 10,
+      "a": 11,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Dreadnought",
+      "f": "DN",
+      "g": "Dreadnought  DN"
+    },
+    {
+      "_index": 11,
+      "a": 12,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Superdreadnought",
+      "f": "SD",
+      "g": "Superdreadnought  SD"
+    },
+    {
+      "_index": 12,
+      "a": 13,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Monitor",
+      "f": "MN",
+      "g": "Monitor  MN"
+    },
+    {
+      "_index": 13,
+      "a": 14,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Patrol Craft",
+      "f": "PC",
+      "g": "Patrol Craft  PC"
+    },
+    {
+      "_index": 14,
+      "a": 15,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fast Attack Craft",
+      "f": "FAC",
+      "g": "Fast Attack Craft  FAC"
+    },
+    {
+      "_index": 15,
+      "a": 16,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout",
+      "f": "SC",
+      "g": "Scout  SC"
+    },
+    {
+      "_index": 16,
+      "a": 17,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Freighter",
+      "f": "FT",
+      "g": "Freighter  FT"
+    },
+    {
+      "_index": 17,
+      "a": 18,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Escort Cruiser",
+      "f": "CLE",
+      "g": "Escort Cruiser  CLE"
+    },
+    {
+      "_index": 18,
+      "a": 19,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Destroyer Escort",
+      "f": "DE",
+      "g": "Destroyer Escort  DE"
+    },
+    {
+      "_index": 19,
+      "a": 20,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Escort Carrier",
+      "f": "CVE",
+      "g": "Escort Carrier  CVE"
+    },
+    {
+      "_index": 20,
+      "a": 21,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Strike Carrier",
+      "f": "CVS",
+      "g": "Strike Carrier  CVS"
+    },
+    {
+      "_index": 21,
+      "a": 22,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Carrier",
+      "f": "CV",
+      "g": "Carrier  CV"
+    },
+    {
+      "_index": 22,
+      "a": 23,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Light Carrier",
+      "f": "CVL",
+      "g": "Light Carrier  CVL"
+    },
+    {
+      "_index": 23,
+      "a": 24,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Heavy Carrier",
+      "f": "CVA",
+      "g": "Heavy Carrier  CVA"
+    },
+    {
+      "_index": 24,
+      "a": 25,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Cruiser",
+      "f": "CA",
+      "g": "Cruiser  CA"
+    },
+    {
+      "_index": 25,
+      "a": 26,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Patrol Cruiser",
+      "f": "CP",
+      "g": "Patrol Cruiser  CP"
+    },
+    {
+      "_index": 26,
+      "a": 27,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Colony Ship",
+      "f": "CS",
+      "g": "Colony Ship  CS"
+    },
+    {
+      "_index": 27,
+      "a": 28,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Ship",
+      "f": "SS",
+      "g": "Survey Ship  SS"
+    },
+    {
+      "_index": 28,
+      "a": 30,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Science Vessel",
+      "f": "SV",
+      "g": "Science Vessel  SV"
+    },
+    {
+      "_index": 29,
+      "a": 31,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Missile Cruiser",
+      "f": "CG",
+      "g": "Missile Cruiser  CG"
+    },
+    {
+      "_index": 30,
+      "a": 32,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Cruiser",
+      "f": "CJ",
+      "g": "Jump Cruiser  CJ"
+    },
+    {
+      "_index": 31,
+      "a": 33,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Tender",
+      "f": "TJ",
+      "g": "Jump Tender  TJ"
+    },
+    {
+      "_index": 32,
+      "a": 34,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Courier",
+      "f": "CO",
+      "g": "Courier  CO"
+    },
+    {
+      "_index": 33,
+      "a": 35,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Construction Ship",
+      "f": "JCS",
+      "g": "Construction Ship  JCS"
+    },
+    {
+      "_index": 34,
+      "a": 36,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Troop Transport",
+      "f": "TT",
+      "g": "Troop Transport  TT"
+    },
+    {
+      "_index": 35,
+      "a": 37,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Assault Ship",
+      "f": "AS",
+      "g": "Assault Ship  AS"
+    },
+    {
+      "_index": 36,
+      "a": 38,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fuel Harvester",
+      "f": "FH",
+      "g": "Fuel Harvester  FH"
+    },
+    {
+      "_index": 37,
+      "a": 39,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Strike Cruiser",
+      "f": "CS",
+      "g": "Strike Cruiser  CS"
+    },
+    {
+      "_index": 38,
+      "a": 40,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "War Cruiser",
+      "f": "CW",
+      "g": "War Cruiser  CW"
+    },
+    {
+      "_index": 39,
+      "a": 41,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Drakar",
+      "f": "DK",
+      "g": "Drakar  DK"
+    },
+    {
+      "_index": 40,
+      "a": 42,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Tanker",
+      "f": "TK",
+      "g": "Tanker  TK"
+    },
+    {
+      "_index": 41,
+      "a": 43,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Terraformer",
+      "f": "TR",
+      "g": "Terraformer  TR"
+    },
+    {
+      "_index": 42,
+      "a": 44,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Ship",
+      "f": "JS",
+      "g": "Jump Ship  JS"
+    },
+    {
+      "_index": 43,
+      "a": 45,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Hyper-capable Freighter",
+      "f": "HFT",
+      "g": "Hyper-capable Freighter  HFT"
+    },
+    {
+      "_index": 44,
+      "a": 46,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Deep Space Survey Ship",
+      "f": "DSS",
+      "g": "Deep Space Survey Ship  DSS"
+    },
+    {
+      "_index": 45,
+      "a": 47,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Destroyer Leader",
+      "f": "DL",
+      "g": "Destroyer Leader  DL"
+    },
+    {
+      "_index": 46,
+      "a": 48,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Patrol Ship",
+      "f": "PS",
+      "g": "Patrol Ship  PS"
+    },
+    {
+      "_index": 47,
+      "a": 49,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Base",
+      "f": "BS",
+      "g": "Base  BS"
+    },
+    {
+      "_index": 48,
+      "a": 50,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Tug",
+      "f": "TG",
+      "g": "Tug  TG"
+    },
+    {
+      "_index": 49,
+      "a": 51,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout/Courier",
+      "f": "SC",
+      "g": "Scout/Courier  SC"
+    },
+    {
+      "_index": 50,
+      "a": 52,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Orbital Miner",
+      "f": "OM",
+      "g": "Orbital Miner  OM"
+    },
+    {
+      "_index": 51,
+      "a": 53,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Salvager",
+      "f": "SV",
+      "g": "Salvager  SV"
+    },
+    {
+      "_index": 52,
+      "a": 54,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Area Defence Cruiser",
+      "f": "ADC",
+      "g": "Area Defence Cruiser  ADC"
+    },
+    {
+      "_index": 53,
+      "a": 55,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Freighter",
+      "f": "FJ",
+      "g": "Jump Freighter  FJ"
+    },
+    {
+      "_index": 54,
+      "a": 56,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fleet Scout",
+      "f": "FSC",
+      "g": "Fleet Scout  FSC"
+    },
+    {
+      "_index": 55,
+      "a": 57,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Geosurvey Ship",
+      "f": "GE",
+      "g": "Geosurvey Ship  GE"
+    },
+    {
+      "_index": 56,
+      "a": 58,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Bombardment Cruiser",
+      "f": "CB",
+      "g": "Bombardment Cruiser  CB"
+    },
+    {
+      "_index": 57,
+      "a": 59,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Planetary Defence Centre",
+      "f": "PDC",
+      "g": "Planetary Defence Centre  PDC"
+    },
+    {
+      "_index": 58,
+      "a": 60,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Planetary Fighter Base",
+      "f": "PFB",
+      "g": "Planetary Fighter Base  PFB"
+    },
+    {
+      "_index": 59,
+      "a": 61,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout Frigate",
+      "f": "SF",
+      "g": "Scout Frigate  SF"
+    },
+    {
+      "_index": 60,
+      "a": 62,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Collier",
+      "f": "CO",
+      "g": "Collier  CO"
+    },
+    {
+      "_index": 61,
+      "a": 63,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Assault Transport",
+      "f": "AT",
+      "g": "Assault Transport  AT"
+    },
+    {
+      "_index": 62,
+      "a": 64,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Frigate",
+      "f": "JF",
+      "g": "Jump Frigate  JF"
+    },
+    {
+      "_index": 63,
+      "a": 65,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Command Ship",
+      "f": "SCS",
+      "g": "Survey Command Ship  SCS"
+    },
+    {
+      "_index": 64,
+      "a": 66,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Gravsurvey Ship",
+      "f": "GV",
+      "g": "Gravsurvey Ship  GV"
+    },
+    {
+      "_index": 65,
+      "a": 67,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Missile Base",
+      "f": "MB",
+      "g": "Missile Base  MB"
+    },
+    {
+      "_index": 66,
+      "a": 68,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Gunboat",
+      "f": "GB",
+      "g": "Gunboat  GB"
+    },
+    {
+      "_index": 67,
+      "a": 69,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Mothership",
+      "f": "MS",
+      "g": "Mothership  MS"
+    },
+    {
+      "_index": 68,
+      "a": 70,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Early Warning Craft",
+      "f": "AEW",
+      "g": "Early Warning Craft  AEW"
+    },
+    {
+      "_index": 69,
+      "a": 71,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Shuttle",
+      "f": "ST",
+      "g": "Shuttle  ST"
+    },
+    {
+      "_index": 70,
+      "a": 72,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Pinnace",
+      "f": "PN",
+      "g": "Pinnace  PN"
+    },
+    {
+      "_index": 71,
+      "a": 73,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Support",
+      "f": "SS",
+      "g": "Survey Support  SS"
+    },
+    {
+      "_index": 72,
+      "a": 74,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout Cruiser",
+      "f": "SCL",
+      "g": "Scout Cruiser  SCL"
+    },
+    {
+      "_index": 73,
+      "a": 75,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Support Vessel",
+      "f": "SV",
+      "g": "Support Vessel  SV"
+    },
+    {
+      "_index": 74,
+      "a": 76,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Attack Craft",
+      "f": "AC",
+      "g": "Attack Craft  AC"
+    },
+    {
+      "_index": 75,
+      "a": 77,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Point Defence Base",
+      "f": "PDB",
+      "g": "Point Defence Base  PDB"
+    },
+    {
+      "_index": 76,
+      "a": 78,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Destroyer",
+      "f": "JD",
+      "g": "Jump Destroyer  JD"
+    },
+    {
+      "_index": 77,
+      "a": 79,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fast Scout Craft",
+      "f": "FSC",
+      "g": "Fast Scout Craft  FSC"
+    },
+    {
+      "_index": 78,
+      "a": 80,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fighter",
+      "f": "FTR",
+      "g": "Fighter  FTR"
+    },
+    {
+      "_index": 79,
+      "a": 81,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Heavy Fighter",
+      "f": "FTH",
+      "g": "Heavy Fighter  FTH"
+    },
+    {
+      "_index": 80,
+      "a": 82,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Interceptor",
+      "f": "FTI",
+      "g": "Interceptor  FTI"
+    },
+    {
+      "_index": 81,
+      "a": 83,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Light Fighter",
+      "f": "FTL",
+      "g": "Light Fighter  FTL"
+    },
+    {
+      "_index": 82,
+      "a": 84,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Recon Fighter",
+      "f": "FTR",
+      "g": "Recon Fighter  FTR"
+    },
+    {
+      "_index": 83,
+      "a": 85,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Strikefighter",
+      "f": "FTR",
+      "g": "Strikefighter  FTR"
+    },
+    {
+      "_index": 84,
+      "a": 86,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Sensor Outpost",
+      "f": "SO",
+      "g": "Sensor Outpost  SO"
+    },
+    {
+      "_index": 85,
+      "a": 87,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Corvette",
+      "f": "SC",
+      "g": "Survey Corvette  SC"
+    },
+    {
+      "_index": 86,
+      "a": 88,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fighter Base",
+      "f": "FB",
+      "g": "Fighter Base  FB"
+    },
+    {
+      "_index": 87,
+      "a": 89,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Missile Boat",
+      "f": "MB",
+      "g": "Missile Boat  MB"
+    },
+    {
+      "_index": 88,
+      "a": 90,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Resupply Base",
+      "f": "RB",
+      "g": "Resupply Base  RB"
+    },
+    {
+      "_index": 89,
+      "a": 91,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fighter-bomber",
+      "f": "FB",
+      "g": "Fighter-bomber  FB"
+    },
+    {
+      "_index": 90,
+      "a": 92,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fighter-Scout",
+      "f": "FS",
+      "g": "Fighter-Scout  FS"
+    },
+    {
+      "_index": 91,
+      "a": 93,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout Fighter",
+      "f": "FS",
+      "g": "Scout Fighter  FS"
+    },
+    {
+      "_index": 92,
+      "a": 94,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "ICBM Launch Base",
+      "f": "ILB",
+      "g": "ICBM Launch Base  ILB"
+    },
+    {
+      "_index": 93,
+      "a": 95,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Recon Satellite",
+      "f": "RS",
+      "g": "Recon Satellite  RS"
+    },
+    {
+      "_index": 94,
+      "a": 96,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Orbital Weapon Platform",
+      "f": "OWP",
+      "g": "Orbital Weapon Platform  OWP"
+    },
+    {
+      "_index": 95,
+      "a": 97,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Missile Defence Satellite",
+      "f": "MDS",
+      "g": "Missile Defence Satellite  MDS"
+    },
+    {
+      "_index": 96,
+      "a": 98,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Maintenance Vessel",
+      "f": "MV",
+      "g": "Maintenance Vessel  MV"
+    },
+    {
+      "_index": 97,
+      "a": 99,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Minelayer",
+      "f": "ML",
+      "g": "Minelayer  ML"
+    },
+    {
+      "_index": 98,
+      "a": 100,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Heavy Battlecruiser",
+      "f": "BCH",
+      "g": "Heavy Battlecruiser  BCH"
+    },
+    {
+      "_index": 99,
+      "a": 101,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Missile Defence Base",
+      "f": "MDB",
+      "g": "Missile Defence Base  MDB"
+    },
+    {
+      "_index": 100,
+      "a": 102,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fleet Support Vessel",
+      "f": "FSV",
+      "g": "Fleet Support Vessel  FSV"
+    },
+    {
+      "_index": 101,
+      "a": 103,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fuel Harvester Base",
+      "f": "FHB",
+      "g": "Fuel Harvester Base  FHB"
+    },
+    {
+      "_index": 102,
+      "a": 104,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Battlecruiser",
+      "f": "BCJ",
+      "g": "Jump Battlecruiser  BCJ"
+    },
+    {
+      "_index": 103,
+      "a": 105,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Destroyer Escort",
+      "f": "DEJ",
+      "g": "Jump Destroyer Escort  DEJ"
+    },
+    {
+      "_index": 104,
+      "a": 106,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Escort Cruiser",
+      "f": "JCLE",
+      "g": "Jump Escort Cruiser  JCLE"
+    },
+    {
+      "_index": 105,
+      "a": 107,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Battlestar",
+      "f": "BST",
+      "g": "Battlestar  BST"
+    },
+    {
+      "_index": 106,
+      "a": 108,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Recon Frigate",
+      "f": "RF",
+      "g": "Recon Frigate  RF"
+    },
+    {
+      "_index": 107,
+      "a": 109,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Replenishment Ship",
+      "f": "RS",
+      "g": "Replenishment Ship  RS"
+    },
+    {
+      "_index": 108,
+      "a": 110,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Maintenance Base",
+      "f": "PMB",
+      "g": "Maintenance Base  PMB"
+    },
+    {
+      "_index": 109,
+      "a": 111,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Long Range Survey Ship",
+      "f": "LRS",
+      "g": "Long Range Survey Ship  LRS"
+    },
+    {
+      "_index": 110,
+      "a": 112,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Long Range Gravsurvey Vessel",
+      "f": "GVL",
+      "g": "Long Range Gravsurvey Vessel  GVL"
+    },
+    {
+      "_index": 111,
+      "a": 113,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Dropship",
+      "f": "DS",
+      "g": "Dropship  DS"
+    },
+    {
+      "_index": 112,
+      "a": 114,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Assault Shuttle",
+      "f": "AST",
+      "g": "Assault Shuttle  AST"
+    },
+    {
+      "_index": 113,
+      "a": 115,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Luxury Liner",
+      "f": "SS",
+      "g": "Luxury Liner  SS"
+    },
+    {
+      "_index": 114,
+      "a": 116,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Gravitational Survey Vessel",
+      "f": "GSV",
+      "g": "Gravitational Survey Vessel  GSV"
+    },
+    {
+      "_index": 115,
+      "a": 117,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Geological Survey Vessel",
+      "f": "GEV",
+      "g": "Geological Survey Vessel  GEV"
+    },
+    {
+      "_index": 116,
+      "a": 118,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Assault Carrier",
+      "f": "CVH",
+      "g": "Assault Carrier  CVH"
+    },
+    {
+      "_index": 117,
+      "a": 119,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Command Dropship",
+      "f": "DSC",
+      "g": "Command Dropship  DSC"
+    },
+    {
+      "_index": 118,
+      "a": 120,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Cargo Ship",
+      "f": "FT",
+      "g": "Cargo Ship  FT"
+    },
+    {
+      "_index": 119,
+      "a": 121,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Passenger Cruiser",
+      "f": "SS",
+      "g": "Passenger Cruiser  SS"
+    },
+    {
+      "_index": 120,
+      "a": 122,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Spaceliner",
+      "f": "SL",
+      "g": "Spaceliner  SL"
+    },
+    {
+      "_index": 121,
+      "a": 123,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Landing Craft Assault",
+      "f": "LCA",
+      "g": "Landing Craft Assault  LCA"
+    },
+    {
+      "_index": 122,
+      "a": 124,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Armoured Cruiser",
+      "f": "CA",
+      "g": "Armoured Cruiser  CA"
+    },
+    {
+      "_index": 123,
+      "a": 125,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Star Swarm",
+      "f": "ST",
+      "g": "Star Swarm  ST"
+    },
+    {
+      "_index": 124,
+      "a": 126,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Beam Defence Base",
+      "f": "BDB",
+      "g": "Beam Defence Base  BDB"
+    },
+    {
+      "_index": 125,
+      "a": 127,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Launch Complex",
+      "f": "GLC",
+      "g": "Launch Complex  GLC"
+    },
+    {
+      "_index": 126,
+      "a": 128,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Command Ship",
+      "f": "CC",
+      "g": "Command Ship  CC"
+    },
+    {
+      "_index": 127,
+      "a": 129,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Frigate Leader",
+      "f": "FFL",
+      "g": "Frigate Leader  FFL"
+    },
+    {
+      "_index": 128,
+      "a": 130,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Auxiliary Transport",
+      "f": "AT",
+      "g": "Auxiliary Transport  AT"
+    },
+    {
+      "_index": 129,
+      "a": 131,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Hunter",
+      "f": "SC",
+      "g": "Hunter  SC"
+    },
+    {
+      "_index": 130,
+      "a": 132,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Oiler",
+      "f": "OL",
+      "g": "Oiler  OL"
+    },
+    {
+      "_index": 131,
+      "a": 133,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Surveillance Cruiser",
+      "f": "CSC",
+      "g": "Surveillance Cruiser  CSC"
+    },
+    {
+      "_index": 132,
+      "a": 134,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Landing Craft Utility",
+      "f": "LCU",
+      "g": "Landing Craft Utility  LCU"
+    },
+    {
+      "_index": 133,
+      "a": 135,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Dropship Escort",
+      "f": "DSE",
+      "g": "Dropship Escort  DSE"
+    },
+    {
+      "_index": 134,
+      "a": 136,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fleet Tug",
+      "f": "FTG",
+      "g": "Fleet Tug  FTG"
+    },
+    {
+      "_index": 135,
+      "a": 150,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Orbital Habitat",
+      "f": "OH",
+      "g": "Orbital Habitat  OH"
+    },
+    {
+      "_index": 136,
+      "a": 151,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Space Station",
+      "f": "SS",
+      "g": "Space Station  SS"
+    },
+    {
+      "_index": 137,
+      "a": 153,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Craft",
+      "f": "SC",
+      "g": "Survey Craft  SC"
+    },
+    {
+      "_index": 138,
+      "a": 155,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Exploration Ship",
+      "f": "EX",
+      "g": "Exploration Ship  EX"
+    },
+    {
+      "_index": 139,
+      "a": 156,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Scout",
+      "f": "JSC",
+      "g": "Jump Scout  JSC"
+    },
+    {
+      "_index": 140,
+      "a": 157,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout Base",
+      "f": "SCB",
+      "g": "Scout Base  SCB"
+    },
+    {
+      "_index": 141,
+      "a": 158,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Point Defence Base",
+      "f": "JPDB",
+      "g": "Jump Point Defence Base  JPDB"
+    },
+    {
+      "_index": 142,
+      "a": 159,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "FAC Tender",
+      "f": "FACT",
+      "g": "FAC Tender  FACT"
+    },
+    {
+      "_index": 143,
+      "a": 160,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fighter Transport",
+      "f": "FTRT",
+      "g": "Fighter Transport  FTRT"
+    },
+    {
+      "_index": 144,
+      "a": 161,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fighter Storage",
+      "f": "FS",
+      "g": "Fighter Storage  FS"
+    },
+    {
+      "_index": 145,
+      "a": 162,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Surveillance Frigate",
+      "f": "SF",
+      "g": "Surveillance Frigate  SF"
+    },
+    {
+      "_index": 146,
+      "a": 163,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Planetary Surveillance Base",
+      "f": "PSB",
+      "g": "Planetary Surveillance Base  PSB"
+    },
+    {
+      "_index": 147,
+      "a": 164,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fast Scout",
+      "f": "SCF",
+      "g": "Fast Scout  SCF"
+    },
+    {
+      "_index": 148,
+      "a": 165,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "High Speed Scout",
+      "f": "SCH",
+      "g": "High Speed Scout  SCH"
+    },
+    {
+      "_index": 149,
+      "a": 167,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Superfreighter",
+      "f": "FTH",
+      "g": "Superfreighter  FTH"
+    },
+    {
+      "_index": 150,
+      "a": 168,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Patrol Vessel",
+      "f": "PV",
+      "g": "Patrol Vessel  PV"
+    },
+    {
+      "_index": 151,
+      "a": 169,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Terraforming Base",
+      "f": "TFB",
+      "g": "Terraforming Base  TFB"
+    },
+    {
+      "_index": 152,
+      "a": 170,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fast Patrol Craft",
+      "f": "PC",
+      "g": "Fast Patrol Craft  PC"
+    },
+    {
+      "_index": 153,
+      "a": 171,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Base Star",
+      "f": "BS",
+      "g": "Base Star  BS"
+    },
+    {
+      "_index": 154,
+      "a": 172,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Raider",
+      "f": "RD",
+      "g": "Raider  RD"
+    },
+    {
+      "_index": 155,
+      "a": 173,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Orbital Defence Monitor",
+      "f": "ODM",
+      "g": "Orbital Defence Monitor  ODM"
+    },
+    {
+      "_index": 156,
+      "a": 174,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "War Cruiser Leader",
+      "f": "CWL",
+      "g": "War Cruiser Leader  CWL"
+    },
+    {
+      "_index": 157,
+      "a": 175,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Ammunition Transport",
+      "f": "AMT",
+      "g": "Ammunition Transport  AMT"
+    },
+    {
+      "_index": 158,
+      "a": 176,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Stealth Scout",
+      "f": "SS",
+      "g": "Stealth Scout  SS"
+    },
+    {
+      "_index": 159,
+      "a": 177,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Armed Scout",
+      "f": "ASC",
+      "g": "Armed Scout  ASC"
+    },
+    {
+      "_index": 160,
+      "a": 178,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout Carrier",
+      "f": "CV-S",
+      "g": "Scout Carrier  CV-S"
+    },
+    {
+      "_index": 161,
+      "a": 179,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Command Cruiser",
+      "f": "CC",
+      "g": "Command Cruiser  CC"
+    },
+    {
+      "_index": 162,
+      "a": 180,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Hospital Ship",
+      "f": "HS",
+      "g": "Hospital Ship  HS"
+    },
+    {
+      "_index": 163,
+      "a": 181,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Rescue Shuttle",
+      "f": "RS",
+      "g": "Rescue Shuttle  RS"
+    },
+    {
+      "_index": 164,
+      "a": 182,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Recreational Ship",
+      "f": "RS",
+      "g": "Recreational Ship  RS"
+    },
+    {
+      "_index": 165,
+      "a": 183,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Sensor Platform",
+      "f": "SCP",
+      "g": "Sensor Platform  SCP"
+    },
+    {
+      "_index": 166,
+      "a": 184,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Dropship Carrier",
+      "f": "DCV",
+      "g": "Dropship Carrier  DCV"
+    },
+    {
+      "_index": 167,
+      "a": 185,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Repair Ship",
+      "f": "RV",
+      "g": "Repair Ship  RV"
+    },
+    {
+      "_index": 168,
+      "a": 186,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout Destroyer",
+      "f": "DSC",
+      "g": "Scout Destroyer  DSC"
+    },
+    {
+      "_index": 169,
+      "a": 187,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Lifeboat",
+      "f": "LB",
+      "g": "Lifeboat  LB"
+    },
+    {
+      "_index": 170,
+      "a": 188,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "FAC Leader",
+      "f": "FAC-L",
+      "g": "FAC Leader  FAC-L"
+    },
+    {
+      "_index": 171,
+      "a": 189,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "FAC Transport",
+      "f": "FAC-CV",
+      "g": "FAC Transport  FAC-CV"
+    },
+    {
+      "_index": 172,
+      "a": 190,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Kinetic Cruiser",
+      "f": "CK",
+      "g": "Kinetic Cruiser  CK"
+    },
+    {
+      "_index": 173,
+      "a": 191,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Kinetic Frigate",
+      "f": "FK",
+      "g": "Kinetic Frigate  FK"
+    },
+    {
+      "_index": 174,
+      "a": 192,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Colony Ship",
+      "f": "CSJ",
+      "g": "Jump Colony Ship  CSJ"
+    },
+    {
+      "_index": 175,
+      "a": 193,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Mobile Jump Gate",
+      "f": "MJG",
+      "g": "Mobile Jump Gate  MJG"
+    },
+    {
+      "_index": 176,
+      "a": 195,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Kinetic Battlecruiser",
+      "f": "BK",
+      "g": "Kinetic Battlecruiser  BK"
+    },
+    {
+      "_index": 177,
+      "a": 197,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Support Base",
+      "f": "SSB",
+      "g": "Survey Support Base  SSB"
+    },
+    {
+      "_index": 178,
+      "a": 198,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Auxiliary Carrier",
+      "f": "CV-AUX",
+      "g": "Auxiliary Carrier  CV-AUX"
+    },
+    {
+      "_index": 179,
+      "a": 199,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fleet Base (Maintenance)",
+      "f": "FB-M",
+      "g": "Fleet Base (Maintenance)  FB-M"
+    },
+    {
+      "_index": 180,
+      "a": 200,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fleet Base (Repair)",
+      "f": "FB-R",
+      "g": "Fleet Base (Repair)  FB-R"
+    },
+    {
+      "_index": 181,
+      "a": 201,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Heavy Freighter",
+      "f": "FTH",
+      "g": "Heavy Freighter  FTH"
+    },
+    {
+      "_index": 182,
+      "a": 202,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Battle Barge",
+      "f": "BBG",
+      "g": "Battle Barge  BBG"
+    },
+    {
+      "_index": 183,
+      "a": 203,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Bomber",
+      "f": "BM",
+      "g": "Bomber  BM"
+    },
+    {
+      "_index": 184,
+      "a": 204,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Gunship",
+      "f": "GS",
+      "g": "Gunship  GS"
+    },
+    {
+      "_index": 185,
+      "a": 205,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Torpedo Bomber",
+      "f": "TB",
+      "g": "Torpedo Bomber  TB"
+    },
+    {
+      "_index": 186,
+      "a": 206,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Galleon",
+      "f": "FTH",
+      "g": "Galleon  FTH"
+    },
+    {
+      "_index": 187,
+      "a": 207,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Mass Conveyor",
+      "f": "FT-M",
+      "g": "Mass Conveyor  FT-M"
+    },
+    {
+      "_index": 188,
+      "a": 208,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Carrack",
+      "f": "CK",
+      "g": "Carrack  CK"
+    },
+    {
+      "_index": 189,
+      "a": 209,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Transport",
+      "f": "TR",
+      "g": "Transport  TR"
+    },
+    {
+      "_index": 190,
+      "a": 210,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Starport",
+      "f": "STAR",
+      "g": "Starport  STAR"
+    },
+    {
+      "_index": 191,
+      "a": 211,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Unknown",
+      "f": "XX",
+      "g": "Unknown  XX"
+    },
+    {
+      "_index": 192,
+      "a": 212,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Intelligence Ship",
+      "f": "IS",
+      "g": "Intelligence Ship  IS"
+    },
+    {
+      "_index": 193,
+      "a": 213,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Orbital Defence Base",
+      "f": "ODB",
+      "g": "Orbital Defence Base  ODB"
+    },
+    {
+      "_index": 194,
+      "a": 214,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Hive Ship",
+      "f": "HVS",
+      "g": "Hive Ship  HVS"
+    },
+    {
+      "_index": 195,
+      "a": 215,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Cruiser",
+      "f": "SRV",
+      "g": "Survey Cruiser  SRV"
+    },
+    {
+      "_index": 196,
+      "a": 216,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Stabilisation Ship",
+      "f": "STB",
+      "g": "Stabilisation Ship  STB"
+    },
+    {
+      "_index": 197,
+      "a": 217,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Stabilisation Station",
+      "f": "JSS",
+      "g": "Jump Stabilisation Station  JSS"
+    },
+    {
+      "_index": 198,
+      "a": 218,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Mining Platform",
+      "f": "MNP",
+      "g": "Mining Platform  MNP"
+    },
+    {
+      "_index": 199,
+      "a": 219,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Landing Ship",
+      "f": "LS",
+      "g": "Landing Ship  LS"
+    },
+    {
+      "_index": 200,
+      "a": 220,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Tender Station",
+      "f": "JTS",
+      "g": "Jump Tender Station  JTS"
+    },
+    {
+      "_index": 201,
+      "a": 221,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Command Cruiser",
+      "f": "CCS",
+      "g": "Survey Command Cruiser  CCS"
+    },
+    {
+      "_index": 202,
+      "a": 222,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Support Cruiser",
+      "f": "CSS",
+      "g": "Survey Support Cruiser  CSS"
+    },
+    {
+      "_index": 203,
+      "a": 223,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fast Tanker",
+      "f": "FTK",
+      "g": "Fast Tanker  FTK"
+    },
+    {
+      "_index": 204,
+      "a": 224,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Defence Monitor",
+      "f": "MND",
+      "g": "Defence Monitor  MND"
+    },
+    {
+      "_index": 205,
+      "a": 225,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Terraforming Station",
+      "f": "TS",
+      "g": "Terraforming Station  TS"
+    },
+    {
+      "_index": 206,
+      "a": 226,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Orbital Defence Platform",
+      "f": "ODP",
+      "g": "Orbital Defence Platform  ODP"
+    },
+    {
+      "_index": 207,
+      "a": 227,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Gravitational Survey Craft",
+      "f": "GSC",
+      "g": "Gravitational Survey Craft  GSC"
+    },
+    {
+      "_index": 208,
+      "a": 228,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Lander",
+      "f": "LN",
+      "g": "Lander  LN"
+    },
+    {
+      "_index": 209,
+      "a": 229,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Light Jump Cruiser",
+      "f": "CLJ",
+      "g": "Light Jump Cruiser  CLJ"
+    },
+    {
+      "_index": 210,
+      "a": 230,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Exploration Cruiser",
+      "f": "CX",
+      "g": "Exploration Cruiser  CX"
+    },
+    {
+      "_index": 211,
+      "a": 231,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Frigate",
+      "f": "FS",
+      "g": "Survey Frigate  FS"
+    },
+    {
+      "_index": 212,
+      "a": 232,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fuel Harvester Station",
+      "f": "FHS",
+      "g": "Fuel Harvester Station  FHS"
+    },
+    {
+      "_index": 213,
+      "a": 233,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Star Fortress",
+      "f": "FRT",
+      "g": "Star Fortress  FRT"
+    },
+    {
+      "_index": 214,
+      "a": 234,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Orbital Mining Platform",
+      "f": "OMP",
+      "g": "Orbital Mining Platform  OMP"
+    },
+    {
+      "_index": 215,
+      "a": 235,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Reconnaissance Craft",
+      "f": "RC",
+      "g": "Reconnaissance Craft  RC"
+    },
+    {
+      "_index": 216,
+      "a": 236,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Launch Platform",
+      "f": "LP",
+      "g": "Launch Platform  LP"
+    },
+    {
+      "_index": 217,
+      "a": 237,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Recon Craft",
+      "f": "RC",
+      "g": "Recon Craft  RC"
+    },
+    {
+      "_index": 218,
+      "a": 238,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Geological Survey Craft",
+      "f": "GEC",
+      "g": "Geological Survey Craft  GEC"
+    },
+    {
+      "_index": 219,
+      "a": 239,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Anchorage",
+      "f": "ANC",
+      "g": "Anchorage  ANC"
+    },
+    {
+      "_index": 220,
+      "a": 240,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Protected Cruiser",
+      "f": "CP",
+      "g": "Protected Cruiser  CP"
+    },
+    {
+      "_index": 221,
+      "a": 241,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Second Class Cruiser",
+      "f": "C2",
+      "g": "Second Class Cruiser  C2"
+    },
+    {
+      "_index": 222,
+      "a": 242,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Third Class Cruiser",
+      "f": "C3",
+      "g": "Third Class Cruiser  C3"
+    },
+    {
+      "_index": 223,
+      "a": 243,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Torpedo Boat",
+      "f": "TB",
+      "g": "Torpedo Boat  TB"
+    },
+    {
+      "_index": 224,
+      "a": 244,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Scout Boat",
+      "f": "SB",
+      "g": "Scout Boat  SB"
+    },
+    {
+      "_index": 225,
+      "a": 245,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Diplomatic Station",
+      "f": "DIP",
+      "g": "Diplomatic Station  DIP"
+    },
+    {
+      "_index": 226,
+      "a": 246,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Diplomatic Ship",
+      "f": "DIP",
+      "g": "Diplomatic Ship  DIP"
+    },
+    {
+      "_index": 227,
+      "a": 247,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Shuttlecraft",
+      "f": "SCT",
+      "g": "Shuttlecraft  SCT"
+    },
+    {
+      "_index": 228,
+      "a": 248,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Military Tanker",
+      "f": "TKM",
+      "g": "Military Tanker  TKM"
+    },
+    {
+      "_index": 229,
+      "a": 249,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Troop Shuttle",
+      "f": "TS",
+      "g": "Troop Shuttle  TS"
+    },
+    {
+      "_index": 230,
+      "a": 250,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Intelligence Corvette",
+      "f": "ICV",
+      "g": "Intelligence Corvette  ICV"
+    },
+    {
+      "_index": 231,
+      "a": 251,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Ground Support Fighter",
+      "f": "GSF",
+      "g": "Ground Support Fighter  GSF"
+    },
+    {
+      "_index": 232,
+      "a": 252,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Tender",
+      "f": "ST",
+      "g": "Survey Tender  ST"
+    },
+    {
+      "_index": 233,
+      "a": 253,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Breaching Pod",
+      "f": "BPOD",
+      "g": "Breaching Pod  BPOD"
+    },
+    {
+      "_index": 234,
+      "a": 254,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Escort Frigate",
+      "f": "FFE",
+      "g": "Escort Frigate  FFE"
+    },
+    {
+      "_index": 235,
+      "a": 255,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Police Cutter",
+      "f": "PC",
+      "g": "Police Cutter  PC"
+    },
+    {
+      "_index": 236,
+      "a": 256,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Command Destroyer",
+      "f": "CDD",
+      "g": "Command Destroyer  CDD"
+    },
+    {
+      "_index": 237,
+      "a": 257,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Orbital Mining Station",
+      "f": "OMS",
+      "g": "Orbital Mining Station  OMS"
+    },
+    {
+      "_index": 238,
+      "a": 258,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Salvage Station",
+      "f": "SVS",
+      "g": "Salvage Station  SVS"
+    },
+    {
+      "_index": 239,
+      "a": 259,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Slave Transport",
+      "f": "SLT",
+      "g": "Slave Transport  SLT"
+    },
+    {
+      "_index": 240,
+      "a": 260,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Torpedo Cruiser",
+      "f": "TC",
+      "g": "Torpedo Cruiser  TC"
+    },
+    {
+      "_index": 241,
+      "a": 261,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "First Class Cruiser",
+      "f": "CA",
+      "g": "First Class Cruiser  CA"
+    },
+    {
+      "_index": 242,
+      "a": 264,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "ASW Destroyer",
+      "f": "DD",
+      "g": "ASW Destroyer  DD"
+    },
+    {
+      "_index": 243,
+      "a": 265,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Vessel",
+      "f": "SV",
+      "g": "Survey Vessel  SV"
+    },
+    {
+      "_index": 244,
+      "a": 266,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Transport",
+      "f": "JTR",
+      "g": "Jump Transport  JTR"
+    },
+    {
+      "_index": 245,
+      "a": 267,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Drone Scout",
+      "f": "SCD",
+      "g": "Drone Scout  SCD"
+    },
+    {
+      "_index": 246,
+      "a": 268,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Repair Station",
+      "f": "RST",
+      "g": "Repair Station  RST"
+    },
+    {
+      "_index": 247,
+      "a": 269,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Hunter",
+      "f": "SHN",
+      "g": "Survey Hunter  SHN"
+    },
+    {
+      "_index": 248,
+      "a": 270,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Colonist Transport Pod",
+      "f": "CTP",
+      "g": "Colonist Transport Pod  CTP"
+    },
+    {
+      "_index": 249,
+      "a": 271,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Planet Killer",
+      "f": "PK",
+      "g": "Planet Killer  PK"
+    },
+    {
+      "_index": 250,
+      "a": 272,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Buoy Deployment Craft",
+      "f": "BDC",
+      "g": "Buoy Deployment Craft  BDC"
+    },
+    {
+      "_index": 251,
+      "a": 273,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Schnellboot",
+      "f": "SB",
+      "g": "Schnellboot  SB"
+    },
+    {
+      "_index": 252,
+      "a": 274,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Interceptor Base",
+      "f": "INB",
+      "g": "Interceptor Base  INB"
+    },
+    {
+      "_index": 253,
+      "a": 275,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Recreational Station",
+      "f": "REC",
+      "g": "Recreational Station  REC"
+    },
+    {
+      "_index": 254,
+      "a": 276,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Support Base",
+      "f": "SB",
+      "g": "Support Base  SB"
+    },
+    {
+      "_index": 255,
+      "a": 277,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Supply Transport",
+      "f": "SPT",
+      "g": "Supply Transport  SPT"
+    },
+    {
+      "_index": 256,
+      "a": 278,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Military Replenishment Ship",
+      "f": "MRS",
+      "g": "Military Replenishment Ship  MRS"
+    },
+    {
+      "_index": 257,
+      "a": 279,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Dive Bomber",
+      "f": "DB",
+      "g": "Dive Bomber  DB"
+    },
+    {
+      "_index": 258,
+      "a": 280,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Starship",
+      "f": "USS",
+      "g": "Starship  USS"
+    },
+    {
+      "_index": 259,
+      "a": 281,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Gravitational Survey Shuttle",
+      "f": "GRS",
+      "g": "Gravitational Survey Shuttle  GRS"
+    },
+    {
+      "_index": 260,
+      "a": 282,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Geological Survey Shuttle",
+      "f": "GES",
+      "g": "Geological Survey Shuttle  GES"
+    },
+    {
+      "_index": 261,
+      "a": 283,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Utility Shuttle",
+      "f": "UTS",
+      "g": "Utility Shuttle  UTS"
+    },
+    {
+      "_index": 262,
+      "a": 284,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Starbase",
+      "f": "STB",
+      "g": "Starbase  STB"
+    },
+    {
+      "_index": 263,
+      "a": 285,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Defence Satellite",
+      "f": "DFS",
+      "g": "Defence Satellite  DFS"
+    },
+    {
+      "_index": 264,
+      "a": 286,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Star Destroyer",
+      "f": "SD",
+      "g": "Star Destroyer  SD"
+    },
+    {
+      "_index": 265,
+      "a": 287,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "TIE Bomber",
+      "f": "TIE-B",
+      "g": "TIE Bomber  TIE-B"
+    },
+    {
+      "_index": 266,
+      "a": 288,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Carrier",
+      "f": "SCV",
+      "g": "Survey Carrier  SCV"
+    },
+    {
+      "_index": 267,
+      "a": 289,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Dockyard",
+      "f": "DY",
+      "g": "Dockyard  DY"
+    },
+    {
+      "_index": 268,
+      "a": 290,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Colonist Transport",
+      "f": "CLT",
+      "g": "Colonist Transport  CLT"
+    },
+    {
+      "_index": 269,
+      "a": 291,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Jump Corvette",
+      "f": "JCT",
+      "g": "Jump Corvette  JCT"
+    },
+    {
+      "_index": 270,
+      "a": 292,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Military Jump Tender",
+      "f": "MJT",
+      "g": "Military Jump Tender  MJT"
+    },
+    {
+      "_index": 271,
+      "a": 293,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Security Shuttle",
+      "f": "SEC",
+      "g": "Security Shuttle  SEC"
+    },
+    {
+      "_index": 272,
+      "a": 294,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Armed Shuttle",
+      "f": "AS",
+      "g": "Armed Shuttle  AS"
+    },
+    {
+      "_index": 273,
+      "a": 295,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Survey Shuttle",
+      "f": "SVS",
+      "g": "Survey Shuttle  SVS"
+    },
+    {
+      "_index": 274,
+      "a": 296,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Search and Rescue Shuttle",
+      "f": "SAR",
+      "g": "Search and Rescue Shuttle  SAR"
+    },
+    {
+      "_index": 275,
+      "a": 297,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Runabout",
+      "f": "RA",
+      "g": "Runabout  RA"
+    },
+    {
+      "_index": 276,
+      "a": 298,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Armed Boarding Vessel",
+      "f": "ABV",
+      "g": "Armed Boarding Vessel  ABV"
+    },
+    {
+      "_index": 277,
+      "a": 299,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Starfighter",
+      "f": "STF",
+      "g": "Starfighter  STF"
+    },
+    {
+      "_index": 278,
+      "a": 300,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Intelligence Station",
+      "f": "IST",
+      "g": "Intelligence Station  IST"
+    },
+    {
+      "_index": 279,
+      "a": 301,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Grand Cruiser",
+      "f": "GCA",
+      "g": "Grand Cruiser  GCA"
+    },
+    {
+      "_index": 280,
+      "a": 302,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Long Range Strike",
+      "f": "LRS",
+      "g": "Long Range Strike  LRS"
+    },
+    {
+      "_index": 281,
+      "a": 303,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Long Range Patrol",
+      "f": "LRP",
+      "g": "Long Range Patrol  LRP"
+    },
+    {
+      "_index": 282,
+      "a": 304,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Carrier Strike",
+      "f": "CST",
+      "g": "Carrier Strike  CST"
+    },
+    {
+      "_index": 283,
+      "a": 305,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Observer",
+      "f": "OBS",
+      "g": "Observer  OBS"
+    },
+    {
+      "_index": 284,
+      "a": 306,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Supply Ship",
+      "f": "SPL",
+      "g": "Supply Ship  SPL"
+    },
+    {
+      "_index": 285,
+      "a": 307,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Small Craft Tender",
+      "f": "SCT",
+      "g": "Small Craft Tender  SCT"
+    },
+    {
+      "_index": 286,
+      "a": 308,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fast Freighter",
+      "f": "FTF",
+      "g": "Fast Freighter  FTF"
+    },
+    {
+      "_index": 287,
+      "a": 309,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Fast Colony Ship",
+      "f": "CSF",
+      "g": "Fast Colony Ship  CSF"
+    },
+    {
+      "_index": 288,
+      "a": 310,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Cargo Shuttle",
+      "f": "CST",
+      "g": "Cargo Shuttle  CST"
+    },
+    {
+      "_index": 289,
+      "a": 311,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Personnel Shuttle",
+      "f": "PST",
+      "g": "Personnel Shuttle  PST"
+    },
+    {
+      "_index": 290,
+      "a": 312,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Battle Carrier",
+      "f": "BCV",
+      "g": "Battle Carrier  BCV"
+    },
+    {
+      "_index": 291,
+      "a": 313,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Explorer",
+      "f": "EX",
+      "g": "Explorer  EX"
+    },
+    {
+      "_index": 292,
+      "a": 314,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Light Troop Transport",
+      "f": "LTT",
+      "g": "Light Troop Transport  LTT"
+    },
+    {
+      "_index": 293,
+      "a": 315,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "MACO Shuttle",
+      "f": "MCO",
+      "g": "MACO Shuttle  MCO"
+    },
+    {
+      "_index": 294,
+      "a": 316,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Legion Transport",
+      "f": "LTT",
+      "g": "Legion Transport  LTT"
+    },
+    {
+      "_index": 295,
+      "a": 317,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Observer",
+      "f": "OB",
+      "g": "Observer  OB"
+    },
+    {
+      "_index": 296,
+      "a": 318,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Stabilisation Station",
+      "f": "STB",
+      "g": "Stabilisation Station  STB"
+    },
+    {
+      "_index": 297,
+      "a": 319,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Buoy Deployment Vessel",
+      "f": "BDV",
+      "g": "Buoy Deployment Vessel  BDV"
+    },
+    {
+      "_index": 298,
+      "a": 320,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Maintenance Pod",
+      "f": "MNP",
+      "g": "Maintenance Pod  MNP"
+    },
+    {
+      "_index": 299,
+      "a": 321,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "ELINT Vessel",
+      "f": "ELV",
+      "g": "ELINT Vessel  ELV"
+    },
+    {
+      "_index": 300,
+      "a": 322,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Defence Monitor",
+      "f": "DM",
+      "g": "Defence Monitor  DM"
+    },
+    {
+      "_index": 301,
+      "a": 323,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Exodus",
+      "f": "Exo",
+      "g": "Exodus  Exo"
+    },
+    {
+      "_index": 302,
+      "a": 324,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Monitoring Station",
+      "f": "MNS",
+      "g": "Monitoring Station  MNS"
+    },
+    {
+      "_index": 303,
+      "a": 325,
+      "b": "a",
+      "c": false,
+      "d": false,
+      "e": "Mass Hauler",
+      "f": "MH",
+      "g": "Mass Hauler  MH"
+    }
+  ]
+}

@@ -1,0 +1,3256 @@
+{
+  "_field": "c3",
+  "_type": "in",
+  "_collectionType": "Dict",
+  "_count": 215,
+  "_dumped": 215,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "ref:im"
+    },
+    {
+      "name": "b",
+      "type": "enum"
+    },
+    {
+      "name": "c",
+      "type": "bool"
+    },
+    {
+      "name": "d",
+      "type": "bool"
+    },
+    {
+      "name": "e",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "b",
+      "c": true,
+      "d": true,
+      "e": "Capacitor Recharge Rate"
+    },
+    {
+      "_index": 1,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "c",
+      "c": true,
+      "d": true,
+      "e": "Electronic Warfare"
+    },
+    {
+      "_index": 2,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "d",
+      "c": true,
+      "d": true,
+      "e": "Laser Wavelength"
+    },
+    {
+      "_index": 3,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "e",
+      "c": true,
+      "d": true,
+      "e": "Fire Control Distance Rating"
+    },
+    {
+      "_index": 4,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "f",
+      "c": true,
+      "d": true,
+      "e": "Fire Control Speed Rating"
+    },
+    {
+      "_index": 5,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "g",
+      "c": true,
+      "d": true,
+      "e": "Max Squadron Jump Radius"
+    },
+    {
+      "_index": 6,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "h",
+      "c": true,
+      "d": true,
+      "e": "Max Jump Squadron Size"
+    },
+    {
+      "_index": 7,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "i",
+      "c": true,
+      "d": true,
+      "e": "Jump Drive Efficiency"
+    },
+    {
+      "_index": 8,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "j",
+      "c": true,
+      "d": true,
+      "e": "Missile Launcher Size"
+    },
+    {
+      "_index": 9,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "k",
+      "c": true,
+      "d": true,
+      "e": "Missile Warhead Strength"
+    },
+    {
+      "_index": 10,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "l",
+      "c": true,
+      "d": true,
+      "e": "Missile Launcher Reload Rate"
+    },
+    {
+      "_index": 11,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "m",
+      "c": true,
+      "d": true,
+      "e": "Shield Regeneration Rate"
+    },
+    {
+      "_index": 12,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "n",
+      "c": true,
+      "d": true,
+      "e": "Laser Focal Size"
+    },
+    {
+      "_index": 13,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "o",
+      "c": true,
+      "d": true,
+      "e": "Shield Type"
+    },
+    {
+      "_index": 14,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "p",
+      "c": true,
+      "d": true,
+      "e": "Fire Control Size vs Range"
+    },
+    {
+      "_index": 15,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "q",
+      "c": true,
+      "d": true,
+      "e": "Fire Control Size vs Tracking Speed"
+    },
+    {
+      "_index": 16,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "r",
+      "c": true,
+      "d": true,
+      "e": "Thermal Sensor Sensitivity"
+    },
+    {
+      "_index": 17,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "s",
+      "c": true,
+      "d": true,
+      "e": "Active Sensor Strength"
+    },
+    {
+      "_index": 18,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "t",
+      "c": true,
+      "d": true,
+      "e": "Improved Construction Rate"
+    },
+    {
+      "_index": 19,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "u",
+      "c": true,
+      "d": true,
+      "e": "Improved Mining Production"
+    },
+    {
+      "_index": 20,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "v",
+      "c": true,
+      "d": true,
+      "e": "Improved Ordnance Production"
+    },
+    {
+      "_index": 21,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "w",
+      "c": true,
+      "d": true,
+      "e": "Improved Planetary Sensor Strength"
+    },
+    {
+      "_index": 22,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "x",
+      "c": true,
+      "d": true,
+      "e": "Improved Research Rate"
+    },
+    {
+      "_index": 23,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "y",
+      "c": true,
+      "d": true,
+      "e": "Improved Shipbuilding Rate"
+    },
+    {
+      "_index": 24,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "z",
+      "c": true,
+      "d": true,
+      "e": "Improved Fighter Production"
+    },
+    {
+      "_index": 25,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "aa",
+      "c": true,
+      "d": true,
+      "e": "Improved Fuel Production"
+    },
+    {
+      "_index": 26,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "ab",
+      "c": true,
+      "d": true,
+      "e": "Engine Technology"
+    },
+    {
+      "_index": 27,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "ac",
+      "c": true,
+      "d": true,
+      "e": "Power Plant Technology"
+    },
+    {
+      "_index": 28,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "ad",
+      "c": true,
+      "d": true,
+      "e": "Power vs Efficiency"
+    },
+    {
+      "_index": 29,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "ae",
+      "c": true,
+      "d": true,
+      "e": "Ground Unit Strength"
+    },
+    {
+      "_index": 30,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "af",
+      "c": true,
+      "d": true,
+      "e": "Jump Gate Construction Module"
+    },
+    {
+      "_index": 31,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "ag",
+      "c": true,
+      "d": true,
+      "e": "Terraforming Rate"
+    },
+    {
+      "_index": 32,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "ah",
+      "c": true,
+      "d": true,
+      "e": "Particle Beam Strength"
+    },
+    {
+      "_index": 33,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "ai",
+      "c": true,
+      "d": true,
+      "e": "Maximum Particle Beam Range"
+    },
+    {
+      "_index": 34,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "aj",
+      "c": true,
+      "d": true,
+      "e": "Colonization Cost Reduction"
+    },
+    {
+      "_index": 35,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "ak",
+      "c": true,
+      "d": true,
+      "e": "Fuel Consumption"
+    },
+    {
+      "_index": 36,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "al",
+      "c": true,
+      "d": true,
+      "e": "Engineering"
+    },
+    {
+      "_index": 37,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "am",
+      "c": true,
+      "d": true,
+      "e": "Sorium Harvester"
+    },
+    {
+      "_index": 38,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "an",
+      "c": true,
+      "d": true,
+      "e": "Terraforming Module"
+    },
+    {
+      "_index": 39,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "ao",
+      "c": true,
+      "d": true,
+      "e": "Hyper Drive Efficiency"
+    },
+    {
+      "_index": 40,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "ap",
+      "c": true,
+      "d": true,
+      "e": "Meson Focal Size"
+    },
+    {
+      "_index": 41,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "aq",
+      "c": true,
+      "d": true,
+      "e": "Meson Focusing"
+    },
+    {
+      "_index": 42,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "ar",
+      "c": true,
+      "d": true,
+      "e": "STS Tractor Beam"
+    },
+    {
+      "_index": 43,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "as",
+      "c": true,
+      "d": true,
+      "e": "Turret Rotation Gear"
+    },
+    {
+      "_index": 44,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "at",
+      "c": true,
+      "d": true,
+      "e": "Railgun Type"
+    },
+    {
+      "_index": 45,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "au",
+      "c": true,
+      "d": true,
+      "e": "Railgun Velocity"
+    },
+    {
+      "_index": 46,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "av",
+      "c": true,
+      "d": true,
+      "e": "Carronade Calibre"
+    },
+    {
+      "_index": 47,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "aw",
+      "c": true,
+      "d": true,
+      "e": "Asteroid Mining Module"
+    },
+    {
+      "_index": 48,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "ax",
+      "c": true,
+      "d": true,
+      "e": "Cargo Hold"
+    },
+    {
+      "_index": 49,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "ay",
+      "c": true,
+      "d": true,
+      "e": "Active Jammer"
+    },
+    {
+      "_index": 50,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "az",
+      "c": true,
+      "d": true,
+      "e": "ECCM"
+    },
+    {
+      "_index": 51,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "a0",
+      "c": true,
+      "d": true,
+      "e": "Armour"
+    },
+    {
+      "_index": 52,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "a1",
+      "c": true,
+      "d": true,
+      "e": "Jump Point Theory"
+    },
+    {
+      "_index": 53,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "a2",
+      "c": true,
+      "d": true,
+      "e": "Magazine"
+    },
+    {
+      "_index": 54,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "a3",
+      "c": true,
+      "d": true,
+      "e": "Command and Control"
+    },
+    {
+      "_index": 55,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "a4",
+      "c": true,
+      "d": true,
+      "e": "Grav Survey Sensors"
+    },
+    {
+      "_index": 56,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "a5",
+      "c": true,
+      "d": true,
+      "e": "Geo Survey Sensors"
+    },
+    {
+      "_index": 57,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "a6",
+      "c": true,
+      "d": true,
+      "e": "Troop Transport Bay"
+    },
+    {
+      "_index": 58,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "a7",
+      "c": true,
+      "d": true,
+      "e": "Damage Control"
+    },
+    {
+      "_index": 59,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "a8",
+      "c": true,
+      "d": true,
+      "e": "Fuel Storage"
+    },
+    {
+      "_index": 60,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "a9",
+      "c": true,
+      "d": true,
+      "e": "Cryogenic Transport"
+    },
+    {
+      "_index": 61,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "ba",
+      "c": true,
+      "d": true,
+      "e": "Crew Quarters"
+    },
+    {
+      "_index": 62,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "bb",
+      "c": true,
+      "d": true,
+      "e": "Salvage Module"
+    },
+    {
+      "_index": 63,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "bc",
+      "c": true,
+      "d": true,
+      "e": "Racial Wealth Creation"
+    },
+    {
+      "_index": 64,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "bd",
+      "c": true,
+      "d": true,
+      "e": "Platform Type"
+    },
+    {
+      "_index": 65,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "be",
+      "c": true,
+      "d": true,
+      "e": "Race-Designed Laser"
+    },
+    {
+      "_index": 66,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "bf",
+      "c": true,
+      "d": true,
+      "e": "RD Meson Cannon"
+    },
+    {
+      "_index": 67,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "bg",
+      "c": true,
+      "d": true,
+      "e": "RD Missile Fire Control"
+    },
+    {
+      "_index": 68,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "bh",
+      "c": true,
+      "d": true,
+      "e": "RD Missile Launcher"
+    },
+    {
+      "_index": 69,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "bi",
+      "c": true,
+      "d": true,
+      "e": "RD Railgun"
+    },
+    {
+      "_index": 70,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "bj",
+      "c": true,
+      "d": true,
+      "e": "RD Reactor"
+    },
+    {
+      "_index": 71,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "bk",
+      "c": true,
+      "d": true,
+      "e": "RD Passive"
+    },
+    {
+      "_index": 72,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "bl",
+      "c": true,
+      "d": true,
+      "e": "RD Active"
+    },
+    {
+      "_index": 73,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "bm",
+      "c": true,
+      "d": true,
+      "e": "RD Shields"
+    },
+    {
+      "_index": 74,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "bn",
+      "c": true,
+      "d": true,
+      "e": "RD Particle Beam"
+    },
+    {
+      "_index": 75,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "bo",
+      "c": true,
+      "d": true,
+      "e": "RD Jump Drive"
+    },
+    {
+      "_index": 76,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "bp",
+      "c": true,
+      "d": true,
+      "e": "RD Carronade"
+    },
+    {
+      "_index": 77,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "bq",
+      "c": true,
+      "d": true,
+      "e": "RD Engine"
+    },
+    {
+      "_index": 78,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "br",
+      "c": true,
+      "d": true,
+      "e": "RD Direct-Fire Control"
+    },
+    {
+      "_index": 79,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "bs",
+      "c": true,
+      "d": true,
+      "e": "RD Missile"
+    },
+    {
+      "_index": 80,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "bt",
+      "c": true,
+      "d": true,
+      "e": "RD Energy Turret"
+    },
+    {
+      "_index": 81,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "bu",
+      "c": true,
+      "d": true,
+      "e": "EM Sensor Sensitivity"
+    },
+    {
+      "_index": 82,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "bv",
+      "c": true,
+      "d": true,
+      "e": "RD EM"
+    },
+    {
+      "_index": 83,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "bw",
+      "c": true,
+      "d": true,
+      "e": "Thermal Reduction"
+    },
+    {
+      "_index": 84,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "bx",
+      "c": true,
+      "d": true,
+      "e": "X-Ray Laser Warhead"
+    },
+    {
+      "_index": 85,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "by",
+      "c": true,
+      "d": true,
+      "e": "Reduced Size Launchers"
+    },
+    {
+      "_index": 86,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "bz",
+      "c": true,
+      "d": true,
+      "e": "Max Engine Thrust Modifier"
+    },
+    {
+      "_index": 87,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "b0",
+      "c": true,
+      "d": true,
+      "e": "Hangar Deck"
+    },
+    {
+      "_index": 88,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "b1",
+      "c": true,
+      "d": true,
+      "e": "Sector Command"
+    },
+    {
+      "_index": 89,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "b2",
+      "c": true,
+      "d": true,
+      "e": "Microwave Focal Size"
+    },
+    {
+      "_index": 90,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "b3",
+      "c": true,
+      "d": true,
+      "e": "Microwave Focusing"
+    },
+    {
+      "_index": 91,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "b4",
+      "c": true,
+      "d": true,
+      "e": "RD HPM"
+    },
+    {
+      "_index": 92,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "b5",
+      "c": true,
+      "d": true,
+      "e": "Hardening"
+    },
+    {
+      "_index": 93,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "b6",
+      "c": true,
+      "d": true,
+      "e": "Reduced Size Lasers"
+    },
+    {
+      "_index": 94,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "b7",
+      "c": true,
+      "d": true,
+      "e": "Gauss Cannon Rate of Fire"
+    },
+    {
+      "_index": 95,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "b8",
+      "c": true,
+      "d": true,
+      "e": "Ship Type Limitations"
+    },
+    {
+      "_index": 96,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "b9",
+      "c": true,
+      "d": true,
+      "e": "Gauss Cannon Size vs Accuracy"
+    },
+    {
+      "_index": 97,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "ca",
+      "c": true,
+      "d": true,
+      "e": "Gauss Cannon Velocity"
+    },
+    {
+      "_index": 98,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "cb",
+      "c": true,
+      "d": true,
+      "e": "RD Gauss Cannon"
+    },
+    {
+      "_index": 99,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "cc",
+      "c": true,
+      "d": true,
+      "e": "Advanced Laser"
+    },
+    {
+      "_index": 100,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "cd",
+      "c": true,
+      "d": true,
+      "e": "Advanced Carronade"
+    },
+    {
+      "_index": 101,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "ce",
+      "c": true,
+      "d": true,
+      "e": "Advanced Railgun"
+    },
+    {
+      "_index": 102,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "cf",
+      "c": true,
+      "d": true,
+      "e": "Advanced Particle Beam"
+    },
+    {
+      "_index": 103,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "cg",
+      "c": true,
+      "d": true,
+      "e": "Active Sensor Type"
+    },
+    {
+      "_index": 104,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "ch",
+      "c": true,
+      "d": true,
+      "e": "Cloaking Efficiency"
+    },
+    {
+      "_index": 105,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "ci",
+      "c": true,
+      "d": true,
+      "e": "Cloaking Sensor Reduction"
+    },
+    {
+      "_index": 106,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "cj",
+      "c": true,
+      "d": true,
+      "e": "Minimum Cloak Size"
+    },
+    {
+      "_index": 107,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "ck",
+      "c": true,
+      "d": true,
+      "e": "RD Cloak"
+    },
+    {
+      "_index": 108,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "cl",
+      "c": true,
+      "d": true,
+      "e": "Cloaking Theory"
+    },
+    {
+      "_index": 109,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "cm",
+      "c": true,
+      "d": true,
+      "e": "Shipyard Operations"
+    },
+    {
+      "_index": 110,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "cn",
+      "c": true,
+      "d": true,
+      "e": "Maintenance Storage"
+    },
+    {
+      "_index": 111,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "co",
+      "c": true,
+      "d": true,
+      "e": "Background TNC Knowledge"
+    },
+    {
+      "_index": 112,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "cp",
+      "c": true,
+      "d": true,
+      "e": "Enhanced Radiation Warhead"
+    },
+    {
+      "_index": 113,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "cq",
+      "c": true,
+      "d": true,
+      "e": "Maintenance Module"
+    },
+    {
+      "_index": 114,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "cr",
+      "c": true,
+      "d": true,
+      "e": "Max Tracking Time Bonus"
+    },
+    {
+      "_index": 115,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "166",
+      "c": true,
+      "d": true,
+      "e": "Minimum Jump Engine Size"
+    },
+    {
+      "_index": 116,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "cs",
+      "c": true,
+      "d": true,
+      "e": "Magazine Ejection System"
+    },
+    {
+      "_index": 117,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "ct",
+      "c": true,
+      "d": true,
+      "e": "Magazine Feed System Efficiency"
+    },
+    {
+      "_index": 118,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "cu",
+      "c": true,
+      "d": true,
+      "e": "Jump Drive Type"
+    },
+    {
+      "_index": 119,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "cv",
+      "c": true,
+      "d": true,
+      "e": "Troop Transport Bay - Drop Ship Equipped"
+    },
+    {
+      "_index": 120,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "cw",
+      "c": true,
+      "d": true,
+      "e": "Passenger Accomodation"
+    },
+    {
+      "_index": 121,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "cx",
+      "c": true,
+      "d": true,
+      "e": "RD CIWS"
+    },
+    {
+      "_index": 122,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "cy",
+      "c": true,
+      "d": true,
+      "e": "Genetics"
+    },
+    {
+      "_index": 123,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "cz",
+      "c": true,
+      "d": true,
+      "e": "Temperature Range"
+    },
+    {
+      "_index": 124,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "c0",
+      "c": true,
+      "d": true,
+      "e": "Base Temperature"
+    },
+    {
+      "_index": 125,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "c1",
+      "c": true,
+      "d": true,
+      "e": "Base Oxygen Level"
+    },
+    {
+      "_index": 126,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "c2",
+      "c": true,
+      "d": true,
+      "e": "Base Gravity"
+    },
+    {
+      "_index": 127,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "c3",
+      "c": true,
+      "d": true,
+      "e": "RD Species"
+    },
+    {
+      "_index": 128,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "c4",
+      "c": true,
+      "d": true,
+      "e": "Worker Hab"
+    },
+    {
+      "_index": 129,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "c5",
+      "c": true,
+      "d": true,
+      "e": "Sensor Band Type"
+    },
+    {
+      "_index": 130,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "c6",
+      "c": true,
+      "d": true,
+      "e": "Missile Jammer"
+    },
+    {
+      "_index": 131,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "c7",
+      "c": true,
+      "d": true,
+      "e": "Fire Control Jammer"
+    },
+    {
+      "_index": 132,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "196",
+      "c": true,
+      "d": true,
+      "e": "Ground Unit"
+    },
+    {
+      "_index": 133,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "c8",
+      "c": true,
+      "d": true,
+      "e": "Alien Autopsy"
+    },
+    {
+      "_index": 134,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "c9",
+      "c": true,
+      "d": true,
+      "e": "Min Engine Thrust Modifier"
+    },
+    {
+      "_index": 135,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "da",
+      "c": true,
+      "d": true,
+      "e": "Recreational Centre"
+    },
+    {
+      "_index": 136,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "db",
+      "c": true,
+      "d": true,
+      "e": "Energy Weapon Mount"
+    },
+    {
+      "_index": 137,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "dc",
+      "c": true,
+      "d": true,
+      "e": "Excavation Technology"
+    },
+    {
+      "_index": 138,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "dd",
+      "c": true,
+      "d": true,
+      "e": "Commercial Magazine"
+    },
+    {
+      "_index": 139,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "de",
+      "c": true,
+      "d": true,
+      "e": "Commercial Hangar"
+    },
+    {
+      "_index": 140,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "df",
+      "c": true,
+      "d": true,
+      "e": "Commercial Damage Control"
+    },
+    {
+      "_index": 141,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "dg",
+      "c": true,
+      "d": true,
+      "e": "Troop Transport - Boarding Equipped"
+    },
+    {
+      "_index": 142,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "dh",
+      "c": true,
+      "d": true,
+      "e": "Particle Lance"
+    },
+    {
+      "_index": 143,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "di",
+      "c": true,
+      "d": true,
+      "e": "MSP Production Rate"
+    },
+    {
+      "_index": 144,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "dj",
+      "c": true,
+      "d": true,
+      "e": "Maintenance Capacity Per Facility"
+    },
+    {
+      "_index": 145,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "dk",
+      "c": true,
+      "d": true,
+      "e": "Refuelling System"
+    },
+    {
+      "_index": 146,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "dl",
+      "c": true,
+      "d": true,
+      "e": "Underway Replenishment"
+    },
+    {
+      "_index": 147,
+      "a": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "b": "dm",
+      "c": true,
+      "d": true,
+      "e": "Maximum Engine Size"
+    },
+    {
+      "_index": 148,
+      "a": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "b": "dn",
+      "c": true,
+      "d": true,
+      "e": "Maximum Shield Generator Size"
+    },
+    {
+      "_index": 149,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "do",
+      "c": true,
+      "d": true,
+      "e": "Box Launcher Explosion Chance"
+    },
+    {
+      "_index": 150,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "dp",
+      "c": true,
+      "d": true,
+      "e": "Ordnance Transfer System"
+    },
+    {
+      "_index": 151,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "dq",
+      "c": true,
+      "d": true,
+      "e": "Ordnance Transfer Hub"
+    },
+    {
+      "_index": 152,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "dr",
+      "c": true,
+      "d": true,
+      "e": "Vehicle Armour Type"
+    },
+    {
+      "_index": 153,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "ds",
+      "c": true,
+      "d": true,
+      "e": "Anti-Infantry Weapon"
+    },
+    {
+      "_index": 154,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "dt",
+      "c": true,
+      "d": true,
+      "e": "Ground Unit Class"
+    },
+    {
+      "_index": 155,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "du",
+      "c": true,
+      "d": true,
+      "e": "Ground Unit Base Type"
+    },
+    {
+      "_index": 156,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "dv",
+      "c": true,
+      "d": true,
+      "e": "Ground Unit Capability"
+    },
+    {
+      "_index": 157,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "dw",
+      "c": true,
+      "d": true,
+      "e": "Cargo Shuttle Capability"
+    },
+    {
+      "_index": 158,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "dx",
+      "c": true,
+      "d": true,
+      "e": "Ground Formation Construction Rate"
+    },
+    {
+      "_index": 159,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "dy",
+      "c": true,
+      "d": true,
+      "e": "Fighter Pod Bay"
+    },
+    {
+      "_index": 160,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "dz",
+      "c": true,
+      "d": true,
+      "e": "Fighter Pod Capability"
+    },
+    {
+      "_index": 161,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d0",
+      "c": true,
+      "d": true,
+      "e": "RD Fighter Pod Bay"
+    },
+    {
+      "_index": 162,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d1",
+      "c": true,
+      "d": true,
+      "e": "Infantry Armour Type"
+    },
+    {
+      "_index": 163,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d2",
+      "c": true,
+      "d": true,
+      "e": "Static Armour Type"
+    },
+    {
+      "_index": 164,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d3",
+      "c": true,
+      "d": true,
+      "e": "Anti-Vehicle Weapon"
+    },
+    {
+      "_index": 165,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d4",
+      "c": true,
+      "d": true,
+      "e": "Bombardment Weapon"
+    },
+    {
+      "_index": 166,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d5",
+      "c": true,
+      "d": true,
+      "e": "Anti-Air Weapon"
+    },
+    {
+      "_index": 167,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d6",
+      "c": true,
+      "d": true,
+      "e": "Autocannon Weapon"
+    },
+    {
+      "_index": 168,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d7",
+      "c": true,
+      "d": true,
+      "e": "Surface-To-Orbit Weapon"
+    },
+    {
+      "_index": 169,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d8",
+      "c": true,
+      "d": true,
+      "e": "Ground Headquarters"
+    },
+    {
+      "_index": 170,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "d9",
+      "c": true,
+      "d": true,
+      "e": "Forward Fire Direction"
+    },
+    {
+      "_index": 171,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "ea",
+      "c": true,
+      "d": true,
+      "e": "Ground Construction"
+    },
+    {
+      "_index": 172,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "eb",
+      "c": true,
+      "d": true,
+      "e": "Ground Geological Survey"
+    },
+    {
+      "_index": 173,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "ec",
+      "c": true,
+      "d": true,
+      "e": "ELINT"
+    },
+    {
+      "_index": 174,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "ed",
+      "c": true,
+      "d": true,
+      "e": "Diplomacy Module"
+    },
+    {
+      "_index": 175,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "ee",
+      "c": true,
+      "d": true,
+      "e": "Ground Force Logistics"
+    },
+    {
+      "_index": 176,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "ef",
+      "c": true,
+      "d": true,
+      "e": "Maximum Orbital Mining Diameter"
+    },
+    {
+      "_index": 177,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "eg",
+      "c": true,
+      "d": true,
+      "e": "Ground Xenoarchaeological Survey"
+    },
+    {
+      "_index": 178,
+      "a": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "b": "247",
+      "c": true,
+      "d": true,
+      "e": "Meson Armour Retardation"
+    },
+    {
+      "_index": 179,
+      "a": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "b": "eh",
+      "c": true,
+      "d": true,
+      "e": "BioEnergyStorage"
+    },
+    {
+      "_index": 180,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "ei",
+      "c": true,
+      "d": true,
+      "e": "Swarm Ground Weapons"
+    },
+    {
+      "_index": 181,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "ej",
+      "c": true,
+      "d": true,
+      "e": "Genetic Enhancements"
+    },
+    {
+      "_index": 182,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "ek",
+      "c": true,
+      "d": true,
+      "e": "Missile Engine Display Power Modifier"
+    },
+    {
+      "_index": 183,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "el",
+      "c": true,
+      "d": true,
+      "e": "Engine Display Power Modifier"
+    },
+    {
+      "_index": 184,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "em",
+      "c": true,
+      "d": true,
+      "e": "New Species"
+    },
+    {
+      "_index": 185,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "en",
+      "c": true,
+      "d": true,
+      "e": "Sensor Resolution"
+    },
+    {
+      "_index": 186,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "eo",
+      "c": true,
+      "d": true,
+      "e": "Power Plant Size"
+    },
+    {
+      "_index": 187,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "ep",
+      "c": true,
+      "d": true,
+      "e": "Fighter Pod Bay Size"
+    },
+    {
+      "_index": 188,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "eq",
+      "c": true,
+      "d": true,
+      "e": "Shield Generator Size"
+    },
+    {
+      "_index": 189,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "er",
+      "c": true,
+      "d": true,
+      "e": "Missile Engine Display Size"
+    },
+    {
+      "_index": 190,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "es",
+      "c": true,
+      "d": true,
+      "e": "Engine Display Size"
+    },
+    {
+      "_index": 191,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "et",
+      "c": true,
+      "d": true,
+      "e": "Missile Launcher Display Size"
+    },
+    {
+      "_index": 192,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "eu",
+      "c": true,
+      "d": true,
+      "e": "Magazine Size"
+    },
+    {
+      "_index": 193,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "ev",
+      "c": true,
+      "d": true,
+      "e": "Magazine HTK"
+    },
+    {
+      "_index": 194,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "ew",
+      "c": true,
+      "d": true,
+      "e": "Cloaking Device Size"
+    },
+    {
+      "_index": 195,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "ex",
+      "c": true,
+      "d": true,
+      "e": "Sensor Size"
+    },
+    {
+      "_index": 196,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "ey",
+      "c": true,
+      "d": true,
+      "e": "Jump Engine Size"
+    },
+    {
+      "_index": 197,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "ez",
+      "c": true,
+      "d": true,
+      "e": "Railgun Shots"
+    },
+    {
+      "_index": 198,
+      "a": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "b": "e0",
+      "c": true,
+      "d": true,
+      "e": "Single Weapon Fire Control"
+    },
+    {
+      "_index": 199,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "e1",
+      "c": true,
+      "d": true,
+      "e": "Miscellaneous Components"
+    },
+    {
+      "_index": 200,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "e2",
+      "c": true,
+      "d": true,
+      "e": "Small Refuelling System"
+    },
+    {
+      "_index": 201,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "e3",
+      "c": true,
+      "d": true,
+      "e": "Mobile Repair Bay"
+    },
+    {
+      "_index": 202,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "e4",
+      "c": true,
+      "d": true,
+      "e": "RD Kinetic Turret"
+    },
+    {
+      "_index": 203,
+      "a": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "b": "e5",
+      "c": true,
+      "d": true,
+      "e": "Decontamination Equipment"
+    },
+    {
+      "_index": 204,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "e6",
+      "c": true,
+      "d": true,
+      "e": "Laser Warhead Damage Efficiency"
+    },
+    {
+      "_index": 205,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "e7",
+      "c": true,
+      "d": true,
+      "e": "Active Terminal Guidance"
+    },
+    {
+      "_index": 206,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "e8",
+      "c": true,
+      "d": true,
+      "e": "Missile Retargeting"
+    },
+    {
+      "_index": 207,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "e9",
+      "c": true,
+      "d": true,
+      "e": "Laser Warhead Focus"
+    },
+    {
+      "_index": 208,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "fa",
+      "c": true,
+      "d": true,
+      "e": "Missile ECM"
+    },
+    {
+      "_index": 209,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "fb",
+      "c": true,
+      "d": true,
+      "e": "Multiple Warheads"
+    },
+    {
+      "_index": 210,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "fc",
+      "c": true,
+      "d": true,
+      "e": "Decoy Missiles"
+    },
+    {
+      "_index": 211,
+      "a": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "b": "fd",
+      "c": true,
+      "d": true,
+      "e": "RD Decoy Missile Launcher"
+    },
+    {
+      "_index": 212,
+      "a": {
+        "_type": "im",
+        "a": "10",
+        "b": "Component Creation",
+        "c": "Components",
+        "d": "CC",
+        "e": true
+      },
+      "b": "fe",
+      "c": true,
+      "d": true,
+      "e": "Decoy Launcher Display Size"
+    },
+    {
+      "_index": 213,
+      "a": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "b": "ff",
+      "c": true,
+      "d": true,
+      "e": "Genetic Conversion Rate"
+    },
+    {
+      "_index": 214,
+      "a": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "b": "fg",
+      "c": true,
+      "d": true,
+      "e": "Crew Quarter Design"
+    }
+  ]
+}

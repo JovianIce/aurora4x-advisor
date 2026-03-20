@@ -1,0 +1,181 @@
+{
+  "_field": "c5",
+  "_type": "h9",
+  "_collectionType": "Dict",
+  "_count": 22,
+  "_dumped": 22,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "bool"
+    },
+    {
+      "name": "d",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "b",
+      "b": 10,
+      "c": true,
+      "d": "Mining"
+    },
+    {
+      "_index": 1,
+      "a": "c",
+      "b": 120,
+      "c": false,
+      "d": "Ordnance Production"
+    },
+    {
+      "_index": 2,
+      "a": "d",
+      "b": 130,
+      "c": false,
+      "d": "Fighter Production"
+    },
+    {
+      "_index": 3,
+      "a": "e",
+      "b": 100,
+      "c": false,
+      "d": "Construction"
+    },
+    {
+      "_index": 4,
+      "a": "f",
+      "b": 110,
+      "c": false,
+      "d": "Shipbuilding"
+    },
+    {
+      "_index": 5,
+      "a": "g",
+      "b": 140,
+      "c": false,
+      "d": "Ground Unit Training"
+    },
+    {
+      "_index": 6,
+      "a": "h",
+      "b": 80,
+      "c": true,
+      "d": "Unloaded from Freighter"
+    },
+    {
+      "_index": 7,
+      "a": "i",
+      "b": 170,
+      "c": false,
+      "d": "Loaded into Freighter"
+    },
+    {
+      "_index": 8,
+      "a": "j",
+      "b": 115,
+      "c": false,
+      "d": "Shipyard Upgrades"
+    },
+    {
+      "_index": 9,
+      "a": "k",
+      "b": 30,
+      "c": true,
+      "d": "Recovered from Ruins"
+    },
+    {
+      "_index": 10,
+      "a": "l",
+      "b": 20,
+      "c": true,
+      "d": "Civilian Mining"
+    },
+    {
+      "_index": 11,
+      "a": "m",
+      "b": 180,
+      "c": false,
+      "d": "Sent by Mass Driver"
+    },
+    {
+      "_index": 12,
+      "a": "n",
+      "b": 90,
+      "c": true,
+      "d": "Received from Mass Driver"
+    },
+    {
+      "_index": 13,
+      "a": "o",
+      "b": 160,
+      "c": false,
+      "d": "Fuel Refining"
+    },
+    {
+      "_index": 14,
+      "a": "p",
+      "b": 50,
+      "c": true,
+      "d": "Scrapped Components"
+    },
+    {
+      "_index": 15,
+      "a": "q",
+      "b": 150,
+      "c": false,
+      "d": "Maintenance Production"
+    },
+    {
+      "_index": 16,
+      "a": "r",
+      "b": 70,
+      "c": true,
+      "d": "Scrapped Ground Units"
+    },
+    {
+      "_index": 17,
+      "a": "s",
+      "b": 40,
+      "c": true,
+      "d": "Scrapped Installations"
+    },
+    {
+      "_index": 18,
+      "a": "t",
+      "b": 60,
+      "c": true,
+      "d": "Scrapped Ordnance"
+    },
+    {
+      "_index": 19,
+      "a": "u",
+      "b": 5,
+      "c": true,
+      "d": "Starting Stockpile"
+    },
+    {
+      "_index": 20,
+      "a": "v",
+      "b": 105,
+      "c": false,
+      "d": "Ship Component Production"
+    },
+    {
+      "_index": 21,
+      "a": "w",
+      "b": 103,
+      "c": false,
+      "d": "Space Station Construction"
+    }
+  ]
+}

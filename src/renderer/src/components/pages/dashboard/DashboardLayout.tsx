@@ -4,12 +4,14 @@ import { useGame } from '@renderer/hooks/use-game'
 import { SystemMapTab } from './SystemMapTab'
 import { TableExplorerTab } from './TableExplorerTab'
 import { DashboardOverview } from './DashboardOverview'
+import { MemoryExplorerTab } from './MemoryExplorerTab'
+import { FormToolbar } from './FormToolbar'
 import { BridgeStatusIndicator } from '../../system-map/BridgeStatusIndicator'
 
 export function DashboardLayout(): React.JSX.Element {
   const navigate = useNavigate()
   const { currentGame } = useGame()
-  const [activeView, setActiveView] = useState<'map' | 'tables' | 'advisor'>('map')
+  const [activeView, setActiveView] = useState<'map' | 'tables' | 'memory' | 'advisor'>('map')
 
   useEffect(() => {
     if (!currentGame) {
@@ -68,6 +70,12 @@ export function DashboardLayout(): React.JSX.Element {
             Data Core
           </button>
           <button
+            className={`cic-btn ${activeView === 'memory' ? 'active' : ''}`}
+            onClick={() => setActiveView('memory')}
+          >
+            Memory
+          </button>
+          <button
             className={`cic-btn ${activeView === 'advisor' ? 'active' : ''}`}
             onClick={() => setActiveView('advisor')}
           >
@@ -87,10 +95,17 @@ export function DashboardLayout(): React.JSX.Element {
         </div>
       </div>
 
+      {/* Form Toolbar — opens Aurora's native windows */}
+      <FormToolbar />
+
       {/* Main Content — full remaining height */}
       <div className="flex-1 min-h-0">
         {activeView === 'map' ? (
           <SystemMapTab game={currentGame} />
+        ) : activeView === 'memory' ? (
+          <div className="p-3 h-full overflow-hidden">
+            <MemoryExplorerTab />
+          </div>
         ) : activeView === 'advisor' ? (
           <div className="p-4 h-full overflow-auto">
             <DashboardOverview />

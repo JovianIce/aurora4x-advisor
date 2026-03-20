@@ -28,6 +28,7 @@ import { loadSettings, saveSettings, updateSetting } from './services/settings-p
 import { dbWatcher } from './services/db-watcher'
 import { triggerImmediateAnalysis } from './services/game-state-analyzer'
 import { auroraBridge } from './services/aurora-bridge'
+import { dumpMemoryToFiles } from './services/memory-dump'
 import { dialog } from 'electron'
 
 function createWindow(): void {
@@ -358,6 +359,45 @@ app.whenReady().then(async () => {
 
   ipcMain.handle('bridge:inspectForm', async (_event, formName: string) => {
     return auroraBridge.inspectForm(formName)
+  })
+
+  ipcMain.handle('bridge:getKnownSystems', async () => {
+    return auroraBridge.getKnownSystems()
+  })
+
+  ipcMain.handle('bridge:getFleets', async () => {
+    return auroraBridge.getFleets()
+  })
+
+  ipcMain.handle('bridge:getShips', async (_event, fleetId?: number) => {
+    return auroraBridge.getShips(fleetId)
+  })
+
+  ipcMain.handle('bridge:dumpMemory', async () => {
+    const result = await dialog.showOpenDialog({
+      title: 'Select folder for memory dump',
+      properties: ['openDirectory', 'createDirectory']
+    })
+    if (result.canceled || result.filePaths.length === 0) return null
+
+    const outputDir = result.filePaths[0]
+    return dumpMemoryToFiles(outputDir)
+  })
+
+  ipcMain.handle('bridge:enumerateGameState', async () => {
+    return auroraBridge.enumerateGameState()
+  })
+
+  ipcMain.handle('bridge:enumerateCollections', async () => {
+    return auroraBridge.enumerateCollections()
+  })
+
+  ipcMain.handle('bridge:readCollection', async (_event, params) => {
+    return auroraBridge.readCollection(params)
+  })
+
+  ipcMain.handle('bridge:readField', async (_event, fieldName: string) => {
+    return auroraBridge.readField(fieldName)
   })
 
   // Initialize database watcher from settings

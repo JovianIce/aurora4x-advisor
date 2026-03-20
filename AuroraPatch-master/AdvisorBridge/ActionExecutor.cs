@@ -80,14 +80,19 @@ namespace AdvisorBridge
             if (map == null)
                 return ActionResult.Fail("TacticalMap not available");
 
-            var result = InvokeWithTimeout(() =>
+            // Use BeginInvoke (async, non-blocking) so clicks can interrupt auto-run
+            map.BeginInvoke(new Action(() =>
             {
-                var button = Lib.UIManager.GetControlByName<Button>(map, buttonName);
-                button.PerformClick();
-            });
-
-            if (!result)
-                return ActionResult.Fail("ClickButton timed out");
+                try
+                {
+                    var button = Lib.UIManager.GetControlByName<Button>(map, buttonName);
+                    button.PerformClick();
+                }
+                catch (Exception ex)
+                {
+                    _patch.LogError($"ClickButton async error: {ex.Message}");
+                }
+            }));
 
             _patch.LogInfo($"Clicked button: {request.Target} ({buttonName})");
             return ActionResult.Ok(new { button = request.Target, controlName = buttonName });

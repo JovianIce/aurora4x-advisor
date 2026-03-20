@@ -217,12 +217,40 @@ namespace AdvisorBridge
                     response = HandleGetSystems(request);
                     break;
 
+                case "getknownsystems":
+                    response = HandleGetKnownSystems(request);
+                    break;
+
                 case "subscribe":
                     response = HandleSubscribe(request, clientId);
                     break;
 
                 case "globalsearch":
                     response = HandleGlobalSearch(request);
+                    break;
+
+                case "getfleets":
+                    response = HandleGetFleets(request);
+                    break;
+
+                case "getships":
+                    response = HandleGetShips(request);
+                    break;
+
+                case "enumerategamestate":
+                    response = HandleEnumerateGameState(request);
+                    break;
+
+                case "enumeratecollections":
+                    response = HandleEnumerateCollections(request);
+                    break;
+
+                case "readcollection":
+                    response = HandleReadCollection(request);
+                    break;
+
+                case "readfield":
+                    response = HandleReadField(request);
                     break;
 
                 case "action":
@@ -305,12 +333,18 @@ namespace AdvisorBridge
 
         private void OnGameTick(object sender, EventArgs e)
         {
-            if (_clients.IsEmpty || !_subscribedSystemId.HasValue) return;
+            if (_clients.IsEmpty) return;
 
             try
             {
-                var bodies = _memoryReader.ReadBodies(_subscribedSystemId);
-                Broadcast("bodies", new { systemId = _subscribedSystemId.Value, bodies });
+                if (_subscribedSystemId.HasValue)
+                {
+                    var bodies = _memoryReader.ReadBodies(_subscribedSystemId);
+                    Broadcast("bodies", new { systemId = _subscribedSystemId.Value, bodies });
+                }
+
+                var fleets = _memoryReader.ReadFleets();
+                Broadcast("fleets", new { fleets });
             }
             catch (Exception ex)
             {
@@ -439,6 +473,158 @@ namespace AdvisorBridge
                 _patch.LogError($"GlobalSearch error: {ex.Message}");
                 return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
             }
+        }
+
+        private BridgeResponse HandleGetKnownSystems(BridgeRequest request)
+        {
+            try
+            {
+                var systems = _memoryReader.ReadKnownSystems();
+                return BridgeResponse.Ok(request.Id, "result", systems);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"GetKnownSystems error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
+            }
+        }
+
+        private BridgeResponse HandleGetFleets(BridgeRequest request)
+        {
+            try
+            {
+                var fleets = _memoryReader.ReadFleets();
+                return BridgeResponse.Ok(request.Id, "result", fleets);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"GetFleets error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
+            }
+        }
+
+        private BridgeResponse HandleGetShips(BridgeRequest request)
+        {
+            try
+            {
+                int? fleetId = null;
+                if (!string.IsNullOrEmpty(request.Payload))
+                {
+                    try
+                    {
+                        var payload = JsonConvert.DeserializeObject<ShipsPayload>(request.Payload);
+                        fleetId = payload?.FleetId;
+                    }
+                    catch { }
+                }
+
+                var ships = _memoryReader.ReadShips(fleetId);
+                return BridgeResponse.Ok(request.Id, "result", ships);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"GetShips error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
+            }
+        }
+
+        private class ShipsPayload
+        {
+            public int? FleetId { get; set; }
+        }
+
+        private BridgeResponse HandleEnumerateGameState(BridgeRequest request)
+        {
+            try
+            {
+                var fields = _memoryReader.EnumerateGameStateFields();
+                return BridgeResponse.Ok(request.Id, "result", fields);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"EnumerateGameState error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
+            }
+        }
+
+        private BridgeResponse HandleEnumerateCollections(BridgeRequest request)
+        {
+            try
+            {
+                var collections = _memoryReader.EnumerateCollections();
+                return BridgeResponse.Ok(request.Id, "result", collections);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"EnumerateCollections error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
+            }
+        }
+
+        private BridgeResponse HandleReadCollection(BridgeRequest request)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(request.Payload))
+                    return BridgeResponse.Fail(request.Id, "result", "Missing payload with 'Field' name");
+
+                var payload = JsonConvert.DeserializeObject<ReadCollectionPayload>(request.Payload);
+                if (string.IsNullOrEmpty(payload?.Field))
+                    return BridgeResponse.Fail(request.Id, "result", "Missing 'Field' in payload");
+
+                var items = _memoryReader.ReadCollection(
+                    payload.Field,
+                    payload.Offset,
+                    payload.Limit > 0 ? payload.Limit : 100,
+                    payload.Fields,
+                    payload.IncludeRefs,
+                    payload.FilterField,
+                    payload.FilterValue
+                );
+                return BridgeResponse.Ok(request.Id, "result", items);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"ReadCollection error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
+            }
+        }
+
+        private BridgeResponse HandleReadField(BridgeRequest request)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(request.Payload))
+                    return BridgeResponse.Fail(request.Id, "result", "Missing payload with 'Field' name");
+
+                var payload = JsonConvert.DeserializeObject<ReadFieldPayload>(request.Payload);
+                if (string.IsNullOrEmpty(payload?.Field))
+                    return BridgeResponse.Fail(request.Id, "result", "Missing 'Field' in payload");
+
+                var result = _memoryReader.ReadGameStateField(payload.Field);
+                return BridgeResponse.Ok(request.Id, "result", result);
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"ReadField error: {ex.Message}");
+                return BridgeResponse.Fail(request.Id, "result", $"Failed: {ex.Message}");
+            }
+        }
+
+        private class ReadCollectionPayload
+        {
+            public string Field { get; set; }
+            public int Offset { get; set; }
+            public int Limit { get; set; }
+            public string[] Fields { get; set; }
+            public bool IncludeRefs { get; set; }
+            public string FilterField { get; set; }
+            public string FilterValue { get; set; }
+        }
+
+        private class ReadFieldPayload
+        {
+            public string Field { get; set; }
         }
 
         private BridgeResponse HandleAction(BridgeRequest request)

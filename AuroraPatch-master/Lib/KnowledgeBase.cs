@@ -16,6 +16,15 @@ namespace Lib
         MineralsForm, SectorsForm, EventsForm, GameDetailsForm
     }
 
+    /// <summary>
+    /// Known ComboBox controls on Aurora forms. Names are stable across versions (not obfuscated).
+    /// </summary>
+    public enum AuroraComboBox
+    {
+        // Tactical Map
+        Systems, Races, ContactRaceFilter
+    }
+
     // TODO: Currently only contains TacticalMap and GalacticMap buttons.
     public enum AuroraButton
     {
@@ -41,6 +50,27 @@ namespace Lib
         internal KnowledgeBase(Lib lib)
         {
             Lib = lib;
+        }
+
+        /// <summary>
+        /// Dictionary of known ComboBox controls on Aurora forms.
+        /// </summary>
+        private Dictionary<AuroraComboBox, string> AuroraComboBoxes = new Dictionary<AuroraComboBox, string>
+        {
+            // Tactical Map
+            { AuroraComboBox.Systems, "cboSystems" },
+            { AuroraComboBox.Races, "cboRaces" },
+            { AuroraComboBox.ContactRaceFilter, "cboContactRaceFilter" },
+        };
+
+        /// <summary>
+        /// Get the WinForms control name for a known ComboBox.
+        /// </summary>
+        public string GetComboBoxName(AuroraComboBox comboBox)
+        {
+            string name;
+            AuroraComboBoxes.TryGetValue(comboBox, out name);
+            return name;
         }
 
         /// <summary>

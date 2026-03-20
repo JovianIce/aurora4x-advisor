@@ -1,0 +1,111 @@
+{
+  "_field": "c2",
+  "_type": "im",
+  "_collectionType": "Dict",
+  "_count": 10,
+  "_dumped": 10,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "string"
+    },
+    {
+      "name": "c",
+      "type": "string"
+    },
+    {
+      "name": "d",
+      "type": "string"
+    },
+    {
+      "name": "e",
+      "type": "bool"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "PowerAndPropulsion",
+      "b": "Power and Propulsion",
+      "c": "Pow/Prop",
+      "d": "PP",
+      "e": false
+    },
+    {
+      "_index": 1,
+      "a": "SensorsAndControlSystems",
+      "b": "Sensors and Control Systems",
+      "c": "Sen/Con",
+      "d": "SC",
+      "e": false
+    },
+    {
+      "_index": 2,
+      "a": "EnergyWeapons",
+      "b": "Direct Fire Weapons",
+      "c": "Direct-Fire",
+      "d": "EW",
+      "e": false
+    },
+    {
+      "_index": 3,
+      "a": "MissilesKinetic",
+      "b": "Missiles",
+      "c": "Missiles",
+      "d": "MK",
+      "e": false
+    },
+    {
+      "_index": 4,
+      "a": "ConstructionProduction",
+      "b": "Construction / Production",
+      "c": "Const/Prod",
+      "d": "CP",
+      "e": false
+    },
+    {
+      "_index": 5,
+      "a": "Logistics",
+      "b": "Logistics",
+      "c": "Logistics",
+      "d": "LG",
+      "e": false
+    },
+    {
+      "_index": 6,
+      "a": "DefensiveSystems",
+      "b": "Defensive Systems",
+      "c": "Defence",
+      "d": "DS",
+      "e": false
+    },
+    {
+      "_index": 7,
+      "a": "BiologyGenetics",
+      "b": "Biology / Genetics",
+      "c": "BioGen",
+      "d": "BG",
+      "e": false
+    },
+    {
+      "_index": 8,
+      "a": "GroundCombat",
+      "b": "Ground Combat",
+      "c": "Ground",
+      "d": "GC",
+      "e": false
+    },
+    {
+      "_index": 9,
+      "a": "10",
+      "b": "Component Creation",
+      "c": "Components",
+      "d": "CC",
+      "e": true
+    }
+  ]
+}

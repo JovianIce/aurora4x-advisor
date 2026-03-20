@@ -18,6 +18,9 @@ export interface MapDisplayOptions {
   showMoonNames: boolean
   showAsteroidNames: boolean
   showCometNames: boolean
+  showCivilianFleets: boolean
+  showMilitaryFleets: boolean
+  showFleetNames: boolean
 }
 
 export const DEFAULT_DISPLAY_OPTIONS: MapDisplayOptions = {
@@ -37,7 +40,10 @@ export const DEFAULT_DISPLAY_OPTIONS: MapDisplayOptions = {
   showDwarfNames: true,
   showMoonNames: true,
   showAsteroidNames: true,
-  showCometNames: true
+  showCometNames: true,
+  showCivilianFleets: false,
+  showMilitaryFleets: true,
+  showFleetNames: true
 }
 
 function CICToggle({ label, checked, onChange }: { label: string; checked: boolean; onChange: (v: boolean) => void }): React.JSX.Element {
@@ -60,7 +66,7 @@ export function DisplayOptionsPanel({ options, onChange }: DisplayOptionsPanelPr
   }
 
   return (
-    <div className="grid grid-cols-3 gap-x-4 gap-y-0 p-3">
+    <div className="grid grid-cols-4 gap-x-4 gap-y-0 p-3">
       <div>
         <div className="cic-label mb-1" style={{ fontSize: '8px' }}>Bodies</div>
         <CICToggle label="Planets" checked={options.showPlanets} onChange={(v) => set('showPlanets', v)} />
@@ -86,6 +92,12 @@ export function DisplayOptionsPanel({ options, onChange }: DisplayOptionsPanelPr
         <CICToggle label="Moon Names" checked={options.showMoonNames} onChange={(v) => set('showMoonNames', v)} />
         <CICToggle label="Asteroid Names" checked={options.showAsteroidNames} onChange={(v) => set('showAsteroidNames', v)} />
         <CICToggle label="Comet Names" checked={options.showCometNames} onChange={(v) => set('showCometNames', v)} />
+      </div>
+      <div>
+        <div className="cic-label mb-1" style={{ fontSize: '8px' }}>Fleets</div>
+        <CICToggle label="Military" checked={options.showMilitaryFleets} onChange={(v) => set('showMilitaryFleets', v)} />
+        <CICToggle label="Civilian" checked={options.showCivilianFleets} onChange={(v) => set('showCivilianFleets', v)} />
+        <CICToggle label="Fleet Names" checked={options.showFleetNames} onChange={(v) => set('showFleetNames', v)} />
       </div>
     </div>
   )

@@ -1,5 +1,12 @@
 import React, { useRef, useEffect, useCallback, useReducer } from 'react'
 import type { SystemBody } from '@shared/types'
+import type { MemoryFleet } from '../../contexts/aurora-data-context'
+
+interface EnrichedFleet extends MemoryFleet {
+  order?: string
+  distance?: number
+  eta?: string
+}
 import {
   auToCanvas,
   type ViewportState,
@@ -9,6 +16,7 @@ import type { MapDisplayOptions } from './DisplayOptions'
 
 interface SystemMapCanvasProps {
   bodies: SystemBody[]
+  fleets?: EnrichedFleet[]
   width: number
   height: number
   displayOptions: MapDisplayOptions
@@ -100,6 +108,7 @@ function shouldShowName(body: SystemBody, opts: MapDisplayOptions): boolean {
 
 export function SystemMapCanvas({
   bodies,
+  fleets,
   width,
   height,
   displayOptions
@@ -243,30 +252,142 @@ export function SystemMapCanvas({
         }
       }
 
-      // Draw bodies
+      // --- Build fleet groups keyed by screen pixel for label stacking ---
+      const SNAP = 10 // px — fleets within this distance share a group
+      const LINE_H = 11
+
+      type FleetScreenItem = { fleet: typeof fleets extends (infer T)[] | undefined ? T : never; cx: number; cy: number }
+      const visibleFleetItems: FleetScreenItem[] = []
+
+      if (fleets && fleets.length > 0) {
+        for (const fleet of fleets) {
+          if (!fleet.Xcor && !fleet.Ycor) continue
+          if (fleet.IsCivilian && !displayOptions.showCivilianFleets) continue
+          if (!fleet.IsCivilian && !displayOptions.showMilitaryFleets) continue
+
+          const fleetAu = { x: fleet.Xcor / KM_PER_AU, y: fleet.Ycor / KM_PER_AU }
+          const screen = auToCanvas(fleetAu, viewport)
+          if (screen.cx < -100 || screen.cx > width + 100 || screen.cy < -100 || screen.cy > height + 100)
+            continue
+
+          visibleFleetItems.push({ fleet, cx: screen.cx, cy: screen.cy })
+        }
+      }
+
+      // Group fleets by proximity
+      type FleetGroup = { cx: number; cy: number; fleets: FleetScreenItem['fleet'][] }
+      const fleetGroups: FleetGroup[] = []
+      for (const item of visibleFleetItems) {
+        let found = false
+        for (const g of fleetGroups) {
+          if (Math.abs(g.cx - item.cx) < SNAP && Math.abs(g.cy - item.cy) < SNAP) {
+            g.fleets.push(item.fleet)
+            found = true
+            break
+          }
+        }
+        if (!found) {
+          fleetGroups.push({ cx: item.cx, cy: item.cy, fleets: [item.fleet] })
+        }
+      }
+
+      // Draw body dots (no labels yet)
       for (const body of bodies) {
         if (!shouldShowBody(body, displayOptions, viewport.scale)) continue
-
         const pos = posMap.get(body.SystemBodyID)
         if (!pos) continue
-
         const screen = auToCanvas(pos, viewport)
         if (screen.cx < -50 || screen.cx > width + 50 || screen.cy < -50 || screen.cy > height + 50)
           continue
 
         const moon = isMoon(body)
         const radius = moon ? 2.5 : 4
-        const color = getBodyColor(body.BodyClass)
-
         ctx.beginPath()
         ctx.arc(screen.cx, screen.cy, radius, 0, Math.PI * 2)
-        ctx.fillStyle = color
+        ctx.fillStyle = getBodyColor(body.BodyClass)
         ctx.fill()
+      }
 
-        if (shouldShowName(body, displayOptions)) {
+      // Draw fleet diamond icons
+      for (const group of fleetGroups) {
+        const { cx, cy } = group
+        const hasMoving = group.fleets.some(f => f.Speed > 1)
+        const s = 5
+        ctx.beginPath()
+        ctx.moveTo(cx, cy - s)
+        ctx.lineTo(cx + s, cy)
+        ctx.lineTo(cx, cy + s)
+        ctx.lineTo(cx - s, cy)
+        ctx.closePath()
+        ctx.fillStyle = hasMoving ? '#00e676' : 'rgba(0, 230, 118, 0.5)'
+        ctx.fill()
+        ctx.strokeStyle = hasMoving ? 'rgba(0, 230, 118, 0.8)' : 'rgba(0, 230, 118, 0.3)'
+        ctx.lineWidth = 1
+        ctx.stroke()
+      }
+
+      // --- Combined label pass: fleet names stacked above, body name below ---
+      // Like Aurora: stationary fleets first, then moving, then body name at the bottom
+      for (const body of bodies) {
+        if (!shouldShowBody(body, displayOptions, viewport.scale)) continue
+        const pos = posMap.get(body.SystemBodyID)
+        if (!pos) continue
+        const screen = auToCanvas(pos, viewport)
+        if (screen.cx < -50 || screen.cx > width + 50 || screen.cy < -50 || screen.cy > height + 50)
+          continue
+
+        const moon = isMoon(body)
+        const showName = shouldShowName(body, displayOptions)
+
+        // Find fleet group near this body
+        const nearGroup = fleetGroups.find(
+          g => Math.abs(g.cx - screen.cx) < SNAP && Math.abs(g.cy - screen.cy) < SNAP
+        )
+
+        const labelX = screen.cx + 8
+        let labelY = screen.cy + (moon ? 4 : 6)
+
+        // Fleet labels above body name (sorted: stationary first, then moving)
+        if (nearGroup && displayOptions.showFleetNames) {
+          const sorted = [...nearGroup.fleets].sort(fleetSortComparator)
+
+          // Start above: fleet labels go upward from the body position
+          const fleetStartY = labelY - LINE_H * sorted.length
+          let fy = fleetStartY
+          ctx.font = '9px Consolas, monospace'
+
+          for (const fleet of sorted) {
+            const isMoving = fleet.Speed > 1
+            ctx.fillStyle = isMoving ? 'rgba(0, 230, 118, 0.8)' : 'rgba(0, 230, 118, 0.5)'
+            ctx.fillText(buildFleetLabel(fleet), labelX, fy)
+            fy += LINE_H
+          }
+
+          // Remove group so we don't draw it again for orphan fleets
+          const idx = fleetGroups.indexOf(nearGroup)
+          if (idx >= 0) fleetGroups.splice(idx, 1)
+        }
+
+        // Body name at the bottom
+        if (showName) {
           ctx.fillStyle = moon ? 'rgba(0, 229, 255, 0.35)' : 'rgba(0, 229, 255, 0.6)'
           ctx.font = moon ? '8px Consolas, monospace' : '9px Consolas, monospace'
-          ctx.fillText(body.Name || `Body ${body.SystemBodyID}`, screen.cx + radius + 4, screen.cy + 3)
+          ctx.fillText(body.Name || `Body ${body.SystemBodyID}`, labelX, labelY)
+        }
+      }
+
+      // Orphan fleet groups (not near any body) — draw labels standalone
+      for (const group of fleetGroups) {
+        if (!displayOptions.showFleetNames) continue
+        const { cx, cy } = group
+        const sorted = [...group.fleets].sort(fleetSortComparator)
+        let fy = cy - Math.floor((sorted.length - 1) * LINE_H / 2) + 3
+        ctx.font = '9px Consolas, monospace'
+        for (const fleet of sorted) {
+          const isMoving = fleet.Speed > 1
+          ctx.fillStyle = isMoving ? 'rgba(0, 230, 118, 0.8)' : 'rgba(0, 230, 118, 0.5)'
+          ctx.fillText(buildFleetLabel(fleet), cx + 8, fy)
+          fy += LINE_H
         }
       }
 
@@ -280,7 +401,7 @@ export function SystemMapCanvas({
 
     animFrameRef.current = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(animFrameRef.current)
-  }, [bodies, viewport, width, height, displayOptions])
+  }, [bodies, fleets, viewport, width, height, displayOptions])
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     isDragging.current = true
@@ -331,6 +452,38 @@ export function SystemMapCanvas({
 
     />
   )
+}
+
+// Build fleet label like Aurora: "Fleet Name  (Order)  Distance X m  ETA HH:MM:SS  Speed km/s"
+function buildFleetLabel(fleet: EnrichedFleet): string {
+  const parts: string[] = [fleet.FleetName]
+
+  if (fleet.order) {
+    parts.push(` (${fleet.order})`)
+  } else if (fleet.ShipCount > 0) {
+    parts.push(` [${fleet.ShipCount}]`)
+  }
+
+  if (fleet.Speed > 1) {
+    if (fleet.distance && fleet.distance > 0) {
+      const distM = fleet.distance / 1_000_000
+      parts.push(`  Distance ${distM.toFixed(1)} m`)
+    }
+    if (fleet.eta) {
+      parts.push(`  ${fleet.eta}`)
+    }
+    parts.push(`  ${fleet.Speed} km/s`)
+  }
+
+  return parts.join('')
+}
+
+// Sort fleets like Aurora: purely alphabetical
+function fleetSortComparator(
+  a: { FleetName: string },
+  b: { FleetName: string }
+): number {
+  return a.FleetName.localeCompare(b.FleetName)
 }
 
 function getBodyColor(bodyTypeId: number): string {

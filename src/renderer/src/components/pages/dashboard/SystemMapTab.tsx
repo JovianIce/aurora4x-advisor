@@ -3,7 +3,7 @@ import { SystemMapCanvas } from '../../system-map/SystemMapCanvas'
 import { SystemSelector } from '../../system-map/SystemSelector'
 import { BodyListPanel } from '../../system-map/BodyListPanel'
 import { DisplayOptionsPanel, DEFAULT_DISPLAY_OPTIONS, type MapDisplayOptions } from '../../system-map/DisplayOptions'
-import { useMemoryBodies, type MemorySystemBody } from '../../../contexts/aurora-data-context'
+import { useMemoryBodies, useMemorySystems, useFleets, type MemorySystemBody, type MemoryFleet } from '../../../contexts/aurora-data-context'
 import type { GameSession, SystemBody } from '@shared/types'
 
 interface SystemMapTabProps {
@@ -64,6 +64,8 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
   const [showDisplayOptions, setShowDisplayOptions] = useState(false)
   const [showBodyList, setShowBodyList] = useState(true)
   const { data: memoryBodies, isLoading } = useMemoryBodies(selectedSystemId)
+  const { data: allFleets } = useFleets()
+  const { data: systems } = useMemorySystems(gameId, raceId)
   const containerRef = useRef<HTMLDivElement>(null)
   const [dimensions, setDimensions] = useState({ width: 800, height: 500 })
 
@@ -85,6 +87,61 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
     if (!memoryBodies) return undefined
     return memoryBodies.map(toCanvasBody)
   }, [memoryBodies])
+
+  // Filter fleets to the selected system
+  // Use SystemID from orbit body when available, fall back to SystemName for in-transit fleets
+  const selectedSystemName = useMemo(() => {
+    if (!systems || !selectedSystemId) return null
+    return systems.find(s => s.SystemID === selectedSystemId)?.Name ?? null
+  }, [systems, selectedSystemId])
+
+  const systemFleets = useMemo(() => {
+    if (!allFleets || !selectedSystemId) return undefined
+    return allFleets.filter(f => {
+      if (f.SystemID === selectedSystemId) return true
+      if (f.SystemID === 0 && selectedSystemName && f.SystemName === selectedSystemName) return true
+      return false
+    })
+  }, [allFleets, selectedSystemId, selectedSystemName])
+
+  // Fleet orders — disabled for now to avoid triggering 7-second DB save
+  // TODO: Read move orders from memory (collection c3/in) instead of DB
+  const fleetOrders: Record<number, string> | undefined = undefined
+
+  // Enrich fleets with order description and computed distance/ETA
+  const enrichedFleets = useMemo(() => {
+    if (!systemFleets) return undefined
+    return systemFleets.map(f => {
+      const order = fleetOrders?.[f.FleetID] ?? ''
+      let distance = 0
+      let eta = ''
+
+      // If moving and we have bodies, compute distance to destination body
+      if (f.Speed > 1 && order && memoryBodies) {
+        // Try to find destination body by matching order description prefix to body name
+        // e.g. "Mars: Unload All Installations" -> look for body named "Mars"
+        const colonIdx = order.indexOf(':')
+        if (colonIdx > 0) {
+          const destName = order.substring(0, colonIdx).trim()
+          const destBody = memoryBodies.find(b => b.Name === destName)
+          if (destBody) {
+            const dx = f.Xcor - destBody.Xcor
+            const dy = f.Ycor - destBody.Ycor
+            distance = Math.sqrt(dx * dx + dy * dy) // km
+            if (f.Speed > 0) {
+              const etaSec = distance / f.Speed
+              const d = Math.floor(etaSec / 86400)
+              const h = Math.floor((etaSec % 86400) / 3600)
+              const m = Math.floor((etaSec % 3600) / 60)
+              eta = `ETA ${String(d).padStart(2, '0')}:${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`
+            }
+          }
+        }
+      }
+
+      return { ...f, order, distance, eta }
+    })
+  }, [systemFleets, fleetOrders, memoryBodies])
 
   if (!gameId || !raceId) {
     return (
@@ -158,7 +215,12 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
           )}
           {bodies && (
             <span className="cic-label">
-              {bodies.length} tracked objects
+              {bodies.length} bodies
+              {enrichedFleets && enrichedFleets.length > 0 && (
+                <span style={{ color: 'var(--cic-green)', marginLeft: '8px' }}>
+                  {enrichedFleets.length} fleets
+                </span>
+              )}
             </span>
           )}
         </div>
@@ -178,6 +240,7 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
         {bodies && bodies.length > 0 ? (
           <SystemMapCanvas
             bodies={bodies}
+            fleets={enrichedFleets}
             width={dimensions.width}
             height={dimensions.height}
             displayOptions={displayOptions}

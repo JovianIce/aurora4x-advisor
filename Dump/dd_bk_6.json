@@ -1,0 +1,83 @@
+{
+  "_field": "dd",
+  "_type": "bk",
+  "_collectionType": "Dict",
+  "_count": 6,
+  "_dumped": 6,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "ref:List`1"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "int"
+    },
+    {
+      "name": "d",
+      "type": "int"
+    },
+    {
+      "name": "e",
+      "type": "bool"
+    },
+    {
+      "name": "f",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "b": 1,
+      "c": 3,
+      "d": 0,
+      "e": false,
+      "f": "Inflexible / Uncaring"
+    },
+    {
+      "_index": 1,
+      "b": 2,
+      "c": 0,
+      "d": 0,
+      "e": false,
+      "f": "No effect on anything else"
+    },
+    {
+      "_index": 2,
+      "b": 3,
+      "c": 1,
+      "d": 6,
+      "e": false,
+      "f": "Cheerful / Good character"
+    },
+    {
+      "_index": 3,
+      "b": 4,
+      "c": 5,
+      "d": 6,
+      "e": false,
+      "f": "Aggressive"
+    },
+    {
+      "_index": 4,
+      "b": 5,
+      "c": 4,
+      "d": 0,
+      "e": false,
+      "f": "Cautious"
+    },
+    {
+      "_index": 5,
+      "b": 6,
+      "c": 3,
+      "d": 4,
+      "e": false,
+      "f": "Cowardly / Malicious / Character Flaws"
+    }
+  ]
+}

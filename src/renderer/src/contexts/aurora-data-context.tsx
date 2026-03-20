@@ -253,20 +253,68 @@ export function useMemorySystems(
   isLoading: boolean
 } {
   const { isConnected } = useAuroraData()
-
+  // Read known systems directly from TacticalMap ComboBox — no DB query needed
   const { data, isLoading } = useQuery<{ SystemID: number; Name: string }[]>({
-    queryKey: ['surveyedSystems', gameId, raceId],
+    queryKey: ['knownSystems'],
     queryFn: async () => {
-      console.log(`[useMemorySystems] fetching systems gameId=${gameId} raceId=${raceId}`)
-      const result = await window.api.bridge.getSystems(gameId!, raceId!)
-      console.log(`[useMemorySystems] got ${result?.length} systems`, result)
+      console.log('[useMemorySystems] calling getKnownSystems...')
+      const result = await window.api.bridge.getKnownSystems()
+      console.log('[useMemorySystems] got', result?.length, 'systems')
       return result
     },
-    enabled: isConnected && !!gameId && !!raceId,
-    staleTime: 5 * 60 * 1000
+    enabled: isConnected,
+    staleTime: 5 * 60 * 1000,
+    retry: 3,
+    retryDelay: 2000
   })
 
-  console.log(`[useMemorySystems] isConnected=${isConnected} gameId=${gameId} raceId=${raceId} enabled=${isConnected && !!gameId && !!raceId} data=${data?.length}`)
+  return { data, isLoading }
+}
+
+// Fleet from live memory
+export interface MemoryFleet {
+  FleetID: number
+  FleetName: string
+  Speed: number
+  Xcor: number
+  Ycor: number
+  RaceID: number
+  ShipCount: number
+  SystemID: number // 0 if in transit (no orbit body)
+  SystemName: string // always set from navigation ref
+  IsCivilian: boolean
+}
+
+/**
+ * Hook to read fleets. Fetches once on mount, then updates via push on game tick.
+ */
+export function useFleets(): {
+  data: MemoryFleet[] | undefined
+  isLoading: boolean
+} {
+  const { isConnected } = useAuroraData()
+  const queryClient = useQueryClient()
+
+  const { data, isLoading } = useQuery<MemoryFleet[]>({
+    queryKey: ['fleets'],
+    queryFn: async () => {
+      const raw = await window.api.bridge.getFleets()
+      return raw as MemoryFleet[]
+    },
+    enabled: isConnected,
+    staleTime: Infinity // updated via push from game tick
+  })
+
+  // Listen for fleet push updates from game tick
+  useEffect(() => {
+    const unsub = window.api.bridge.onPush((payload: unknown) => {
+      const p = payload as { pushType?: string; data?: { fleets?: MemoryFleet[] } }
+      if (p?.pushType === 'fleets' && p.data?.fleets) {
+        queryClient.setQueryData(['fleets'], p.data.fleets)
+      }
+    })
+    return unsub
+  }, [queryClient])
 
   return { data, isLoading }
 }

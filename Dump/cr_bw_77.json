@@ -1,0 +1,408 @@
+{
+  "_field": "cr",
+  "_type": "bw",
+  "_collectionType": "Dict",
+  "_count": 77,
+  "_dumped": 77,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "int"
+    },
+    {
+      "name": "b",
+      "type": "string"
+    },
+    {
+      "name": "c",
+      "type": "ref:List`1"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": 2,
+      "b": "Ancient Greece"
+    },
+    {
+      "_index": 1,
+      "a": 3,
+      "b": "Nihon (Japan)"
+    },
+    {
+      "_index": 2,
+      "a": 4,
+      "b": "Russia"
+    },
+    {
+      "_index": 3,
+      "a": 5,
+      "b": "United States"
+    },
+    {
+      "_index": 4,
+      "a": 6,
+      "b": "Deutschland"
+    },
+    {
+      "_index": 5,
+      "a": 7,
+      "b": "Elemental"
+    },
+    {
+      "_index": 6,
+      "a": 8,
+      "b": "United Kingdom"
+    },
+    {
+      "_index": 7,
+      "a": 9,
+      "b": "Fantasy"
+    },
+    {
+      "_index": 8,
+      "a": 10,
+      "b": "Khanate of Orion"
+    },
+    {
+      "_index": 9,
+      "a": 11,
+      "b": "Danmark"
+    },
+    {
+      "_index": 10,
+      "a": 12,
+      "b": "Rigellian (Steve)"
+    },
+    {
+      "_index": 11,
+      "a": 13,
+      "b": "Rigelian (Historical)"
+    },
+    {
+      "_index": 12,
+      "a": 14,
+      "b": "China"
+    },
+    {
+      "_index": 13,
+      "a": 15,
+      "b": "Animal"
+    },
+    {
+      "_index": 14,
+      "a": 16,
+      "b": "Magician (R. Feist)"
+    },
+    {
+      "_index": 15,
+      "a": 17,
+      "b": "Roman"
+    },
+    {
+      "_index": 16,
+      "a": 18,
+      "b": "Terran Federation"
+    },
+    {
+      "_index": 17,
+      "a": 19,
+      "b": "Clans of Shakar"
+    },
+    {
+      "_index": 18,
+      "a": 20,
+      "b": "Barsoom"
+    },
+    {
+      "_index": 19,
+      "a": 21,
+      "b": "Suomi (Finland)"
+    },
+    {
+      "_index": 20,
+      "a": 22,
+      "b": "Sverige (Sweden)"
+    },
+    {
+      "_index": 21,
+      "a": 23,
+      "b": "France"
+    },
+    {
+      "_index": 22,
+      "a": 24,
+      "b": "Aztec"
+    },
+    {
+      "_index": 23,
+      "a": 25,
+      "b": "Ireland (Gaelic)"
+    },
+    {
+      "_index": 24,
+      "a": 26,
+      "b": "Manticore (RMN)"
+    },
+    {
+      "_index": 25,
+      "a": 27,
+      "b": "Andromeda"
+    },
+    {
+      "_index": 26,
+      "a": 28,
+      "b": "Italia"
+    },
+    {
+      "_index": 27,
+      "a": 29,
+      "b": "Australia"
+    },
+    {
+      "_index": 28,
+      "a": 30,
+      "b": "Canada"
+    },
+    {
+      "_index": 29,
+      "a": 34,
+      "b": "Ancient Egypt"
+    },
+    {
+      "_index": 30,
+      "a": 35,
+      "b": "Arabic"
+    },
+    {
+      "_index": 31,
+      "a": 36,
+      "b": "Deverry"
+    },
+    {
+      "_index": 32,
+      "a": 38,
+      "b": "Hippy"
+    },
+    {
+      "_index": 33,
+      "a": 39,
+      "b": "Nations of Earth"
+    },
+    {
+      "_index": 34,
+      "a": 40,
+      "b": "Native American"
+    },
+    {
+      "_index": 35,
+      "a": 41,
+      "b": "Odd"
+    },
+    {
+      "_index": 36,
+      "a": 42,
+      "b": "Orc"
+    },
+    {
+      "_index": 37,
+      "a": 43,
+      "b": "Tolkien"
+    },
+    {
+      "_index": 38,
+      "a": 44,
+      "b": "Norse"
+    },
+    {
+      "_index": 39,
+      "a": 45,
+      "b": "Shotgun"
+    },
+    {
+      "_index": 40,
+      "a": 46,
+      "b": "House Davion"
+    },
+    {
+      "_index": 41,
+      "a": 47,
+      "b": "House Kurita"
+    },
+    {
+      "_index": 42,
+      "a": 48,
+      "b": "House Liao"
+    },
+    {
+      "_index": 43,
+      "a": 49,
+      "b": "House Marik"
+    },
+    {
+      "_index": 44,
+      "a": 50,
+      "b": "House Steiner"
+    },
+    {
+      "_index": 45,
+      "a": 51,
+      "b": "South Africa"
+    },
+    {
+      "_index": 46,
+      "a": 52,
+      "b": "India"
+    },
+    {
+      "_index": 47,
+      "a": 53,
+      "b": "South America"
+    },
+    {
+      "_index": 48,
+      "a": 54,
+      "b": "Mongol"
+    },
+    {
+      "_index": 49,
+      "a": 56,
+      "b": "Knights Templar"
+    },
+    {
+      "_index": 50,
+      "a": 57,
+      "b": "Demonic Realm"
+    },
+    {
+      "_index": 51,
+      "a": 60,
+      "b": "Welsh"
+    },
+    {
+      "_index": 52,
+      "a": 61,
+      "b": "Spanish"
+    },
+    {
+      "_index": 53,
+      "a": 62,
+      "b": "Brazil"
+    },
+    {
+      "_index": 54,
+      "a": 63,
+      "b": "Israel"
+    },
+    {
+      "_index": 55,
+      "a": 64,
+      "b": "Iran"
+    },
+    {
+      "_index": 56,
+      "a": 65,
+      "b": "ASEAN"
+    },
+    {
+      "_index": 57,
+      "a": 67,
+      "b": "Netherlands"
+    },
+    {
+      "_index": 58,
+      "a": 68,
+      "b": "Boer"
+    },
+    {
+      "_index": 59,
+      "a": 70,
+      "b": "African Union"
+    },
+    {
+      "_index": 60,
+      "a": 71,
+      "b": "Galactic Empire"
+    },
+    {
+      "_index": 61,
+      "a": 72,
+      "b": "Rebel Alliance"
+    },
+    {
+      "_index": 62,
+      "a": 73,
+      "b": "Argentina"
+    },
+    {
+      "_index": 63,
+      "a": 74,
+      "b": "Mexico"
+    },
+    {
+      "_index": 64,
+      "a": 75,
+      "b": "Turkey"
+    },
+    {
+      "_index": 65,
+      "a": 76,
+      "b": "South Korea"
+    },
+    {
+      "_index": 66,
+      "a": 77,
+      "b": "Indonesia"
+    },
+    {
+      "_index": 67,
+      "a": 80,
+      "b": "Warhammer 40K Empire"
+    },
+    {
+      "_index": 68,
+      "a": 81,
+      "b": "Klingon"
+    },
+    {
+      "_index": 69,
+      "a": 82,
+      "b": "Romulan"
+    },
+    {
+      "_index": 70,
+      "a": 83,
+      "b": "Cardassian"
+    },
+    {
+      "_index": 71,
+      "a": 84,
+      "b": "Bajoran"
+    },
+    {
+      "_index": 72,
+      "a": 85,
+      "b": "Ferengi"
+    },
+    {
+      "_index": 73,
+      "a": 86,
+      "b": "Vulcan"
+    },
+    {
+      "_index": 74,
+      "a": 87,
+      "b": "Andorian"
+    },
+    {
+      "_index": 75,
+      "a": 88,
+      "b": "Gorn"
+    },
+    {
+      "_index": 76,
+      "a": 89,
+      "b": "Narn"
+    }
+  ]
+}

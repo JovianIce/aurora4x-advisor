@@ -1,0 +1,890 @@
+[
+  {
+    "field": "bl",
+    "itemType": "f2",
+    "collectionType": "Dict",
+    "count": 29,
+    "fieldCount": 21,
+    "file": "bl_f2_29.json"
+  },
+  {
+    "field": "bm",
+    "itemType": "f4",
+    "collectionType": "Dict",
+    "count": 221,
+    "fieldCount": 90,
+    "file": "bm_f4_221.json"
+  },
+  {
+    "field": "bn",
+    "itemType": "f3",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 17,
+    "file": "bn_f3_0.json"
+  },
+  {
+    "field": "bo",
+    "itemType": "ah",
+    "collectionType": "Dict",
+    "count": 182,
+    "fieldCount": 127,
+    "file": "bo_ah_182.json"
+  },
+  {
+    "field": "bp",
+    "itemType": "a2",
+    "collectionType": "Dict",
+    "count": 463,
+    "fieldCount": 173,
+    "file": "bp_a2_463.json"
+  },
+  {
+    "field": "bq",
+    "itemType": "hk",
+    "collectionType": "Dict",
+    "count": 19,
+    "fieldCount": 61,
+    "file": "bq_hk_19.json"
+  },
+  {
+    "field": "br",
+    "itemType": "hn",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 50,
+    "file": "br_hn_0.json"
+  },
+  {
+    "field": "bs",
+    "itemType": "hc",
+    "collectionType": "Dict",
+    "count": 59,
+    "fieldCount": 14,
+    "file": "bs_hc_59.json"
+  },
+  {
+    "field": "bt",
+    "itemType": "je",
+    "collectionType": "Dict",
+    "count": 15,
+    "fieldCount": 19,
+    "file": "bt_je_15.json"
+  },
+  {
+    "field": "bu",
+    "itemType": "js",
+    "collectionType": "Dict",
+    "count": 37,
+    "fieldCount": 33,
+    "file": "bu_js_37.json"
+  },
+  {
+    "field": "bv",
+    "itemType": "jo",
+    "collectionType": "Dict",
+    "count": 50,
+    "fieldCount": 37,
+    "file": "bv_jo_50.json"
+  },
+  {
+    "field": "bw",
+    "itemType": "kc",
+    "collectionType": "Dict",
+    "count": 3539,
+    "fieldCount": 104,
+    "file": "bw_kc_3539.json"
+  },
+  {
+    "field": "bx",
+    "itemType": "g5",
+    "collectionType": "Dict",
+    "count": 123,
+    "fieldCount": 15,
+    "file": "bx_g5_123.json"
+  },
+  {
+    "field": "by",
+    "itemType": "j9",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 15,
+    "file": "by_j9_0.json"
+  },
+  {
+    "field": "bz",
+    "itemType": "j7",
+    "collectionType": "Dict",
+    "count": 21,
+    "fieldCount": 12,
+    "file": "bz_j7_21.json"
+  },
+  {
+    "field": "b0",
+    "itemType": "j6",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 6,
+    "file": "b0_j6_0.json"
+  },
+  {
+    "field": "b1",
+    "itemType": "j5",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 7,
+    "file": "b1_j5_0.json"
+  },
+  {
+    "field": "b2",
+    "itemType": "jq",
+    "collectionType": "Dict",
+    "count": 63593,
+    "fieldCount": 20,
+    "file": "b2_jq_63593.json"
+  },
+  {
+    "field": "b3",
+    "itemType": "jq",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 20,
+    "file": "b3_jq_0.json"
+  },
+  {
+    "field": "b4",
+    "itemType": "kc",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 104,
+    "file": "b4_kc_0.json"
+  },
+  {
+    "field": "b5",
+    "itemType": "ho",
+    "collectionType": "Dict",
+    "count": 120,
+    "fieldCount": 26,
+    "file": "b5_ho_120.json"
+  },
+  {
+    "field": "b6",
+    "itemType": "hr",
+    "collectionType": "Dict",
+    "count": 47,
+    "fieldCount": 8,
+    "file": "b6_hr_47.json"
+  },
+  {
+    "field": "b7",
+    "itemType": "hs",
+    "collectionType": "Dict",
+    "count": 13,
+    "fieldCount": 3,
+    "file": "b7_hs_13.json"
+  },
+  {
+    "field": "b8",
+    "itemType": "h1",
+    "collectionType": "Dict",
+    "count": 43,
+    "fieldCount": 179,
+    "file": "b8_h1_43.json"
+  },
+  {
+    "field": "b9",
+    "itemType": "kj",
+    "collectionType": "Dict",
+    "count": 22,
+    "fieldCount": 8,
+    "file": "b9_kj_22.json"
+  },
+  {
+    "field": "ca",
+    "itemType": "fv",
+    "collectionType": "Dict",
+    "count": 304,
+    "fieldCount": 7,
+    "file": "ca_fv_304.json"
+  },
+  {
+    "field": "cb",
+    "itemType": "kd",
+    "collectionType": "Dict",
+    "count": 424,
+    "fieldCount": 23,
+    "file": "cb_kd_424.json"
+  },
+  {
+    "field": "cc",
+    "itemType": "iv",
+    "collectionType": "Dict",
+    "count": 3,
+    "fieldCount": 7,
+    "file": "cc_iv_3.json"
+  },
+  {
+    "field": "cd",
+    "itemType": "kg",
+    "collectionType": "Dict",
+    "count": 1,
+    "fieldCount": 8,
+    "file": "cd_kg_1.json"
+  },
+  {
+    "field": "ce",
+    "itemType": "b1",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 31,
+    "file": "ce_b1_0.json"
+  },
+  {
+    "field": "cf",
+    "itemType": "k0",
+    "collectionType": "Dict",
+    "count": 5,
+    "fieldCount": 17,
+    "file": "cf_k0_5.json"
+  },
+  {
+    "field": "cg",
+    "itemType": "bv",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 12,
+    "file": "cg_bv_0.json"
+  },
+  {
+    "field": "ch",
+    "itemType": "jk",
+    "collectionType": "Dict",
+    "count": 12,
+    "fieldCount": 34,
+    "file": "ch_jk_12.json"
+  },
+  {
+    "field": "ci",
+    "itemType": "jj",
+    "collectionType": "Dict",
+    "count": 7,
+    "fieldCount": 21,
+    "file": "ci_jj_7.json"
+  },
+  {
+    "field": "cj",
+    "itemType": "hz",
+    "collectionType": "Dict",
+    "count": 1,
+    "fieldCount": 6,
+    "file": "cj_hz_1.json"
+  },
+  {
+    "field": "ck",
+    "itemType": "be",
+    "collectionType": "Dict",
+    "count": 40,
+    "fieldCount": 10,
+    "file": "ck_be_40.json"
+  },
+  {
+    "field": "cl",
+    "itemType": "bf",
+    "collectionType": "Dict",
+    "count": 72,
+    "fieldCount": 5,
+    "file": "cl_bf_72.json"
+  },
+  {
+    "field": "cm",
+    "itemType": "bg",
+    "collectionType": "List",
+    "count": 15,
+    "fieldCount": 2,
+    "file": "cm_bg_15.json"
+  },
+  {
+    "field": "cn",
+    "itemType": "ag",
+    "collectionType": "Dict",
+    "count": 6,
+    "fieldCount": 314,
+    "file": "cn_ag_6.json"
+  },
+  {
+    "field": "co",
+    "itemType": "jl",
+    "collectionType": "Dict",
+    "count": 6,
+    "fieldCount": 40,
+    "file": "co_jl_6.json"
+  },
+  {
+    "field": "cp",
+    "itemType": "iy",
+    "collectionType": "Dict",
+    "count": 10,
+    "fieldCount": 20,
+    "file": "cp_iy_10.json"
+  },
+  {
+    "field": "cq",
+    "itemType": "if",
+    "collectionType": "Dict",
+    "count": 8,
+    "fieldCount": 10,
+    "file": "cq_if_8.json"
+  },
+  {
+    "field": "cr",
+    "itemType": "bw",
+    "collectionType": "Dict",
+    "count": 77,
+    "fieldCount": 3,
+    "file": "cr_bw_77.json"
+  },
+  {
+    "field": "cs",
+    "itemType": "u",
+    "collectionType": "Dict",
+    "count": 91,
+    "fieldCount": 13,
+    "file": "cs_u_91.json"
+  },
+  {
+    "field": "ct",
+    "itemType": "x",
+    "collectionType": "List",
+    "count": 316,
+    "fieldCount": 6,
+    "file": "ct_x_316.json"
+  },
+  {
+    "field": "cu",
+    "itemType": "ae",
+    "collectionType": "List",
+    "count": 173,
+    "fieldCount": 7,
+    "file": "cu_ae_173.json"
+  },
+  {
+    "field": "cv",
+    "itemType": "ab",
+    "collectionType": "List",
+    "count": 12,
+    "fieldCount": 5,
+    "file": "cv_ab_12.json"
+  },
+  {
+    "field": "cw",
+    "itemType": "br",
+    "collectionType": "Dict",
+    "count": 1140,
+    "fieldCount": 57,
+    "file": "cw_br_1140.json"
+  },
+  {
+    "field": "cx",
+    "itemType": "br",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 57,
+    "file": "cx_br_0.json"
+  },
+  {
+    "field": "cy",
+    "itemType": "ic",
+    "collectionType": "Dict",
+    "count": 37,
+    "fieldCount": 43,
+    "file": "cy_ic_37.json"
+  },
+  {
+    "field": "cz",
+    "itemType": "h5",
+    "collectionType": "Dict",
+    "count": 51,
+    "fieldCount": 4,
+    "file": "cz_h5_51.json"
+  },
+  {
+    "field": "c0",
+    "itemType": "f8",
+    "collectionType": "Dict",
+    "count": 240,
+    "fieldCount": 7,
+    "file": "c0_f8_240.json"
+  },
+  {
+    "field": "c1",
+    "itemType": "bu",
+    "collectionType": "Dict",
+    "count": 79,
+    "fieldCount": 8,
+    "file": "c1_bu_79.json"
+  },
+  {
+    "field": "c2",
+    "itemType": "im",
+    "collectionType": "Dict",
+    "count": 10,
+    "fieldCount": 5,
+    "file": "c2_im_10.json"
+  },
+  {
+    "field": "c3",
+    "itemType": "in",
+    "collectionType": "Dict",
+    "count": 215,
+    "fieldCount": 5,
+    "file": "c3_in_215.json"
+  },
+  {
+    "field": "c4",
+    "itemType": "io",
+    "collectionType": "Dict",
+    "count": 1780,
+    "fieldCount": 25,
+    "file": "c4_io_1780.json"
+  },
+  {
+    "field": "c5",
+    "itemType": "h9",
+    "collectionType": "Dict",
+    "count": 22,
+    "fieldCount": 4,
+    "file": "c5_h9_22.json"
+  },
+  {
+    "field": "c6",
+    "itemType": "kv",
+    "collectionType": "Dict",
+    "count": 58,
+    "fieldCount": 12,
+    "file": "c6_kv_58.json"
+  },
+  {
+    "field": "c7",
+    "itemType": "kw",
+    "collectionType": "Dict",
+    "count": 9,
+    "fieldCount": 10,
+    "file": "c7_kw_9.json"
+  },
+  {
+    "field": "c8",
+    "itemType": "ku",
+    "collectionType": "Dict",
+    "count": 685,
+    "fieldCount": 70,
+    "file": "c8_ku_685.json"
+  },
+  {
+    "field": "c9",
+    "itemType": "hv",
+    "collectionType": "Dict",
+    "count": 621,
+    "fieldCount": 4,
+    "file": "c9_hv_621.json"
+  },
+  {
+    "field": "da",
+    "itemType": "jg",
+    "collectionType": "Dict",
+    "count": 17,
+    "fieldCount": 5,
+    "file": "da_jg_17.json"
+  },
+  {
+    "field": "db",
+    "itemType": "jn",
+    "collectionType": "Dict",
+    "count": 14,
+    "fieldCount": 5,
+    "file": "db_jn_14.json"
+  },
+  {
+    "field": "dc",
+    "itemType": "jr",
+    "collectionType": "Dict",
+    "count": 6,
+    "fieldCount": 4,
+    "file": "dc_jr_6.json"
+  },
+  {
+    "field": "dd",
+    "itemType": "bk",
+    "collectionType": "Dict",
+    "count": 6,
+    "fieldCount": 6,
+    "file": "dd_bk_6.json"
+  },
+  {
+    "field": "de",
+    "itemType": "String",
+    "collectionType": "Dict",
+    "count": 148,
+    "fieldCount": 8,
+    "file": "de_String_148.json"
+  },
+  {
+    "field": "df",
+    "itemType": "bl",
+    "collectionType": "Dict",
+    "count": 16,
+    "fieldCount": 17,
+    "file": "df_bl_16.json"
+  },
+  {
+    "field": "dg",
+    "itemType": "bm",
+    "collectionType": "Dict",
+    "count": 34,
+    "fieldCount": 10,
+    "file": "dg_bm_34.json"
+  },
+  {
+    "field": "dh",
+    "itemType": "z",
+    "collectionType": "Dict",
+    "count": 88,
+    "fieldCount": 68,
+    "file": "dh_z_88.json"
+  },
+  {
+    "field": "di",
+    "itemType": "it",
+    "collectionType": "Dict",
+    "count": 33,
+    "fieldCount": 24,
+    "file": "di_it_33.json"
+  },
+  {
+    "field": "dj",
+    "itemType": "fy",
+    "collectionType": "Dict",
+    "count": 7,
+    "fieldCount": 13,
+    "file": "dj_fy_7.json"
+  },
+  {
+    "field": "dk",
+    "itemType": "ie",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 4,
+    "file": "dk_ie_0.json"
+  },
+  {
+    "field": "dl",
+    "itemType": "am",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 5,
+    "file": "dl_am_0.json"
+  },
+  {
+    "field": "dm",
+    "itemType": "io",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 25,
+    "file": "dm_io_0.json"
+  },
+  {
+    "field": "dn",
+    "itemType": "gg",
+    "collectionType": "Dict",
+    "count": 7,
+    "fieldCount": 12,
+    "file": "dn_gg_7.json"
+  },
+  {
+    "field": "do",
+    "itemType": "gh",
+    "collectionType": "Dict",
+    "count": 21,
+    "fieldCount": 5,
+    "file": "do_gh_21.json"
+  },
+  {
+    "field": "dp",
+    "itemType": "gk",
+    "collectionType": "Dict",
+    "count": 30,
+    "fieldCount": 29,
+    "file": "dp_gk_30.json"
+  },
+  {
+    "field": "dq",
+    "itemType": "gi",
+    "collectionType": "Dict",
+    "count": 13,
+    "fieldCount": 6,
+    "file": "dq_gi_13.json"
+  },
+  {
+    "field": "dr",
+    "itemType": "gl",
+    "collectionType": "Dict",
+    "count": 67,
+    "fieldCount": 29,
+    "file": "dr_gl_67.json"
+  },
+  {
+    "field": "ds",
+    "itemType": "gn",
+    "collectionType": "Dict",
+    "count": 153,
+    "fieldCount": 70,
+    "file": "ds_gn_153.json"
+  },
+  {
+    "field": "dt",
+    "itemType": "gm",
+    "collectionType": "Dict",
+    "count": 17,
+    "fieldCount": 25,
+    "file": "dt_gm_17.json"
+  },
+  {
+    "field": "du",
+    "itemType": "gj",
+    "collectionType": "Dict",
+    "count": 41,
+    "fieldCount": 16,
+    "file": "du_gj_41.json"
+  },
+  {
+    "field": "dv",
+    "itemType": "ai",
+    "collectionType": "Dict",
+    "count": 21,
+    "fieldCount": 12,
+    "file": "dv_ai_21.json"
+  },
+  {
+    "field": "dw",
+    "itemType": "jb",
+    "collectionType": "Dict",
+    "count": 0,
+    "fieldCount": 21,
+    "file": "dw_jb_0.json"
+  },
+  {
+    "field": "dx",
+    "itemType": "jc",
+    "collectionType": "Dict",
+    "count": 9,
+    "fieldCount": 21,
+    "file": "dx_jc_9.json"
+  },
+  {
+    "field": "dy",
+    "itemType": "iw",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 6,
+    "file": "dy_iw_0.json"
+  },
+  {
+    "field": "dz",
+    "itemType": "ka",
+    "collectionType": "List",
+    "count": 4460,
+    "fieldCount": 3,
+    "file": "dz_ka_4460.json"
+  },
+  {
+    "field": "d0",
+    "itemType": "kb",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 3,
+    "file": "d0_kb_0.json"
+  },
+  {
+    "field": "d1",
+    "itemType": "f9",
+    "collectionType": "List",
+    "count": 4,
+    "fieldCount": 2,
+    "file": "d1_f9_4.json"
+  },
+  {
+    "field": "d2",
+    "itemType": "String",
+    "collectionType": "List",
+    "count": 6,
+    "fieldCount": 8,
+    "file": "d2_String_6.json"
+  },
+  {
+    "field": "d3",
+    "itemType": "String",
+    "collectionType": "List",
+    "count": 66,
+    "fieldCount": 8,
+    "file": "d3_String_66.json"
+  },
+  {
+    "field": "d4",
+    "itemType": "bt",
+    "collectionType": "List",
+    "count": 130842,
+    "fieldCount": 6,
+    "file": "d4_bt_130842.json"
+  },
+  {
+    "field": "d5",
+    "itemType": "bj",
+    "collectionType": "List",
+    "count": 49,
+    "fieldCount": 3,
+    "file": "d5_bj_49.json"
+  },
+  {
+    "field": "d6",
+    "itemType": "String",
+    "collectionType": "List",
+    "count": 25,
+    "fieldCount": 8,
+    "file": "d6_String_25.json"
+  },
+  {
+    "field": "d7",
+    "itemType": "String",
+    "collectionType": "List",
+    "count": 67,
+    "fieldCount": 8,
+    "file": "d7_String_67.json"
+  },
+  {
+    "field": "d8",
+    "itemType": "kl",
+    "collectionType": "List",
+    "count": 29,
+    "fieldCount": 6,
+    "file": "d8_kl_29.json"
+  },
+  {
+    "field": "d9",
+    "itemType": "hw",
+    "collectionType": "List",
+    "count": 47,
+    "fieldCount": 4,
+    "file": "d9_hw_47.json"
+  },
+  {
+    "field": "ea",
+    "itemType": "g6",
+    "collectionType": "List",
+    "count": 3,
+    "fieldCount": 12,
+    "file": "ea_g6_3.json"
+  },
+  {
+    "field": "eb",
+    "itemType": "i0",
+    "collectionType": "List",
+    "count": 28,
+    "fieldCount": 12,
+    "file": "eb_i0_28.json"
+  },
+  {
+    "field": "ec",
+    "itemType": "ay",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 28,
+    "file": "ec_ay_0.json"
+  },
+  {
+    "field": "ed",
+    "itemType": "a2",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 173,
+    "file": "ed_a2_0.json"
+  },
+  {
+    "field": "ee",
+    "itemType": "j2",
+    "collectionType": "Dict",
+    "count": 18,
+    "fieldCount": 3,
+    "file": "ee_j2_18.json"
+  },
+  {
+    "field": "ef",
+    "itemType": "ki",
+    "collectionType": "List",
+    "count": 738,
+    "fieldCount": 26,
+    "file": "ef_ki_738.json"
+  },
+  {
+    "field": "eg",
+    "itemType": "js",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 33,
+    "file": "eg_js_0.json"
+  },
+  {
+    "field": "eh",
+    "itemType": "b2",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 12,
+    "file": "eh_b2_0.json"
+  },
+  {
+    "field": "ei",
+    "itemType": "b3",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 7,
+    "file": "ei_b3_0.json"
+  },
+  {
+    "field": "ej",
+    "itemType": "b3",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 7,
+    "file": "ej_b3_0.json"
+  },
+  {
+    "field": "ek",
+    "itemType": "b4",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 7,
+    "file": "ek_b4_0.json"
+  },
+  {
+    "field": "el",
+    "itemType": "a1",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 31,
+    "file": "el_a1_0.json"
+  },
+  {
+    "field": "h1",
+    "itemType": "AuroraCommandType",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 14,
+    "file": "h1_AuroraCommandType_0.json"
+  },
+  {
+    "field": "h2",
+    "itemType": "String",
+    "collectionType": "List",
+    "count": 0,
+    "fieldCount": 8,
+    "file": "h2_String_0.json"
+  }
+]

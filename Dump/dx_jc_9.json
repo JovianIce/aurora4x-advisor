@@ -1,0 +1,311 @@
+{
+  "_field": "dx",
+  "_type": "jc",
+  "_collectionType": "Dict",
+  "_count": 9,
+  "_dumped": 9,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "int"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "enum"
+    },
+    {
+      "name": "d",
+      "type": "int"
+    },
+    {
+      "name": "e",
+      "type": "int"
+    },
+    {
+      "name": "f",
+      "type": "int"
+    },
+    {
+      "name": "g",
+      "type": "int"
+    },
+    {
+      "name": "h",
+      "type": "int"
+    },
+    {
+      "name": "i",
+      "type": "int"
+    },
+    {
+      "name": "j",
+      "type": "int"
+    },
+    {
+      "name": "k",
+      "type": "int"
+    },
+    {
+      "name": "l",
+      "type": "int"
+    },
+    {
+      "name": "m",
+      "type": "int"
+    },
+    {
+      "name": "n",
+      "type": "int"
+    },
+    {
+      "name": "o",
+      "type": "decimal"
+    },
+    {
+      "name": "p",
+      "type": "decimal"
+    },
+    {
+      "name": "q",
+      "type": "decimal"
+    },
+    {
+      "name": "r",
+      "type": "decimal"
+    },
+    {
+      "name": "s",
+      "type": "decimal"
+    },
+    {
+      "name": "t",
+      "type": "string"
+    },
+    {
+      "name": "u",
+      "type": "enum"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": 1,
+      "b": 0,
+      "c": "EMSensors",
+      "d": 26053,
+      "e": 26546,
+      "f": 0,
+      "g": 0,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 0,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 1,
+      "p": 0,
+      "q": 6,
+      "r": 1,
+      "s": 1,
+      "t": "MK I Electromagnetic Augur Array ",
+      "u": "a"
+    },
+    {
+      "_index": 1,
+      "a": 2,
+      "b": 0,
+      "c": "JumpDrive",
+      "d": 839,
+      "e": 819,
+      "f": 827,
+      "g": 33303,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 0,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 98.1,
+      "p": 0,
+      "q": 1560,
+      "r": 1,
+      "s": 1,
+      "t": "RC-780 Commercial Jump Drive",
+      "u": "a"
+    },
+    {
+      "_index": 2,
+      "a": 3,
+      "b": 0,
+      "c": "Engine",
+      "d": 75833,
+      "e": 25131,
+      "f": 26091,
+      "g": 0,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 0,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 100,
+      "p": 0.4,
+      "q": 400,
+      "r": 1,
+      "s": 1,
+      "t": "Ravenor Drive Systems RDS-400-C",
+      "u": "a"
+    },
+    {
+      "_index": 3,
+      "a": 4,
+      "b": 0,
+      "c": "ActiveSearchSensors",
+      "d": 24398,
+      "e": 26053,
+      "f": 26546,
+      "g": 12027,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 120,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 1,
+      "p": 0,
+      "q": 12,
+      "r": 1,
+      "s": 1,
+      "t": "MK I Commercial Active Augur Array",
+      "u": "a"
+    },
+    {
+      "_index": 4,
+      "a": 5,
+      "b": 0,
+      "c": "ThermalSensors",
+      "d": 24385,
+      "e": 26546,
+      "f": 0,
+      "g": 0,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 0,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 1,
+      "p": 0,
+      "q": 5,
+      "r": 1,
+      "s": 1,
+      "t": "MK I Thermal Augur Array ",
+      "u": "a"
+    },
+    {
+      "_index": 5,
+      "a": 6,
+      "b": 0,
+      "c": "ThermalSensors",
+      "d": 24386,
+      "e": 26546,
+      "f": 0,
+      "g": 0,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 0,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 1,
+      "p": 0,
+      "q": 6,
+      "r": 1,
+      "s": 1,
+      "t": "MK I Thermal Augur Array",
+      "u": "a"
+    },
+    {
+      "_index": 6,
+      "a": 7,
+      "b": 0,
+      "c": "EMSensors",
+      "d": 26054,
+      "e": 26546,
+      "f": 0,
+      "g": 0,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 0,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 1,
+      "p": 0,
+      "q": 8,
+      "r": 1,
+      "s": 1,
+      "t": "MK I Electromagnetic Augur Array",
+      "u": "a"
+    },
+    {
+      "_index": 7,
+      "a": 8,
+      "b": 0,
+      "c": "ActiveSearchSensors",
+      "d": 24399,
+      "e": 26054,
+      "f": 26546,
+      "g": 12027,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 120,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 1,
+      "p": 0,
+      "q": 16,
+      "r": 1,
+      "s": 1,
+      "t": "MK I Commercial Active Augur Array",
+      "u": "a"
+    },
+    {
+      "_index": 8,
+      "a": 9,
+      "b": 0,
+      "c": "Engine",
+      "d": 75833,
+      "e": 25131,
+      "f": 26091,
+      "g": 0,
+      "h": 0,
+      "i": 0,
+      "j": 0,
+      "k": 0,
+      "l": 0,
+      "m": 0,
+      "n": 0,
+      "o": 100,
+      "p": 0.4,
+      "q": 400,
+      "r": 1,
+      "s": 1,
+      "t": "Ravenor Drive Systems RDS-400-C",
+      "u": "a"
+    }
+  ]
+}

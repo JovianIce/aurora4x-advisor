@@ -1,0 +1,103 @@
+{
+  "_field": "d2",
+  "_type": "String",
+  "_collectionType": "List",
+  "_count": 6,
+  "_dumped": 6,
+  "_schema": [
+    {
+      "name": "m_stringLength",
+      "type": "int"
+    },
+    {
+      "name": "m_firstChar",
+      "type": "ref:Char"
+    },
+    {
+      "name": "TrimHead",
+      "type": "int"
+    },
+    {
+      "name": "TrimTail",
+      "type": "int"
+    },
+    {
+      "name": "TrimBoth",
+      "type": "int"
+    },
+    {
+      "name": "Empty",
+      "type": "string"
+    },
+    {
+      "name": "charPtrAlignConst",
+      "type": "int"
+    },
+    {
+      "name": "alignConst",
+      "type": "int"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "m_stringLength": 9,
+      "TrimHead": 0,
+      "TrimTail": 1,
+      "TrimBoth": 2,
+      "Empty": "",
+      "charPtrAlignConst": 3,
+      "alignConst": 7
+    },
+    {
+      "_index": 1,
+      "m_stringLength": 18,
+      "TrimHead": 0,
+      "TrimTail": 1,
+      "TrimBoth": 2,
+      "Empty": "",
+      "charPtrAlignConst": 3,
+      "alignConst": 7
+    },
+    {
+      "_index": 2,
+      "m_stringLength": 5,
+      "TrimHead": 0,
+      "TrimTail": 1,
+      "TrimBoth": 2,
+      "Empty": "",
+      "charPtrAlignConst": 3,
+      "alignConst": 7
+    },
+    {
+      "_index": 3,
+      "m_stringLength": 9,
+      "TrimHead": 0,
+      "TrimTail": 1,
+      "TrimBoth": 2,
+      "Empty": "",
+      "charPtrAlignConst": 3,
+      "alignConst": 7
+    },
+    {
+      "_index": 4,
+      "m_stringLength": 8,
+      "TrimHead": 0,
+      "TrimTail": 1,
+      "TrimBoth": 2,
+      "Empty": "",
+      "charPtrAlignConst": 3,
+      "alignConst": 7
+    },
+    {
+      "_index": 5,
+      "m_stringLength": 8,
+      "TrimHead": 0,
+      "TrimTail": 1,
+      "TrimBoth": 2,
+      "Empty": "",
+      "charPtrAlignConst": 3,
+      "alignConst": 7
+    }
+  ]
+}

@@ -61,6 +61,24 @@ namespace AdvisorBridge
         private FieldInfo _systemNameSystemIdField;     // jq.b = SystemID
         private FieldInfo _systemNameField;             // jq.q = Name
 
+        // Fleet (f4) - GameState.bm
+        private FieldInfo _fleetsDict;
+        private FieldInfo[] _fleetAllFields;
+        private FieldInfo _fleetIdField;              // f4.ae = FleetID
+        private FieldInfo _fleetNameField;            // f4.b1 = FleetName
+        private FieldInfo _fleetSpeedField;           // f4.ah = Speed
+        private FieldInfo _fleetXcorField;            // f4.ap = Xcor
+        private FieldInfo _fleetYcorField;            // f4.aq = Ycor
+        private FieldInfo _fleetRaceRefField;         // f4.h = ref:ag (Race), sub-field ck=RaceID
+        private FieldInfo _fleetCivilianField;        // f4.ay = IsCivilian (bool)
+        private FieldInfo _fleetNavField;             // f4.i = ref:jx (navigation), sub-field ac=SystemName
+
+        // Ship (a2) - GameState.bp
+        private FieldInfo _shipsDict;
+        private FieldInfo _shipIdField;               // a2.bf = ShipID
+        private FieldInfo _shipNameField;             // a2.d9 = ShipName
+        private FieldInfo _shipFuelField;             // a2.ca = Fuel
+
         // Fast-read cache: only fields needed for rendering
         private FieldInfo[] _bodyFastFields;
         private string[] _bodyFastFieldNames;
@@ -102,10 +120,13 @@ namespace AdvisorBridge
                 InitStarSystemFields(gameStateType);
                 InitSystemNameFields(gameStateType);
                 InitSystemBodyFields(gameStateType);
+                InitFleetFields(gameStateType);
+                InitShipFields(gameStateType);
 
-                _patch.LogInfo($"MemoryReader initialized: Star={_starAllFields?.Length ?? 0} fields, " +
-                    $"SystemBody={_systemBodyAllFields?.Length ?? 0} fields, " +
-                    $"StarSystem={_starSystemAllFields?.Length ?? 0} fields");
+                _patch.LogInfo($"MemoryReader initialized: Star={_starAllFields?.Length ?? 0}, " +
+                    $"SystemBody={_systemBodyAllFields?.Length ?? 0}, " +
+                    $"StarSystem={_starSystemAllFields?.Length ?? 0}, " +
+                    $"Fleet={_fleetAllFields?.Length ?? 0}, Ship={_shipIdField != null}");
                 return true;
             }
             catch (Exception ex)
@@ -170,6 +191,40 @@ namespace AdvisorBridge
             _systemBodyAllFields = bodyType.GetFields(AccessTools.all);
             _systemBodySystemIdField = bodyType.GetField("w", AccessTools.all);
             _patch.LogInfo($"MemoryReader: SystemBody type has {_systemBodyAllFields.Length} fields");
+        }
+
+        private void InitFleetFields(Type gameStateType)
+        {
+            // Fleets: GameState.bm -> Dict<int, Fleet(f4)>
+            _fleetsDict = gameStateType.GetField("bm", AccessTools.all);
+            if (_fleetsDict == null) return;
+
+            var fleetType = _fleetsDict.FieldType.GenericTypeArguments[1];
+            _fleetAllFields = fleetType.GetFields(AccessTools.all);
+            _fleetIdField = fleetType.GetField("ae", AccessTools.all);
+            _fleetNameField = fleetType.GetField("b1", AccessTools.all);
+            _fleetSpeedField = fleetType.GetField("ah", AccessTools.all);
+            _fleetXcorField = fleetType.GetField("ap", AccessTools.all);
+            _fleetYcorField = fleetType.GetField("aq", AccessTools.all);
+            _fleetRaceRefField = fleetType.GetField("h", AccessTools.all);
+            _fleetCivilianField = fleetType.GetField("ay", AccessTools.all);
+            _fleetNavField = fleetType.GetField("i", AccessTools.all);
+
+            _patch.LogInfo($"MemoryReader: Fleet type has {_fleetAllFields.Length} fields");
+        }
+
+        private void InitShipFields(Type gameStateType)
+        {
+            // Ships: GameState.bp -> Dict<int, Ship(a2)>
+            _shipsDict = gameStateType.GetField("bp", AccessTools.all);
+            if (_shipsDict == null) return;
+
+            var shipType = _shipsDict.FieldType.GenericTypeArguments[1];
+            _shipIdField = shipType.GetField("bf", AccessTools.all);
+            _shipNameField = shipType.GetField("d9", AccessTools.all);
+            _shipFuelField = shipType.GetField("ca", AccessTools.all);
+
+            _patch.LogInfo($"MemoryReader: Ship type has {shipType.GetFields(AccessTools.all).Length} fields");
         }
 
         private void InitFastBodyFields()
@@ -373,6 +428,115 @@ namespace AdvisorBridge
         }
 
         /// <summary>
+        /// Read the player's known systems directly from the TacticalMap's system ComboBox.
+        /// Returns exactly what Aurora shows in the dropdown — player-renamed, surveyed systems only.
+        /// </summary>
+        public List<Dictionary<string, object>> ReadKnownSystems()
+        {
+            var results = new List<Dictionary<string, object>>();
+
+            try
+            {
+                var map = _lib.TacticalMap;
+                if (map == null) return results;
+
+                object comboResult = null;
+                _patch.InvokeOnUIThread(new Action(() =>
+                {
+                    try
+                    {
+                        var comboName = _lib.KnowledgeBase.GetComboBoxName(Lib.AuroraComboBox.Systems);
+                        var combo = Lib.UIManager.GetControlByName<System.Windows.Forms.ComboBox>(map, comboName);
+                        if (combo == null || combo.Items.Count == 0) return;
+
+                        var items = new List<Dictionary<string, object>>();
+                        foreach (var item in combo.Items)
+                        {
+                            try
+                            {
+                                // Get displayed name via DisplayMember or ToString
+                                string name = null;
+                                if (!string.IsNullOrEmpty(combo.DisplayMember))
+                                {
+                                    var prop = item.GetType().GetProperty(combo.DisplayMember);
+                                    if (prop != null)
+                                        name = prop.GetValue(item)?.ToString();
+                                    else
+                                    {
+                                        var dmField = item.GetType().GetField(combo.DisplayMember, AccessTools.all);
+                                        if (dmField != null)
+                                            name = dmField.GetValue(item)?.ToString();
+                                    }
+                                }
+                                if (string.IsNullOrEmpty(name))
+                                    name = item.ToString();
+
+                                // Get SystemID — items are jx type, check for field 'ac' (system name)
+                                // or look for an int field that matches a known SystemID pattern
+                                int systemId = 0;
+                                foreach (var f in item.GetType().GetFields(AccessTools.all))
+                                {
+                                    if (f.FieldType == typeof(int))
+                                    {
+                                        var val = (int)f.GetValue(item);
+                                        // SystemIDs are large ints (>20000 in this game)
+                                        if (val > 10000 && systemId == 0)
+                                        {
+                                            systemId = val;
+                                        }
+                                    }
+                                }
+
+                                // If jx type, try to find the StarSystem ref and get g=SystemID
+                                if (systemId == 0)
+                                {
+                                    foreach (var f in item.GetType().GetFields(AccessTools.all))
+                                    {
+                                        if (!f.FieldType.IsEnum && !f.FieldType.IsPrimitive && f.FieldType.Name != "String")
+                                        {
+                                            var refObj = f.GetValue(item);
+                                            if (refObj != null)
+                                            {
+                                                var gField = refObj.GetType().GetField("g", AccessTools.all);
+                                                if (gField != null && gField.FieldType == typeof(int))
+                                                {
+                                                    systemId = (int)gField.GetValue(refObj);
+                                                    if (systemId > 10000) break;
+                                                    systemId = 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                items.Add(new Dictionary<string, object>
+                                {
+                                    ["SystemID"] = systemId,
+                                    ["Name"] = name ?? $"System {systemId}"
+                                });
+                            }
+                            catch { }
+                        }
+                        comboResult = items;
+                    }
+                    catch { }
+                }));
+
+                if (comboResult is List<Dictionary<string, object>> list)
+                {
+                    results = list;
+                    _patch.LogInfo($"ReadKnownSystems: {results.Count} systems from TacticalMap ComboBox");
+                }
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"ReadKnownSystems error: {ex.Message}");
+            }
+
+            return results;
+        }
+
+        /// <summary>
         /// Read star systems with resolved names.
         /// Systems from GameState.bu (Dict of StarSystem/js).
         /// Names from GameState.b2 (Dict of SystemNameRecord/jq).
@@ -413,6 +577,233 @@ namespace AdvisorBridge
             catch (Exception ex)
             {
                 _patch.LogError($"ReadSystems error: {ex.Message}");
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Read fleets with positions. Reads from GameState.bm (Dict of Fleet/f4).
+        /// Returns FleetID, FleetName, Speed, Xcor, Ycor, RaceID, and ship count.
+        /// </summary>
+        public List<Dictionary<string, object>> ReadFleets()
+        {
+            var results = new List<Dictionary<string, object>>();
+            if (!Initialize() || _fleetsDict == null) return results;
+
+            try
+            {
+                var gs = GetGameState();
+                if (gs == null) return results;
+
+                var values = GetDictValues(_fleetsDict, gs);
+                if (values == null) return results;
+
+                // Build fleet -> ship count map
+                var shipCounts = new Dictionary<int, int>();
+                if (_shipsDict != null)
+                {
+                    var shipValues = GetDictValues(_shipsDict, gs);
+                    if (shipValues != null)
+                    {
+                        // Ship type has a fleet ref — find the field that references f4 (fleet type)
+                        var shipType = _shipsDict.FieldType.GenericTypeArguments[1];
+                        FieldInfo shipFleetRefField = null;
+
+                        foreach (var f in shipType.GetFields(AccessTools.all))
+                        {
+                            if (f.FieldType == _fleetsDict.FieldType.GenericTypeArguments[1])
+                            {
+                                shipFleetRefField = f;
+                                break;
+                            }
+                        }
+
+                        if (shipFleetRefField != null && _fleetIdField != null)
+                        {
+                            foreach (var ship in shipValues)
+                            {
+                                try
+                                {
+                                    var fleetRef = shipFleetRefField.GetValue(ship);
+                                    if (fleetRef != null)
+                                    {
+                                        var fleetId = (int)_fleetIdField.GetValue(fleetRef);
+                                        if (!shipCounts.ContainsKey(fleetId))
+                                            shipCounts[fleetId] = 0;
+                                        shipCounts[fleetId]++;
+                                    }
+                                }
+                                catch { }
+                            }
+                        }
+                    }
+                }
+
+                foreach (var fleet in values)
+                {
+                    try
+                    {
+                        var row = new Dictionary<string, object>();
+
+                        if (_fleetIdField != null)
+                            row["FleetID"] = _fleetIdField.GetValue(fleet);
+                        if (_fleetNameField != null)
+                            row["FleetName"] = _fleetNameField.GetValue(fleet);
+                        if (_fleetSpeedField != null)
+                            row["Speed"] = _fleetSpeedField.GetValue(fleet);
+                        if (_fleetXcorField != null)
+                            row["Xcor"] = _fleetXcorField.GetValue(fleet);
+                        if (_fleetYcorField != null)
+                            row["Ycor"] = _fleetYcorField.GetValue(fleet);
+
+                        // Read SystemID from ref field k (kc/SystemBody) -> sub-field w
+                        int systemId = 0;
+                        try
+                        {
+                            var orbitBodyRef = _fleetsDict.FieldType.GenericTypeArguments[1].GetField("k", AccessTools.all);
+                            if (orbitBodyRef != null)
+                            {
+                                var bodyObj = orbitBodyRef.GetValue(fleet);
+                                if (bodyObj != null && _systemBodySystemIdField != null)
+                                    systemId = (int)_systemBodySystemIdField.GetValue(bodyObj);
+                            }
+                        }
+                        catch { }
+                        row["SystemID"] = systemId;
+
+                        // Read SystemName from ref field i (jx/navigation) -> sub-field ac
+                        string systemName = null;
+                        if (_fleetNavField != null)
+                        {
+                            try
+                            {
+                                var navRef = _fleetNavField.GetValue(fleet);
+                                if (navRef != null)
+                                {
+                                    var acField = navRef.GetType().GetField("ac", AccessTools.all);
+                                    if (acField != null)
+                                        systemName = acField.GetValue(navRef) as string;
+                                }
+                            }
+                            catch { }
+                        }
+                        row["SystemName"] = systemName ?? "";
+
+                        // Read IsCivilian from field ay
+                        if (_fleetCivilianField != null)
+                        {
+                            try { row["IsCivilian"] = (bool)_fleetCivilianField.GetValue(fleet); }
+                            catch { row["IsCivilian"] = false; }
+                        }
+
+                        // Read RaceID from ref field h -> sub-field ck
+                        int raceId = 0;
+                        if (_fleetRaceRefField != null)
+                        {
+                            try
+                            {
+                                var raceRef = _fleetRaceRefField.GetValue(fleet);
+                                if (raceRef != null)
+                                {
+                                    var ckField = raceRef.GetType().GetField("ck", AccessTools.all);
+                                    if (ckField != null)
+                                        raceId = (int)ckField.GetValue(raceRef);
+                                }
+                            }
+                            catch { }
+                        }
+                        row["RaceID"] = raceId;
+
+                        // Ship count
+                        var fleetId = row.ContainsKey("FleetID") ? (int)row["FleetID"] : 0;
+                        int sc;
+                        row["ShipCount"] = shipCounts.TryGetValue(fleetId, out sc) ? sc : 0;
+
+                        results.Add(row);
+                    }
+                    catch { }
+                }
+
+                _patch.LogInfo($"ReadFleets: {results.Count} fleets");
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"ReadFleets error: {ex.Message}");
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Read ships. Reads from GameState.bp (Dict of Ship/a2).
+        /// Returns ShipID, ShipName, Fuel, and FleetID.
+        /// </summary>
+        public List<Dictionary<string, object>> ReadShips(int? filterFleetId = null)
+        {
+            var results = new List<Dictionary<string, object>>();
+            if (!Initialize() || _shipsDict == null) return results;
+
+            try
+            {
+                var gs = GetGameState();
+                if (gs == null) return results;
+
+                var values = GetDictValues(_shipsDict, gs);
+                if (values == null) return results;
+
+                var shipType = _shipsDict.FieldType.GenericTypeArguments[1];
+
+                // Find the field that holds a reference to a fleet (f4 type)
+                FieldInfo shipFleetRefField = null;
+                if (_fleetsDict != null)
+                {
+                    var fleetValueType = _fleetsDict.FieldType.GenericTypeArguments[1];
+                    foreach (var f in shipType.GetFields(AccessTools.all))
+                    {
+                        if (f.FieldType == fleetValueType)
+                        {
+                            shipFleetRefField = f;
+                            break;
+                        }
+                    }
+                }
+
+                foreach (var ship in values)
+                {
+                    try
+                    {
+                        // Get FleetID from the fleet ref
+                        int fleetId = 0;
+                        if (shipFleetRefField != null && _fleetIdField != null)
+                        {
+                            var fleetRef = shipFleetRefField.GetValue(ship);
+                            if (fleetRef != null)
+                                fleetId = (int)_fleetIdField.GetValue(fleetRef);
+                        }
+
+                        if (filterFleetId.HasValue && fleetId != filterFleetId.Value)
+                            continue;
+
+                        var row = new Dictionary<string, object>();
+                        if (_shipIdField != null)
+                            row["ShipID"] = _shipIdField.GetValue(ship);
+                        if (_shipNameField != null)
+                            row["ShipName"] = _shipNameField.GetValue(ship);
+                        if (_shipFuelField != null)
+                            row["Fuel"] = _shipFuelField.GetValue(ship);
+                        row["FleetID"] = fleetId;
+
+                        results.Add(row);
+                    }
+                    catch { }
+                }
+
+                _patch.LogInfo($"ReadShips: {results.Count} ships (filter={filterFleetId})");
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"ReadShips error: {ex.Message}");
             }
 
             return results;
@@ -480,6 +871,391 @@ namespace AdvisorBridge
             catch (Exception ex)
             {
                 _patch.LogError($"GlobalSearch error: {ex.Message}");
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Enumerate ALL collections on GameState — every Dict and List field.
+        /// Returns field name, item type, item count, and field schema for each.
+        /// This is the discovery entry point: call this first to see what's available.
+        /// </summary>
+        public List<Dictionary<string, object>> EnumerateCollections()
+        {
+            var results = new List<Dictionary<string, object>>();
+            if (!Initialize()) return results;
+
+            try
+            {
+                var gs = GetGameState();
+                if (gs == null) return results;
+                var gsType = gs.GetType();
+
+                foreach (var field in gsType.GetFields(AccessTools.all))
+                {
+                    if (!field.FieldType.IsGenericType) continue;
+                    var genDef = field.FieldType.GetGenericTypeDefinition();
+
+                    bool isDict = genDef == typeof(Dictionary<,>);
+                    bool isList = genDef == typeof(List<>);
+                    if (!isDict && !isList) continue;
+
+                    try
+                    {
+                        var collection = field.GetValue(gs);
+                        int count = 0;
+                        if (collection != null)
+                        {
+                            var countProp = collection.GetType().GetProperty("Count");
+                            if (countProp != null) count = (int)countProp.GetValue(collection);
+                        }
+
+                        // Get the item type (value type for Dict, element type for List)
+                        var itemType = isDict
+                            ? field.FieldType.GenericTypeArguments[1]
+                            : field.FieldType.GenericTypeArguments[0];
+
+                        // Build field schema for the item type
+                        var schema = new List<Dictionary<string, string>>();
+                        foreach (var f in itemType.GetFields(AccessTools.all))
+                        {
+                            string typeName;
+                            if (f.FieldType.IsEnum) typeName = "enum";
+                            else if (f.FieldType == typeof(int)) typeName = "int";
+                            else if (f.FieldType == typeof(double)) typeName = "double";
+                            else if (f.FieldType == typeof(float)) typeName = "float";
+                            else if (f.FieldType == typeof(decimal)) typeName = "decimal";
+                            else if (f.FieldType == typeof(bool)) typeName = "bool";
+                            else if (f.FieldType == typeof(string)) typeName = "string";
+                            else if (f.FieldType == typeof(long)) typeName = "long";
+                            else typeName = $"ref:{f.FieldType.Name}";
+
+                            schema.Add(new Dictionary<string, string>
+                            {
+                                ["name"] = f.Name,
+                                ["type"] = typeName
+                            });
+                        }
+
+                        var keyType = isDict ? field.FieldType.GenericTypeArguments[0].Name : null;
+
+                        results.Add(new Dictionary<string, object>
+                        {
+                            ["field"] = field.Name,
+                            ["collectionType"] = isDict ? "Dict" : "List",
+                            ["keyType"] = keyType,
+                            ["itemType"] = itemType.Name,
+                            ["count"] = count,
+                            ["fieldCount"] = itemType.GetFields(AccessTools.all).Length,
+                            ["schema"] = schema
+                        });
+                    }
+                    catch { }
+                }
+
+                _patch.LogInfo($"EnumerateCollections: found {results.Count} collections on GameState");
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"EnumerateCollections error: {ex.Message}");
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Read items from ANY GameState collection by field name.
+        /// Returns all primitive/enum fields on each item.
+        /// Optionally reads 1 level of sub-object fields (Aurora type references).
+        /// Supports limit/offset for large collections, and field filtering.
+        /// </summary>
+        public List<Dictionary<string, object>> ReadCollection(string fieldName, int offset = 0, int limit = 100,
+            string[] fields = null, bool includeRefs = false, string filterField = null, string filterValue = null)
+        {
+            var results = new List<Dictionary<string, object>>();
+            if (!Initialize() || string.IsNullOrEmpty(fieldName)) return results;
+
+            try
+            {
+                var gs = GetGameState();
+                if (gs == null) return results;
+                var gsType = gs.GetType();
+
+                var collectionFieldInfo = gsType.GetField(fieldName, AccessTools.all);
+                if (collectionFieldInfo == null)
+                {
+                    _patch.LogError($"ReadCollection: field '{fieldName}' not found on GameState");
+                    return results;
+                }
+
+                var collection = collectionFieldInfo.GetValue(gs);
+                if (collection == null) return results;
+
+                // Get the enumerable values
+                IEnumerable values;
+                var ft = collectionFieldInfo.FieldType;
+                if (ft.IsGenericType && ft.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+                    values = ft.GetProperty("Values").GetValue(collection) as IEnumerable;
+                else
+                    values = collection as IEnumerable;
+
+                if (values == null) return results;
+
+                var auroraAsm = _lib.TacticalMap?.GetType().Assembly;
+
+                // Build field filter set
+                HashSet<string> fieldFilter = null;
+                if (fields != null && fields.Length > 0)
+                    fieldFilter = new HashSet<string>(fields);
+
+                int index = 0;
+                FieldInfo[] cachedItemFields = null;
+
+                // Parse filter value for comparison
+                int filterIntVal = 0;
+                double filterDoubleVal = 0;
+                bool filterIsInt = false, filterIsDouble = false;
+                FieldInfo filterFieldInfo = null;
+
+                foreach (var item in values)
+                {
+                    if (item == null) { index++; continue; }
+
+                    // Cache fields on first item
+                    if (cachedItemFields == null)
+                    {
+                        cachedItemFields = item.GetType().GetFields(AccessTools.all);
+
+                        // Resolve filter field
+                        if (!string.IsNullOrEmpty(filterField) && !string.IsNullOrEmpty(filterValue))
+                        {
+                            filterFieldInfo = cachedItemFields.FirstOrDefault(f => f.Name == filterField);
+                            if (filterFieldInfo != null)
+                            {
+                                filterIsInt = int.TryParse(filterValue, out filterIntVal);
+                                filterIsDouble = double.TryParse(filterValue, out filterDoubleVal);
+                            }
+                        }
+                    }
+
+                    // Apply filter
+                    if (filterFieldInfo != null)
+                    {
+                        try
+                        {
+                            var fv = filterFieldInfo.GetValue(item);
+                            bool match = false;
+                            if (filterIsInt && fv is int iv) match = iv == filterIntVal;
+                            else if (filterIsDouble && fv is double dv) match = Math.Abs(dv - filterDoubleVal) < 0.001;
+                            else if (fv is bool bv) match = bv.ToString().Equals(filterValue, StringComparison.OrdinalIgnoreCase);
+                            else if (fv is string sv) match = sv.Equals(filterValue, StringComparison.OrdinalIgnoreCase);
+                            else if (fv != null && fv.GetType().IsEnum) match = fv.ToString().Equals(filterValue, StringComparison.OrdinalIgnoreCase);
+
+                            if (!match) { index++; continue; }
+                        }
+                        catch { index++; continue; }
+                    }
+
+                    // Apply offset
+                    if (index < offset) { index++; continue; }
+
+                    // Apply limit
+                    if (results.Count >= limit) break;
+
+                    var row = new Dictionary<string, object>();
+                    row["_index"] = index;
+
+                    foreach (var f in cachedItemFields)
+                    {
+                        if (fieldFilter != null && !fieldFilter.Contains(f.Name)) continue;
+
+                        try
+                        {
+                            if (f.FieldType == typeof(int) || f.FieldType == typeof(double)
+                                || f.FieldType == typeof(decimal) || f.FieldType == typeof(bool)
+                                || f.FieldType == typeof(string) || f.FieldType == typeof(float)
+                                || f.FieldType == typeof(long))
+                            {
+                                row[f.Name] = f.GetValue(item);
+                            }
+                            else if (f.FieldType.IsEnum)
+                            {
+                                row[f.Name] = f.GetValue(item)?.ToString();
+                            }
+                            else if (includeRefs && auroraAsm != null && f.FieldType.Assembly == auroraAsm && !f.FieldType.IsEnum)
+                            {
+                                // Read 1 level deep into Aurora type references
+                                var refObj = f.GetValue(item);
+                                if (refObj != null)
+                                {
+                                    var subData = new Dictionary<string, object>();
+                                    subData["_type"] = f.FieldType.Name;
+                                    ReadPrimitiveFields(f.FieldType.GetFields(AccessTools.all), refObj, subData);
+                                    if (subData.Count > 1) // more than just _type
+                                        row[f.Name] = subData;
+                                }
+                            }
+                        }
+                        catch { }
+                    }
+
+                    results.Add(row);
+                    index++;
+                }
+
+                _patch.LogInfo($"ReadCollection({fieldName}): offset={offset}, limit={limit}, returned={results.Count}");
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"ReadCollection error: {ex.Message}");
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Read a single scalar (non-collection) field from GameState.
+        /// Returns the value and its type. Useful for game clock, turn number, etc.
+        /// </summary>
+        public Dictionary<string, object> ReadGameStateField(string fieldName)
+        {
+            var result = new Dictionary<string, object>();
+            if (!Initialize() || string.IsNullOrEmpty(fieldName)) return result;
+
+            try
+            {
+                var gs = GetGameState();
+                if (gs == null) return result;
+
+                var field = gs.GetType().GetField(fieldName, AccessTools.all);
+                if (field == null)
+                {
+                    result["error"] = $"Field '{fieldName}' not found on GameState";
+                    return result;
+                }
+
+                result["field"] = fieldName;
+                result["type"] = field.FieldType.IsEnum ? "enum" : field.FieldType.Name;
+
+                var val = field.GetValue(gs);
+                if (val == null)
+                {
+                    result["value"] = null;
+                }
+                else if (field.FieldType == typeof(int) || field.FieldType == typeof(double)
+                    || field.FieldType == typeof(decimal) || field.FieldType == typeof(bool)
+                    || field.FieldType == typeof(string) || field.FieldType == typeof(float)
+                    || field.FieldType == typeof(long))
+                {
+                    result["value"] = val;
+                }
+                else if (field.FieldType.IsEnum)
+                {
+                    result["value"] = val.ToString();
+                }
+                else if (field.FieldType.IsGenericType)
+                {
+                    var countProp = field.FieldType.GetProperty("Count");
+                    result["value"] = $"[collection, count={countProp?.GetValue(val) ?? "?"}]";
+                }
+                else
+                {
+                    // Aurora reference type — dump its primitive fields
+                    var subData = new Dictionary<string, object>();
+                    subData["_type"] = field.FieldType.Name;
+                    ReadPrimitiveFields(field.FieldType.GetFields(AccessTools.all), val, subData);
+                    result["value"] = subData;
+                }
+            }
+            catch (Exception ex)
+            {
+                result["error"] = ex.Message;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// List ALL fields on GameState (326+), with their types and summary values.
+        /// This is the top-level schema of the entire game state.
+        /// </summary>
+        public List<Dictionary<string, object>> EnumerateGameStateFields()
+        {
+            var results = new List<Dictionary<string, object>>();
+            if (!Initialize()) return results;
+
+            try
+            {
+                var gs = GetGameState();
+                if (gs == null) return results;
+                var gsType = gs.GetType();
+
+                foreach (var field in gsType.GetFields(AccessTools.all))
+                {
+                    var entry = new Dictionary<string, object>
+                    {
+                        ["name"] = field.Name
+                    };
+
+                    if (field.FieldType.IsEnum)
+                    {
+                        entry["type"] = "enum";
+                        try { entry["value"] = field.GetValue(gs)?.ToString(); } catch { }
+                    }
+                    else if (field.FieldType == typeof(int) || field.FieldType == typeof(double)
+                        || field.FieldType == typeof(decimal) || field.FieldType == typeof(bool)
+                        || field.FieldType == typeof(string) || field.FieldType == typeof(float)
+                        || field.FieldType == typeof(long))
+                    {
+                        entry["type"] = field.FieldType.Name;
+                        try { entry["value"] = field.GetValue(gs); } catch { }
+                    }
+                    else if (field.FieldType.IsGenericType)
+                    {
+                        var genDef = field.FieldType.GetGenericTypeDefinition();
+                        if (genDef == typeof(Dictionary<,>))
+                        {
+                            var valType = field.FieldType.GenericTypeArguments[1];
+                            entry["type"] = $"Dict<{field.FieldType.GenericTypeArguments[0].Name},{valType.Name}>";
+                            entry["itemFields"] = valType.GetFields(AccessTools.all).Length;
+                        }
+                        else if (genDef == typeof(List<>))
+                        {
+                            var valType = field.FieldType.GenericTypeArguments[0];
+                            entry["type"] = $"List<{valType.Name}>";
+                            entry["itemFields"] = valType.GetFields(AccessTools.all).Length;
+                        }
+                        else
+                        {
+                            entry["type"] = field.FieldType.Name;
+                        }
+
+                        try
+                        {
+                            var col = field.GetValue(gs);
+                            if (col != null)
+                            {
+                                var cp = col.GetType().GetProperty("Count");
+                                if (cp != null) entry["count"] = (int)cp.GetValue(col);
+                            }
+                        }
+                        catch { }
+                    }
+                    else
+                    {
+                        entry["type"] = $"ref:{field.FieldType.Name}";
+                        entry["refFields"] = field.FieldType.GetFields(AccessTools.all).Length;
+                    }
+
+                    results.Add(entry);
+                }
+
+                _patch.LogInfo($"EnumerateGameStateFields: {results.Count} fields");
+            }
+            catch (Exception ex)
+            {
+                _patch.LogError($"EnumerateGameStateFields error: {ex.Message}");
             }
 
             return results;

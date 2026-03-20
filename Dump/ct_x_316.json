@@ -1,0 +1,6355 @@
+{
+  "_field": "ct",
+  "_type": "x",
+  "_collectionType": "List",
+  "_count": 316,
+  "_dumped": 316,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "ref:u"
+    },
+    {
+      "name": "b",
+      "type": "enum"
+    },
+    {
+      "name": "c",
+      "type": "int"
+    },
+    {
+      "name": "d",
+      "type": "int"
+    },
+    {
+      "name": "e",
+      "type": "int"
+    },
+    {
+      "name": "f",
+      "type": "bool"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "b",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 1,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "b",
+      "c": 200,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 2,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "b",
+      "c": 300,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 3,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "b",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet"
+      },
+      "b": "b",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 4,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "b",
+      "c": 500,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 5,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "b",
+      "c": 600,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 6,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "b",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet"
+      },
+      "b": "b",
+      "c": 900,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 7,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "b",
+      "c": 1000,
+      "d": 1,
+      "e": 3,
+      "f": true
+    },
+    {
+      "_index": 8,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "g",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron"
+      },
+      "b": "b",
+      "c": 1100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 9,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "h",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron"
+      },
+      "b": "b",
+      "c": 1300,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 10,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "b",
+      "c": 1400,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 11,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "b",
+      "c": 1500,
+      "d": 2,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 12,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "b",
+      "c": 1600,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 13,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "j",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron"
+      },
+      "b": "b",
+      "c": 1800,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 14,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "i",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group"
+      },
+      "b": "b",
+      "c": 1350,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 15,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "b",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet"
+      },
+      "b": "b",
+      "c": 2000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 16,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "h",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron"
+      },
+      "b": "b",
+      "c": 2200,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 17,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "g",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron"
+      },
+      "b": "b",
+      "c": 2300,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 18,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "j",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron"
+      },
+      "b": "b",
+      "c": 2400,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 19,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "i",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group"
+      },
+      "b": "b",
+      "c": 2500,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 20,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "b",
+      "c": 2600,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 21,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "b",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet"
+      },
+      "b": "b",
+      "c": 2700,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 22,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "b",
+      "c": 2900,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 23,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "b",
+      "c": 3000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 24,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "g",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron"
+      },
+      "b": "b",
+      "c": 3100,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 25,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "h",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron"
+      },
+      "b": "b",
+      "c": 3200,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 26,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "j",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron"
+      },
+      "b": "b",
+      "c": 3300,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 27,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "i",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group"
+      },
+      "b": "b",
+      "c": 3500,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 28,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "b",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet"
+      },
+      "b": "b",
+      "c": 3600,
+      "d": 1,
+      "e": 5,
+      "f": false
+    },
+    {
+      "_index": 29,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "k",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence"
+      },
+      "b": "b",
+      "c": 1700,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 30,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "k",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence"
+      },
+      "b": "b",
+      "c": 2800,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 31,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "k",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence"
+      },
+      "b": "b",
+      "c": 3700,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 32,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "b",
+      "c": 1200,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 33,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "b",
+      "c": 2100,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 34,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "b",
+      "c": 3400,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 35,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "o",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group"
+      },
+      "b": "b",
+      "c": 1250,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 36,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "o",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group"
+      },
+      "b": "b",
+      "c": 2250,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 37,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "o",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group"
+      },
+      "b": "b",
+      "c": 3250,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 38,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "s",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group"
+      },
+      "b": "b",
+      "c": 1750,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 39,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "s",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group"
+      },
+      "b": "b",
+      "c": 2350,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 40,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "s",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group"
+      },
+      "b": "b",
+      "c": 3450,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 41,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "g",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron"
+      },
+      "b": "b",
+      "c": 3800,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 42,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "q",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group"
+      },
+      "b": "b",
+      "c": 2150,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 43,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "q",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group"
+      },
+      "b": "b",
+      "c": 3150,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 44,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "c",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 45,
+      "a": {
+        "_type": "u",
+        "e": "t",
+        "f": "t",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Missile Base"
+      },
+      "b": "c",
+      "c": 200,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 46,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "g",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron"
+      },
+      "b": "c",
+      "c": 300,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 47,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "u",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Precursor Harvester Group"
+      },
+      "b": "c",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 48,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "v",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Small"
+      },
+      "b": "c",
+      "c": 500,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 49,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "w",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Squadron"
+      },
+      "b": "c",
+      "c": 600,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 50,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "b",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet"
+      },
+      "b": "c",
+      "c": 700,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 51,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "c",
+      "c": 800,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 52,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "c",
+      "c": 900,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 53,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "x",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Squadron"
+      },
+      "b": "c",
+      "c": 1000,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 54,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "y",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet"
+      },
+      "b": "c",
+      "c": 1100,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 55,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "z",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron"
+      },
+      "b": "c",
+      "c": 1200,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 56,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "k",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence"
+      },
+      "b": "c",
+      "c": 1300,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 57,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "d",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 58,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "d",
+      "c": 200,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 59,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "d",
+      "c": 300,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 60,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "ab",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet - Jump"
+      },
+      "b": "d",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 61,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "d",
+      "c": 600,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 62,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "ab",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet - Jump"
+      },
+      "b": "d",
+      "c": 700,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 63,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "d",
+      "c": 800,
+      "d": 1,
+      "e": 3,
+      "f": true
+    },
+    {
+      "_index": 64,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "d",
+      "c": 500,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 65,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "ac",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron - Jump"
+      },
+      "b": "d",
+      "c": 900,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 66,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "h",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron"
+      },
+      "b": "d",
+      "c": 1200,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 67,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "d",
+      "c": 1300,
+      "d": 2,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 68,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "d",
+      "c": 1400,
+      "d": 2,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 69,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "d",
+      "c": 1500,
+      "d": 2,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 70,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "j",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron"
+      },
+      "b": "d",
+      "c": 1800,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 71,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "i",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group"
+      },
+      "b": "d",
+      "c": 1250,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 72,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "ab",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet - Jump"
+      },
+      "b": "d",
+      "c": 2000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 73,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "d",
+      "c": 1000,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 74,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "ad",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Jump"
+      },
+      "b": "d",
+      "c": 1100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 75,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "k",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence"
+      },
+      "b": "d",
+      "c": 1600,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 76,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "s",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group"
+      },
+      "b": "d",
+      "c": 1700,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 77,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "d",
+      "c": 2100,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 78,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "q",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group"
+      },
+      "b": "d",
+      "c": 2200,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 79,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "h",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron"
+      },
+      "b": "d",
+      "c": 2300,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 80,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "ad",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Jump"
+      },
+      "b": "d",
+      "c": 2400,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 81,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "ac",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron - Jump"
+      },
+      "b": "d",
+      "c": 2500,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 82,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "s",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group"
+      },
+      "b": "d",
+      "c": 2600,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 83,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "j",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron"
+      },
+      "b": "d",
+      "c": 2700,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 84,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "i",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group"
+      },
+      "b": "d",
+      "c": 2800,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 85,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "e",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences"
+      },
+      "b": "d",
+      "c": 2900,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 86,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "ab",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet - Jump"
+      },
+      "b": "d",
+      "c": 3000,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 87,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "k",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence"
+      },
+      "b": "d",
+      "c": 3100,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 88,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "d",
+      "c": 3200,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 89,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "d",
+      "c": 3300,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 90,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "ac",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron - Jump"
+      },
+      "b": "d",
+      "c": 3400,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 91,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "q",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group"
+      },
+      "b": "d",
+      "c": 3500,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 92,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "h",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron"
+      },
+      "b": "d",
+      "c": 3600,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 93,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "ad",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Jump"
+      },
+      "b": "d",
+      "c": 3700,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 94,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "j",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron"
+      },
+      "b": "d",
+      "c": 3800,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 95,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "d",
+      "c": 3900,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 96,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "s",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group"
+      },
+      "b": "d",
+      "c": 4000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 97,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "i",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group"
+      },
+      "b": "d",
+      "c": 4100,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 98,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "ab",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Missile Battle Fleet - Jump"
+      },
+      "b": "d",
+      "c": 4200,
+      "d": 1,
+      "e": 5,
+      "f": false
+    },
+    {
+      "_index": 99,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "k",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence"
+      },
+      "b": "d",
+      "c": 4300,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 100,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "ac",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Hunter Squadron - Jump"
+      },
+      "b": "d",
+      "c": 4400,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 101,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "af",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Star Swarm Scout Squadron"
+      },
+      "b": "e",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 102,
+      "a": {
+        "_type": "u",
+        "e": "m",
+        "f": "ag",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Swarm Extraction Squadron"
+      },
+      "b": "e",
+      "c": 200,
+      "d": 5,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 103,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "ah",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Swarm Salvage Squadron"
+      },
+      "b": "e",
+      "c": 300,
+      "d": 3,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 104,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "ai",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Swarm Cruiser Squadron"
+      },
+      "b": "e",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 105,
+      "a": {
+        "_type": "u",
+        "e": "v",
+        "f": "aj",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Swarm Boarding Fleet"
+      },
+      "b": "e",
+      "c": 500,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 106,
+      "a": {
+        "_type": "u",
+        "e": "w",
+        "f": "ak",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Small Hive Fleet"
+      },
+      "b": "e",
+      "c": 600,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 107,
+      "a": {
+        "_type": "u",
+        "e": "w",
+        "f": "al",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Medium Hive Fleet"
+      },
+      "b": "e",
+      "c": 700,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 108,
+      "a": {
+        "_type": "u",
+        "e": "w",
+        "f": "am",
+        "g": 2,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Large Hive Fleet"
+      },
+      "b": "e",
+      "c": 800,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 109,
+      "a": {
+        "_type": "u",
+        "e": "w",
+        "f": "an",
+        "g": 3,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Very Large Hive Fleet"
+      },
+      "b": "e",
+      "c": 900,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 110,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "ao",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Swarm Assault Squadron"
+      },
+      "b": "e",
+      "c": 1000,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 111,
+      "a": {
+        "_type": "u",
+        "e": "x",
+        "f": "ap",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Swarm Attack Squadron"
+      },
+      "b": "e",
+      "c": 1100,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 112,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "aq",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Swarm Geological Survey"
+      },
+      "b": "e",
+      "c": 1200,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 113,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "ar",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Swarm Gravitational Survey"
+      },
+      "b": "e",
+      "c": 1300,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 114,
+      "a": {
+        "_type": "u",
+        "e": "z",
+        "f": "as",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Diplomatic Ship"
+      },
+      "b": "b",
+      "c": 1550,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 115,
+      "a": {
+        "_type": "u",
+        "e": "z",
+        "f": "as",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Diplomatic Ship"
+      },
+      "b": "d",
+      "c": 1550,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 116,
+      "a": {
+        "_type": "u",
+        "e": "z",
+        "f": "as",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Diplomatic Ship"
+      },
+      "b": "d",
+      "c": 3350,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 117,
+      "a": {
+        "_type": "u",
+        "e": "z",
+        "f": "as",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Diplomatic Ship"
+      },
+      "b": "b",
+      "c": 3050,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 118,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "f",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 119,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "f",
+      "c": 200,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 120,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "f",
+      "c": 300,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 121,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "y",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet"
+      },
+      "b": "f",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 122,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "f",
+      "c": 500,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 123,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "f",
+      "c": 600,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 124,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "y",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet"
+      },
+      "b": "f",
+      "c": 900,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 125,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "f",
+      "c": 1000,
+      "d": 1,
+      "e": 3,
+      "f": true
+    },
+    {
+      "_index": 126,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "z",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron"
+      },
+      "b": "f",
+      "c": 1100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 127,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "f",
+      "c": 1200,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 128,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "au",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Beam Escort"
+      },
+      "b": "f",
+      "c": 1250,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 129,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "f",
+      "c": 1300,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 130,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "f",
+      "c": 1400,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 131,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "f",
+      "c": 1500,
+      "d": 2,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 132,
+      "a": {
+        "_type": "u",
+        "e": "z",
+        "f": "as",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Diplomatic Ship"
+      },
+      "b": "f",
+      "c": 1550,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 133,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "f",
+      "c": 1600,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 134,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "aw",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Beam Only"
+      },
+      "b": "f",
+      "c": 1700,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 135,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "ax",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group  Beam Escort"
+      },
+      "b": "f",
+      "c": 1750,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 136,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "ay",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron - Beam Escort"
+      },
+      "b": "f",
+      "c": 1800,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 137,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "az",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Beam Escort"
+      },
+      "b": "f",
+      "c": 1350,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 138,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "y",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet"
+      },
+      "b": "f",
+      "c": 2000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 139,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "f",
+      "c": 2100,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 140,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "bf",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group - Beam Escort"
+      },
+      "b": "f",
+      "c": 2150,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 141,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "f",
+      "c": 2200,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 142,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "au",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Beam Escort"
+      },
+      "b": "f",
+      "c": 2250,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 143,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "z",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron"
+      },
+      "b": "f",
+      "c": 2300,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 144,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "ax",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group  Beam Escort"
+      },
+      "b": "f",
+      "c": 2350,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 145,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "ay",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron - Beam Escort"
+      },
+      "b": "f",
+      "c": 2400,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 146,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "az",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Beam Escort"
+      },
+      "b": "f",
+      "c": 2500,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 147,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "f",
+      "c": 2600,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 148,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "y",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet"
+      },
+      "b": "f",
+      "c": 2700,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 149,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "aw",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Beam Only"
+      },
+      "b": "f",
+      "c": 2800,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 150,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "f",
+      "c": 2900,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 151,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "f",
+      "c": 3000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 152,
+      "a": {
+        "_type": "u",
+        "e": "z",
+        "f": "as",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Diplomatic Ship"
+      },
+      "b": "f",
+      "c": 3050,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 153,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "z",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron"
+      },
+      "b": "f",
+      "c": 3100,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 154,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "bf",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group - Beam Escort"
+      },
+      "b": "f",
+      "c": 3150,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 155,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "f",
+      "c": 3200,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 156,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "au",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Beam Escort"
+      },
+      "b": "f",
+      "c": 3250,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 157,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "ay",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron - Beam Escort"
+      },
+      "b": "f",
+      "c": 3300,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 158,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "f",
+      "c": 3400,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 159,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "ax",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group  Beam Escort"
+      },
+      "b": "f",
+      "c": 3450,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 160,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "az",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Beam Escort"
+      },
+      "b": "f",
+      "c": 3500,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 161,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "y",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet"
+      },
+      "b": "f",
+      "c": 3600,
+      "d": 1,
+      "e": 5,
+      "f": false
+    },
+    {
+      "_index": 162,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "aw",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Beam Only"
+      },
+      "b": "f",
+      "c": 3700,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 163,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "z",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron"
+      },
+      "b": "f",
+      "c": 3800,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 164,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "g",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 165,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "g",
+      "c": 200,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 166,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "a3",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Invader Scout"
+      },
+      "b": "g",
+      "c": 300,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 167,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a2",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Attack Squadron"
+      },
+      "b": "g",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 168,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "g",
+      "c": 500,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 169,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "g",
+      "c": 600,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 170,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a2",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Attack Squadron"
+      },
+      "b": "g",
+      "c": 700,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 171,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "g",
+      "c": 800,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 172,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a1",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Battle Squadron"
+      },
+      "b": "g",
+      "c": 900,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 173,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "a3",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Invader Scout"
+      },
+      "b": "g",
+      "c": 1000,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 174,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "g",
+      "c": 1100,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 175,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a1",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Battle Squadron"
+      },
+      "b": "g",
+      "c": 1300,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 176,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "g",
+      "c": 1400,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 177,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a2",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Attack Squadron"
+      },
+      "b": "g",
+      "c": 1500,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 178,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "a3",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Invader Scout"
+      },
+      "b": "g",
+      "c": 1600,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 179,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a0",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Battle Fleet"
+      },
+      "b": "g",
+      "c": 1700,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 180,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "g",
+      "c": 1800,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 181,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "g",
+      "c": 1900,
+      "d": 1,
+      "e": 5,
+      "f": false
+    },
+    {
+      "_index": 182,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a0",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Battle Fleet"
+      },
+      "b": "g",
+      "c": 2000,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 183,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "a3",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Invader Scout"
+      },
+      "b": "g",
+      "c": 2100,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 184,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "g",
+      "c": 2200,
+      "d": 1,
+      "e": 5,
+      "f": false
+    },
+    {
+      "_index": 185,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "g",
+      "c": 2300,
+      "d": 1,
+      "e": 6,
+      "f": false
+    },
+    {
+      "_index": 186,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a4",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Large Battle Fleet"
+      },
+      "b": "g",
+      "c": 2400,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 187,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a4",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Invader Large Battle Fleet"
+      },
+      "b": "g",
+      "c": 2500,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 188,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "h",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 189,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "h",
+      "c": 200,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 190,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "h",
+      "c": 300,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 191,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a5",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet - Jump"
+      },
+      "b": "h",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 192,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "h",
+      "c": 500,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 193,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "h",
+      "c": 600,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 194,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a5",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet - Jump"
+      },
+      "b": "h",
+      "c": 900,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 195,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "h",
+      "c": 1000,
+      "d": 1,
+      "e": 3,
+      "f": true
+    },
+    {
+      "_index": 196,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "a6",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron - Jump"
+      },
+      "b": "h",
+      "c": 1100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 197,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "h",
+      "c": 1200,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 198,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "a7",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Beam Escort - Jump"
+      },
+      "b": "h",
+      "c": 1250,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 199,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "h",
+      "c": 1300,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 200,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "h",
+      "c": 1400,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 201,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "h",
+      "c": 1500,
+      "d": 2,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 202,
+      "a": {
+        "_type": "u",
+        "e": "z",
+        "f": "as",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Diplomatic Ship"
+      },
+      "b": "h",
+      "c": 1550,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 203,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "h",
+      "c": 1600,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 204,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "aw",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Beam Only"
+      },
+      "b": "h",
+      "c": 1700,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 205,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "ax",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group  Beam Escort"
+      },
+      "b": "h",
+      "c": 1750,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 206,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "ay",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron - Beam Escort"
+      },
+      "b": "h",
+      "c": 1800,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 207,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "az",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Beam Escort"
+      },
+      "b": "h",
+      "c": 1350,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 208,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a5",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet - Jump"
+      },
+      "b": "h",
+      "c": 2000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 209,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "h",
+      "c": 2100,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 210,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "bf",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group - Beam Escort"
+      },
+      "b": "h",
+      "c": 2150,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 211,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "h",
+      "c": 2200,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 212,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "a7",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Beam Escort - Jump"
+      },
+      "b": "h",
+      "c": 2250,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 213,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "a6",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron - Jump"
+      },
+      "b": "h",
+      "c": 2300,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 214,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "ax",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group  Beam Escort"
+      },
+      "b": "h",
+      "c": 2350,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 215,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "ay",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron - Beam Escort"
+      },
+      "b": "h",
+      "c": 2400,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 216,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "az",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Beam Escort"
+      },
+      "b": "h",
+      "c": 2500,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 217,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "h",
+      "c": 2600,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 218,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a5",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet - Jump"
+      },
+      "b": "h",
+      "c": 2700,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 219,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "aw",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Beam Only"
+      },
+      "b": "h",
+      "c": 2800,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 220,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "h",
+      "c": 2900,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 221,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "f",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Scout"
+      },
+      "b": "h",
+      "c": 3000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 222,
+      "a": {
+        "_type": "u",
+        "e": "z",
+        "f": "as",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Diplomatic Ship"
+      },
+      "b": "h",
+      "c": 3050,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 223,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "a6",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron - Jump"
+      },
+      "b": "h",
+      "c": 3100,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 224,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "bf",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group - Beam Escort"
+      },
+      "b": "h",
+      "c": 3150,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 225,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "av",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Squadron - Beam Escort"
+      },
+      "b": "h",
+      "c": 3200,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 226,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "a7",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Beam Escort - Jump"
+      },
+      "b": "h",
+      "c": 3250,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 227,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "ay",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Squadron - Beam Escort"
+      },
+      "b": "h",
+      "c": 3300,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 228,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "h",
+      "c": 3400,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 229,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "ax",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group  Beam Escort"
+      },
+      "b": "h",
+      "c": 3450,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 230,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "az",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Beam Escort"
+      },
+      "b": "h",
+      "c": 3500,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 231,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "a5",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-only Battle Fleet - Jump"
+      },
+      "b": "h",
+      "c": 3600,
+      "d": 1,
+      "e": 5,
+      "f": false
+    },
+    {
+      "_index": 232,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "aw",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Beam Only"
+      },
+      "b": "f",
+      "c": 3700,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 233,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "a6",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Beam-Only DD Squadron - Jump"
+      },
+      "b": "h",
+      "c": 3800,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 234,
+      "a": {
+        "_type": "u",
+        "e": "aa",
+        "f": "a8",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Raider"
+      },
+      "b": "i",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 235,
+      "a": {
+        "_type": "u",
+        "e": "aa",
+        "f": "a8",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Raider"
+      },
+      "b": "i",
+      "c": 200,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 236,
+      "a": {
+        "_type": "u",
+        "e": "aa",
+        "f": "a9",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Raider Squadron"
+      },
+      "b": "i",
+      "c": 300,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 237,
+      "a": {
+        "_type": "u",
+        "e": "aa",
+        "f": "ba",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Raiding Group"
+      },
+      "b": "i",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 238,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "bb",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Eldar Salvage"
+      },
+      "b": "i",
+      "c": 250,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 239,
+      "a": {
+        "_type": "u",
+        "e": "aa",
+        "f": "a8",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Raider"
+      },
+      "b": "i",
+      "c": 500,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 240,
+      "a": {
+        "_type": "u",
+        "e": "aa",
+        "f": "a9",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Raider Squadron"
+      },
+      "b": "i",
+      "c": 600,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 241,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "bb",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Eldar Salvage"
+      },
+      "b": "i",
+      "c": 700,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 242,
+      "a": {
+        "_type": "u",
+        "e": "aa",
+        "f": "a8",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Raider"
+      },
+      "b": "i",
+      "c": 800,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 243,
+      "a": {
+        "_type": "u",
+        "e": "aa",
+        "f": "ba",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Raiding Group"
+      },
+      "b": "i",
+      "c": 900,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 244,
+      "a": {
+        "_type": "u",
+        "e": "ab",
+        "f": "bc",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Slave Transport"
+      },
+      "b": "i",
+      "c": 225,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 245,
+      "a": {
+        "_type": "u",
+        "e": "ab",
+        "f": "bc",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Slave Transport"
+      },
+      "b": "i",
+      "c": 650,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 246,
+      "a": {
+        "_type": "u",
+        "e": "ab",
+        "f": "bc",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Slave Transport"
+      },
+      "b": "i",
+      "c": 1000,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 247,
+      "a": {
+        "_type": "u",
+        "e": "ab",
+        "f": "bc",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Slave Transport"
+      },
+      "b": "i",
+      "c": 450,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 248,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "bd",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Eldar Troop Transport"
+      },
+      "b": "i",
+      "c": 350,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 249,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "bd",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Eldar Troop Transport"
+      },
+      "b": "i",
+      "c": 625,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 250,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "bd",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Eldar Troop Transport"
+      },
+      "b": "i",
+      "c": 1100,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 251,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "b",
+      "c": 450,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 252,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "b",
+      "c": 950,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 253,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "b",
+      "c": 2050,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 254,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "b",
+      "c": 2750,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 255,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "b",
+      "c": 3650,
+      "d": 1,
+      "e": 5,
+      "f": false
+    },
+    {
+      "_index": 256,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "c",
+      "c": 350,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 257,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "d",
+      "c": 450,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 258,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "d",
+      "c": 750,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 259,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "d",
+      "c": 2050,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 260,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "d",
+      "c": 3050,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 261,
+      "a": {
+        "_type": "u",
+        "e": "ac",
+        "f": "be",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "FAC Flotilla"
+      },
+      "b": "d",
+      "c": 4250,
+      "d": 1,
+      "e": 5,
+      "f": false
+    },
+    {
+      "_index": 262,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "j",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 263,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "j",
+      "c": 200,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 264,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "j",
+      "c": 300,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 265,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "bi",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Dreadnought Battle Fleet"
+      },
+      "b": "j",
+      "c": 400,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 266,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "j",
+      "c": 500,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 267,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "br",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Beam-Armed Scout"
+      },
+      "b": "j",
+      "c": 600,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 268,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "bi",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Dreadnought Battle Fleet"
+      },
+      "b": "j",
+      "c": 900,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 269,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "bh",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Dreadnought Squadron"
+      },
+      "b": "j",
+      "c": 1000,
+      "d": 1,
+      "e": 3,
+      "f": true
+    },
+    {
+      "_index": 270,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "bg",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Dreadnought"
+      },
+      "b": "j",
+      "c": 1100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 271,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "j",
+      "c": 1200,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 272,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "bk",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Large Escort"
+      },
+      "b": "j",
+      "c": 1250,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 273,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "bl",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Ship"
+      },
+      "b": "j",
+      "c": 1300,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 274,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "j",
+      "c": 1400,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 275,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "j",
+      "c": 1500,
+      "d": 2,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 276,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "br",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Beam-Armed Scout"
+      },
+      "b": "j",
+      "c": 1600,
+      "d": 1,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 277,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "bj",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Dreadnought"
+      },
+      "b": "j",
+      "c": 1700,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 278,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "bm",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group - Large Escort"
+      },
+      "b": "j",
+      "c": 1750,
+      "d": 2,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 279,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "bn",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Ship"
+      },
+      "b": "j",
+      "c": 1800,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 280,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "bo",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Large Escort"
+      },
+      "b": "j",
+      "c": 1900,
+      "d": 2,
+      "e": 2,
+      "f": true
+    },
+    {
+      "_index": 281,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "bi",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Dreadnought Battle Fleet"
+      },
+      "b": "j",
+      "c": 2000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 282,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "j",
+      "c": 2100,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 283,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "bs",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group - Large Escort"
+      },
+      "b": "f",
+      "c": 2150,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 284,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "bl",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Ship"
+      },
+      "b": "j",
+      "c": 2200,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 285,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "bk",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Large Escort"
+      },
+      "b": "j",
+      "c": 2250,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 286,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "bg",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Dreadnought"
+      },
+      "b": "j",
+      "c": 2300,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 287,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "bm",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group - Large Escort"
+      },
+      "b": "j",
+      "c": 2350,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 288,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "bn",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Ship"
+      },
+      "b": "j",
+      "c": 2400,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 289,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "bo",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Large Escort"
+      },
+      "b": "j",
+      "c": 2500,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 290,
+      "a": {
+        "_type": "u",
+        "e": "e",
+        "f": "at",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": true,
+        "m": "Orbital Defences - Beam Only"
+      },
+      "b": "j",
+      "c": 2600,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 291,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "bh",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Dreadnought Squadron"
+      },
+      "b": "j",
+      "c": 2700,
+      "d": 1,
+      "e": 2,
+      "f": false
+    },
+    {
+      "_index": 292,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "bg",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Dreadnought"
+      },
+      "b": "j",
+      "c": 2710,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 293,
+      "a": {
+        "_type": "u",
+        "e": "c",
+        "f": "c",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Geological Survey"
+      },
+      "b": "j",
+      "c": 2800,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 294,
+      "a": {
+        "_type": "u",
+        "e": "d",
+        "f": "d",
+        "g": 0,
+        "h": 0,
+        "i": true,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Gravitational Survey"
+      },
+      "b": "j",
+      "c": 2900,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 295,
+      "a": {
+        "_type": "u",
+        "e": "f",
+        "f": "br",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Beam-Armed Scout"
+      },
+      "b": "j",
+      "c": 3000,
+      "d": 1,
+      "e": 3,
+      "f": false
+    },
+    {
+      "_index": 296,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "bi",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Dreadnought Battle Fleet"
+      },
+      "b": "j",
+      "c": 3100,
+      "d": 1,
+      "e": 4,
+      "f": false
+    },
+    {
+      "_index": 297,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "bj",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Dreadnought"
+      },
+      "b": "j",
+      "c": 2750,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 298,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "bs",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Orbital Miner Group - Large Escort"
+      },
+      "b": "f",
+      "c": 3200,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 299,
+      "a": {
+        "_type": "u",
+        "e": "h",
+        "f": "bl",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Stabilisation Ship"
+      },
+      "b": "j",
+      "c": 3300,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 300,
+      "a": {
+        "_type": "u",
+        "e": "q",
+        "f": "bk",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Troop Transport Group - Large Escort"
+      },
+      "b": "j",
+      "c": 3400,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 301,
+      "a": {
+        "_type": "u",
+        "e": "j",
+        "f": "bn",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Salvage Ship"
+      },
+      "b": "j",
+      "c": 3500,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 302,
+      "a": {
+        "_type": "u",
+        "e": "n",
+        "f": "n",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Tanker"
+      },
+      "b": "j",
+      "c": 3600,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 303,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "bm",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Harvester Group - Large Escort"
+      },
+      "b": "j",
+      "c": 3700,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 304,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "bo",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Terraformer Group - Large Escort"
+      },
+      "b": "j",
+      "c": 3800,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 305,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "bi",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Dreadnought Battle Fleet"
+      },
+      "b": "j",
+      "c": 3900,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 306,
+      "a": {
+        "_type": "u",
+        "e": "k",
+        "f": "bj",
+        "g": 1,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": false,
+        "l": false,
+        "m": "Jump Point Defence - Dreadnought"
+      },
+      "b": "j",
+      "c": 4000,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 307,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "bg",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Dreadnought"
+      },
+      "b": "j",
+      "c": 4100,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 308,
+      "a": {
+        "_type": "u",
+        "e": "g",
+        "f": "bg",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Lone Dreadnought"
+      },
+      "b": "k",
+      "c": 100,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 309,
+      "a": {
+        "_type": "u",
+        "e": "b",
+        "f": "bh",
+        "g": 0,
+        "h": 1,
+        "i": false,
+        "j": false,
+        "k": true,
+        "l": false,
+        "m": "Dreadnought Squadron"
+      },
+      "b": "k",
+      "c": 500,
+      "d": 1,
+      "e": 1,
+      "f": false
+    },
+    {
+      "_index": 310,
+      "a": {
+        "_type": "u",
+        "e": "s",
+        "f": "bz",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Ancient Harvester Group"
+      },
+      "b": "k",
+      "c": 600,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 311,
+      "a": {
+        "_type": "u",
+        "e": "i",
+        "f": "b0",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Ancient Terraform Group"
+      },
+      "b": "k",
+      "c": 700,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 312,
+      "a": {
+        "_type": "u",
+        "e": "p",
+        "f": "b1",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Ancient Mining Group"
+      },
+      "b": "k",
+      "c": 800,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 313,
+      "a": {
+        "_type": "u",
+        "e": "af",
+        "f": "b2",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Ancient Habitat Group"
+      },
+      "b": "k",
+      "c": 900,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 314,
+      "a": {
+        "_type": "u",
+        "e": "af",
+        "f": "b3",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Ancient Large Habitat Group"
+      },
+      "b": "k",
+      "c": 1000,
+      "d": 1,
+      "e": 1,
+      "f": true
+    },
+    {
+      "_index": 315,
+      "a": {
+        "_type": "u",
+        "e": "ag",
+        "f": "b4",
+        "g": 0,
+        "h": 0,
+        "i": false,
+        "j": true,
+        "k": false,
+        "l": false,
+        "m": "Ancient Maintenance Bases"
+      },
+      "b": "k",
+      "c": 1100,
+      "d": 1,
+      "e": 1,
+      "f": true
+    }
+  ]
+}

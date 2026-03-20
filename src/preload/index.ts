@@ -83,6 +83,22 @@ const api = {
     ping: () => ipcRenderer.invoke('bridge:ping'),
     executeAction: (action: unknown) => ipcRenderer.invoke('bridge:executeAction', action),
     inspectForm: (formName: string) => ipcRenderer.invoke('bridge:inspectForm', formName),
+    getKnownSystems: () => ipcRenderer.invoke('bridge:getKnownSystems'),
+    getFleets: () => ipcRenderer.invoke('bridge:getFleets'),
+    getShips: (fleetId?: number) => ipcRenderer.invoke('bridge:getShips', fleetId),
+    dumpMemory: () => ipcRenderer.invoke('bridge:dumpMemory'),
+    enumerateGameState: () => ipcRenderer.invoke('bridge:enumerateGameState'),
+    enumerateCollections: () => ipcRenderer.invoke('bridge:enumerateCollections'),
+    readCollection: (params: {
+      Field: string
+      Offset?: number
+      Limit?: number
+      Fields?: string[]
+      IncludeRefs?: boolean
+      FilterField?: string
+      FilterValue?: string
+    }) => ipcRenderer.invoke('bridge:readCollection', params),
+    readField: (fieldName: string) => ipcRenderer.invoke('bridge:readField', fieldName),
     onPush: (callback: (data: unknown) => void): (() => void) => {
       const subscription = (_event: IpcRendererEvent, data: unknown): void => callback(data)
       ipcRenderer.on('bridge:push', subscription)

@@ -1,0 +1,560 @@
+{
+  "_field": "b6",
+  "_type": "hr",
+  "_collectionType": "Dict",
+  "_count": 47,
+  "_dumped": 47,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "enum"
+    },
+    {
+      "name": "c",
+      "type": "int"
+    },
+    {
+      "name": "d",
+      "type": "bool"
+    },
+    {
+      "name": "e",
+      "type": "bool"
+    },
+    {
+      "name": "f",
+      "type": "bool"
+    },
+    {
+      "name": "g",
+      "type": "string"
+    },
+    {
+      "name": "h",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "NoOrder",
+      "b": "Other",
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "S",
+      "h": "None"
+    },
+    {
+      "_index": 1,
+      "a": "SurveyNearestAsteroid",
+      "b": "Survey",
+      "c": 200,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Asteroid"
+    },
+    {
+      "_index": 2,
+      "a": "SurveyNearestMoon",
+      "b": "Survey",
+      "c": 210,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Moon"
+    },
+    {
+      "_index": 3,
+      "a": "SurveyNearestPlanet",
+      "b": "Survey",
+      "c": 220,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Planet"
+    },
+    {
+      "_index": 4,
+      "a": "SurveyNearestBody",
+      "b": "Survey",
+      "c": 10,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Body"
+    },
+    {
+      "_index": 5,
+      "a": "SurveyNearestSurveyLocation",
+      "b": "Survey",
+      "c": 25,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Survey Location"
+    },
+    {
+      "_index": 6,
+      "a": "MoveToSystemRequiringGeosurvey",
+      "b": "MoveTo",
+      "c": 20,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Geosurvey System"
+    },
+    {
+      "_index": 7,
+      "a": "MovetoEntryJumpPoint",
+      "b": "MoveTo",
+      "c": 40,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "S",
+      "h": "MV: Entry Jump Point"
+    },
+    {
+      "_index": 8,
+      "a": "SurveyNearestPlanetorMoon",
+      "b": "Survey",
+      "c": 230,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Planet or Moon"
+    },
+    {
+      "_index": 9,
+      "a": "MoveToSystemRequiringGravsurvey",
+      "b": "MoveTo",
+      "c": 35,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Gravsurvey System"
+    },
+    {
+      "_index": 10,
+      "a": "SurveyNextFiveSystemBodies",
+      "b": "Survey",
+      "c": 15,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Five System Bodies "
+    },
+    {
+      "_index": 11,
+      "a": "SurveyNextThreeSystemLocations",
+      "b": "Survey",
+      "c": 30,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Three Locations"
+    },
+    {
+      "_index": 12,
+      "a": "LoadColonistsFromColonistSource",
+      "b": "LoadAndUnload",
+      "c": 90,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "LD: Colonists"
+    },
+    {
+      "_index": 13,
+      "a": "LoadColonistsatCapital",
+      "b": "LoadAndUnload",
+      "c": 100,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "LD: Colonists at Capital"
+    },
+    {
+      "_index": 14,
+      "a": "UnloadColonists",
+      "b": "LoadAndUnload",
+      "c": 110,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "UL: Colonists"
+    },
+    {
+      "_index": 15,
+      "a": "StabiliseNearestJumpPoint",
+      "b": "MoveTo",
+      "c": 120,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Stabilise JP"
+    },
+    {
+      "_index": 16,
+      "a": "LoadAutomatedMineFromPopulatedColony",
+      "b": "LoadAndUnload",
+      "c": 130,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "LD: AM from Population"
+    },
+    {
+      "_index": 17,
+      "a": "DeliverAutomatedMineToMiningColony",
+      "b": "LoadAndUnload",
+      "c": 140,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "UL: AM at AM Colony"
+    },
+    {
+      "_index": 18,
+      "a": "MovetoNearestTradeLocation",
+      "b": "MoveTo",
+      "c": 150,
+      "d": true,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Trade Location"
+    },
+    {
+      "_index": 19,
+      "a": "UnloadPassengers",
+      "b": "LoadAndUnload",
+      "c": 160,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "UL: Passengers"
+    },
+    {
+      "_index": 20,
+      "a": "MovetoGasGiantwithSorium",
+      "b": "MoveTo",
+      "c": 180,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Sorium Gas Giant"
+    },
+    {
+      "_index": 21,
+      "a": "SalvageNearestWreck",
+      "b": "MoveTo",
+      "c": 80,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Salvage Wreck"
+    },
+    {
+      "_index": 22,
+      "a": "TerraformColony",
+      "b": "MoveTo",
+      "c": 190,
+      "d": true,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Terraform Colony"
+    },
+    {
+      "_index": 23,
+      "a": "LoadPassengers",
+      "b": "LoadAndUnload",
+      "c": 95,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "LD: Passengers"
+    },
+    {
+      "_index": 24,
+      "a": "MovetoGasGiantwithSorium10mPop",
+      "b": "MoveTo",
+      "c": 185,
+      "d": true,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Sorium GG 10m Pop"
+    },
+    {
+      "_index": 25,
+      "a": "LandOnMothership",
+      "b": "MoveTo",
+      "c": 115,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "S",
+      "h": "MV: Assigned Mothership"
+    },
+    {
+      "_index": 26,
+      "a": "TransferFuelToColony",
+      "b": "Logistics",
+      "c": 65,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "S",
+      "h": "LG: Transfer Fuel To Colony"
+    },
+    {
+      "_index": 27,
+      "a": "RefuelatColony",
+      "b": "Logistics",
+      "c": 45,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "LG: Refuel at Colony"
+    },
+    {
+      "_index": 28,
+      "a": "ActivateShields",
+      "b": "InstantOrder",
+      "c": 240,
+      "d": false,
+      "e": false,
+      "f": true,
+      "g": "S",
+      "h": "IA: Activate Shields"
+    },
+    {
+      "_index": 29,
+      "a": "DeactivateShields",
+      "b": "InstantOrder",
+      "c": 250,
+      "d": false,
+      "e": false,
+      "f": true,
+      "g": "S",
+      "h": "IA: Deactivate Shields"
+    },
+    {
+      "_index": 30,
+      "a": "ClearOrderList",
+      "b": "InstantOrder",
+      "c": 290,
+      "d": false,
+      "e": false,
+      "f": true,
+      "g": "S",
+      "h": "IA: Clear Order List"
+    },
+    {
+      "_index": 31,
+      "a": "ChangetoMaximumSpeed",
+      "b": "InstantOrder",
+      "c": 280,
+      "d": false,
+      "e": false,
+      "f": true,
+      "g": "S",
+      "h": "IA: Maximum Speed"
+    },
+    {
+      "_index": 32,
+      "a": "ActiveSensorsOn",
+      "b": "InstantOrder",
+      "c": 260,
+      "d": false,
+      "e": false,
+      "f": true,
+      "g": "S",
+      "h": "IA: Active Sensors On"
+    },
+    {
+      "_index": 33,
+      "a": "OverhaulatColony",
+      "b": "Logistics",
+      "c": 270,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "LG: Overhaul at Colony"
+    },
+    {
+      "_index": 34,
+      "a": "UnloadFuelatColonyandReturn",
+      "b": "Logistics",
+      "c": 70,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "S",
+      "h": "LG: Transfer Fuel and Return"
+    },
+    {
+      "_index": 35,
+      "a": "ResupplyatColony",
+      "b": "Logistics",
+      "c": 76,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "LG: Resupply at Colony"
+    },
+    {
+      "_index": 36,
+      "a": "InvestigatePOI",
+      "b": "MoveTo",
+      "c": 82,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Point of Interest"
+    },
+    {
+      "_index": 37,
+      "a": "MoveToRendezvousPoint",
+      "b": "MoveTo",
+      "c": 84,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "MV: Rendezvous Point"
+    },
+    {
+      "_index": 38,
+      "a": "JoinOperationalGroup",
+      "b": "MoveTo",
+      "c": 116,
+      "d": true,
+      "e": true,
+      "f": false,
+      "g": "A",
+      "h": "MV: Operational Group"
+    },
+    {
+      "_index": 39,
+      "a": "SurveyNextThirtySystemBodies",
+      "b": "Survey",
+      "c": 16,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Thirty System Bodies"
+    },
+    {
+      "_index": 40,
+      "a": "PickupNearestLifepod",
+      "b": "MoveTo",
+      "c": 165,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "MV: Rescue Lifepod"
+    },
+    {
+      "_index": 41,
+      "a": "ReplenishOverhaul",
+      "b": "Logistics",
+      "c": 271,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "LG: Replenish Overhaul"
+    },
+    {
+      "_index": 42,
+      "a": "SurveyNextThreeSystemBodiesOrLocations",
+      "b": "Survey",
+      "c": 31,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "S",
+      "h": "SV: Three SB/Locations"
+    },
+    {
+      "_index": 43,
+      "a": "ReplenishAtColony",
+      "b": "Logistics",
+      "c": 1,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "LG: Replenish at Colony"
+    },
+    {
+      "_index": 44,
+      "a": "MoveToFleetWaypoint",
+      "b": "MoveTo",
+      "c": 1,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "MV: Fleet Waypoint"
+    },
+    {
+      "_index": 45,
+      "a": "RefuelFromTanker",
+      "b": "Logistics",
+      "c": 46,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "LG: Refuel from Tanker"
+    },
+    {
+      "_index": 46,
+      "a": "ReplenishFromShip",
+      "b": "Logistics",
+      "c": 1,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "A",
+      "h": "LG: Replenish from Ship"
+    }
+  ]
+}

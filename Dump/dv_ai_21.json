@@ -1,0 +1,403 @@
+{
+  "_field": "dv",
+  "_type": "ai",
+  "_collectionType": "Dict",
+  "_count": 21,
+  "_dumped": 21,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "ref:io"
+    },
+    {
+      "name": "c",
+      "type": "enum"
+    },
+    {
+      "name": "d",
+      "type": "enum"
+    },
+    {
+      "name": "e",
+      "type": "enum"
+    },
+    {
+      "name": "f",
+      "type": "int"
+    },
+    {
+      "name": "g",
+      "type": "int"
+    },
+    {
+      "name": "h",
+      "type": "string"
+    },
+    {
+      "name": "i",
+      "type": "string"
+    },
+    {
+      "name": "j",
+      "type": "ref:List`1"
+    },
+    {
+      "name": "k",
+      "type": "ref:gm"
+    },
+    {
+      "name": "l",
+      "type": "int"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "b",
+      "c": "a",
+      "d": "FrontlineDefence",
+      "e": "a",
+      "f": 3,
+      "g": 6,
+      "h": "Garrison",
+      "i": "GAR",
+      "l": 0
+    },
+    {
+      "_index": 1,
+      "a": "c",
+      "c": "a",
+      "d": "FrontlineDefence",
+      "e": "a",
+      "f": 0,
+      "g": 7,
+      "h": "Civilian Garrison",
+      "i": "CGR",
+      "l": 0
+    },
+    {
+      "_index": 2,
+      "a": "d",
+      "c": "a",
+      "d": "FrontlineDefence",
+      "e": "a",
+      "f": 9,
+      "g": 3,
+      "h": "Infantry Regiment",
+      "i": "INF",
+      "l": 0
+    },
+    {
+      "_index": 3,
+      "a": "e",
+      "c": "a",
+      "d": "FrontlineAttack",
+      "e": "b",
+      "f": 3,
+      "g": 2,
+      "h": "Armour Regiment",
+      "i": "ARM",
+      "l": 0
+    },
+    {
+      "_index": 4,
+      "a": "f",
+      "c": "a",
+      "d": "FrontlineDefence",
+      "e": "a",
+      "f": 0,
+      "g": 8,
+      "h": "Preindustrial Regiment",
+      "i": "PRE",
+      "l": 0
+    },
+    {
+      "_index": 5,
+      "a": "g",
+      "c": "a",
+      "d": "Support",
+      "e": "c",
+      "f": 3,
+      "g": 5,
+      "h": "Infantry Brigade HQ",
+      "i": "BHI",
+      "l": 0
+    },
+    {
+      "_index": 6,
+      "a": "h",
+      "c": "a",
+      "d": "Support",
+      "e": "c",
+      "f": 1,
+      "g": 4,
+      "h": "Armour Brigade HQ",
+      "i": "BHA",
+      "l": 0
+    },
+    {
+      "_index": 7,
+      "a": "i",
+      "c": "a",
+      "d": "RearEchelon",
+      "e": "d",
+      "f": 3,
+      "g": 1,
+      "h": "Planetary Defence Regiment",
+      "i": "PDR",
+      "l": 0
+    },
+    {
+      "_index": 8,
+      "a": "j",
+      "c": "b",
+      "d": "FrontlineDefence",
+      "e": "a",
+      "f": 0,
+      "g": 1,
+      "h": "Precursor Mech Battalion",
+      "i": "PMB",
+      "l": 0
+    },
+    {
+      "_index": 9,
+      "a": "k",
+      "c": "b",
+      "d": "Support",
+      "e": "c",
+      "f": 0,
+      "g": 1,
+      "h": "Precursor Planetary HQ",
+      "i": "PHQ",
+      "l": 0
+    },
+    {
+      "_index": 10,
+      "a": "l",
+      "c": "b",
+      "d": "RearEchelon",
+      "e": "d",
+      "f": 0,
+      "g": 1,
+      "h": "Precursor Defence Regiment",
+      "i": "PDR",
+      "l": 0
+    },
+    {
+      "_index": 11,
+      "a": "m",
+      "b": {
+        "_type": "io",
+        "e": "h",
+        "g": 65897,
+        "h": 0,
+        "i": 65781,
+        "j": 0,
+        "k": 2500,
+        "l": 0,
+        "m": 0,
+        "n": 0,
+        "o": 0,
+        "p": 0,
+        "q": false,
+        "r": false,
+        "s": false,
+        "t": false,
+        "u": false,
+        "v": "none",
+        "w": "A ground unit with this component can conduct ground-based planetary surveys",
+        "x": "Geosurvey Equipment",
+        "y": 0
+      },
+      "c": "a",
+      "d": "RearEchelon",
+      "e": "e",
+      "f": 1,
+      "g": 10,
+      "h": "Survey Expedition",
+      "i": "GEO",
+      "l": 0
+    },
+    {
+      "_index": 12,
+      "a": "n",
+      "b": {
+        "_type": "io",
+        "e": "h",
+        "g": 66653,
+        "h": 0,
+        "i": 65781,
+        "j": 0,
+        "k": 2500,
+        "l": 0,
+        "m": 0,
+        "n": 0,
+        "o": 0,
+        "p": 0,
+        "q": false,
+        "r": false,
+        "s": false,
+        "t": false,
+        "u": false,
+        "v": "none",
+        "w": "A ground unit with this component can investigate alien ruins",
+        "x": "Xenoarchaeology Equipment",
+        "y": 0
+      },
+      "c": "a",
+      "d": "RearEchelon",
+      "e": "e",
+      "f": 1,
+      "g": 9,
+      "h": "Xenoarchaeology Expedition",
+      "i": "XEN",
+      "l": 0
+    },
+    {
+      "_index": 13,
+      "a": "o",
+      "b": {
+        "_type": "io",
+        "e": "h",
+        "g": 65813,
+        "h": 0,
+        "i": 65781,
+        "j": 0,
+        "k": 2500,
+        "l": 0,
+        "m": 0,
+        "n": 0,
+        "o": 0,
+        "p": 0,
+        "q": false,
+        "r": false,
+        "s": false,
+        "t": false,
+        "u": false,
+        "v": "none",
+        "w": "A ground unit with this component can function as a partial construction factory or fortify other ground units",
+        "x": "Construction Equipment",
+        "y": 0
+      },
+      "c": "a",
+      "d": "RearEchelon",
+      "e": "e",
+      "f": 2,
+      "g": 11,
+      "h": "Construction Regiment",
+      "i": "CON",
+      "l": 0
+    },
+    {
+      "_index": 14,
+      "a": "p",
+      "c": "c",
+      "d": "FrontlineDefence",
+      "e": "a",
+      "f": 0,
+      "g": 1,
+      "h": "Boarding Swarm",
+      "i": "BSW",
+      "l": 0
+    },
+    {
+      "_index": 15,
+      "a": "q",
+      "c": "c",
+      "d": "FrontlineAttack",
+      "e": "a",
+      "f": 0,
+      "g": 1,
+      "h": "Planetary Assault Swarm",
+      "i": "ASW",
+      "l": 0
+    },
+    {
+      "_index": 16,
+      "a": "r",
+      "c": "e",
+      "d": "FrontlineDefence",
+      "e": "a",
+      "f": 0,
+      "g": 1,
+      "h": "Rakhas Warband",
+      "i": "RWB",
+      "l": 0
+    },
+    {
+      "_index": 17,
+      "a": "s",
+      "c": "e",
+      "d": "RearEchelon",
+      "e": "d",
+      "f": 0,
+      "g": 1,
+      "h": "Rakhas Planetary Defence",
+      "i": "RPD",
+      "l": 0
+    },
+    {
+      "_index": 18,
+      "a": "t",
+      "c": "e",
+      "d": "FrontlineAttack",
+      "e": "a",
+      "f": 0,
+      "g": 1,
+      "h": "Rakhas Battlewagon Force",
+      "i": "RBF",
+      "l": 0
+    },
+    {
+      "_index": 19,
+      "a": "u",
+      "c": "f",
+      "d": "FrontlineAttack",
+      "e": "a",
+      "f": 0,
+      "g": 1,
+      "h": "Eldar Assault Force",
+      "i": "EAF",
+      "l": 0
+    },
+    {
+      "_index": 20,
+      "a": "v",
+      "b": {
+        "_type": "io",
+        "e": "h",
+        "g": 78587,
+        "h": 0,
+        "i": 65781,
+        "j": 0,
+        "k": 2500,
+        "l": 0,
+        "m": 0,
+        "n": 0,
+        "o": 0,
+        "p": 0,
+        "q": false,
+        "r": false,
+        "s": false,
+        "t": false,
+        "u": false,
+        "v": "none",
+        "w": "A ground unit with this component can reduce radiation levels",
+        "x": "Decontamination Equipment",
+        "y": 0
+      },
+      "c": "a",
+      "d": "RearEchelon",
+      "e": "e",
+      "f": 0,
+      "g": 12,
+      "h": "Decontamination Expedition",
+      "i": "DEC",
+      "l": 0
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "_field": "db",
+  "_type": "jn",
+  "_collectionType": "Dict",
+  "_count": 14,
+  "_dumped": 14,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "ref:Dictionary`2"
+    },
+    {
+      "name": "b",
+      "type": "ref:Dictionary`2"
+    },
+    {
+      "name": "c",
+      "type": "enum"
+    },
+    {
+      "name": "d",
+      "type": "double"
+    },
+    {
+      "name": "e",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "c": "a",
+      "d": 0.1,
+      "e": "B0-B9"
+    },
+    {
+      "_index": 1,
+      "c": "b",
+      "d": 0.6,
+      "e": "A0-A4"
+    },
+    {
+      "_index": 2,
+      "c": "c",
+      "d": 1.3,
+      "e": "A5-A9"
+    },
+    {
+      "_index": 3,
+      "c": "d",
+      "d": 3.2,
+      "e": "F0-F4"
+    },
+    {
+      "_index": 4,
+      "c": "e",
+      "d": 5.6,
+      "e": "F5-F9"
+    },
+    {
+      "_index": 5,
+      "c": "f",
+      "d": 10,
+      "e": "G0-G4"
+    },
+    {
+      "_index": 6,
+      "c": "g",
+      "d": 14,
+      "e": "G5-G9"
+    },
+    {
+      "_index": 7,
+      "c": "h",
+      "d": 23,
+      "e": "K0-K4"
+    },
+    {
+      "_index": 8,
+      "c": "i",
+      "d": 42,
+      "e": "K5-K9"
+    },
+    {
+      "_index": 9,
+      "c": "j",
+      "d": 50,
+      "e": "M0-M9"
+    },
+    {
+      "_index": 10,
+      "c": "k",
+      "d": 50,
+      "e": "White Dwarf"
+    },
+    {
+      "_index": 11,
+      "c": "l",
+      "d": 50,
+      "e": "Brown Dwarf"
+    },
+    {
+      "_index": 12,
+      "c": "m",
+      "d": -1,
+      "e": "SubGiant"
+    },
+    {
+      "_index": 13,
+      "c": "n",
+      "d": -2,
+      "e": "Giant"
+    }
+  ]
+}

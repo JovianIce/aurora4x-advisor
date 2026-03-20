@@ -170,6 +170,57 @@ export interface ControlInfo {
   Children?: ControlInfo[]
 }
 
+// Fleet/Ship memory types
+export interface MemoryFleet {
+  FleetID: number
+  FleetName: string
+  Speed: number
+  Xcor: number
+  Ycor: number
+  RaceID: number
+  ShipCount: number
+  SystemID: number // 0 if in transit (orbit body)
+  SystemName: string // always set from navigation ref
+  IsCivilian: boolean
+}
+
+export interface MemoryShip {
+  ShipID: number
+  ShipName: string
+  Fuel: number
+  FleetID: number
+}
+
+// Memory explorer types
+export interface GameStateFieldInfo {
+  name: string
+  type: string
+  value?: unknown
+  count?: number
+  itemFields?: number
+  refFields?: number
+}
+
+export interface CollectionInfo {
+  field: string
+  collectionType: 'Dict' | 'List'
+  keyType: string | null
+  itemType: string
+  count: number
+  fieldCount: number
+  schema: { name: string; type: string }[]
+}
+
+export interface ReadCollectionParams {
+  Field: string
+  Offset?: number
+  Limit?: number
+  Fields?: string[]
+  IncludeRefs?: boolean
+  FilterField?: string
+  FilterValue?: string
+}
+
 /** Known Aurora button names that can be clicked via ActionExecutor */
 export type AuroraButton =
   | 'SubPulse'

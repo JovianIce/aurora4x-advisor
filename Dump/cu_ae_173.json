@@ -1,0 +1,2900 @@
+{
+  "_field": "cu",
+  "_type": "ae",
+  "_collectionType": "List",
+  "_count": 173,
+  "_dumped": 173,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "ref:in"
+    },
+    {
+      "name": "b",
+      "type": "ref:im"
+    },
+    {
+      "name": "c",
+      "type": "enum"
+    },
+    {
+      "name": "d",
+      "type": "enum"
+    },
+    {
+      "name": "e",
+      "type": "int"
+    },
+    {
+      "name": "f",
+      "type": "bool"
+    },
+    {
+      "name": "g",
+      "type": "ref:List`1"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "k",
+      "d": "v",
+      "e": 10,
+      "f": true
+    },
+    {
+      "_index": 1,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 50,
+      "f": true
+    },
+    {
+      "_index": 2,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 450,
+      "f": false
+    },
+    {
+      "_index": 3,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 90,
+      "f": true
+    },
+    {
+      "_index": 4,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 500,
+      "f": false
+    },
+    {
+      "_index": 5,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 600,
+      "f": false
+    },
+    {
+      "_index": 6,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "g",
+      "d": "g",
+      "e": 110,
+      "f": true
+    },
+    {
+      "_index": 7,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "p",
+      "d": "b",
+      "e": 120,
+      "f": true
+    },
+    {
+      "_index": 8,
+      "a": {
+        "_type": "in",
+        "b": "a1",
+        "c": true,
+        "d": true,
+        "e": "Jump Point Theory"
+      },
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "q",
+      "e": 150,
+      "f": true
+    },
+    {
+      "_index": 9,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 1000,
+      "f": false
+    },
+    {
+      "_index": 10,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 1250,
+      "f": false
+    },
+    {
+      "_index": 11,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 1200,
+      "f": false
+    },
+    {
+      "_index": 12,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 1300,
+      "f": false
+    },
+    {
+      "_index": 13,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 1400,
+      "f": false
+    },
+    {
+      "_index": 14,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "g",
+      "d": "g",
+      "e": 1500,
+      "f": false
+    },
+    {
+      "_index": 15,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 930,
+      "f": false
+    },
+    {
+      "_index": 16,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "m",
+      "d": "d",
+      "e": 1700,
+      "f": false
+    },
+    {
+      "_index": 17,
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "n",
+      "d": "n",
+      "e": 1805,
+      "f": false
+    },
+    {
+      "_index": 18,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "y",
+      "d": "w",
+      "e": 20,
+      "f": true
+    },
+    {
+      "_index": 19,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 2000,
+      "f": false
+    },
+    {
+      "_index": 20,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 2100,
+      "f": false
+    },
+    {
+      "_index": 21,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 2200,
+      "f": false
+    },
+    {
+      "_index": 22,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 2300,
+      "f": false
+    },
+    {
+      "_index": 23,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 2400,
+      "f": false
+    },
+    {
+      "_index": 24,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "g",
+      "d": "g",
+      "e": 2500,
+      "f": false
+    },
+    {
+      "_index": 25,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 2600,
+      "f": false
+    },
+    {
+      "_index": 26,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "r",
+      "d": "b",
+      "e": 2800,
+      "f": false
+    },
+    {
+      "_index": 27,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 2900,
+      "f": false
+    },
+    {
+      "_index": 28,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 3000,
+      "f": false
+    },
+    {
+      "_index": 29,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 3100,
+      "f": false
+    },
+    {
+      "_index": 30,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 3200,
+      "f": false
+    },
+    {
+      "_index": 31,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 3300,
+      "f": false
+    },
+    {
+      "_index": 32,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 3400,
+      "f": false
+    },
+    {
+      "_index": 33,
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "n",
+      "d": "n",
+      "e": 3605,
+      "f": false
+    },
+    {
+      "_index": 34,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "r",
+      "d": "b",
+      "e": 3700,
+      "f": false
+    },
+    {
+      "_index": 35,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 3800,
+      "f": false
+    },
+    {
+      "_index": 36,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 3900,
+      "f": false
+    },
+    {
+      "_index": 37,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 4000,
+      "f": false
+    },
+    {
+      "_index": 38,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 4100,
+      "f": false
+    },
+    {
+      "_index": 39,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 4200,
+      "f": false
+    },
+    {
+      "_index": 40,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 4300,
+      "f": false
+    },
+    {
+      "_index": 41,
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "n",
+      "d": "n",
+      "e": 4505,
+      "f": false
+    },
+    {
+      "_index": 42,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "g",
+      "d": "g",
+      "e": 4600,
+      "f": false
+    },
+    {
+      "_index": 43,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "r",
+      "d": "b",
+      "e": 4700,
+      "f": false
+    },
+    {
+      "_index": 44,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "k",
+      "d": "v",
+      "e": 4800,
+      "f": false
+    },
+    {
+      "_index": 45,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 4900,
+      "f": false
+    },
+    {
+      "_index": 46,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 5000,
+      "f": false
+    },
+    {
+      "_index": 47,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 5100,
+      "f": false
+    },
+    {
+      "_index": 48,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 5200,
+      "f": false
+    },
+    {
+      "_index": 49,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 5300,
+      "f": false
+    },
+    {
+      "_index": 50,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 5400,
+      "f": false
+    },
+    {
+      "_index": 51,
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "n",
+      "d": "n",
+      "e": 5605,
+      "f": false
+    },
+    {
+      "_index": 52,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "r",
+      "d": "b",
+      "e": 5700,
+      "f": false
+    },
+    {
+      "_index": 53,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "k",
+      "d": "v",
+      "e": 5800,
+      "f": false
+    },
+    {
+      "_index": 54,
+      "a": {
+        "_type": "in",
+        "b": "bz",
+        "c": true,
+        "d": true,
+        "e": "Max Engine Thrust Modifier"
+      },
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "r",
+      "e": 70,
+      "f": true
+    },
+    {
+      "_index": 55,
+      "a": {
+        "_type": "in",
+        "b": "bz",
+        "c": true,
+        "d": true,
+        "e": "Max Engine Thrust Modifier"
+      },
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "r",
+      "e": 80,
+      "f": true
+    },
+    {
+      "_index": 56,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "u",
+      "d": "i",
+      "e": 140,
+      "f": true
+    },
+    {
+      "_index": 57,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "w",
+      "d": "i",
+      "e": 825,
+      "f": false
+    },
+    {
+      "_index": 58,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "v",
+      "d": "k",
+      "e": 875,
+      "f": false
+    },
+    {
+      "_index": 59,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "u",
+      "d": "i",
+      "e": 2700,
+      "f": false
+    },
+    {
+      "_index": 60,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "u",
+      "d": "i",
+      "e": 4650,
+      "f": false
+    },
+    {
+      "_index": 61,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 60,
+      "f": true
+    },
+    {
+      "_index": 62,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 100,
+      "f": true
+    },
+    {
+      "_index": 63,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "j",
+      "d": "p",
+      "e": 170,
+      "f": true
+    },
+    {
+      "_index": 64,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "j",
+      "d": "p",
+      "e": 2250,
+      "f": false
+    },
+    {
+      "_index": 65,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "j",
+      "d": "p",
+      "e": 3150,
+      "f": false
+    },
+    {
+      "_index": 66,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "j",
+      "d": "p",
+      "e": 4050,
+      "f": false
+    },
+    {
+      "_index": 67,
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "n",
+      "d": "l",
+      "e": 1800,
+      "f": false
+    },
+    {
+      "_index": 68,
+      "a": {
+        "_type": "in",
+        "b": "z",
+        "c": true,
+        "d": true,
+        "e": "Improved Fighter Production"
+      },
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "a",
+      "d": "m",
+      "e": 1810,
+      "f": false
+    },
+    {
+      "_index": 69,
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "n",
+      "d": "l",
+      "e": 3600,
+      "f": false
+    },
+    {
+      "_index": 70,
+      "a": {
+        "_type": "in",
+        "b": "z",
+        "c": true,
+        "d": true,
+        "e": "Improved Fighter Production"
+      },
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "a",
+      "d": "m",
+      "e": 3610,
+      "f": false
+    },
+    {
+      "_index": 71,
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "n",
+      "d": "l",
+      "e": 4500,
+      "f": false
+    },
+    {
+      "_index": 72,
+      "a": {
+        "_type": "in",
+        "b": "z",
+        "c": true,
+        "d": true,
+        "e": "Improved Fighter Production"
+      },
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "a",
+      "d": "m",
+      "e": 4510,
+      "f": false
+    },
+    {
+      "_index": 73,
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "n",
+      "d": "l",
+      "e": 5600,
+      "f": false
+    },
+    {
+      "_index": 74,
+      "a": {
+        "_type": "in",
+        "b": "z",
+        "c": true,
+        "d": true,
+        "e": "Improved Fighter Production"
+      },
+      "b": {
+        "_type": "im",
+        "a": "ConstructionProduction",
+        "b": "Construction / Production",
+        "c": "Const/Prod",
+        "d": "CP",
+        "e": false
+      },
+      "c": "a",
+      "d": "m",
+      "e": 5610,
+      "f": false
+    },
+    {
+      "_index": 75,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "p",
+      "d": "c",
+      "e": 130,
+      "f": true
+    },
+    {
+      "_index": 76,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "r",
+      "d": "c",
+      "e": 2805,
+      "f": false
+    },
+    {
+      "_index": 77,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "r",
+      "d": "c",
+      "e": 3705,
+      "f": false
+    },
+    {
+      "_index": 78,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "r",
+      "d": "c",
+      "e": 4705,
+      "f": false
+    },
+    {
+      "_index": 79,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "r",
+      "d": "c",
+      "e": 5705,
+      "f": false
+    },
+    {
+      "_index": 80,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "x",
+      "d": "t",
+      "e": 790,
+      "f": false
+    },
+    {
+      "_index": 81,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "j",
+      "d": "p",
+      "e": 160,
+      "f": true
+    },
+    {
+      "_index": 82,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "z",
+      "d": "j",
+      "e": 795,
+      "f": false
+    },
+    {
+      "_index": 83,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 295,
+      "f": false
+    },
+    {
+      "_index": 84,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 945,
+      "f": false
+    },
+    {
+      "_index": 85,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 2095,
+      "f": false
+    },
+    {
+      "_index": 86,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "f",
+      "e": 2995,
+      "f": false
+    },
+    {
+      "_index": 87,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 3895,
+      "f": false
+    },
+    {
+      "_index": 88,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 4995,
+      "f": false
+    },
+    {
+      "_index": 89,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "ab",
+      "d": "j",
+      "e": 845,
+      "f": false
+    },
+    {
+      "_index": 90,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "ab",
+      "d": "j",
+      "e": 2695,
+      "f": false
+    },
+    {
+      "_index": 91,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "ac",
+      "d": "x",
+      "e": 30,
+      "f": true
+    },
+    {
+      "_index": 92,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "ad",
+      "d": "j",
+      "e": 920,
+      "f": false
+    },
+    {
+      "_index": 93,
+      "a": {
+        "_type": "in",
+        "b": "cy",
+        "c": true,
+        "d": true,
+        "e": "Genetics"
+      },
+      "b": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "c": "a",
+      "d": "h",
+      "e": 1010,
+      "f": false
+    },
+    {
+      "_index": 94,
+      "a": {
+        "_type": "in",
+        "b": "ej",
+        "c": true,
+        "d": true,
+        "e": "Genetic Enhancements"
+      },
+      "b": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "c": "a",
+      "d": "h",
+      "e": 1020,
+      "f": false
+    },
+    {
+      "_index": 95,
+      "a": {
+        "_type": "in",
+        "b": "ej",
+        "c": true,
+        "d": true,
+        "e": "Genetic Enhancements"
+      },
+      "b": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "c": "a",
+      "d": "h",
+      "e": 2010,
+      "f": false
+    },
+    {
+      "_index": 96,
+      "a": {
+        "_type": "in",
+        "b": "ej",
+        "c": true,
+        "d": true,
+        "e": "Genetic Enhancements"
+      },
+      "b": {
+        "_type": "im",
+        "a": "BiologyGenetics",
+        "b": "Biology / Genetics",
+        "c": "BioGen",
+        "d": "BG",
+        "e": false
+      },
+      "c": "a",
+      "d": "h",
+      "e": 2910,
+      "f": false
+    },
+    {
+      "_index": 97,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 300,
+      "f": false
+    },
+    {
+      "_index": 98,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 950,
+      "f": false
+    },
+    {
+      "_index": 99,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 5900,
+      "f": false
+    },
+    {
+      "_index": 100,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 6000,
+      "f": false
+    },
+    {
+      "_index": 101,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 6100,
+      "f": false
+    },
+    {
+      "_index": 102,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 6200,
+      "f": false
+    },
+    {
+      "_index": 103,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "j",
+      "d": "p",
+      "e": 6300,
+      "f": false
+    },
+    {
+      "_index": 104,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 6400,
+      "f": false
+    },
+    {
+      "_index": 105,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 6500,
+      "f": false
+    },
+    {
+      "_index": 106,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 6600,
+      "f": false
+    },
+    {
+      "_index": 107,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "g",
+      "d": "g",
+      "e": 6700,
+      "f": false
+    },
+    {
+      "_index": 108,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "u",
+      "d": "i",
+      "e": 6800,
+      "f": false
+    },
+    {
+      "_index": 109,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 6900,
+      "f": false
+    },
+    {
+      "_index": 110,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 7000,
+      "f": false
+    },
+    {
+      "_index": 111,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 7100,
+      "f": false
+    },
+    {
+      "_index": 112,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 7200,
+      "f": false
+    },
+    {
+      "_index": 113,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 7300,
+      "f": false
+    },
+    {
+      "_index": 114,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 7400,
+      "f": false
+    },
+    {
+      "_index": 115,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 7500,
+      "f": false
+    },
+    {
+      "_index": 116,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 7600,
+      "f": false
+    },
+    {
+      "_index": 117,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 7700,
+      "f": false
+    },
+    {
+      "_index": 118,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 7800,
+      "f": false
+    },
+    {
+      "_index": 119,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 7900,
+      "f": false
+    },
+    {
+      "_index": 120,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 8000,
+      "f": false
+    },
+    {
+      "_index": 121,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 8100,
+      "f": false
+    },
+    {
+      "_index": 122,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 8200,
+      "f": false
+    },
+    {
+      "_index": 123,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "g",
+      "d": "g",
+      "e": 8300,
+      "f": false
+    },
+    {
+      "_index": 124,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 8400,
+      "f": false
+    },
+    {
+      "_index": 125,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 8500,
+      "f": false
+    },
+    {
+      "_index": 126,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "e",
+      "e": 8600,
+      "f": false
+    },
+    {
+      "_index": 127,
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "f",
+      "d": "s",
+      "e": 8700,
+      "f": false
+    },
+    {
+      "_index": 128,
+      "b": {
+        "_type": "im",
+        "a": "EnergyWeapons",
+        "b": "Direct Fire Weapons",
+        "c": "Direct-Fire",
+        "d": "EW",
+        "e": false
+      },
+      "c": "c",
+      "d": "a",
+      "e": 8800,
+      "f": false
+    },
+    {
+      "_index": 129,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 8900,
+      "f": false
+    },
+    {
+      "_index": 130,
+      "a": {
+        "_type": "in",
+        "b": "a0",
+        "c": true,
+        "d": true,
+        "e": "Armour"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "a",
+      "e": 9000,
+      "f": false
+    },
+    {
+      "_index": 131,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "a",
+      "d": "f",
+      "e": 9100,
+      "f": false
+    },
+    {
+      "_index": 132,
+      "b": {
+        "_type": "im",
+        "a": "SensorsAndControlSystems",
+        "b": "Sensors and Control Systems",
+        "c": "Sen/Con",
+        "d": "SC",
+        "e": false
+      },
+      "c": "d",
+      "d": "a",
+      "e": 8850,
+      "f": false
+    },
+    {
+      "_index": 133,
+      "b": {
+        "_type": "im",
+        "a": "PowerAndPropulsion",
+        "b": "Power and Propulsion",
+        "c": "Pow/Prop",
+        "d": "PP",
+        "e": false
+      },
+      "c": "b",
+      "d": "0",
+      "e": 9200,
+      "f": false
+    },
+    {
+      "_index": 134,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 360,
+      "f": false
+    },
+    {
+      "_index": 135,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 520,
+      "f": false
+    },
+    {
+      "_index": 136,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 1350,
+      "f": false
+    },
+    {
+      "_index": 137,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 2350,
+      "f": false
+    },
+    {
+      "_index": 138,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 190,
+      "f": true
+    },
+    {
+      "_index": 139,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 4150,
+      "f": false
+    },
+    {
+      "_index": 140,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 5250,
+      "f": false
+    },
+    {
+      "_index": 141,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 6450,
+      "f": false
+    },
+    {
+      "_index": 142,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 7350,
+      "f": false
+    },
+    {
+      "_index": 143,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 8050,
+      "f": false
+    },
+    {
+      "_index": 144,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "e",
+      "d": "u",
+      "e": 8850,
+      "f": false
+    },
+    {
+      "_index": 145,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "ae",
+      "d": "o",
+      "e": 780,
+      "f": false
+    },
+    {
+      "_index": 146,
+      "a": {
+        "_type": "in",
+        "b": "af",
+        "c": true,
+        "d": true,
+        "e": "Jump Gate Construction Module"
+      },
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "a",
+      "d": "o",
+      "e": 1700,
+      "f": false
+    },
+    {
+      "_index": 147,
+      "a": {
+        "_type": "in",
+        "b": "bb",
+        "c": true,
+        "d": true,
+        "e": "Salvage Module"
+      },
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "a",
+      "d": "y",
+      "e": 40,
+      "f": true
+    },
+    {
+      "_index": 148,
+      "a": {
+        "_type": "in",
+        "b": "bb",
+        "c": true,
+        "d": true,
+        "e": "Salvage Module"
+      },
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "a",
+      "d": "y",
+      "e": 1325,
+      "f": false
+    },
+    {
+      "_index": 149,
+      "a": {
+        "_type": "in",
+        "b": "bb",
+        "c": true,
+        "d": true,
+        "e": "Salvage Module"
+      },
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "a",
+      "d": "y",
+      "e": 3650,
+      "f": false
+    },
+    {
+      "_index": 150,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "af",
+      "d": "y",
+      "e": 840,
+      "f": false
+    },
+    {
+      "_index": 151,
+      "b": {
+        "_type": "im",
+        "a": "GroundCombat",
+        "b": "Ground Combat",
+        "c": "Ground",
+        "d": "GC",
+        "e": false
+      },
+      "c": "af",
+      "d": "y",
+      "e": 1900,
+      "f": false
+    },
+    {
+      "_index": 152,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "i",
+      "d": "z",
+      "e": 181,
+      "f": true
+    },
+    {
+      "_index": 153,
+      "a": {
+        "_type": "in",
+        "b": "cl",
+        "c": true,
+        "d": true,
+        "e": "Cloaking Theory"
+      },
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "a",
+      "d": "z",
+      "e": 180,
+      "f": true
+    },
+    {
+      "_index": 154,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "i",
+      "d": "z",
+      "e": 440,
+      "f": false
+    },
+    {
+      "_index": 155,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "i",
+      "d": "z",
+      "e": 1125,
+      "f": false
+    },
+    {
+      "_index": 156,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "i",
+      "d": "z",
+      "e": 2050,
+      "f": false
+    },
+    {
+      "_index": 157,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "i",
+      "d": "z",
+      "e": 2950,
+      "f": false
+    },
+    {
+      "_index": 158,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "i",
+      "d": "z",
+      "e": 3850,
+      "f": false
+    },
+    {
+      "_index": 159,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "i",
+      "d": "z",
+      "e": 4950,
+      "f": false
+    },
+    {
+      "_index": 160,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 412,
+      "f": false
+    },
+    {
+      "_index": 161,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 1601,
+      "f": false
+    },
+    {
+      "_index": 162,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 2601,
+      "f": false
+    },
+    {
+      "_index": 163,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 3401,
+      "f": false
+    },
+    {
+      "_index": 164,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 4301,
+      "f": false
+    },
+    {
+      "_index": 165,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 5401,
+      "f": false
+    },
+    {
+      "_index": 166,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 6601,
+      "f": false
+    },
+    {
+      "_index": 167,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 7501,
+      "f": false
+    },
+    {
+      "_index": 168,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 8201,
+      "f": false
+    },
+    {
+      "_index": 169,
+      "a": {
+        "_type": "in",
+        "b": "fa",
+        "c": true,
+        "d": true,
+        "e": "Missile ECM"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 8901,
+      "f": false
+    },
+    {
+      "_index": 170,
+      "a": {
+        "_type": "in",
+        "b": "fc",
+        "c": true,
+        "d": true,
+        "e": "Decoy Missiles"
+      },
+      "b": {
+        "_type": "im",
+        "a": "MissilesKinetic",
+        "b": "Missiles",
+        "c": "Missiles",
+        "d": "MK",
+        "e": false
+      },
+      "c": "a",
+      "d": "aa",
+      "e": 200,
+      "f": true
+    },
+    {
+      "_index": 171,
+      "b": {
+        "_type": "im",
+        "a": "DefensiveSystems",
+        "b": "Defensive Systems",
+        "c": "Defence",
+        "d": "DS",
+        "e": false
+      },
+      "c": "h",
+      "d": "a",
+      "e": 1600,
+      "f": false
+    },
+    {
+      "_index": 172,
+      "b": {
+        "_type": "im",
+        "a": "Logistics",
+        "b": "Logistics",
+        "c": "Logistics",
+        "d": "LG",
+        "e": false
+      },
+      "c": "ai",
+      "d": "ab",
+      "e": 1701,
+      "f": false
+    }
+  ]
+}

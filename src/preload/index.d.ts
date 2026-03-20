@@ -51,6 +51,45 @@ interface AdvicePackage {
   analyzedAt: number
 }
 
+interface MemoryFleet {
+  FleetID: number
+  FleetName: string
+  Speed: number
+  Xcor: number
+  Ycor: number
+  RaceID: number
+  ShipCount: number
+  SystemID: number
+  SystemName: string
+  IsCivilian: boolean
+}
+
+interface MemoryShip {
+  ShipID: number
+  ShipName: string
+  Fuel: number
+  FleetID: number
+}
+
+interface GameStateFieldInfo {
+  name: string
+  type: string
+  value?: unknown
+  count?: number
+  itemFields?: number
+  refFields?: number
+}
+
+interface CollectionInfo {
+  field: string
+  collectionType: 'Dict' | 'List'
+  keyType: string | null
+  itemType: string
+  count: number
+  fieldCount: number
+  schema: { name: string; type: string }[]
+}
+
 interface AdvisorAPI {
   getAllArchetypes: () => Promise<Archetype[]>
   getArchetype: (id: ArchetypeId) => Promise<Archetype>
@@ -125,6 +164,29 @@ interface BridgeAPI {
   ping: () => Promise<boolean>
   executeAction: (action: ActionRequest) => Promise<unknown>
   inspectForm: (formName: string) => Promise<{ form: string; controls: ControlInfo[] }>
+  getKnownSystems: () => Promise<{ SystemID: number; Name: string }[]>
+  getFleets: () => Promise<MemoryFleet[]>
+  getShips: (fleetId?: number) => Promise<MemoryShip[]>
+  dumpMemory: () => Promise<{
+    outputDir: string
+    collections: number
+    totalItems: number
+    elapsedMs: number
+    files: string[]
+    errors: string[]
+  } | null>
+  enumerateGameState: () => Promise<GameStateFieldInfo[]>
+  enumerateCollections: () => Promise<CollectionInfo[]>
+  readCollection: (params: {
+    Field: string
+    Offset?: number
+    Limit?: number
+    Fields?: string[]
+    IncludeRefs?: boolean
+    FilterField?: string
+    FilterValue?: string
+  }) => Promise<Record<string, unknown>[]>
+  readField: (fieldName: string) => Promise<{ field: string; type: string; value: unknown }>
   onPush: (callback: (data: unknown) => void) => () => void
 }
 

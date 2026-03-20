@@ -1,0 +1,131 @@
+{
+  "_field": "ee",
+  "_type": "j2",
+  "_collectionType": "Dict",
+  "_count": 18,
+  "_dumped": 18,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "string"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "int"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "MessageEntry",
+      "b": 899,
+      "c": 446
+    },
+    {
+      "_index": 1,
+      "a": "CommandersWindow",
+      "b": 486,
+      "c": 82
+    },
+    {
+      "_index": 2,
+      "a": "FleetWindow",
+      "b": 239,
+      "c": 73
+    },
+    {
+      "_index": 3,
+      "a": "frmMedals",
+      "b": 200,
+      "c": 200
+    },
+    {
+      "_index": 4,
+      "a": "Economics",
+      "b": 250,
+      "c": 95
+    },
+    {
+      "_index": 5,
+      "a": "GroundUnitDesign",
+      "b": 138,
+      "c": 52
+    },
+    {
+      "_index": 6,
+      "a": "UserSelection",
+      "b": 200,
+      "c": 200
+    },
+    {
+      "_index": 7,
+      "a": "ClassDesign",
+      "b": 70,
+      "c": 60
+    },
+    {
+      "_index": 8,
+      "a": "CreateProject",
+      "b": 764,
+      "c": 339
+    },
+    {
+      "_index": 9,
+      "a": "SystemView",
+      "b": 257,
+      "c": 91
+    },
+    {
+      "_index": 10,
+      "a": "TechnologyView",
+      "b": 317,
+      "c": 82
+    },
+    {
+      "_index": 11,
+      "a": "Diplomacy",
+      "b": 200,
+      "c": 200
+    },
+    {
+      "_index": 12,
+      "a": "cmdSelect",
+      "b": 806,
+      "c": 120
+    },
+    {
+      "_index": 13,
+      "a": "Minerals",
+      "b": 266,
+      "c": 168
+    },
+    {
+      "_index": 14,
+      "a": "RaceWindow",
+      "b": 200,
+      "c": 200
+    },
+    {
+      "_index": 15,
+      "a": "RaceComparison",
+      "b": 200,
+      "c": 200
+    },
+    {
+      "_index": 16,
+      "a": "frmSectors",
+      "b": 545,
+      "c": 160
+    },
+    {
+      "_index": 17,
+      "a": "Events",
+      "b": 670,
+      "c": 0
+    }
+  ]
+}

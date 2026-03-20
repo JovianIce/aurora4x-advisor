@@ -1,0 +1,607 @@
+{
+  "_field": "cl",
+  "_type": "bf",
+  "_collectionType": "Dict",
+  "_count": 72,
+  "_dumped": 72,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "int"
+    },
+    {
+      "name": "d",
+      "type": "int"
+    },
+    {
+      "name": "e",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "StarSystemsExplored",
+      "b": 1,
+      "c": 1,
+      "d": 1500,
+      "e": "Discover New Star System"
+    },
+    {
+      "_index": 1,
+      "a": "RuinsDiscovered",
+      "b": 2,
+      "c": 1,
+      "d": 2050,
+      "e": "Discover Alien Ruins"
+    },
+    {
+      "_index": 2,
+      "a": "ShipDestructionSurvived",
+      "b": 3,
+      "c": 1,
+      "d": 1200,
+      "e": "Survive Ship Destruction"
+    },
+    {
+      "_index": 3,
+      "a": "HostileShipsDestroyed",
+      "b": 4,
+      "c": 1,
+      "d": 50,
+      "e": "Destroy Hostile Ship"
+    },
+    {
+      "_index": 4,
+      "a": "CommercialShippingDestroyed",
+      "b": 5,
+      "c": 100000,
+      "d": 400,
+      "e": "Destroy 100,000 tons of Commercial Shipping"
+    },
+    {
+      "_index": 5,
+      "a": "CommercialShippingDestroyed",
+      "b": 6,
+      "c": 250000,
+      "d": 500,
+      "e": "Destroy 250,000 tons of Commercial Shipping"
+    },
+    {
+      "_index": 6,
+      "a": "CommercialShippingDestroyed",
+      "b": 7,
+      "c": 1000000,
+      "d": 600,
+      "e": "Destroy 1,000,000 tons of Commercial Shipping"
+    },
+    {
+      "_index": 7,
+      "a": "HostileOrdnanceDestroyed",
+      "b": 8,
+      "c": 25,
+      "d": 900,
+      "e": "Destroy 25 Hostile Missiles"
+    },
+    {
+      "_index": 8,
+      "a": "MilitaryShippingDestroyed",
+      "b": 9,
+      "c": 10000,
+      "d": 100,
+      "e": "Destroy 10,000 tons of Military Shipping"
+    },
+    {
+      "_index": 9,
+      "a": "MilitaryShippingDestroyed",
+      "b": 10,
+      "c": 25000,
+      "d": 200,
+      "e": "Destroy 25,000 tons of Military Shipping"
+    },
+    {
+      "_index": 10,
+      "a": "MilitaryShippingDestroyed",
+      "b": 11,
+      "c": 100000,
+      "d": 300,
+      "e": "Destroy 100,000 tons of Military Shipping"
+    },
+    {
+      "_index": 11,
+      "a": "HostileOrdnanceDestroyed",
+      "b": 12,
+      "c": 100,
+      "d": 1000,
+      "e": "Destroy 100 Hostile Missiles"
+    },
+    {
+      "_index": 12,
+      "a": "ArmourDamageTaken",
+      "b": 13,
+      "c": 1,
+      "d": 1300,
+      "e": "Suffer Armour Damage"
+    },
+    {
+      "_index": 13,
+      "a": "InternalDamageTaken",
+      "b": 14,
+      "c": 1,
+      "d": 1400,
+      "e": "Suffer Internal Damage"
+    },
+    {
+      "_index": 14,
+      "a": "GroundForcesDestroyed",
+      "b": 15,
+      "c": 1,
+      "d": 650,
+      "e": "Destroy Hostile Ground Unit"
+    },
+    {
+      "_index": 15,
+      "a": "GroundForcesDestroyed",
+      "b": 16,
+      "c": 1000,
+      "d": 700,
+      "e": "Destroy 1000 tons of Hostile Ground Forces"
+    },
+    {
+      "_index": 16,
+      "a": "GroundForcesDestroyed",
+      "b": 17,
+      "c": 10000,
+      "d": 800,
+      "e": "Destroy 10,000 tons of Hostile Ground Forces"
+    },
+    {
+      "_index": 17,
+      "a": "BodiesWithMineralsDiscovered",
+      "b": 18,
+      "c": 100,
+      "d": 1900,
+      "e": "Discover 100 System Bodies With Minerals"
+    },
+    {
+      "_index": 18,
+      "a": "BodiesWithMineralsDiscovered",
+      "b": 19,
+      "c": 1000,
+      "d": 2000,
+      "e": "Discover 1000 System Bodies With Minerals"
+    },
+    {
+      "_index": 19,
+      "a": "JumpPointsDiscovered",
+      "b": 20,
+      "c": 10,
+      "d": 1700,
+      "e": "Discover 10 Jump Points"
+    },
+    {
+      "_index": 20,
+      "a": "JumpPointsDiscovered",
+      "b": 21,
+      "c": 100,
+      "d": 1800,
+      "e": "Discover 100 Jump Points"
+    },
+    {
+      "_index": 21,
+      "a": "StarSystemsExplored",
+      "b": 22,
+      "c": 10,
+      "d": 1600,
+      "e": "Discover 10 New Star Systems"
+    },
+    {
+      "_index": 22,
+      "a": "HostileOrdnanceDestroyed",
+      "b": 23,
+      "c": 1000,
+      "d": 1100,
+      "e": "Destroy 1000 Hostile Missiles"
+    },
+    {
+      "_index": 23,
+      "a": "ResearchPointsGenerated",
+      "b": 24,
+      "c": 10000,
+      "d": 2300,
+      "e": "Generate 10,000 Research Points"
+    },
+    {
+      "_index": 24,
+      "a": "ResearchPointsGenerated",
+      "b": 25,
+      "c": 100000,
+      "d": 2400,
+      "e": "Generate 100,000 Research Points"
+    },
+    {
+      "_index": 25,
+      "a": "ResearchProjectsCompleted",
+      "b": 26,
+      "c": 1,
+      "d": 2100,
+      "e": "Completed Research Project"
+    },
+    {
+      "_index": 26,
+      "a": "ResearchProjectsCompleted",
+      "b": 27,
+      "c": 5,
+      "d": 2200,
+      "e": "Completed Five Research Projects"
+    },
+    {
+      "_index": 27,
+      "a": "LengthOfService",
+      "b": 28,
+      "c": 10,
+      "d": 2500,
+      "e": "Ten Years of Service"
+    },
+    {
+      "_index": 28,
+      "a": "LengthOfService",
+      "b": 29,
+      "c": 20,
+      "d": 2600,
+      "e": "Twenty Years of Service"
+    },
+    {
+      "_index": 29,
+      "a": "LengthOfService",
+      "b": 30,
+      "c": 30,
+      "d": 2700,
+      "e": "Thirty Years of Service"
+    },
+    {
+      "_index": 30,
+      "a": "SuccessfulBoardingCombat",
+      "b": 31,
+      "c": 1,
+      "d": 850,
+      "e": "Capture Hostile Ship in Boarding Combat"
+    },
+    {
+      "_index": 31,
+      "a": "HabitableWorldDiscovered",
+      "b": 32,
+      "c": 1,
+      "d": 1625,
+      "e": "Habitable World Discovered"
+    },
+    {
+      "_index": 32,
+      "a": "HabitableWorldDiscovered",
+      "b": 33,
+      "c": 3,
+      "d": 1650,
+      "e": "Three Habitable Worlds Discovered"
+    },
+    {
+      "_index": 33,
+      "a": "CombatDropFormation",
+      "b": 34,
+      "c": 1,
+      "d": 830,
+      "e": "Participate in Combat Drop - Formation"
+    },
+    {
+      "_index": 34,
+      "a": "CombatDropFormation",
+      "b": 35,
+      "c": 5,
+      "d": 840,
+      "e": "Participate in Five Combat Drops - Formation"
+    },
+    {
+      "_index": 35,
+      "a": "CombatDropTransport",
+      "b": 36,
+      "c": 1,
+      "d": 860,
+      "e": "Participate in Combat Drop - Transport"
+    },
+    {
+      "_index": 36,
+      "a": "CombatDropTransport",
+      "b": 37,
+      "c": 5,
+      "d": 880,
+      "e": "Participate in Five Combat Drops - Transport"
+    },
+    {
+      "_index": 37,
+      "a": "RecoverInstallation",
+      "b": 38,
+      "c": 10,
+      "d": 2800,
+      "e": "Recover 10 Abandoned Installations"
+    },
+    {
+      "_index": 38,
+      "a": "RecoverInstallation",
+      "b": 39,
+      "c": 100,
+      "d": 2900,
+      "e": "Recover 100 Abandoned Installations"
+    },
+    {
+      "_index": 39,
+      "a": "MilitaryShippingDestroyed",
+      "b": 40,
+      "c": 50000,
+      "d": 250,
+      "e": "Destroy 50,000 tons of Military Shipping"
+    },
+    {
+      "_index": 40,
+      "a": "MilitaryShippingDestroyed",
+      "b": 41,
+      "c": 250000,
+      "d": 320,
+      "e": "Destroy 250,000 tons of Military Shipping"
+    },
+    {
+      "_index": 41,
+      "a": "CommercialShippingDestroyed",
+      "b": 42,
+      "c": 500000,
+      "d": 550,
+      "e": "Destroy 500,000 tons of Commercial Shipping"
+    },
+    {
+      "_index": 42,
+      "a": "CommercialShippingDestroyed",
+      "b": 43,
+      "c": 2500000,
+      "d": 620,
+      "e": "Destroy 2,500,000 tons of Commercial Shipping"
+    },
+    {
+      "_index": 43,
+      "a": "GroundForcesDestroyed",
+      "b": 44,
+      "c": 2500,
+      "d": 725,
+      "e": "Destroy 2500 tons of Hostile Ground Forces"
+    },
+    {
+      "_index": 44,
+      "a": "GroundForcesDestroyed",
+      "b": 45,
+      "c": 5000,
+      "d": 750,
+      "e": "Destroy 5000 tons of Hostile Ground Forces"
+    },
+    {
+      "_index": 45,
+      "a": "GroundForcesDestroyed",
+      "b": 46,
+      "c": 25000,
+      "d": 820,
+      "e": "Destroy 25,000 tons of Hostile Ground Forces"
+    },
+    {
+      "_index": 46,
+      "a": "JPStablisationsCompleted",
+      "b": 47,
+      "c": 1,
+      "d": 2010,
+      "e": "Stabilise 1 Jump Point or Lagrange Point"
+    },
+    {
+      "_index": 47,
+      "a": "JPStablisationsCompleted",
+      "b": 48,
+      "c": 3,
+      "d": 2011,
+      "e": "Stabilise 3 Jump Points or Lagrange Points"
+    },
+    {
+      "_index": 48,
+      "a": "JPStablisationsCompleted",
+      "b": 49,
+      "c": 10,
+      "d": 2012,
+      "e": "Stabilise 10 Jump Points or Lagrange Points"
+    },
+    {
+      "_index": 49,
+      "a": "TonsSalvaged",
+      "b": 50,
+      "c": 25000,
+      "d": 2020,
+      "e": "Salvage 25,000 tons (Commercial / 10)"
+    },
+    {
+      "_index": 50,
+      "a": "TonsSalvaged",
+      "b": 51,
+      "c": 100000,
+      "d": 2021,
+      "e": "Salvage 100,000 tons (Commercial / 10)"
+    },
+    {
+      "_index": 51,
+      "a": "TonsSalvaged",
+      "b": 52,
+      "c": 250000,
+      "d": 2022,
+      "e": "Salvage 250,000 tons (Commercial / 10)"
+    },
+    {
+      "_index": 52,
+      "a": "RuinsDiscovered",
+      "b": 53,
+      "c": 3,
+      "d": 2051,
+      "e": "Discover Three Alien Ruins"
+    },
+    {
+      "_index": 53,
+      "a": "ResearchPointsGenerated",
+      "b": 54,
+      "c": 25000,
+      "d": 2310,
+      "e": "Generate 25,000 Research Points"
+    },
+    {
+      "_index": 54,
+      "a": "ResearchPointsGenerated",
+      "b": 55,
+      "c": 250000,
+      "d": 2410,
+      "e": "Generate 250,000 Research Points"
+    },
+    {
+      "_index": 55,
+      "a": "RecoverInstallation",
+      "b": 56,
+      "c": 25,
+      "d": 2810,
+      "e": "Recover 25 Abandoned Installations"
+    },
+    {
+      "_index": 56,
+      "a": "RecoverInstallation",
+      "b": 57,
+      "c": 250,
+      "d": 2910,
+      "e": "Recover 250 Abandoned Installations"
+    },
+    {
+      "_index": 57,
+      "a": "StarSystemsExplored",
+      "b": 58,
+      "c": 25,
+      "d": 1610,
+      "e": "Discover 25 New Star Systems"
+    },
+    {
+      "_index": 58,
+      "a": "StarSystemsExplored",
+      "b": 59,
+      "c": 100,
+      "d": 1620,
+      "e": "Discover 100 New Star Systems"
+    },
+    {
+      "_index": 59,
+      "a": "GroundForcesDestroyed",
+      "b": 60,
+      "c": 100000,
+      "d": 825,
+      "e": "Destroy 100,000 tons of Hostile Ground Forces"
+    },
+    {
+      "_index": 60,
+      "a": "AncientConstructsDiscovered",
+      "b": 61,
+      "c": 1,
+      "d": 2060,
+      "e": "Ancient Construct Discovered"
+    },
+    {
+      "_index": 61,
+      "a": "AncientConstructsDiscovered",
+      "b": 62,
+      "c": 3,
+      "d": 2061,
+      "e": "Three Ancient Constructs Discovered"
+    },
+    {
+      "_index": 62,
+      "a": "RuinsDiscovered",
+      "b": 63,
+      "c": 10,
+      "d": 2052,
+      "e": "Discover Ten Alien Ruins"
+    },
+    {
+      "_index": 63,
+      "a": "HostileOrdnanceDestroyed",
+      "b": 64,
+      "c": 250,
+      "d": 1001,
+      "e": "Destroy 250 Hostile Missiles"
+    },
+    {
+      "_index": 64,
+      "a": "BodiesWithMineralsDiscovered",
+      "b": 65,
+      "c": 250,
+      "d": 1910,
+      "e": "Discover 250 System Bodies With Minerals"
+    },
+    {
+      "_index": 65,
+      "a": "SuccessfulBoardingCombat",
+      "b": 66,
+      "c": 3,
+      "d": 851,
+      "e": "Capture Three Hostile Ships in Boarding Combat"
+    },
+    {
+      "_index": 66,
+      "a": "HostileOrdnanceDestroyed",
+      "b": 67,
+      "c": 2500,
+      "d": 1105,
+      "e": "Destroy 2500 Hostile Missiles"
+    },
+    {
+      "_index": 67,
+      "a": "JumpPointsDiscovered",
+      "b": 68,
+      "c": 25,
+      "d": 1710,
+      "e": "Discover 25 Jump Points"
+    },
+    {
+      "_index": 68,
+      "a": "BodiesWithMineralsDiscovered",
+      "b": 69,
+      "c": 50,
+      "d": 1890,
+      "e": "Discover 50 System Bodies With Minerals"
+    },
+    {
+      "_index": 69,
+      "a": "AncientConstructsDiscovered",
+      "b": 70,
+      "c": 10,
+      "d": 2062,
+      "e": "Ten Ancient Constructs Discovered"
+    },
+    {
+      "_index": 70,
+      "a": "JPStablisationsCompleted",
+      "b": 71,
+      "c": 25,
+      "d": 2013,
+      "e": "Stabilise 25 Jump Points or Lagrange Points"
+    },
+    {
+      "_index": 71,
+      "a": "HostileOrdnanceDestroyed",
+      "b": 72,
+      "c": 500,
+      "d": 1002,
+      "e": "Destroy 500 Hostile Missiles"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "_field": "da",
+  "_type": "jg",
+  "_collectionType": "Dict",
+  "_count": 17,
+  "_dumped": 17,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "decimal"
+    },
+    {
+      "name": "d",
+      "type": "string"
+    },
+    {
+      "name": "e",
+      "type": "bool"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "a",
+      "b": 1,
+      "c": 5,
+      "d": "Precious Metals",
+      "e": false
+    },
+    {
+      "_index": 1,
+      "a": "a",
+      "b": 2,
+      "c": 10,
+      "d": "Spices",
+      "e": false
+    },
+    {
+      "_index": 2,
+      "a": "a",
+      "b": 3,
+      "c": 10,
+      "d": "Luxury Food",
+      "e": false
+    },
+    {
+      "_index": 3,
+      "a": "a",
+      "b": 4,
+      "c": 10,
+      "d": "Entertainment Products",
+      "e": false
+    },
+    {
+      "_index": 4,
+      "a": "a",
+      "b": 5,
+      "c": 10,
+      "d": "Wines",
+      "e": false
+    },
+    {
+      "_index": 5,
+      "a": "a",
+      "b": 6,
+      "c": 10,
+      "d": "Furs",
+      "e": false
+    },
+    {
+      "_index": 6,
+      "a": "a",
+      "b": 7,
+      "c": 5,
+      "d": "Consumer Electronics",
+      "e": false
+    },
+    {
+      "_index": 7,
+      "a": "a",
+      "b": 8,
+      "c": 5,
+      "d": "Civilian Transport",
+      "e": false
+    },
+    {
+      "_index": 8,
+      "a": "a",
+      "b": 9,
+      "c": 3,
+      "d": "Textiles",
+      "e": false
+    },
+    {
+      "_index": 9,
+      "a": "a",
+      "b": 10,
+      "c": 5,
+      "d": "Chemicals",
+      "e": false
+    },
+    {
+      "_index": 10,
+      "a": "a",
+      "b": 11,
+      "c": 3,
+      "d": "Machinery",
+      "e": false
+    },
+    {
+      "_index": 11,
+      "a": "a",
+      "b": 12,
+      "c": 5,
+      "d": "Pharmaceuticals",
+      "e": false
+    },
+    {
+      "_index": 12,
+      "a": "a",
+      "b": 13,
+      "c": 5,
+      "d": "Plastics",
+      "e": false
+    },
+    {
+      "_index": 13,
+      "a": "a",
+      "b": 14,
+      "c": 3,
+      "d": "Construction Materials",
+      "e": false
+    },
+    {
+      "_index": 14,
+      "a": "b",
+      "b": 15,
+      "c": 5,
+      "d": "Ancient Artifacts",
+      "e": false
+    },
+    {
+      "_index": 15,
+      "a": "c",
+      "b": 16,
+      "c": 0.01,
+      "d": "Infrastructure",
+      "e": false
+    },
+    {
+      "_index": 16,
+      "a": "a",
+      "b": 17,
+      "c": 10,
+      "d": "Recreational Drugs",
+      "e": false
+    }
+  ]
+}

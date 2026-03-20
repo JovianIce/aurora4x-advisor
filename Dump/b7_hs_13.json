@@ -1,0 +1,101 @@
+{
+  "_field": "b7",
+  "_type": "hs",
+  "_collectionType": "Dict",
+  "_count": 13,
+  "_dumped": 13,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "NoCondition",
+      "b": 0,
+      "c": "No Condition"
+    },
+    {
+      "_index": 1,
+      "a": "FuelTanksFull",
+      "b": 10,
+      "c": "Fuel: 100%"
+    },
+    {
+      "_index": 2,
+      "a": "FuelLessThan20",
+      "b": 50,
+      "c": "Fuel: 20% or Less"
+    },
+    {
+      "_index": 3,
+      "a": "FuelLessThan10",
+      "b": 60,
+      "c": "Fuel: 10% or Less"
+    },
+    {
+      "_index": 4,
+      "a": "CurrentSpeedNotEqualtoMax",
+      "b": 100,
+      "c": "Speed: Less than 100%"
+    },
+    {
+      "_index": 5,
+      "a": "SupplyPointsLessThan20",
+      "b": 80,
+      "c": "MSP: 20% or Less"
+    },
+    {
+      "_index": 6,
+      "a": "SupplyPointsLessThan10",
+      "b": 90,
+      "c": "MSP: 10% or Less"
+    },
+    {
+      "_index": 7,
+      "a": "HostileActiveShipContactinSystem",
+      "b": 120,
+      "c": "Hostile Active Ship Contact in System"
+    },
+    {
+      "_index": 8,
+      "a": "FuelLessThan30",
+      "b": 40,
+      "c": "Fuel: 30% or Less"
+    },
+    {
+      "_index": 9,
+      "a": "FuelLessThan40",
+      "b": 30,
+      "c": "Fuel: 40% or Less"
+    },
+    {
+      "_index": 10,
+      "a": "FuelLessThan50",
+      "b": 20,
+      "c": "Fuel: 50% or Less"
+    },
+    {
+      "_index": 11,
+      "a": "DeploymentExceeded",
+      "b": 110,
+      "c": "Deployment Exceeded"
+    },
+    {
+      "_index": 12,
+      "a": "SupplyPointsLessThan30",
+      "b": 70,
+      "c": "MSP: 30% or Less"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "_field": "d1",
+  "_type": "f9",
+  "_collectionType": "List",
+  "_count": 4,
+  "_dumped": 4,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "int"
+    },
+    {
+      "name": "b",
+      "type": "enum"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": 789,
+      "b": "d4"
+    },
+    {
+      "_index": 1,
+      "a": 789,
+      "b": "d0"
+    },
+    {
+      "_index": 2,
+      "a": 789,
+      "b": "bb"
+    },
+    {
+      "_index": 3,
+      "a": 789,
+      "b": "ba"
+    }
+  ]
+}

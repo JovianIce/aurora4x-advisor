@@ -1,0 +1,69 @@
+{
+  "_field": "dc",
+  "_type": "jr",
+  "_collectionType": "Dict",
+  "_count": 6,
+  "_dumped": 6,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "int"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "int"
+    },
+    {
+      "name": "d",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": 1,
+      "b": 12,
+      "c": 2,
+      "d": "Exceptional"
+    },
+    {
+      "_index": 1,
+      "a": 2,
+      "b": 14,
+      "c": 1,
+      "d": "High"
+    },
+    {
+      "_index": 2,
+      "a": 3,
+      "b": 18,
+      "c": 0,
+      "d": "Normal"
+    },
+    {
+      "_index": 3,
+      "a": 4,
+      "b": 21,
+      "c": -1,
+      "d": "Poor"
+    },
+    {
+      "_index": 4,
+      "a": 5,
+      "b": 24,
+      "c": -2,
+      "d": "Very Poor"
+    },
+    {
+      "_index": 5,
+      "a": 6,
+      "b": 1000,
+      "c": -3,
+      "d": "Depleted"
+    }
+  ]
+}

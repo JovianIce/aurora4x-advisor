@@ -1,0 +1,2439 @@
+{
+  "_field": "c0",
+  "_type": "f8",
+  "_collectionType": "Dict",
+  "_count": 240,
+  "_dumped": 240,
+  "_schema": [
+    {
+      "name": "a",
+      "type": "enum"
+    },
+    {
+      "name": "b",
+      "type": "int"
+    },
+    {
+      "name": "c",
+      "type": "int"
+    },
+    {
+      "name": "d",
+      "type": "bool"
+    },
+    {
+      "name": "e",
+      "type": "bool"
+    },
+    {
+      "name": "f",
+      "type": "bool"
+    },
+    {
+      "name": "g",
+      "type": "string"
+    }
+  ],
+  "items": [
+    {
+      "_index": 0,
+      "a": "a",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "No Event Type"
+    },
+    {
+      "_index": 1,
+      "a": "b",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Production"
+    },
+    {
+      "_index": 2,
+      "a": "c",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ship Construction"
+    },
+    {
+      "_index": 3,
+      "a": "d",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ship Repair"
+    },
+    {
+      "_index": 4,
+      "a": "e",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ship Refit"
+    },
+    {
+      "_index": 5,
+      "a": "f",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ship Scrapped"
+    },
+    {
+      "_index": 6,
+      "a": "g",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Unit Trained"
+    },
+    {
+      "_index": 7,
+      "a": "h",
+      "b": 1090,
+      "c": 1090,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Commander Update"
+    },
+    {
+      "_index": 8,
+      "a": "i",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Shield Recharge"
+    },
+    {
+      "_index": 9,
+      "a": "j",
+      "b": 10,
+      "c": 0,
+      "d": true,
+      "e": false,
+      "f": false,
+      "g": "Targeting"
+    },
+    {
+      "_index": 10,
+      "a": "k",
+      "b": 40,
+      "c": 0,
+      "d": true,
+      "e": true,
+      "f": false,
+      "g": "Targeting Problem"
+    },
+    {
+      "_index": 11,
+      "a": "l",
+      "b": 90,
+      "c": 90,
+      "d": true,
+      "e": false,
+      "f": true,
+      "g": "Missile Launch"
+    },
+    {
+      "_index": 12,
+      "a": "m",
+      "b": 50,
+      "c": 0,
+      "d": true,
+      "e": true,
+      "f": false,
+      "g": "Out of Ammo"
+    },
+    {
+      "_index": 13,
+      "a": "n",
+      "b": 60,
+      "c": 0,
+      "d": true,
+      "e": true,
+      "f": false,
+      "g": "No Missile Assigned"
+    },
+    {
+      "_index": 14,
+      "a": "o",
+      "b": 70,
+      "c": 0,
+      "d": true,
+      "e": false,
+      "f": false,
+      "g": "Weapon Reloading"
+    },
+    {
+      "_index": 15,
+      "a": "p",
+      "b": 95,
+      "c": 95,
+      "d": true,
+      "e": false,
+      "f": false,
+      "g": "Chance To Hit"
+    },
+    {
+      "_index": 16,
+      "a": "q",
+      "b": 100,
+      "c": 100,
+      "d": true,
+      "e": false,
+      "f": true,
+      "g": "Target Hit"
+    },
+    {
+      "_index": 17,
+      "a": "r",
+      "b": 110,
+      "c": 110,
+      "d": true,
+      "e": false,
+      "f": false,
+      "g": "Target Missed"
+    },
+    {
+      "_index": 18,
+      "a": "s",
+      "b": 80,
+      "c": 0,
+      "d": true,
+      "e": false,
+      "f": false,
+      "g": "Weapon Recharging"
+    },
+    {
+      "_index": 19,
+      "a": "25",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "System Intact"
+    },
+    {
+      "_index": 20,
+      "a": "t",
+      "b": 1070,
+      "c": 1070,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Secondary Explosion"
+    },
+    {
+      "_index": 21,
+      "a": "u",
+      "b": 1080,
+      "c": 1080,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "Ship Destroyed"
+    },
+    {
+      "_index": 22,
+      "a": "v",
+      "b": 1000,
+      "c": 1000,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "Damage Report"
+    },
+    {
+      "_index": 23,
+      "a": "35",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Team Skill"
+    },
+    {
+      "_index": 24,
+      "a": "w",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "System Surveyed"
+    },
+    {
+      "_index": 25,
+      "a": "x",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Orders Assigned"
+    },
+    {
+      "_index": 26,
+      "a": "y",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Orders Not Possible"
+    },
+    {
+      "_index": 27,
+      "a": "z",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Minerals Located"
+    },
+    {
+      "_index": 28,
+      "a": "aa",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ruins Located"
+    },
+    {
+      "_index": 29,
+      "a": "ab",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Orders Completed"
+    },
+    {
+      "_index": 30,
+      "a": "ac",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Insufficient Fuel"
+    },
+    {
+      "_index": 31,
+      "a": "ae",
+      "b": 41,
+      "c": 0,
+      "d": true,
+      "e": false,
+      "f": false,
+      "g": "Target Lost"
+    },
+    {
+      "_index": 32,
+      "a": "af",
+      "b": 42,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Missiles Lost"
+    },
+    {
+      "_index": 33,
+      "a": "ag",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Transit Failure"
+    },
+    {
+      "_index": 34,
+      "a": "ah",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Communication"
+    },
+    {
+      "_index": 35,
+      "a": "ai",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ruins Exploited"
+    },
+    {
+      "_index": 36,
+      "a": "aj",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "No Spare Parts"
+    },
+    {
+      "_index": 37,
+      "a": "ak",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Successful Repair"
+    },
+    {
+      "_index": 38,
+      "a": "al",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Research Completed"
+    },
+    {
+      "_index": 39,
+      "a": "ao",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Inactive Lab"
+    },
+    {
+      "_index": 40,
+      "a": "ap",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Mineral Shortage"
+    },
+    {
+      "_index": 41,
+      "a": "aq",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Low Fuel"
+    },
+    {
+      "_index": 42,
+      "a": "ar",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Mineral Exhausted"
+    },
+    {
+      "_index": 43,
+      "a": "as",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Fuel Exhausted"
+    },
+    {
+      "_index": 44,
+      "a": "at",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ground Combat Update"
+    },
+    {
+      "_index": 45,
+      "a": "au",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Gas Removed"
+    },
+    {
+      "_index": 46,
+      "a": "av",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Terraforming Report"
+    },
+    {
+      "_index": 47,
+      "a": "ax",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Harvester Capacity"
+    },
+    {
+      "_index": 48,
+      "a": "ay",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ice Sheet Melted"
+    },
+    {
+      "_index": 49,
+      "a": "az",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Morale Increase"
+    },
+    {
+      "_index": 50,
+      "a": "a0",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Pickup Failed"
+    },
+    {
+      "_index": 51,
+      "a": "a3",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Jump Gate Underway"
+    },
+    {
+      "_index": 52,
+      "a": "a4",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Research Started"
+    },
+    {
+      "_index": 53,
+      "a": "a5",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Commander Promoted"
+    },
+    {
+      "_index": 54,
+      "a": "a6",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Conditional Order"
+    },
+    {
+      "_index": 55,
+      "a": "a7",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Life Pod Expired"
+    },
+    {
+      "_index": 56,
+      "a": "a8",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Search and Rescue"
+    },
+    {
+      "_index": 57,
+      "a": "a9",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "System Damaged"
+    },
+    {
+      "_index": 58,
+      "a": "ba",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Naval Officer"
+    },
+    {
+      "_index": 59,
+      "a": "bb",
+      "b": 1100,
+      "c": 1100,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Commander Health"
+    },
+    {
+      "_index": 60,
+      "a": "bc",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Mine Restored"
+    },
+    {
+      "_index": 61,
+      "a": "bd",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Factory Restored"
+    },
+    {
+      "_index": 62,
+      "a": "be",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Intelligence Update"
+    },
+    {
+      "_index": 63,
+      "a": "bf",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Fleet Message"
+    },
+    {
+      "_index": 64,
+      "a": "bg",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Wreck Salvaged"
+    },
+    {
+      "_index": 65,
+      "a": "bh",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Components Scrapped"
+    },
+    {
+      "_index": 66,
+      "a": "bi",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Pop Status Change"
+    },
+    {
+      "_index": 67,
+      "a": "116",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Insufficient JGC"
+    },
+    {
+      "_index": 68,
+      "a": "bj",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "  Message Continued"
+    },
+    {
+      "_index": 69,
+      "a": "bk",
+      "b": 20,
+      "c": 0,
+      "d": true,
+      "e": false,
+      "f": false,
+      "g": "Fire Delay"
+    },
+    {
+      "_index": 70,
+      "a": "bl",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Overhaul Complete"
+    },
+    {
+      "_index": 71,
+      "a": "bm",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Shipyard Modified"
+    },
+    {
+      "_index": 72,
+      "a": "bo",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Tech Downloaded"
+    },
+    {
+      "_index": 73,
+      "a": "bp",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Tech Data Scanned"
+    },
+    {
+      "_index": 74,
+      "a": "bq",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Command Assignment"
+    },
+    {
+      "_index": 75,
+      "a": "br",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Civilian Construction"
+    },
+    {
+      "_index": 76,
+      "a": "bs",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Fuel Shortage"
+    },
+    {
+      "_index": 77,
+      "a": "bu",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "Jump Point Detected"
+    },
+    {
+      "_index": 78,
+      "a": "bv",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Civilian Activity"
+    },
+    {
+      "_index": 79,
+      "a": "bw",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Illegal Order"
+    },
+    {
+      "_index": 80,
+      "a": "bx",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Mineral Deposit"
+    },
+    {
+      "_index": 81,
+      "a": "by",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Accessibility Increase"
+    },
+    {
+      "_index": 82,
+      "a": "bz",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Geo Survey Complete"
+    },
+    {
+      "_index": 83,
+      "a": "b0",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "No Freighter Overhaul"
+    },
+    {
+      "_index": 84,
+      "a": "b1",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Maintenance Problem"
+    },
+    {
+      "_index": 85,
+      "a": "b2",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "New Alien Race"
+    },
+    {
+      "_index": 86,
+      "a": "b3",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Unrest Increasing"
+    },
+    {
+      "_index": 87,
+      "a": "b4",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Unrest Decreasing"
+    },
+    {
+      "_index": 88,
+      "a": "155",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Morale Increase"
+    },
+    {
+      "_index": 89,
+      "a": "b6",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Successful Espionage"
+    },
+    {
+      "_index": 90,
+      "a": "b7",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Increment Adjustment"
+    },
+    {
+      "_index": 91,
+      "a": "b8",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Reparations"
+    },
+    {
+      "_index": 92,
+      "a": "b9",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Planet Looted"
+    },
+    {
+      "_index": 93,
+      "a": "177",
+      "b": 102,
+      "c": 102,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Overkill"
+    },
+    {
+      "_index": 94,
+      "a": "ca",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ship Surrender"
+    },
+    {
+      "_index": 95,
+      "a": "cb",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Breathable Atmosphere"
+    },
+    {
+      "_index": 96,
+      "a": "cc",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Diplomacy"
+    },
+    {
+      "_index": 97,
+      "a": "cd",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "New Hostile Contact"
+    },
+    {
+      "_index": 98,
+      "a": "ce",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Neutral Contact"
+    },
+    {
+      "_index": 99,
+      "a": "cf",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Friendly Contact"
+    },
+    {
+      "_index": 100,
+      "a": "cg",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Allied Contact"
+    },
+    {
+      "_index": 101,
+      "a": "186",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Wreck Contact"
+    },
+    {
+      "_index": 102,
+      "a": "187",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Mineral Packet Contact"
+    },
+    {
+      "_index": 103,
+      "a": "ch",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Civilian Contact"
+    },
+    {
+      "_index": 104,
+      "a": "ci",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "New System Discovered"
+    },
+    {
+      "_index": 105,
+      "a": "cj",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Missile Self-destruct"
+    },
+    {
+      "_index": 106,
+      "a": "ck",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Overhaul Clock Reduced"
+    },
+    {
+      "_index": 107,
+      "a": "203",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Thermal Contact Lost"
+    },
+    {
+      "_index": 108,
+      "a": "204",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "GPD Contact Lost"
+    },
+    {
+      "_index": 109,
+      "a": "cl",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Hostile Contact Update"
+    },
+    {
+      "_index": 110,
+      "a": "cm",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Neutral Contact Update"
+    },
+    {
+      "_index": 111,
+      "a": "cn",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Friendly Contact Update"
+    },
+    {
+      "_index": 112,
+      "a": "co",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Allied Contact Update"
+    },
+    {
+      "_index": 113,
+      "a": "cp",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Civilian Contact Update"
+    },
+    {
+      "_index": 114,
+      "a": "cq",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Civilian Mining Colony"
+    },
+    {
+      "_index": 115,
+      "a": "cr",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Shipping Line"
+    },
+    {
+      "_index": 116,
+      "a": "cs",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Outstanding New Officer"
+    },
+    {
+      "_index": 117,
+      "a": "ct",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Exceptional New Officer"
+    },
+    {
+      "_index": 118,
+      "a": "cu",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Promising New Officer"
+    },
+    {
+      "_index": 119,
+      "a": "cv",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Geological Survey Data"
+    },
+    {
+      "_index": 120,
+      "a": "cw",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Boarding Attempt"
+    },
+    {
+      "_index": 121,
+      "a": "cx",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Boarding Combat"
+    },
+    {
+      "_index": 122,
+      "a": "cy",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Crew Losses"
+    },
+    {
+      "_index": 123,
+      "a": "cz",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Wreck Components"
+    },
+    {
+      "_index": 124,
+      "a": "c0",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "Ramming Attempt"
+    },
+    {
+      "_index": 125,
+      "a": "c1",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Empire in Debt"
+    },
+    {
+      "_index": 126,
+      "a": "c2",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Overallocation of Labs"
+    },
+    {
+      "_index": 127,
+      "a": "c3",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Alien Class"
+    },
+    {
+      "_index": 128,
+      "a": "c4",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "New Alien Ship"
+    },
+    {
+      "_index": 129,
+      "a": "c5",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Crew Grade Increase"
+    },
+    {
+      "_index": 130,
+      "a": "c7",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Shield Deactivation"
+    },
+    {
+      "_index": 131,
+      "a": "c8",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Tech Data Learned"
+    },
+    {
+      "_index": 132,
+      "a": "c9",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Tractor(s) Released"
+    },
+    {
+      "_index": 133,
+      "a": "da",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Crew Morale Falling"
+    },
+    {
+      "_index": 134,
+      "a": "db",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Shore Leave Complete"
+    },
+    {
+      "_index": 135,
+      "a": "dc",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Life Support Failure"
+    },
+    {
+      "_index": 136,
+      "a": "dd",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Probe Out of Fuel"
+    },
+    {
+      "_index": 137,
+      "a": "de",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Administrator"
+    },
+    {
+      "_index": 138,
+      "a": "df",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Scientist"
+    },
+    {
+      "_index": 139,
+      "a": "dg",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "POWs Rescued"
+    },
+    {
+      "_index": 140,
+      "a": "dh",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ancient Construct"
+    },
+    {
+      "_index": 141,
+      "a": "di",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Time Check"
+    },
+    {
+      "_index": 142,
+      "a": "dj",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "Invalid Unload System"
+    },
+    {
+      "_index": 143,
+      "a": "dk",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": true,
+      "g": "Conversion Halted"
+    },
+    {
+      "_index": 144,
+      "a": "dl",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Lifepods Launched"
+    },
+    {
+      "_index": 145,
+      "a": "dm",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Crew Escape"
+    },
+    {
+      "_index": 146,
+      "a": "dn",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Insufficient Population"
+    },
+    {
+      "_index": 147,
+      "a": "do",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Commander Experience"
+    },
+    {
+      "_index": 148,
+      "a": "dp",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Replacement Unit Disbanded"
+    },
+    {
+      "_index": 149,
+      "a": "dq",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Recovery Failure"
+    },
+    {
+      "_index": 150,
+      "a": "dr",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ship Overcrowded"
+    },
+    {
+      "_index": 151,
+      "a": "ds",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Change to Dominant Terrain"
+    },
+    {
+      "_index": 152,
+      "a": "dt",
+      "b": 1088,
+      "c": 1088,
+      "d": false,
+      "e": false,
+      "f": true,
+      "g": "New Combat Contact"
+    },
+    {
+      "_index": 153,
+      "a": "du",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Admin Command Update"
+    },
+    {
+      "_index": 154,
+      "a": "dv",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Training Task Abandoned"
+    },
+    {
+      "_index": 155,
+      "a": "dw",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ground Survey Potential"
+    },
+    {
+      "_index": 156,
+      "a": "dx",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Senior Officer Required"
+    },
+    {
+      "_index": 157,
+      "a": "dy",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Maximum Fleet Training"
+    },
+    {
+      "_index": 158,
+      "a": "dz",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Ground Force Officer"
+    },
+    {
+      "_index": 159,
+      "a": "d0",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Retirement"
+    },
+    {
+      "_index": 160,
+      "a": "d1",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Alien Population"
+    },
+    {
+      "_index": 161,
+      "a": "d2",
+      "b": 1056,
+      "c": 1056,
+      "d": true,
+      "e": false,
+      "f": false,
+      "g": "Acid Burn"
+    },
+    {
+      "_index": 162,
+      "a": "d3",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Intact Ship Salvaged"
+    },
+    {
+      "_index": 163,
+      "a": "d4",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Medal Awarded"
+    },
+    {
+      "_index": 164,
+      "a": "d5",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Boarding Underway"
+    },
+    {
+      "_index": 165,
+      "a": "d6",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Alien Ground Unit"
+    },
+    {
+      "_index": 166,
+      "a": "d7",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Breakthrough Achieved"
+    },
+    {
+      "_index": 167,
+      "a": "d8",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ground Attack Summary"
+    },
+    {
+      "_index": 168,
+      "a": "d9",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Element Loss Summary"
+    },
+    {
+      "_index": 169,
+      "a": "ea",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Attack vs GUC Summary"
+    },
+    {
+      "_index": 170,
+      "a": "eb",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ground Defence Summary"
+    },
+    {
+      "_index": 171,
+      "a": "ec",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Element vs GUC Report"
+    },
+    {
+      "_index": 172,
+      "a": "ed",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ship vs GUC Report"
+    },
+    {
+      "_index": 173,
+      "a": "ee",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "GUC vs GUC Summary"
+    },
+    {
+      "_index": 174,
+      "a": "ef",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Formation Attack Summary"
+    },
+    {
+      "_index": 175,
+      "a": "eg",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Formation Loss Summary"
+    },
+    {
+      "_index": 176,
+      "a": "eh",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Orbital vs GUC Summary"
+    },
+    {
+      "_index": 177,
+      "a": "ei",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Orbital Support Reassigned"
+    },
+    {
+      "_index": 178,
+      "a": "ej",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ground Support Reassigned"
+    },
+    {
+      "_index": 179,
+      "a": "ek",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Installations Salvaged"
+    },
+    {
+      "_index": 180,
+      "a": "el",
+      "b": 1,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Target Out of Range"
+    },
+    {
+      "_index": 181,
+      "a": "em",
+      "b": 1,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ground Combat Intelligence"
+    },
+    {
+      "_index": 182,
+      "a": "en",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Alien Communication"
+    },
+    {
+      "_index": 183,
+      "a": "eo",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ice Sheet Frozen"
+    },
+    {
+      "_index": 184,
+      "a": "ep",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Shipyard Task Abandoned"
+    },
+    {
+      "_index": 185,
+      "a": "eq",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Training not Possible"
+    },
+    {
+      "_index": 186,
+      "a": "er",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Fighter Construction"
+    },
+    {
+      "_index": 187,
+      "a": "es",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Production Started"
+    },
+    {
+      "_index": 188,
+      "a": "et",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Deployment Time Exceeded"
+    },
+    {
+      "_index": 189,
+      "a": "eu",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Commander Unassigned"
+    },
+    {
+      "_index": 190,
+      "a": "ev",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Formation Training Task"
+    },
+    {
+      "_index": 191,
+      "a": "ew",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Planet Destroyed"
+    },
+    {
+      "_index": 192,
+      "a": "ex",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Commander Restored"
+    },
+    {
+      "_index": 193,
+      "a": "ey",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Incorrect Ordnance"
+    },
+    {
+      "_index": 194,
+      "a": "ez",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Fleet Transfer"
+    },
+    {
+      "_index": 195,
+      "a": "e0",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Installation Scrapped"
+    },
+    {
+      "_index": 196,
+      "a": "e1",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ground Units Scrapped"
+    },
+    {
+      "_index": 197,
+      "a": "e2",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Orbital Support Summary"
+    },
+    {
+      "_index": 198,
+      "a": "e3",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Energy Point Defence"
+    },
+    {
+      "_index": 199,
+      "a": "e4",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "STO Point Defence"
+    },
+    {
+      "_index": 200,
+      "a": "e5",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "AMM Point Defence"
+    },
+    {
+      "_index": 201,
+      "a": "e6",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ship Combat - Energy"
+    },
+    {
+      "_index": 202,
+      "a": "e7",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Ship Combat - Missile"
+    },
+    {
+      "_index": 203,
+      "a": "e8",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "STO Combat"
+    },
+    {
+      "_index": 204,
+      "a": "e9",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Missile vs Ship"
+    },
+    {
+      "_index": 205,
+      "a": "fa",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Attacked by STO"
+    },
+    {
+      "_index": 206,
+      "a": "fb",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Attacked By Energy Weapons"
+    },
+    {
+      "_index": 207,
+      "a": "fc",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Attacked By Missiles"
+    },
+    {
+      "_index": 208,
+      "a": "fd",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Attacked By AA Fire"
+    },
+    {
+      "_index": 209,
+      "a": "fe",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Boarding Damage "
+    },
+    {
+      "_index": 210,
+      "a": "ff",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Acid Damage "
+    },
+    {
+      "_index": 211,
+      "a": "fg",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Collaterall Damage"
+    },
+    {
+      "_index": 212,
+      "a": "fh",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Damage Summary"
+    },
+    {
+      "_index": 213,
+      "a": "fi",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Fighter Point Defence"
+    },
+    {
+      "_index": 214,
+      "a": "fj",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Fighter Combat - Energy"
+    },
+    {
+      "_index": 215,
+      "a": "fk",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Fighter Combat - Missile"
+    },
+    {
+      "_index": 216,
+      "a": "fl",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Fleet PD Summary"
+    },
+    {
+      "_index": 217,
+      "a": "fm",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Civilian Ship Scrapped"
+    },
+    {
+      "_index": 218,
+      "a": "fn",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Damage Control"
+    },
+    {
+      "_index": 219,
+      "a": "fo",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Bombardment Summary"
+    },
+    {
+      "_index": 220,
+      "a": "fp",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Transit Delay"
+    },
+    {
+      "_index": 221,
+      "a": "fq",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": false,
+      "g": "Population PD Summary"
+    },
+    {
+      "_index": 222,
+      "a": "fr",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": " "
+    },
+    {
+      "_index": 223,
+      "a": "fs",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "New Wreck Detected"
+    },
+    {
+      "_index": 224,
+      "a": "ft",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Alien Salvage"
+    },
+    {
+      "_index": 225,
+      "a": "fu",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Test Data"
+    },
+    {
+      "_index": 226,
+      "a": "fv",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Ground Unit Unloaded"
+    },
+    {
+      "_index": 227,
+      "a": "fw",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Stockpile Warning"
+    },
+    {
+      "_index": 228,
+      "a": "fx",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Maintenance Failure"
+    },
+    {
+      "_index": 229,
+      "a": "fy",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Neutral Contact Update - AC"
+    },
+    {
+      "_index": 230,
+      "a": "fz",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Friendly Contact Update - AC"
+    },
+    {
+      "_index": 231,
+      "a": "f0",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Allied Contact Update - AC"
+    },
+    {
+      "_index": 232,
+      "a": "f1",
+      "b": 1,
+      "c": 1,
+      "d": true,
+      "e": true,
+      "f": true,
+      "g": "Successful Ramming Attack"
+    },
+    {
+      "_index": 233,
+      "a": "f2",
+      "b": 1,
+      "c": 1,
+      "d": true,
+      "e": true,
+      "f": true,
+      "g": "Ship Rammed"
+    },
+    {
+      "_index": 234,
+      "a": "f3",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Interrogation Update"
+    },
+    {
+      "_index": 235,
+      "a": "f4",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": true,
+      "f": true,
+      "g": "System Destroyed"
+    },
+    {
+      "_index": 236,
+      "a": "f5",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "No Replacements Required"
+    },
+    {
+      "_index": 237,
+      "a": "f6",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Scientist Experience"
+    },
+    {
+      "_index": 238,
+      "a": "f7",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Administrator Experience"
+    },
+    {
+      "_index": 239,
+      "a": "f8",
+      "b": 0,
+      "c": 0,
+      "d": false,
+      "e": false,
+      "f": false,
+      "g": "Unassigned Experience"
+    }
+  ]
+}
