@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,15 +11,49 @@ using System.Windows.Forms;
 
 namespace Lib
 {
+    /// <summary>
+    /// Maintains an in-memory SQLite database that mirrors Aurora's game state.
+    ///
+    /// Why in-memory: Aurora only writes to AuroraDB.db when the player manually saves,
+    /// and the save process takes several seconds. The on-disk DB is therefore stale during
+    /// gameplay — it reflects the last save, not the current game state. For real-time data
+    /// we need a different approach.
+    ///
+    /// How it works:
+    ///   1. Read AuroraDB.db's schema on first use (DDL only, no data)
+    ///   2. Create a shared in-memory SQLite database with the same schema
+    ///   3. On explicit request (Refresh()), invoke Aurora's own Save methods (via reflection)
+    ///      to serialize the live GameState object into our in-memory connection
+    ///
+    /// Performance warning: the Refresh() call invokes Aurora's save routines on the UI thread,
+    /// which can cause noticeable lag (several seconds depending on game size). It should only
+    /// be triggered when the user explicitly requests fresh data, not on a timer.
+    ///
+    /// The Save methods are found by scanning GameState for methods that take a single
+    /// SQLiteConnection parameter — these are Aurora's built-in serialization routines.
+    /// We call them with our in-memory connection instead of the file-backed one.
+    ///
+    /// Thread safety: all access is synchronized via lock(Connection). The Save call is
+    /// marshalled to the UI thread since Aurora's GameState is owned by the UI thread.
+    /// </summary>
     public class DatabaseManager
     {
         private readonly Lib Lib;
         private SQLiteConnection Connection { get; set; } = null;
-        private DateTime NextUpdate { get; set; } = DateTime.MinValue;
+        private bool _needsRefresh = true;
 
         internal DatabaseManager(Lib lib)
         {
             Lib = lib;
+        }
+
+        /// <summary>
+        /// Mark the in-memory DB as stale so the next query triggers a refresh.
+        /// Call this when the user explicitly requests fresh data.
+        /// </summary>
+        public void Refresh()
+        {
+            _needsRefresh = true;
         }
 
         public DataTable ExecuteQuery(string query)
@@ -41,7 +75,7 @@ namespace Lib
 
             lock (Connection)
             {
-                if (DateTime.UtcNow > NextUpdate)
+                if (_needsRefresh)
                 {
                     try
                     {
@@ -49,7 +83,7 @@ namespace Lib
                         sw.Start();
 
                         Lib.InvokeOnUIThread(new Action(() => Save()));
-                        NextUpdate = DateTime.UtcNow + TimeSpan.FromSeconds(30);
+                        _needsRefresh = false;
 
                         sw.Stop();
                         Lib.LogInfo($"In-memory save took {sw.ElapsedMilliseconds} ms");

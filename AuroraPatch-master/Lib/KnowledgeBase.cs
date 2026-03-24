@@ -43,6 +43,19 @@ namespace Lib
         UpdateText, LabelFont, NewLabel, DeleteLabel, Hull, Station,
     }
 
+    /// <summary>
+    /// Maps Aurora's stable WinForms control names and version-specific obfuscated type names.
+    ///
+    /// Aurora obfuscates class/method names but leaves WinForms control names intact (e.g.
+    /// "cmdToolbarFleet", "cboSystems"). This class stores both:
+    ///   - Control name mappings (stable across versions): AuroraButton/AuroraComboBox -> "cmdXxx"
+    ///   - Type name mappings (version-specific): AuroraType -> obfuscated name per checksum
+    ///
+    /// To add support for a new Aurora version:
+    ///   1. Run the Example patch, press F12 to dump discovery data
+    ///   2. Add a new checksum block in GetKnownTypeNames() with the type mappings
+    ///   3. The SignatureManager will handle types not listed here via fingerprinting
+    /// </summary>
     public class KnowledgeBase
     {
         private readonly Lib Lib;

@@ -12,6 +12,13 @@ export function DashboardLayout(): React.JSX.Element {
   const navigate = useNavigate()
   const { currentGame } = useGame()
   const [activeView, setActiveView] = useState<'map' | 'tables' | 'memory' | 'advisor'>('map')
+  const [devToolsEnabled, setDevToolsEnabled] = useState(false)
+
+  useEffect(() => {
+    window.api.settings.load().then((s) => {
+      if (s?.enableDevTools) setDevToolsEnabled(true)
+    })
+  }, [])
 
   useEffect(() => {
     if (!currentGame) {
@@ -63,18 +70,22 @@ export function DashboardLayout(): React.JSX.Element {
           >
             Tactical Map
           </button>
-          <button
-            className={`cic-btn ${activeView === 'tables' ? 'active' : ''}`}
-            onClick={() => setActiveView('tables')}
-          >
-            Data Core
-          </button>
-          <button
-            className={`cic-btn ${activeView === 'memory' ? 'active' : ''}`}
-            onClick={() => setActiveView('memory')}
-          >
-            Memory
-          </button>
+          {devToolsEnabled && (
+            <>
+              <button
+                className={`cic-btn ${activeView === 'tables' ? 'active' : ''}`}
+                onClick={() => setActiveView('tables')}
+              >
+                Data Core
+              </button>
+              <button
+                className={`cic-btn ${activeView === 'memory' ? 'active' : ''}`}
+                onClick={() => setActiveView('memory')}
+              >
+                Memory
+              </button>
+            </>
+          )}
           <button
             className={`cic-btn ${activeView === 'advisor' ? 'active' : ''}`}
             onClick={() => setActiveView('advisor')}

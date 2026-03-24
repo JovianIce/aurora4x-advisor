@@ -9,7 +9,9 @@ const DEFAULT_SETTINGS: AppSettings = {
   auroraDbPath: null,
   watchEnabled: true,
   bridgeEnabled: false,
-  bridgePort: 47842
+  bridgePort: 47842,
+  enableTimeControls: false,
+  enableDevTools: false
 }
 
 /**

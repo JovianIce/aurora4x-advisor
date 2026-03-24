@@ -94,6 +94,8 @@ export interface AppSettings {
   watchEnabled: boolean
   bridgeEnabled: boolean
   bridgePort: number
+  enableTimeControls: boolean
+  enableDevTools: boolean
 }
 
 // Aurora Bridge types

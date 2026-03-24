@@ -10,6 +10,18 @@ using System.Drawing;
 
 namespace Lib
 {
+    /// <summary>
+    /// Core library patch that provides shared infrastructure for all other patches.
+    ///
+    /// On load, it:
+    ///   1. Initializes KnowledgeBase (maps obfuscated Aurora type/control names)
+    ///   2. Initializes SignatureManager (resolves Aurora types by field-type fingerprints)
+    ///   3. Patches every Aurora Form constructor to track open/close events
+    ///   4. Wires up registered event handlers to Aurora's UI controls
+    ///
+    /// Other patches depend on this to access Aurora's forms, controls, and type system
+    /// without needing to handle obfuscation or reflection themselves.
+    /// </summary>
     public class Lib : AuroraPatch.Patch
     {
         public override string Description => "A library of useful features for patch creators.";

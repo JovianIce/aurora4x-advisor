@@ -11,3 +11,4 @@ docs
 .mcp.json
 *.md
 !README.md
+!ROADMAP.md

@@ -10,6 +10,20 @@ using Newtonsoft.Json;
 
 namespace AdvisorBridge
 {
+    /// <summary>
+    /// WebSocket server that runs inside Aurora's process, bridging the Electron frontend
+    /// to live game state. Listens on ws://localhost:47842 (configurable).
+    ///
+    /// Communication model:
+    ///   - Request/Response: client sends JSON BridgeRequest, gets BridgeResponse back
+    ///   - Push: server broadcasts game state changes to all connected clients on each game tick
+    ///
+    /// Tick detection: hooks TacticalMap.TextChanged (Aurora updates the title bar text on every
+    /// time increment), which triggers a broadcast of subscribed system bodies and fleet positions.
+    ///
+    /// Thread safety: the server runs on its own background thread. MemoryReader and ActionExecutor
+    /// handle their own thread marshalling to the UI thread when needed.
+    /// </summary>
     public class BridgeServer
     {
         private readonly Lib.DatabaseManager _db;

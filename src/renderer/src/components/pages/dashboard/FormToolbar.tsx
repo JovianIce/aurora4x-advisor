@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 interface ToolbarButton {
   label: string
@@ -64,6 +64,13 @@ export function FormToolbar(): React.JSX.Element {
   const [busy, setBusy] = useState<string | null>(null)
   const [autoOn, setAutoOn] = useState(false)
   const [showTime, setShowTime] = useState(false)
+  const [timeControlsEnabled, setTimeControlsEnabled] = useState(false)
+
+  useEffect(() => {
+    window.api.settings.load().then((s) => {
+      if (s?.enableTimeControls) setTimeControlsEnabled(true)
+    })
+  }, [])
 
   const clickButton = async (target: string): Promise<void> => {
     if (busy) return
@@ -81,7 +88,6 @@ export function FormToolbar(): React.JSX.Element {
   }
 
   const toggleAuto = async (): Promise<void> => {
-    // Don't check busy — always allow stopping
     try {
       await window.api.bridge.executeAction({
         Action: 'ClickButton',
@@ -113,51 +119,53 @@ export function FormToolbar(): React.JSX.Element {
         borderBottom: '1px solid var(--cic-panel-edge)'
       }}
     >
-      {/* Time controls */}
-      <button
-        className={`cic-btn ${autoOn ? 'active' : ''}`}
-        style={{
-          fontSize: '10px',
-          padding: '2px 10px',
-          fontWeight: 'bold',
-          color: autoOn ? 'var(--cic-green)' : 'var(--cic-red)',
-          whiteSpace: 'nowrap',
-          boxShadow: autoOn ? '0 0 8px rgba(0, 230, 118, 0.3)' : 'none'
-        }}
-        onClick={toggleAuto}
-        title={autoOn ? 'Stop auto-increment' : 'Start auto-increment'}
-      >
-        {autoOn ? 'STOP' : 'AUTO'}
-      </button>
-      <button
-        className={`cic-btn ${showTime ? 'active' : ''}`}
-        style={{ fontSize: '9px', padding: '2px 6px', whiteSpace: 'nowrap' }}
-        onClick={() => setShowTime(!showTime)}
-        title="Set time increment"
-      >
-        Time {showTime ? '▾' : '▸'}
-      </button>
-      {showTime && TIME_INCREMENTS.map((t) => (
-        <button
-          key={t.target}
-          className="cic-btn"
-          style={{
-            fontSize: '9px',
-            padding: '2px 5px',
-            color: busy === t.target ? 'var(--cic-amber)' : 'rgba(255,255,255,0.5)',
-            whiteSpace: 'nowrap'
-          }}
-          onClick={() => clickButton(t.target)}
-          disabled={busy !== null}
-          title={`Set increment to ${t.label}`}
-        >
-          {t.label}
-        </button>
-      ))}
+      {timeControlsEnabled && (
+        <>
+          <button
+            className={`cic-btn ${autoOn ? 'active' : ''}`}
+            style={{
+              fontSize: '10px',
+              padding: '2px 10px',
+              fontWeight: 'bold',
+              color: autoOn ? 'var(--cic-green)' : 'var(--cic-red)',
+              whiteSpace: 'nowrap',
+              boxShadow: autoOn ? '0 0 8px rgba(0, 230, 118, 0.3)' : 'none'
+            }}
+            onClick={toggleAuto}
+            title={autoOn ? 'Stop auto-increment' : 'Start auto-increment'}
+          >
+            {autoOn ? 'STOP' : 'AUTO'}
+          </button>
+          <button
+            className={`cic-btn ${showTime ? 'active' : ''}`}
+            style={{ fontSize: '9px', padding: '2px 6px', whiteSpace: 'nowrap' }}
+            onClick={() => setShowTime(!showTime)}
+            title="Set time increment"
+          >
+            Time {showTime ? '▾' : '▸'}
+          </button>
+          {showTime && TIME_INCREMENTS.map((t) => (
+            <button
+              key={t.target}
+              className="cic-btn"
+              style={{
+                fontSize: '9px',
+                padding: '2px 5px',
+                color: busy === t.target ? 'var(--cic-amber)' : 'rgba(255,255,255,0.5)',
+                whiteSpace: 'nowrap'
+              }}
+              onClick={() => clickButton(t.target)}
+              disabled={busy !== null}
+              title={`Set increment to ${t.label}`}
+            >
+              {t.label}
+            </button>
+          ))}
+          {sep}
+        </>
+      )}
 
-      {sep}
-
-      {/* Form buttons */}
+      {/* Form buttons — these open visible Aurora forms, acting as toolbar shortcuts */}
       {FORM_BUTTONS.map((btn, i) => {
         const prevGroup = i > 0 ? FORM_BUTTONS[i - 1].group : null
         const showSep = prevGroup && prevGroup !== btn.group

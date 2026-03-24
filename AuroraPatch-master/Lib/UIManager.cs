@@ -8,6 +8,16 @@ using System.Windows.Forms;
 
 namespace Lib
 {
+    /// <summary>
+    /// Provides WinForms UI interaction helpers for navigating Aurora's control tree.
+    ///
+    /// Key operations:
+    ///   - IterateControls: depth-first traversal of a control's children (non-recursive, stack-based)
+    ///   - OpenFormInstance: opens an Aurora form by clicking its toolbar button on the TacticalMap
+    ///   - RunOnForm: opens a form and executes an action on it once it's ready (async with 30s timeout)
+    ///
+    /// All UI-mutating operations are marshalled to the UI thread via InvokeOnUIThread.
+    /// </summary>
     public class UIManager
     {
         public static IEnumerable<Control> IterateControls(Control control)

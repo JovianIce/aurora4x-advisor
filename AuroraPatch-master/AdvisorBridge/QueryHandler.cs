@@ -5,6 +5,11 @@ using Newtonsoft.Json;
 
 namespace AdvisorBridge
 {
+    /// <summary>
+    /// Handles SQL query safety and result conversion for the WebSocket bridge.
+    /// Only allows SELECT and PRAGMA queries to prevent game state corruption.
+    /// PRAGMA is permitted for schema inspection (e.g. PRAGMA table_info).
+    /// </summary>
     public static class QueryHandler
     {
         public static List<Dictionary<string, object>> DataTableToList(DataTable table)

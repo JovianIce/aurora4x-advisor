@@ -7,6 +7,23 @@ using HarmonyLib;
 
 namespace Lib
 {
+    /// <summary>
+    /// Resolves obfuscated Aurora types across game versions using field-type signatures.
+    ///
+    /// Problem: Aurora's type names change with every build (e.g. GameState might be "aw" in one
+    /// version and "a0" in another). We need a version-independent way to identify types.
+    ///
+    /// Solution: Each Aurora type has a unique "fingerprint" based on the count of each field type
+    /// it contains (e.g. "has 5 ints, 3 doubles, 2 bools"). This fingerprint is stable across
+    /// obfuscation passes because the compiler preserves field types even when renaming.
+    ///
+    /// The matching algorithm tries progressively tighter tolerances (delta = 10, 5, 3, 2, 1, 0)
+    /// on field counts until exactly one type matches. This handles minor field additions/removals
+    /// between versions while still uniquely identifying the type.
+    ///
+    /// Results are cached per Aurora.exe checksum in signatures.json to avoid re-scanning on startup.
+    /// For known versions, KnowledgeBase provides direct type name mappings as a faster path.
+    /// </summary>
     public class SignatureManager
     {
         private class Signature
