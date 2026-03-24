@@ -45,7 +45,7 @@ Aurora 4X is a closed-source .NET WinForms application with obfuscated type name
 
 Aurora's types and fields are obfuscated (e.g., type `kc` = SystemBody, field `v` = SystemBodyID). The conversion from raw memory to usable data is split across both sides:
 
-- **C# Bridge (MemoryReader):** Reads obfuscated fields from Aurora's live objects via cached reflection, and maps them to human-readable keys before sending (`SystemBodyID`, `FleetName`, `OrbitalDistance`, etc.). The obfuscated-to-readable mapping is defined in `MemoryReader.cs` (e.g., field `v` on type `kc` becomes `SystemBodyID`).
+- **C# Bridge (MemoryReader):** Reads obfuscated fields from Aurora's live objects via cached reflection, and maps them to human-readable keys before sending (`SystemBodyID`, `FleetName`, `OrbitalDistance`, etc.). Each entity type has a static `XxxFieldNameMap` dictionary in `MemoryReader.cs` that defines the obfuscated-to-readable mapping (e.g., `"v"` -> `"SystemBodyID"` for bodies, `"f"` -> `"StarID"` for stars). A shared `BuildFastFields` / `ReadMappedFields` pattern handles all types consistently.
 - **Electron App:** Receives JSON with readable keys over WebSocket and renders directly — no client-side field translation needed.
 
 ## Features

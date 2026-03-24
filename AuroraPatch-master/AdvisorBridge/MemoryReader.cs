@@ -79,9 +79,14 @@ namespace AdvisorBridge
         private FieldInfo _shipNameField;             // a2.d9 = ShipName
         private FieldInfo _shipFuelField;             // a2.ca = Fuel
 
-        // Fast-read cache: only fields needed for rendering
+        // Fast-read caches: parallel arrays of FieldInfo + readable name, built from field name maps
         private FieldInfo[] _bodyFastFields;
         private string[] _bodyFastFieldNames;
+
+        private FieldInfo[] _starFastFields;
+        private string[] _starFastFieldNames;
+        private FieldInfo[] _starDetailsFastFields;
+        private string[] _starDetailsFastFieldNames;
 
         private bool _initialized;
         private bool _initFailed;
@@ -287,23 +292,90 @@ namespace AdvisorBridge
             { "cf", "FixedBodyParentID" },
         };
 
-        private void InitFastBodyFields()
+        // Obfuscated field name -> human-readable name for Star (jo type)
+        // Only primitive/direct fields — StarDetails and StarSystem are handled as sub-objects
+        private static readonly Dictionary<string, string> StarFieldNameMap = new Dictionary<string, string>
         {
-            if (_bodyFastFields != null || _systemBodyAllFields == null) return;
+            { "f",  "StarID" },
+            { "g",  "SystemID" },
+            { "d",  "Luminosity" },
+            { "e",  "MassOfStar" },
+        };
 
+        // Obfuscated field name -> human-readable name for StarDetails (kd type)
+        private static readonly Dictionary<string, string> StarDetailsFieldNameMap = new Dictionary<string, string>
+        {
+            { "a",  "SpectralClass" },
+            { "b",  "Prefix" },
+            { "c",  "Suffix" },
+            { "d",  "OrbitZone" },
+            { "e",  "InnerZone" },
+            { "f",  "OuterZone" },
+            { "g",  "Radius" },
+            { "h",  "Temperature" },
+            { "i",  "ColorR" },
+            { "j",  "ColorG" },
+            { "k",  "ColorB" },
+        };
+
+        /// <summary>
+        /// Build fast-read parallel arrays from a field name map and an array of all fields on a type.
+        /// Shared initialization pattern used by all entity types.
+        /// </summary>
+        private static void BuildFastFields(
+            Dictionary<string, string> nameMap,
+            FieldInfo[] allFields,
+            out FieldInfo[] fastFields,
+            out string[] fastFieldNames)
+        {
             var fields = new List<FieldInfo>();
-            var readableNames = new List<string>();
-            foreach (var kvp in BodyFieldNameMap)
+            var names = new List<string>();
+            foreach (var kvp in nameMap)
             {
-                var f = _systemBodyAllFields.FirstOrDefault(fi => fi.Name == kvp.Key);
+                var f = allFields.FirstOrDefault(fi => fi.Name == kvp.Key);
                 if (f != null)
                 {
                     fields.Add(f);
-                    readableNames.Add(kvp.Value);
+                    names.Add(kvp.Value);
                 }
             }
-            _bodyFastFields = fields.ToArray();
-            _bodyFastFieldNames = readableNames.ToArray();
+            fastFields = fields.ToArray();
+            fastFieldNames = names.ToArray();
+        }
+
+        private void InitFastBodyFields()
+        {
+            if (_bodyFastFields != null || _systemBodyAllFields == null) return;
+            BuildFastFields(BodyFieldNameMap, _systemBodyAllFields, out _bodyFastFields, out _bodyFastFieldNames);
+        }
+
+        private void InitFastStarFields()
+        {
+            if (_starFastFields != null || _starAllFields == null) return;
+            BuildFastFields(StarFieldNameMap, _starAllFields, out _starFastFields, out _starFastFieldNames);
+
+            if (_starDetailsAllFields != null)
+                BuildFastFields(StarDetailsFieldNameMap, _starDetailsAllFields, out _starDetailsFastFields, out _starDetailsFastFieldNames);
+        }
+
+        /// <summary>
+        /// Read fields from an object using fast-field parallel arrays, writing readable keys to the target dictionary.
+        /// Shared read pattern used by all entity types.
+        /// </summary>
+        private static void ReadMappedFields(FieldInfo[] fields, string[] names, object source, Dictionary<string, object> target)
+        {
+            for (int i = 0; i < fields.Length; i++)
+            {
+                try
+                {
+                    var f = fields[i];
+                    if (f.FieldType.IsEnum)
+                        target[names[i]] = f.GetValue(source)?.ToString();
+                    else
+                        target[names[i]] = f.GetValue(source);
+                }
+                catch { }
+            }
         }
 
         #endregion
@@ -387,18 +459,7 @@ namespace AdvisorBridge
                     }
 
                     var row = new Dictionary<string, object>(_bodyFastFields.Length);
-                    for (int i = 0; i < _bodyFastFields.Length; i++)
-                    {
-                        var f = _bodyFastFields[i];
-                        try
-                        {
-                            if (f.FieldType.IsEnum)
-                                row[_bodyFastFieldNames[i]] = f.GetValue(body)?.ToString();
-                            else
-                                row[_bodyFastFieldNames[i]] = f.GetValue(body);
-                        }
-                        catch { }
-                    }
+                    ReadMappedFields(_bodyFastFields, _bodyFastFieldNames, body, row);
                     results.Add(row);
                 }
 
@@ -416,11 +477,14 @@ namespace AdvisorBridge
         /// <summary>
         /// Read stars. Reads from GameState.bv (Dict of Star/jo).
         /// Includes StarDetails (kd) sub-object with spectral class, color, etc.
+        /// All fields mapped to human-readable keys via StarFieldNameMap / StarDetailsFieldNameMap.
         /// </summary>
         public List<Dictionary<string, object>> ReadStars(int? filterSystemId = null)
         {
             var results = new List<Dictionary<string, object>>();
             if (!Initialize() || _starsDict == null || _starAllFields == null) return results;
+
+            InitFastStarFields();
 
             try
             {
@@ -443,17 +507,17 @@ namespace AdvisorBridge
                     }
 
                     var row = new Dictionary<string, object>();
-                    ReadPrimitiveFields(_starAllFields, star, row);
+                    ReadMappedFields(_starFastFields, _starFastFieldNames, star, row);
 
-                    // Include StarDetails sub-object (spectral class, color, luminosity)
+                    // Include StarDetails sub-object with mapped readable keys
                     try
                     {
                         var details = _starDetailsField?.GetValue(star);
-                        if (details != null && _starDetailsAllFields != null)
+                        if (details != null && _starDetailsFastFields != null)
                         {
                             var detailsData = new Dictionary<string, object>();
-                            ReadPrimitiveFields(_starDetailsAllFields, details, detailsData);
-                            row["_starInfo"] = detailsData;
+                            ReadMappedFields(_starDetailsFastFields, _starDetailsFastFieldNames, details, detailsData);
+                            row["StarDetails"] = detailsData;
                         }
                     }
                     catch { }

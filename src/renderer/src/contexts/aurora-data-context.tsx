@@ -67,10 +67,6 @@ export interface MemorySystemBody {
   FixedBodyParentID: number
 }
 
-// Bridge now sends human-readable field names directly — cast to MemorySystemBody
-function mapBody(raw: Record<string, unknown>): MemorySystemBody {
-  return raw as unknown as MemorySystemBody
-}
 
 interface AuroraDataContextValue {
   // Connection
@@ -160,7 +156,7 @@ export function useMemoryBodies(systemId: number | null): {
     window.api.bridge
       .getMemoryBodies2(systemId)
       .then((raw) => {
-        setData(raw.map(mapBody))
+        setData(raw as unknown as MemorySystemBody[])
         setIsLoading(false)
       })
       .catch(() => setIsLoading(false))
@@ -177,7 +173,7 @@ export function useMemoryBodies(systemId: number | null): {
       }
       if (msg?.pushType === 'bodies' && msg.data?.bodies) {
         if (msg.data.systemId === subscribedRef.current) {
-          setData(msg.data.bodies.map(mapBody))
+          setData(msg.data.bodies as unknown as MemorySystemBody[])
         }
       }
     })
@@ -190,7 +186,7 @@ export function useMemoryBodies(systemId: number | null): {
     window.api.bridge
       .getMemoryBodies2(systemId)
       .then((raw) => {
-        setData(raw.map(mapBody))
+        setData(raw as unknown as MemorySystemBody[])
       })
       .catch(() => {})
   }, [systemId, isConnected])

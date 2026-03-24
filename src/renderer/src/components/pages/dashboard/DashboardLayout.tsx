@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGame } from '@renderer/hooks/use-game'
+import { useSettings } from '@renderer/hooks/use-settings'
 import { SystemMapTab } from './SystemMapTab'
 import { TableExplorerTab } from './TableExplorerTab'
 import { DashboardOverview } from './DashboardOverview'
@@ -11,14 +12,8 @@ import { BridgeStatusIndicator } from '../../system-map/BridgeStatusIndicator'
 export function DashboardLayout(): React.JSX.Element {
   const navigate = useNavigate()
   const { currentGame } = useGame()
+  const { settings } = useSettings()
   const [activeView, setActiveView] = useState<'map' | 'tables' | 'memory' | 'advisor'>('map')
-  const [devToolsEnabled, setDevToolsEnabled] = useState(false)
-
-  useEffect(() => {
-    window.api.settings.load().then((s) => {
-      if (s?.enableDevTools) setDevToolsEnabled(true)
-    })
-  }, [])
 
   useEffect(() => {
     if (!currentGame) {
@@ -70,7 +65,7 @@ export function DashboardLayout(): React.JSX.Element {
           >
             Tactical Map
           </button>
-          {devToolsEnabled && (
+          {settings?.enableDevTools && (
             <>
               <button
                 className={`cic-btn ${activeView === 'tables' ? 'active' : ''}`}

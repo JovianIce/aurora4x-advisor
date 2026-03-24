@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { useSettings } from '@renderer/hooks/use-settings'
 
 interface ToolbarButton {
   label: string
@@ -61,16 +62,10 @@ const GROUP_COLORS: Record<string, string> = {
 }
 
 export function FormToolbar(): React.JSX.Element {
+  const { settings } = useSettings()
   const [busy, setBusy] = useState<string | null>(null)
   const [autoOn, setAutoOn] = useState(false)
   const [showTime, setShowTime] = useState(false)
-  const [timeControlsEnabled, setTimeControlsEnabled] = useState(false)
-
-  useEffect(() => {
-    window.api.settings.load().then((s) => {
-      if (s?.enableTimeControls) setTimeControlsEnabled(true)
-    })
-  }, [])
 
   const clickButton = async (target: string): Promise<void> => {
     if (busy) return
@@ -119,7 +114,7 @@ export function FormToolbar(): React.JSX.Element {
         borderBottom: '1px solid var(--cic-panel-edge)'
       }}
     >
-      {timeControlsEnabled && (
+      {settings?.enableTimeControls && (
         <>
           <button
             className={`cic-btn ${autoOn ? 'active' : ''}`}
