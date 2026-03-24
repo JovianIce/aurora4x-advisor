@@ -97,10 +97,7 @@ export function DashboardLayout(): React.JSX.Element {
         {/* Right: Status */}
         <div className="flex items-center gap-4">
           <BridgeStatusIndicator />
-          <button
-            className="cic-btn"
-            onClick={() => navigate('/settings')}
-          >
+          <button className="cic-btn" onClick={() => navigate('/settings')}>
             Config
           </button>
         </div>

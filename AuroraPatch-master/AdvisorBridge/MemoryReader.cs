@@ -227,41 +227,83 @@ namespace AdvisorBridge
             _patch.LogInfo($"MemoryReader: Ship type has {shipType.GetFields(AccessTools.all).Length} fields");
         }
 
+        // Obfuscated field name -> human-readable name for SystemBody (kc type)
+        private static readonly Dictionary<string, string> BodyFieldNameMap = new Dictionary<string, string>
+        {
+            // Identity
+            { "v",  "SystemBodyID" },
+            { "w",  "SystemID" },
+            { "x",  "StarID" },
+            { "y",  "PlanetNumber" },
+            { "z",  "OrbitNumber" },
+            { "aa", "ParentBodyID" },
+            { "ab", "ParentBodyType" },
+            { "o",  "BodyClass" },
+            { "bs", "Name" },
+
+            // Orbital mechanics
+            { "ap", "OrbitalDistance" },
+            { "as", "Bearing" },
+            { "an", "Xcor" },
+            { "ao", "Ycor" },
+            { "bb", "Eccentricity" },
+            { "bc", "EccentricityDirection" },
+            { "bn", "DistanceToOrbitCentre" },
+            { "bo", "DistanceToParent" },
+            { "a9", "CurrentOrbitalSpeed" },
+            { "ba", "MeanOrbitalSpeed" },
+            { "bp", "TidalLock" },
+
+            // Physical properties
+            { "at", "Density" },
+            { "au", "Gravity" },
+            { "av", "Mass" },
+            { "aw", "EscapeVelocity" },
+            { "a7", "Radius" },
+            { "a0", "Roche" },
+            { "a1", "MagneticField" },
+            { "a8", "Ring" },
+
+            // Time
+            { "ax", "Year" },
+            { "ay", "TidalForce" },
+            { "az", "DayValue" },
+
+            // Atmosphere and temperature
+            { "aq", "BaseTemp" },
+            { "ar", "SurfaceTemp" },
+            { "a2", "AtmosPress" },
+            { "a3", "Albedo" },
+            { "a4", "GHFactor" },
+            { "cd", "AGHFactor" },
+
+            // Surface
+            { "a5", "DominantTerrain" },
+            { "q",  "HydroType" },
+            { "r",  "TectonicActivity" },
+
+            // Fixed body (e.g. stars, special bodies)
+            { "ce", "FixedBody" },
+            { "cf", "FixedBodyParentID" },
+        };
+
         private void InitFastBodyFields()
         {
             if (_bodyFastFields != null || _systemBodyAllFields == null) return;
 
-            // Map of obfuscated field name -> what it represents (for reference):
-            // v=SystemBodyID, w=SystemID, x=StarID, y=PlanetNumber, z=OrbitNumber,
-            // aa=ParentBodyID, ab=ParentBodyType, o=BodyClass, bs=Name,
-            // ap=OrbitalDistance, as=Bearing, at=Density, au=Gravity, av=Mass,
-            // a7=Radius, an=Xcor, ao=Ycor, bb=Eccentricity, bc=EccentricityDirection,
-            // bn=DistanceToOrbitCentre, bo=DistanceToParent, a9=CurrentOrbitalSpeed,
-            // ba=MeanOrbitalSpeed, bp=TidalLock, aq=BaseTemp, ar=SurfaceTemp,
-            // a2=AtmosPress, a3=Albedo, a4=GHFactor, a0=Roche, a1=MagneticField,
-            // a8=Ring, a5=DominantTerrain, cd=AGHFactor, ce=FixedBody,
-            // cf=FixedBodyParentID, q=HydroType, r=TectonicActivity
-            var needed = new[] {
-                "v", "w", "x", "y", "z", "aa", "ab", "o", "bs",
-                "ap", "as", "at", "au", "av", "a7", "an", "ao",
-                "bb", "bc", "bn", "bo", "a9", "ba", "bp",
-                "aq", "ar", "a2", "a3", "a4",
-                "a0", "a1", "a8", "a5", "cd", "ce", "cf", "q", "r"
-            };
-
             var fields = new List<FieldInfo>();
-            var names = new List<string>();
-            foreach (var name in needed)
+            var readableNames = new List<string>();
+            foreach (var kvp in BodyFieldNameMap)
             {
-                var f = _systemBodyAllFields.FirstOrDefault(fi => fi.Name == name);
+                var f = _systemBodyAllFields.FirstOrDefault(fi => fi.Name == kvp.Key);
                 if (f != null)
                 {
                     fields.Add(f);
-                    names.Add(name);
+                    readableNames.Add(kvp.Value);
                 }
             }
             _bodyFastFields = fields.ToArray();
-            _bodyFastFieldNames = names.ToArray();
+            _bodyFastFieldNames = readableNames.ToArray();
         }
 
         #endregion

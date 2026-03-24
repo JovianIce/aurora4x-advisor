@@ -3,13 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGame } from '@renderer/hooks/use-game'
 import { PersonalityMatcher } from '@components/advisor'
 import { toast } from 'sonner'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger
-} from '@components/ui/sheet'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@components/ui/sheet'
 
 interface GameSidebarProps {
   isOpen?: boolean
@@ -44,10 +38,7 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
     <>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <button
-            className="cic-btn fixed top-1 left-3 z-50"
-            style={{ padding: '3px 10px' }}
-          >
+          <button className="cic-btn fixed top-1 left-3 z-50" style={{ padding: '3px 10px' }}>
             ☰ Fleet Command
           </button>
         </SheetTrigger>
@@ -59,7 +50,10 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
             borderRight: '1px solid var(--cic-panel-edge)'
           }}
         >
-          <SheetHeader className="p-4 pb-3" style={{ borderBottom: '1px solid var(--cic-panel-edge)' }}>
+          <SheetHeader
+            className="p-4 pb-3"
+            style={{ borderBottom: '1px solid var(--cic-panel-edge)' }}
+          >
             <SheetTitle
               className="cic-label"
               style={{ color: 'var(--cic-amber)', fontSize: '11px', letterSpacing: '0.2em' }}
@@ -71,21 +65,26 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
           <div className="p-3 space-y-2">
             <button
               className="cic-btn cic-btn-amber w-full"
-              onClick={() => { navigate('/'); setOpen(false) }}
+              onClick={() => {
+                navigate('/')
+                setOpen(false)
+              }}
             >
               + New Campaign
             </button>
 
             {savedGames.length === 0 ? (
-              <div className="cic-data text-center py-6" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
+              <div
+                className="cic-data text-center py-6"
+                style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}
+              >
                 No campaigns detected.
-                <br />Initialize a new campaign to begin.
+                <br />
+                Initialize a new campaign to begin.
               </div>
             ) : (
               <div className="space-y-1 mt-3">
-                <div className="cic-label px-1 pb-1">
-                  Campaigns ({savedGames.length})
-                </div>
+                <div className="cic-label px-1 pb-1">Campaigns ({savedGames.length})</div>
                 {savedGames
                   .sort((a, b) => b.lastAccessedAt - a.lastAccessedAt)
                   .map((game) => {
@@ -125,16 +124,29 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
                             )}
                           </div>
                           <div className="space-y-0.5">
-                            <div className="cic-data" style={{ color: 'rgba(255,255,255,0.35)', fontSize: '9px' }}>
+                            <div
+                              className="cic-data"
+                              style={{ color: 'rgba(255,255,255,0.35)', fontSize: '9px' }}
+                            >
                               {game.gameInfo.empireName} — {game.gameInfo.techLevel}
                             </div>
-                            <div className="cic-data" style={{ color: 'rgba(255,255,255,0.25)', fontSize: '9px' }}>
+                            <div
+                              className="cic-data"
+                              style={{ color: 'rgba(255,255,255,0.25)', fontSize: '9px' }}
+                            >
                               Year {game.gameInfo.startingYear} — {formatDate(game.lastAccessedAt)}
                             </div>
                             {game.personalityName ? (
                               <button
                                 className="cic-data block text-left"
-                                style={{ color: 'var(--cic-amber-dim)', fontSize: '9px', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                                style={{
+                                  color: 'var(--cic-amber-dim)',
+                                  fontSize: '9px',
+                                  background: 'none',
+                                  border: 'none',
+                                  padding: 0,
+                                  cursor: 'pointer'
+                                }}
                                 onClick={(e) => {
                                   e.stopPropagation()
                                   if (isActive) {
@@ -150,7 +162,14 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
                             ) : isActive ? (
                               <button
                                 className="cic-data block text-left"
-                                style={{ color: 'var(--cic-amber-dim)', fontSize: '9px', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                                style={{
+                                  color: 'var(--cic-amber-dim)',
+                                  fontSize: '9px',
+                                  background: 'none',
+                                  border: 'none',
+                                  padding: 0,
+                                  cursor: 'pointer'
+                                }}
                                 onClick={(e) => {
                                   e.stopPropagation()
                                   setOpen(false)
@@ -185,7 +204,9 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
 
       {/* Advisor personality matcher — separate sheet, not nested */}
       <Sheet open={advisorOpen} onOpenChange={setAdvisorOpen}>
-        <SheetContent side="right" className="w-full sm:max-w-4xl overflow-y-auto border-0"
+        <SheetContent
+          side="right"
+          className="w-full sm:max-w-4xl overflow-y-auto border-0"
           style={{
             background: 'linear-gradient(180deg, var(--cic-panel) 0%, var(--cic-void) 100%)',
             borderLeft: '1px solid var(--cic-panel-edge)'

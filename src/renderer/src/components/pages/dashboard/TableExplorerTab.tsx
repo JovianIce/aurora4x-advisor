@@ -11,7 +11,8 @@ export function TableExplorerTab(): React.JSX.Element {
   // Preview rows from selected table
   const { data: previewRows, isLoading: previewLoading } = useQuery<Record<string, unknown>[]>({
     queryKey: ['tablePreview', selectedTable, previewLimit],
-    queryFn: () => window.api.bridge.query(`SELECT * FROM "${selectedTable}" LIMIT ${previewLimit}`),
+    queryFn: () =>
+      window.api.bridge.query(`SELECT * FROM "${selectedTable}" LIMIT ${previewLimit}`),
     enabled: isConnected && !!selectedTable
   })
 
@@ -39,9 +40,7 @@ export function TableExplorerTab(): React.JSX.Element {
       {/* Table list */}
       <div className="w-64 flex-shrink-0 overflow-y-auto border rounded-lg p-2 space-y-1">
         <div className="flex items-center justify-between pb-2 border-b mb-2">
-          <span className="text-sm font-medium">
-            Tables ({tables.length})
-          </span>
+          <span className="text-sm font-medium">Tables ({tables.length})</span>
           <Button variant="ghost" size="sm" onClick={() => refetchTables()}>
             {tablesLoading ? '...' : 'Refresh'}
           </Button>
@@ -105,9 +104,7 @@ export function TableExplorerTab(): React.JSX.Element {
                 {tables.find((t) => t.name === selectedTable)?.rows.toLocaleString() ?? '?'} rows
               </span>
               {tableSchema && (
-                <span className="text-xs text-muted-foreground">
-                  {tableSchema.length} columns
-                </span>
+                <span className="text-xs text-muted-foreground">{tableSchema.length} columns</span>
               )}
             </div>
 
@@ -148,7 +145,10 @@ export function TableExplorerTab(): React.JSX.Element {
                     {previewRows.map((row, i) => (
                       <tr key={i} className="hover:bg-accent/50">
                         {Object.values(row).map((val, j) => (
-                          <td key={j} className="p-1.5 border-b whitespace-nowrap max-w-[200px] truncate">
+                          <td
+                            key={j}
+                            className="p-1.5 border-b whitespace-nowrap max-w-[200px] truncate"
+                          >
                             {val === null ? (
                               <span className="text-muted-foreground italic">null</span>
                             ) : (

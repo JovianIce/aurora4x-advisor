@@ -17,7 +17,7 @@ const TIME_INCREMENTS: { label: string; target: string }[] = [
   { label: '8h', target: 'Increment8H' },
   { label: '1d', target: 'Increment1D' },
   { label: '5d', target: 'Increment5D' },
-  { label: '30d', target: 'Increment30D' },
+  { label: '30d', target: 'Increment30D' }
 ]
 
 const FORM_BUTTONS: ToolbarButton[] = [
@@ -49,7 +49,7 @@ const FORM_BUTTONS: ToolbarButton[] = [
   { label: 'Events', target: 'ToolbarEvents', group: 'util' },
   { label: 'Sectors', target: 'ToolbarSector', group: 'util' },
   { label: 'Game', target: 'ToolbarGame', group: 'util' },
-  { label: 'Save', target: 'ToolbarSave', group: 'util' },
+  { label: 'Save', target: 'ToolbarSave', group: 'util' }
 ]
 
 const GROUP_COLORS: Record<string, string> = {
@@ -57,7 +57,7 @@ const GROUP_COLORS: Record<string, string> = {
   military: 'var(--cic-green)',
   design: 'var(--cic-amber-dim)',
   info: 'var(--cic-cyan-dim)',
-  util: 'rgba(255,255,255,0.4)',
+  util: 'rgba(255,255,255,0.4)'
 }
 
 export function FormToolbar(): React.JSX.Element {
@@ -93,7 +93,7 @@ export function FormToolbar(): React.JSX.Element {
         Action: 'ClickButton',
         Target: 'ToolbarAuto'
       })
-      setAutoOn(prev => !prev)
+      setAutoOn((prev) => !prev)
     } catch (err) {
       console.error('Failed to toggle auto:', err)
     }
@@ -144,23 +144,24 @@ export function FormToolbar(): React.JSX.Element {
           >
             Time {showTime ? '▾' : '▸'}
           </button>
-          {showTime && TIME_INCREMENTS.map((t) => (
-            <button
-              key={t.target}
-              className="cic-btn"
-              style={{
-                fontSize: '9px',
-                padding: '2px 5px',
-                color: busy === t.target ? 'var(--cic-amber)' : 'rgba(255,255,255,0.5)',
-                whiteSpace: 'nowrap'
-              }}
-              onClick={() => clickButton(t.target)}
-              disabled={busy !== null}
-              title={`Set increment to ${t.label}`}
-            >
-              {t.label}
-            </button>
-          ))}
+          {showTime &&
+            TIME_INCREMENTS.map((t) => (
+              <button
+                key={t.target}
+                className="cic-btn"
+                style={{
+                  fontSize: '9px',
+                  padding: '2px 5px',
+                  color: busy === t.target ? 'var(--cic-amber)' : 'rgba(255,255,255,0.5)',
+                  whiteSpace: 'nowrap'
+                }}
+                onClick={() => clickButton(t.target)}
+                disabled={busy !== null}
+                title={`Set increment to ${t.label}`}
+              >
+                {t.label}
+              </button>
+            ))}
           {sep}
         </>
       )}

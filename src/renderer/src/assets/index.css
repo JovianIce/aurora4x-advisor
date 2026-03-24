@@ -146,7 +146,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family:
+      'Segoe UI',
+      system-ui,
+      -apple-system,
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow: hidden;
   }
@@ -247,14 +251,18 @@
   border-color: var(--cic-cyan);
   color: var(--cic-cyan);
   background: rgba(0, 229, 255, 0.05);
-  box-shadow: 0 0 8px rgba(0, 229, 255, 0.15), inset 0 0 8px rgba(0, 229, 255, 0.05);
+  box-shadow:
+    0 0 8px rgba(0, 229, 255, 0.15),
+    inset 0 0 8px rgba(0, 229, 255, 0.05);
 }
 
 .cic-btn.active {
   border-color: var(--cic-cyan);
   color: var(--cic-cyan);
   background: rgba(0, 229, 255, 0.1);
-  box-shadow: 0 0 12px rgba(0, 229, 255, 0.2), inset 0 0 12px rgba(0, 229, 255, 0.08);
+  box-shadow:
+    0 0 12px rgba(0, 229, 255, 0.2),
+    inset 0 0 12px rgba(0, 229, 255, 0.08);
 }
 
 .cic-btn-amber {
@@ -262,7 +270,8 @@
   border-color: var(--cic-amber-dim);
 }
 
-.cic-btn-amber:hover, .cic-btn-amber.active {
+.cic-btn-amber:hover,
+.cic-btn-amber.active {
   border-color: var(--cic-amber);
   color: var(--cic-amber);
   background: rgba(255, 179, 0, 0.08);
@@ -342,7 +351,9 @@
 
 .cic-status-dot.online {
   background: var(--cic-green);
-  box-shadow: 0 0 6px var(--cic-green), 0 0 12px rgba(0, 230, 118, 0.3);
+  box-shadow:
+    0 0 6px var(--cic-green),
+    0 0 12px rgba(0, 230, 118, 0.3);
   animation: cic-pulse 2s ease-in-out infinite;
 }
 
@@ -352,8 +363,13 @@
 }
 
 @keyframes cic-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* ============================================================
@@ -362,8 +378,7 @@
 
 .cic-map-bg {
   background:
-    radial-gradient(ellipse at center, var(--cic-deep) 0%, var(--cic-void) 70%),
-    var(--cic-void);
+    radial-gradient(ellipse at center, var(--cic-deep) 0%, var(--cic-void) 70%), var(--cic-void);
   position: relative;
 }
 
@@ -390,8 +405,14 @@
    ============================================================ */
 
 @keyframes cic-fade-in {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .cic-animate-in {

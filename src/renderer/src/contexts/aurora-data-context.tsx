@@ -1,4 +1,12 @@
-import React, { createContext, useContext, useMemo, useEffect, useRef, useState, useCallback } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useMemo,
+  useEffect,
+  useRef,
+  useState,
+  useCallback
+} from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import type { BridgeStatus } from '@shared/types'
 
@@ -22,7 +30,7 @@ export interface MemorySystemBody {
   OrbitNumber: number
   ParentBodyID: number
   ParentBodyType: number
-  BodyClass: string   // sub-type string from memory: "Terrestrial", "GasGiant", "Comet", etc.
+  BodyClass: string // sub-type string from memory: "Terrestrial", "GasGiant", "Comet", etc.
   Name: string
   OrbitalDistance: number
   Bearing: number
@@ -59,52 +67,9 @@ export interface MemorySystemBody {
   FixedBodyParentID: number
 }
 
-// Map obfuscated kc fields to readable names
+// Bridge now sends human-readable field names directly — cast to MemorySystemBody
 function mapBody(raw: Record<string, unknown>): MemorySystemBody {
-  return {
-    SystemBodyID: raw.v as number,
-    SystemID: raw.w as number,
-    StarID: raw.x as number,
-    PlanetNumber: raw.y as number,
-    OrbitNumber: raw.z as number,
-    ParentBodyID: raw.aa as number,
-    ParentBodyType: raw.ab as number,
-    BodyClass: raw.o as string,
-    Name: raw.bs as string,
-    OrbitalDistance: raw.ap as number,
-    Bearing: raw.as as number,
-    Density: raw.at as number,
-    Radius: raw.a7 as number,
-    Gravity: raw.au as number,
-    Mass: raw.av as number,
-    EscapeVelocity: raw.aw as number,
-    Xcor: raw.an as number,
-    Ycor: raw.ao as number,
-    BaseTemp: raw.aq as number,
-    SurfaceTemp: raw.ar as number,
-    Year: raw.ax as number,
-    TidalForce: raw.ay as number,
-    DayValue: raw.az as number,
-    Eccentricity: raw.bb as number,
-    EccentricityDirection: raw.bc as number,
-    AtmosPress: raw.a2 as number,
-    Albedo: raw.a3 as number,
-    GHFactor: raw.a4 as number,
-    TidalLock: raw.bp as boolean,
-    DistanceToOrbitCentre: raw.bn as number,
-    DistanceToParent: raw.bo as number,
-    CurrentOrbitalSpeed: raw.a9 as number,
-    MeanOrbitalSpeed: raw.ba as number,
-    HydroType: raw.q as string,
-    TectonicActivity: raw.r as string,
-    Roche: raw.a0 as number,
-    MagneticField: raw.a1 as number,
-    Ring: raw.a8 as number,
-    DominantTerrain: raw.a5 as number,
-    AGHFactor: raw.cd as number,
-    FixedBody: raw.ce as boolean,
-    FixedBodyParentID: raw.cf as number
-  }
+  return raw as unknown as MemorySystemBody
 }
 
 interface AuroraDataContextValue {
@@ -123,11 +88,7 @@ interface AuroraDataContextValue {
 
 const AuroraDataContext = createContext<AuroraDataContextValue | null>(null)
 
-export function AuroraDataProvider({
-  children
-}: {
-  children: React.ReactNode
-}): React.JSX.Element {
+export function AuroraDataProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
   // Bridge status - poll every 2 seconds
   const { data: bridgeStatus } = useQuery<BridgeStatus>({
     queryKey: ['bridgeStatus'],
@@ -147,7 +108,6 @@ export function AuroraDataProvider({
     queryFn: () => window.api.bridge.getAllTables(),
     enabled: false
   })
-
 
   const value = useMemo<AuroraDataContextValue>(
     () => ({
@@ -171,9 +131,11 @@ export function useAuroraData(): AuroraDataContextValue {
 }
 
 // Live system bodies from memory - push-based (server broadcasts on game tick)
-export function useMemoryBodies(
-  systemId: number | null
-): { data: MemorySystemBody[] | undefined; isLoading: boolean; refetch: () => void } {
+export function useMemoryBodies(systemId: number | null): {
+  data: MemorySystemBody[] | undefined
+  isLoading: boolean
+  refetch: () => void
+} {
   const { isConnected } = useAuroraData()
   const [data, setData] = useState<MemorySystemBody[] | undefined>()
   const [isLoading, setIsLoading] = useState(false)
@@ -195,10 +157,13 @@ export function useMemoryBodies(
     window.api.bridge.subscribeBodies(systemId).catch(() => {})
 
     // Also fetch initial data immediately
-    window.api.bridge.getMemoryBodies2(systemId).then((raw) => {
-      setData(raw.map(mapBody))
-      setIsLoading(false)
-    }).catch(() => setIsLoading(false))
+    window.api.bridge
+      .getMemoryBodies2(systemId)
+      .then((raw) => {
+        setData(raw.map(mapBody))
+        setIsLoading(false)
+      })
+      .catch(() => setIsLoading(false))
   }, [isConnected, systemId])
 
   // Listen for push notifications from server
@@ -206,7 +171,10 @@ export function useMemoryBodies(
     if (!isConnected) return
 
     const unsub = window.api.bridge.onPush((payload: unknown) => {
-      const msg = payload as { pushType?: string; data?: { systemId?: number; bodies?: Record<string, unknown>[] } }
+      const msg = payload as {
+        pushType?: string
+        data?: { systemId?: number; bodies?: Record<string, unknown>[] }
+      }
       if (msg?.pushType === 'bodies' && msg.data?.bodies) {
         if (msg.data.systemId === subscribedRef.current) {
           setData(msg.data.bodies.map(mapBody))
@@ -219,18 +187,22 @@ export function useMemoryBodies(
 
   const refetch = useCallback(() => {
     if (!systemId || !isConnected) return
-    window.api.bridge.getMemoryBodies2(systemId).then((raw) => {
-      setData(raw.map(mapBody))
-    }).catch(() => {})
+    window.api.bridge
+      .getMemoryBodies2(systemId)
+      .then((raw) => {
+        setData(raw.map(mapBody))
+      })
+      .catch(() => {})
   }, [systemId, isConnected])
 
   return { data, isLoading, refetch }
 }
 
 // Live stars from memory - auto-refreshing
-export function useMemoryStars(
-  systemId: number | null
-): { data: Record<string, unknown>[] | undefined; isLoading: boolean } {
+export function useMemoryStars(systemId: number | null): {
+  data: Record<string, unknown>[] | undefined
+  isLoading: boolean
+} {
   const { isConnected } = useAuroraData()
 
   const { data, isLoading } = useQuery<Record<string, unknown>[]>({

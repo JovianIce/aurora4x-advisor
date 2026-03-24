@@ -134,7 +134,9 @@ export function MemoryExplorerTab(): React.JSX.Element {
               try {
                 const result = await window.api.bridge.dumpMemory()
                 if (result) {
-                  setDumpResult(`${result.files.length} files, ${result.totalItems} items → ${result.outputDir}`)
+                  setDumpResult(
+                    `${result.files.length} files, ${result.totalItems} items → ${result.outputDir}`
+                  )
                 } else {
                   setDumpResult('Cancelled')
                 }
@@ -157,10 +159,7 @@ export function MemoryExplorerTab(): React.JSX.Element {
             <>
               {nonEmpty.length > 0 && (
                 <div className="p-1">
-                  <div
-                    className="cic-label px-2 py-1"
-                    style={{ color: 'var(--cic-cyan-dim)' }}
-                  >
+                  <div className="cic-label px-2 py-1" style={{ color: 'var(--cic-cyan-dim)' }}>
                     With Data ({nonEmpty.length})
                   </div>
                   {nonEmpty.map((c) => (
@@ -170,9 +169,7 @@ export function MemoryExplorerTab(): React.JSX.Element {
                       className="w-full text-left px-2 py-1 flex items-center justify-between"
                       style={{
                         background:
-                          selectedCollection === c.field
-                            ? 'rgba(0, 229, 255, 0.1)'
-                            : 'transparent',
+                          selectedCollection === c.field ? 'rgba(0, 229, 255, 0.1)' : 'transparent',
                         borderLeft:
                           selectedCollection === c.field
                             ? '2px solid var(--cic-cyan)'
@@ -211,10 +208,7 @@ export function MemoryExplorerTab(): React.JSX.Element {
               )}
               {empty.length > 0 && (
                 <div className="p-1">
-                  <div
-                    className="cic-label px-2 py-1"
-                    style={{ color: 'rgba(255,255,255,0.2)' }}
-                  >
+                  <div className="cic-label px-2 py-1" style={{ color: 'rgba(255,255,255,0.2)' }}>
                     Empty ({empty.length})
                   </div>
                   {empty.map((c) => (
@@ -274,23 +268,36 @@ export function MemoryExplorerTab(): React.JSX.Element {
                     style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}
                   >
                     <div>
-                      <span className="cic-data" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.6)' }}>
+                      <span
+                        className="cic-data"
+                        style={{ fontSize: '10px', color: 'rgba(255,255,255,0.6)' }}
+                      >
                         {f.name}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="cic-label" style={{ fontSize: '8px', color: typeColor(f.type) }}>
+                      <span
+                        className="cic-label"
+                        style={{ fontSize: '8px', color: typeColor(f.type) }}
+                      >
                         {f.type}
                       </span>
                       {f.count != null && (
-                        <span className="cic-data" style={{ fontSize: '9px', color: 'var(--cic-amber-dim)' }}>
+                        <span
+                          className="cic-data"
+                          style={{ fontSize: '9px', color: 'var(--cic-amber-dim)' }}
+                        >
                           {f.count}
                         </span>
                       )}
                       {f.value != null && typeof f.value !== 'object' && (
                         <span
                           className="cic-data"
-                          style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)', maxWidth: '60px' }}
+                          style={{
+                            fontSize: '9px',
+                            color: 'var(--cic-cyan-dim)',
+                            maxWidth: '60px'
+                          }}
                           title={String(f.value)}
                         >
                           {truncate(String(f.value), 10)}
@@ -310,7 +317,10 @@ export function MemoryExplorerTab(): React.JSX.Element {
             className="px-2 py-1.5 flex-shrink-0"
             style={{ borderTop: '1px solid var(--cic-panel-edge)' }}
           >
-            <span className="cic-data" style={{ fontSize: '8px', color: 'var(--cic-amber-dim)', wordBreak: 'break-all' }}>
+            <span
+              className="cic-data"
+              style={{ fontSize: '8px', color: 'var(--cic-amber-dim)', wordBreak: 'break-all' }}
+            >
               {dumpResult}
             </span>
           </div>
@@ -352,7 +362,10 @@ export function MemoryExplorerTab(): React.JSX.Element {
                     <span className="cic-label" style={{ color: 'rgba(255,255,255,0.4)' }}>
                       {selectedInfo.collectionType}&lt;{selectedInfo.itemType}&gt;
                     </span>
-                    <span className="cic-data" style={{ color: 'var(--cic-amber)', fontSize: '11px' }}>
+                    <span
+                      className="cic-data"
+                      style={{ color: 'var(--cic-amber)', fontSize: '11px' }}
+                    >
                       {selectedInfo.count.toLocaleString()} items
                     </span>
                     <span className="cic-label" style={{ color: 'rgba(255,255,255,0.3)' }}>
@@ -361,7 +374,11 @@ export function MemoryExplorerTab(): React.JSX.Element {
                   </>
                 )}
               </div>
-              <button className="cic-btn" onClick={() => refetchItems()} style={{ fontSize: '10px' }}>
+              <button
+                className="cic-btn"
+                onClick={() => refetchItems()}
+                style={{ fontSize: '10px' }}
+              >
                 Refresh
               </button>
             </div>
@@ -533,7 +550,13 @@ export function MemoryExplorerTab(): React.JSX.Element {
                                             : 'var(--cic-red)'
                                           : 'rgba(255,255,255,0.6)'
                               }}
-                              title={val === null ? 'null' : typeof val === 'object' ? JSON.stringify(val) : String(val)}
+                              title={
+                                val === null
+                                  ? 'null'
+                                  : typeof val === 'object'
+                                    ? JSON.stringify(val)
+                                    : String(val)
+                              }
                             >
                               {val === null
                                 ? '—'
@@ -552,8 +575,13 @@ export function MemoryExplorerTab(): React.JSX.Element {
                 </table>
               ) : (
                 <div className="p-4 text-center">
-                  <span className="cic-data" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
-                    {items?.length === 0 ? 'No items match filter' : 'Select a collection to view items'}
+                  <span
+                    className="cic-data"
+                    style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}
+                  >
+                    {items?.length === 0
+                      ? 'No items match filter'
+                      : 'Select a collection to view items'}
                   </span>
                 </div>
               )}
@@ -566,8 +594,16 @@ export function MemoryExplorerTab(): React.JSX.Element {
 }
 
 function typeColor(type: string): string {
-  if (type === 'int' || type === 'Int32' || type === 'long' || type === 'Int64') return 'var(--cic-cyan-dim)'
-  if (type === 'double' || type === 'float' || type === 'decimal' || type === 'Double' || type === 'Single') return '#7986cb'
+  if (type === 'int' || type === 'Int32' || type === 'long' || type === 'Int64')
+    return 'var(--cic-cyan-dim)'
+  if (
+    type === 'double' ||
+    type === 'float' ||
+    type === 'decimal' ||
+    type === 'Double' ||
+    type === 'Single'
+  )
+    return '#7986cb'
   if (type === 'string' || type === 'String') return 'var(--cic-green)'
   if (type === 'bool' || type === 'Boolean') return 'var(--cic-amber)'
   if (type === 'enum') return '#ce93d8'

@@ -2,8 +2,18 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { SystemMapCanvas } from '../../system-map/SystemMapCanvas'
 import { SystemSelector } from '../../system-map/SystemSelector'
 import { BodyListPanel } from '../../system-map/BodyListPanel'
-import { DisplayOptionsPanel, DEFAULT_DISPLAY_OPTIONS, type MapDisplayOptions } from '../../system-map/DisplayOptions'
-import { useMemoryBodies, useMemorySystems, useFleets, type MemorySystemBody, type MemoryFleet } from '../../../contexts/aurora-data-context'
+import {
+  DisplayOptionsPanel,
+  DEFAULT_DISPLAY_OPTIONS,
+  type MapDisplayOptions
+} from '../../system-map/DisplayOptions'
+import {
+  useMemoryBodies,
+  useMemorySystems,
+  useFleets,
+  type MemorySystemBody,
+  type MemoryFleet
+} from '../../../contexts/aurora-data-context'
 import type { GameSession, SystemBody } from '@shared/types'
 
 interface SystemMapTabProps {
@@ -17,20 +27,30 @@ function bodyClassToTypeId(bodyClass: string, orbitNumber: number, planetNumber:
 
   if (orbitNumber > 0 && planetNumber < 100) {
     switch (bodyClass) {
-      case 'Terrestrial': return 10
-      case 'Small': return 7
-      default: return 8
+      case 'Terrestrial':
+        return 10
+      case 'Small':
+        return 7
+      default:
+        return 8
     }
   }
 
   switch (bodyClass) {
-    case 'Terrestrial': return 2
-    case 'DwarfPlanet': return 3
-    case 'GasGiant': return 4
-    case 'SuperJovian': return 5
-    case 'GasDwarf': return 4
-    case 'IceGiant': return 4
-    default: return 2
+    case 'Terrestrial':
+      return 2
+    case 'DwarfPlanet':
+      return 3
+    case 'GasGiant':
+      return 4
+    case 'SuperJovian':
+      return 5
+    case 'GasDwarf':
+      return 4
+    case 'IceGiant':
+      return 4
+    default:
+      return 2
   }
 }
 
@@ -92,12 +112,12 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
   // Use SystemID from orbit body when available, fall back to SystemName for in-transit fleets
   const selectedSystemName = useMemo(() => {
     if (!systems || !selectedSystemId) return null
-    return systems.find(s => s.SystemID === selectedSystemId)?.Name ?? null
+    return systems.find((s) => s.SystemID === selectedSystemId)?.Name ?? null
   }, [systems, selectedSystemId])
 
   const systemFleets = useMemo(() => {
     if (!allFleets || !selectedSystemId) return undefined
-    return allFleets.filter(f => {
+    return allFleets.filter((f) => {
       if (f.SystemID === selectedSystemId) return true
       if (f.SystemID === 0 && selectedSystemName && f.SystemName === selectedSystemName) return true
       return false
@@ -111,7 +131,7 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
   // Enrich fleets with order description and computed distance/ETA
   const enrichedFleets = useMemo(() => {
     if (!systemFleets) return undefined
-    return systemFleets.map(f => {
+    return systemFleets.map((f) => {
       const order = fleetOrders?.[f.FleetID] ?? ''
       let distance = 0
       let eta = ''
@@ -123,7 +143,7 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
         const colonIdx = order.indexOf(':')
         if (colonIdx > 0) {
           const destName = order.substring(0, colonIdx).trim()
-          const destBody = memoryBodies.find(b => b.Name === destName)
+          const destBody = memoryBodies.find((b) => b.Name === destName)
           if (destBody) {
             const dx = f.Xcor - destBody.Xcor
             const dy = f.Ycor - destBody.Ycor
@@ -145,7 +165,10 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
 
   if (!gameId || !raceId) {
     return (
-      <div className="flex items-center justify-center h-full" style={{ color: 'var(--cic-cyan-dim)' }}>
+      <div
+        className="flex items-center justify-center h-full"
+        style={{ color: 'var(--cic-cyan-dim)' }}
+      >
         <span className="cic-data">AWAITING GAME DATA LINK...</span>
       </div>
     )
@@ -265,9 +288,7 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
             background: 'linear-gradient(0deg, rgba(3,8,16,0.85) 0%, transparent 100%)'
           }}
         >
-          <span className="cic-label">
-            {game.gameInfo.gameName}
-          </span>
+          <span className="cic-label">{game.gameInfo.gameName}</span>
           <span className="cic-label" style={{ color: 'var(--cic-amber-dim)' }}>
             AURORA CIC v1.0
           </span>

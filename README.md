@@ -45,29 +45,31 @@ Aurora 4X is a closed-source .NET WinForms application with obfuscated type name
 
 Aurora's types and fields are obfuscated (e.g., type `kc` = SystemBody, field `v` = SystemBodyID). The conversion from raw memory to usable data is split across both sides:
 
-- **C# Bridge (MemoryReader):** Reads obfuscated fields from Aurora's live objects via cached reflection. For **fleets, ships, and systems**, the bridge maps fields to human-readable keys before sending (`FleetID`, `ShipName`, `SystemID`, etc.). For **system bodies and stars**, it sends the raw obfuscated field names (`v`, `w`, `bs`, ...) for performance — these collections are large and updated every game tick.
-- **Electron App:** Receives the JSON over WebSocket. For data that arrives with obfuscated keys, the frontend maps them to meaningful names (e.g., `v` -> `SystemBodyID`, `bs` -> `Name`, `ap` -> `OrbitalDistance`). The full field mapping is documented in `MemoryReader.cs`.
-
-This split exists because system bodies (3500+) are read on every tick for map rendering — skipping the name mapping on the C# side keeps the bridge fast. Fleets and ships are smaller collections where readability matters more than raw throughput.
+- **C# Bridge (MemoryReader):** Reads obfuscated fields from Aurora's live objects via cached reflection, and maps them to human-readable keys before sending (`SystemBodyID`, `FleetName`, `OrbitalDistance`, etc.). The obfuscated-to-readable mapping is defined in `MemoryReader.cs` (e.g., field `v` on type `kc` becomes `SystemBodyID`).
+- **Electron App:** Receives JSON with readable keys over WebSocket and renders directly — no client-side field translation needed.
 
 ## Features
 
 ### Real-Time Tactical Map Viewer
+
 - Canvas-based system map with orbital body rendering alongside Aurora's own map
 - Fleet position overlays with movement tracking
 
 ### Context-Aware Data Panels
+
 - Fleet, planet, and system intel panels that update in real-time
 - Data explorer for querying Aurora's game state without digging through menus
 - Memory inspector for advanced users exploring game internals
 
 ### Advisor Personas
+
 - 8 built-in advisor archetypes (Nationalist, Technocrat, Communist, Monarchist, Military, Corporate, Diplomatic, Religious)
 - Each shaped by Aurora's ideology stats (Xenophobia, Diplomacy, Militancy, Expansionism, etc.)
 - Context-aware guidance and observation messages that match the advisor's personality
 - Tutorial system that adapts to your empire's development stage
 
 ### Game Bridge
+
 - WebSocket server embedded in the Aurora process via Harmony patching
 - Direct memory reads of game objects (systems, bodies, stars, fleets, ships) — no file polling
 - In-memory SQLite mirror of Aurora's database, refreshed on demand (the refresh invokes Aurora's save routines on the UI thread, which can lag — so it only runs when explicitly requested, not on a timer)
@@ -193,14 +195,14 @@ pnpm dev          # Start in development mode with hot reload
 
 ### Electron Commands
 
-| Command | Description |
-|---------|-------------|
-| `pnpm dev` | Run with hot reload |
-| `pnpm build` | Type-check and build for production |
-| `pnpm typecheck` | Type-check without building |
-| `pnpm lint` | Lint with ESLint |
-| `pnpm format` | Format with Prettier |
-| `pnpm build:win` | Package for Windows |
+| Command          | Description                         |
+| ---------------- | ----------------------------------- |
+| `pnpm dev`       | Run with hot reload                 |
+| `pnpm build`     | Type-check and build for production |
+| `pnpm typecheck` | Type-check without building         |
+| `pnpm lint`      | Lint with ESLint                    |
+| `pnpm format`    | Format with Prettier                |
+| `pnpm build:win` | Package for Windows                 |
 
 ### WebSocket Protocol
 
@@ -219,34 +221,35 @@ The bridge uses a JSON request/response protocol over WebSocket:
 
 **Supported message types:**
 
-| Type | Description |
-|------|-------------|
-| `ping` | Health check, returns "pong" |
-| `query` | Execute read-only SQL against the in-memory DB mirror |
-| `getsystems` | All star systems with resolved names |
-| `getknownsystems` | Player-known systems (from TacticalMap ComboBox) |
-| `getsystembodies` | Stars in a system (with StarDetails sub-object) |
-| `getbodies` | Planets/moons/asteroids (optimized fast-read fields) |
-| `getfleets` | All fleets with positions and ship counts |
-| `getships` | Ships, optionally filtered by fleet |
-| `subscribe` | Subscribe to push updates for a system on each game tick |
-| `enumerategamestate` | List all fields on the GameState object |
-| `enumeratecollections` | List all collection-type fields on GameState |
-| `readcollection` | Read items from a GameState collection (paginated) |
-| `readfield` | Read a single field from GameState |
-| `action` | Execute a UI action (click button, open form, read/set control) |
-| `inspect` | Inspect all controls on an Aurora form |
+| Type                   | Description                                                     |
+| ---------------------- | --------------------------------------------------------------- |
+| `ping`                 | Health check, returns "pong"                                    |
+| `query`                | Execute read-only SQL against the in-memory DB mirror           |
+| `getsystems`           | All star systems with resolved names                            |
+| `getknownsystems`      | Player-known systems (from TacticalMap ComboBox)                |
+| `getsystembodies`      | Stars in a system (with StarDetails sub-object)                 |
+| `getbodies`            | Planets/moons/asteroids (optimized fast-read fields)            |
+| `getfleets`            | All fleets with positions and ship counts                       |
+| `getships`             | Ships, optionally filtered by fleet                             |
+| `subscribe`            | Subscribe to push updates for a system on each game tick        |
+| `enumerategamestate`   | List all fields on the GameState object                         |
+| `enumeratecollections` | List all collection-type fields on GameState                    |
+| `readcollection`       | Read items from a GameState collection (paginated)              |
+| `readfield`            | Read a single field from GameState                              |
+| `action`               | Execute a UI action (click button, open form, read/set control) |
+| `inspect`              | Inspect all controls on an Aurora form                          |
 
 ### Aurora Version Support
 
 Aurora obfuscates its type and field names, which change between versions. The project identifies versions by a SHA256 checksum of `Aurora.exe` (first 6 chars). Currently supported:
 
-| Checksum | Notes |
-|----------|-------|
-| `chm1c7` | Older version |
+| Checksum | Notes                      |
+| -------- | -------------------------- |
+| `chm1c7` | Older version              |
 | `OdxONo` | Current development target |
 
 To add support for a new version:
+
 1. Run the `Example` patch and press F12 in any Aurora form to dump type discovery data
 2. Add a new `else if` block in `KnowledgeBase.GetKnownTypeNames()` with the new checksum's type mappings
 3. Update field name references in `MemoryReader.cs` if they changed

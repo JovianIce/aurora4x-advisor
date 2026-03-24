@@ -15,19 +15,29 @@ function getBodyTypeLabel(body: MemorySystemBody): string {
   if (body.PlanetNumber >= 100) return body.BodyClass
   if (body.OrbitNumber > 0 && body.PlanetNumber < 100) {
     switch (body.BodyClass) {
-      case 'Terrestrial': return 'Moon - Terrestrial'
-      case 'Small': return 'Moon - Small'
-      default: return 'Moon'
+      case 'Terrestrial':
+        return 'Moon - Terrestrial'
+      case 'Small':
+        return 'Moon - Small'
+      default:
+        return 'Moon'
     }
   }
   switch (body.BodyClass) {
-    case 'Terrestrial': return 'Terrestrial'
-    case 'DwarfPlanet': return 'Dwarf'
-    case 'GasGiant': return 'Gas Giant'
-    case 'GasDwarf': return 'Gas Dwarf'
-    case 'IceGiant': return 'Ice Giant'
-    case 'SuperJovian': return 'Super Jovian'
-    default: return body.BodyClass
+    case 'Terrestrial':
+      return 'Terrestrial'
+    case 'DwarfPlanet':
+      return 'Dwarf'
+    case 'GasGiant':
+      return 'Gas Giant'
+    case 'GasDwarf':
+      return 'Gas Dwarf'
+    case 'IceGiant':
+      return 'Ice Giant'
+    case 'SuperJovian':
+      return 'Super Jovian'
+    default:
+      return body.BodyClass
   }
 }
 
@@ -37,13 +47,20 @@ function getBodyAccent(body: MemorySystemBody): string {
   }
   if (body.OrbitNumber > 0) return '#607d8b'
   switch (body.BodyClass) {
-    case 'Terrestrial': return '#e07840'
-    case 'GasGiant': return '#d4a030'
-    case 'GasDwarf': return '#7e57c2'
-    case 'IceGiant': return '#42a5f5'
-    case 'DwarfPlanet': return '#78909c'
-    case 'SuperJovian': return '#ffa726'
-    default: return '#90a4ae'
+    case 'Terrestrial':
+      return '#e07840'
+    case 'GasGiant':
+      return '#d4a030'
+    case 'GasDwarf':
+      return '#7e57c2'
+    case 'IceGiant':
+      return '#42a5f5'
+    case 'DwarfPlanet':
+      return '#78909c'
+    case 'SuperJovian':
+      return '#ffa726'
+    default:
+      return '#90a4ae'
   }
 }
 
@@ -90,7 +107,13 @@ export function BodyListPanel({ bodies, onSelectBody }: BodyListPanelProps): Rea
     return { groups: sortedGroups, comets: cometList, asteroids: asteroidList }
   }, [bodies])
 
-  const BodyRow = ({ body, indent = false }: { body: MemorySystemBody; indent?: boolean }): React.JSX.Element => {
+  const BodyRow = ({
+    body,
+    indent = false
+  }: {
+    body: MemorySystemBody
+    indent?: boolean
+  }): React.JSX.Element => {
     const accent = getBodyAccent(body)
     return (
       <button

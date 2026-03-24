@@ -100,10 +100,7 @@ export function DashboardOverview(): React.JSX.Element {
               <span className="cic-data" style={{ color: 'var(--cic-cyan)', fontSize: '13px' }}>
                 {currentGame.gameInfo.gameName}
               </span>
-              <span
-                className="cic-label"
-                style={{ color: 'var(--cic-amber)', fontSize: '9px' }}
-              >
+              <span className="cic-label" style={{ color: 'var(--cic-amber)', fontSize: '9px' }}>
                 {currentGame.gameInfo.techLevel}
               </span>
             </div>
@@ -118,38 +115,87 @@ export function DashboardOverview(): React.JSX.Element {
                 style={{ borderTop: '1px solid var(--cic-panel-edge)' }}
               >
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>Game Year</span>
-                  <span className="cic-data" style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    Game Year
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)' }}
+                  >
                     {String(gameState.gameYear ?? '—')}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>TN Tech</span>
-                  <span className="cic-data" style={{ fontSize: '9px', color: gameState.hasTNTech ? 'var(--cic-green)' : 'var(--cic-red)' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    TN Tech
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{
+                      fontSize: '9px',
+                      color: gameState.hasTNTech ? 'var(--cic-green)' : 'var(--cic-red)'
+                    }}
+                  >
                     {gameState.hasTNTech ? 'YES' : 'NO'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>Alien Contact</span>
-                  <span className="cic-data" style={{ fontSize: '9px', color: gameState.alienContact ? 'var(--cic-amber)' : 'rgba(255,255,255,0.3)' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    Alien Contact
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{
+                      fontSize: '9px',
+                      color: gameState.alienContact ? 'var(--cic-amber)' : 'rgba(255,255,255,0.3)'
+                    }}
+                  >
                     {gameState.alienContact ? 'YES' : 'NO'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>At War</span>
-                  <span className="cic-data" style={{ fontSize: '9px', color: gameState.atWar ? 'var(--cic-red)' : 'var(--cic-green)' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    At War
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{
+                      fontSize: '9px',
+                      color: gameState.atWar ? 'var(--cic-red)' : 'var(--cic-green)'
+                    }}
+                  >
                     {gameState.atWar ? 'YES' : 'NO'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>First Ship</span>
-                  <span className="cic-data" style={{ fontSize: '9px', color: gameState.hasBuiltFirstShip ? 'var(--cic-green)' : 'rgba(255,255,255,0.3)' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    First Ship
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{
+                      fontSize: '9px',
+                      color: gameState.hasBuiltFirstShip
+                        ? 'var(--cic-green)'
+                        : 'rgba(255,255,255,0.3)'
+                    }}
+                  >
                     {gameState.hasBuiltFirstShip ? 'BUILT' : 'NONE'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>Home Survey</span>
-                  <span className="cic-data" style={{ fontSize: '9px', color: gameState.hasSurveyedHomeSystem ? 'var(--cic-green)' : 'rgba(255,255,255,0.3)' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    Home Survey
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{
+                      fontSize: '9px',
+                      color: gameState.hasSurveyedHomeSystem
+                        ? 'var(--cic-green)'
+                        : 'rgba(255,255,255,0.3)'
+                    }}
+                  >
                     {gameState.hasSurveyedHomeSystem ? 'DONE' : 'PENDING'}
                   </span>
                 </div>
@@ -157,8 +203,15 @@ export function DashboardOverview(): React.JSX.Element {
             )}
 
             {analyzedAt && (
-              <div className="cic-data pt-1" style={{ color: 'rgba(255,255,255,0.2)', fontSize: '8px' }}>
-                Last analyzed: {new Date(analyzedAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+              <div
+                className="cic-data pt-1"
+                style={{ color: 'rgba(255,255,255,0.2)', fontSize: '8px' }}
+              >
+                Last analyzed:{' '}
+                {new Date(analyzedAt).toLocaleTimeString('en-US', {
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}
               </div>
             )}
           </div>
@@ -171,11 +224,17 @@ export function DashboardOverview(): React.JSX.Element {
             {currentGame.personalityName ? (
               <>
                 <div className="flex items-center justify-between">
-                  <span className="cic-data" style={{ color: 'var(--cic-amber)', fontSize: '13px' }}>
+                  <span
+                    className="cic-data"
+                    style={{ color: 'var(--cic-amber)', fontSize: '13px' }}
+                  >
                     {currentGame.personalityName}
                   </span>
                 </div>
-                <div className="cic-data" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px' }}>
+                <div
+                  className="cic-data"
+                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px' }}
+                >
                   {formatArchetype(currentGame.personalityArchetype || '')}
                 </div>
                 {greeting && (
@@ -187,14 +246,20 @@ export function DashboardOverview(): React.JSX.Element {
                       borderRadius: '4px'
                     }}
                   >
-                    <p className="cic-data italic" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px', lineHeight: '1.5' }}>
+                    <p
+                      className="cic-data italic"
+                      style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px', lineHeight: '1.5' }}
+                    >
                       &quot;{greeting}&quot;
                     </p>
                   </div>
                 )}
               </>
             ) : (
-              <div className="cic-data py-4 text-center" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
+              <div
+                className="cic-data py-4 text-center"
+                style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}
+              >
                 No advisor assigned. Use Fleet Command sidebar to assign one.
               </div>
             )}

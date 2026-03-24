@@ -7,11 +7,7 @@ interface EnrichedFleet extends MemoryFleet {
   distance?: number
   eta?: string
 }
-import {
-  auToCanvas,
-  type ViewportState,
-  type CartesianPoint
-} from '../../lib/orbital-math'
+import { auToCanvas, type ViewportState, type CartesianPoint } from '../../lib/orbital-math'
 import type { MapDisplayOptions } from './DisplayOptions'
 
 interface SystemMapCanvasProps {
@@ -78,31 +74,46 @@ function getBodyCategory(body: SystemBody): 'planet' | 'dwarf' | 'moon' | 'aster
 
 function shouldShowBody(body: SystemBody, opts: MapDisplayOptions, scale?: number): boolean {
   switch (getBodyCategory(body)) {
-    case 'planet': return opts.showPlanets
-    case 'dwarf': return opts.showDwarfPlanets
-    case 'moon': return opts.showMoons && (!scale || scale >= MOON_ZOOM_THRESHOLD)
-    case 'asteroid': return opts.showAsteroids
-    case 'comet': return opts.showComets
+    case 'planet':
+      return opts.showPlanets
+    case 'dwarf':
+      return opts.showDwarfPlanets
+    case 'moon':
+      return opts.showMoons && (!scale || scale >= MOON_ZOOM_THRESHOLD)
+    case 'asteroid':
+      return opts.showAsteroids
+    case 'comet':
+      return opts.showComets
   }
 }
 
 function shouldShowOrbit(body: SystemBody, opts: MapDisplayOptions): boolean {
   switch (getBodyCategory(body)) {
-    case 'planet': return opts.showPlanetOrbits
-    case 'dwarf': return opts.showDwarfOrbits
-    case 'moon': return opts.showMoonOrbits
-    case 'asteroid': return opts.showAsteroidOrbits
-    case 'comet': return opts.showCometOrbits
+    case 'planet':
+      return opts.showPlanetOrbits
+    case 'dwarf':
+      return opts.showDwarfOrbits
+    case 'moon':
+      return opts.showMoonOrbits
+    case 'asteroid':
+      return opts.showAsteroidOrbits
+    case 'comet':
+      return opts.showCometOrbits
   }
 }
 
 function shouldShowName(body: SystemBody, opts: MapDisplayOptions): boolean {
   switch (getBodyCategory(body)) {
-    case 'planet': return opts.showPlanetNames
-    case 'dwarf': return opts.showDwarfNames
-    case 'moon': return opts.showMoonNames
-    case 'asteroid': return opts.showAsteroidNames
-    case 'comet': return opts.showCometNames
+    case 'planet':
+      return opts.showPlanetNames
+    case 'dwarf':
+      return opts.showDwarfNames
+    case 'moon':
+      return opts.showMoonNames
+    case 'asteroid':
+      return opts.showAsteroidNames
+    case 'comet':
+      return opts.showCometNames
   }
 }
 
@@ -176,7 +187,14 @@ export function SystemMapCanvas({
       const starScreen = auToCanvas({ x: 0, y: 0 }, viewport)
 
       // Glow halo
-      const starGlow = ctx.createRadialGradient(starScreen.cx, starScreen.cy, 0, starScreen.cx, starScreen.cy, 20)
+      const starGlow = ctx.createRadialGradient(
+        starScreen.cx,
+        starScreen.cy,
+        0,
+        starScreen.cx,
+        starScreen.cy,
+        20
+      )
       starGlow.addColorStop(0, 'rgba(255, 179, 0, 0.3)')
       starGlow.addColorStop(0.5, 'rgba(255, 179, 0, 0.05)')
       starGlow.addColorStop(1, 'transparent')
@@ -256,7 +274,11 @@ export function SystemMapCanvas({
       const SNAP = 10 // px — fleets within this distance share a group
       const LINE_H = 11
 
-      type FleetScreenItem = { fleet: typeof fleets extends (infer T)[] | undefined ? T : never; cx: number; cy: number }
+      type FleetScreenItem = {
+        fleet: typeof fleets extends (infer T)[] | undefined ? T : never
+        cx: number
+        cy: number
+      }
       const visibleFleetItems: FleetScreenItem[] = []
 
       if (fleets && fleets.length > 0) {
@@ -267,7 +289,12 @@ export function SystemMapCanvas({
 
           const fleetAu = { x: fleet.Xcor / KM_PER_AU, y: fleet.Ycor / KM_PER_AU }
           const screen = auToCanvas(fleetAu, viewport)
-          if (screen.cx < -100 || screen.cx > width + 100 || screen.cy < -100 || screen.cy > height + 100)
+          if (
+            screen.cx < -100 ||
+            screen.cx > width + 100 ||
+            screen.cy < -100 ||
+            screen.cy > height + 100
+          )
             continue
 
           visibleFleetItems.push({ fleet, cx: screen.cx, cy: screen.cy })
@@ -311,7 +338,7 @@ export function SystemMapCanvas({
       // Draw fleet diamond icons
       for (const group of fleetGroups) {
         const { cx, cy } = group
-        const hasMoving = group.fleets.some(f => f.Speed > 1)
+        const hasMoving = group.fleets.some((f) => f.Speed > 1)
         const s = 5
         ctx.beginPath()
         ctx.moveTo(cx, cy - s)
@@ -341,7 +368,7 @@ export function SystemMapCanvas({
 
         // Find fleet group near this body
         const nearGroup = fleetGroups.find(
-          g => Math.abs(g.cx - screen.cx) < SNAP && Math.abs(g.cy - screen.cy) < SNAP
+          (g) => Math.abs(g.cx - screen.cx) < SNAP && Math.abs(g.cy - screen.cy) < SNAP
         )
 
         const labelX = screen.cx + 8
@@ -381,7 +408,7 @@ export function SystemMapCanvas({
         if (!displayOptions.showFleetNames) continue
         const { cx, cy } = group
         const sorted = [...group.fleets].sort(fleetSortComparator)
-        let fy = cy - Math.floor((sorted.length - 1) * LINE_H / 2) + 3
+        let fy = cy - Math.floor(((sorted.length - 1) * LINE_H) / 2) + 3
         ctx.font = '9px Consolas, monospace'
         for (const fleet of sorted) {
           const isMoving = fleet.Speed > 1
@@ -449,7 +476,6 @@ export function SystemMapCanvas({
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-
     />
   )
 }
@@ -479,29 +505,37 @@ function buildFleetLabel(fleet: EnrichedFleet): string {
 }
 
 // Sort fleets like Aurora: purely alphabetical
-function fleetSortComparator(
-  a: { FleetName: string },
-  b: { FleetName: string }
-): number {
+function fleetSortComparator(a: { FleetName: string }, b: { FleetName: string }): number {
   return a.FleetName.localeCompare(b.FleetName)
 }
 
 function getBodyColor(bodyTypeId: number): string {
   switch (bodyTypeId) {
     // Planets — warm tones stand out against cool CIC palette
-    case 2: return '#e07840'   // Terrestrial
-    case 3: return '#78909c'   // Dwarf Planet
-    case 4: return '#d4a030'   // Gas Giant
-    case 5: return '#ffa726'   // Super-Jovian
+    case 2:
+      return '#e07840' // Terrestrial
+    case 3:
+      return '#78909c' // Dwarf Planet
+    case 4:
+      return '#d4a030' // Gas Giant
+    case 5:
+      return '#ffa726' // Super-Jovian
     // Moons — subtle cool grays
-    case 7: return '#546e7a'   // Moon - Small
-    case 8: return '#607d8b'   // Moon
-    case 9: return '#78909c'   // Moon large
-    case 10: return '#90a4ae'  // Moon - Terrestrial
+    case 7:
+      return '#546e7a' // Moon - Small
+    case 8:
+      return '#607d8b' // Moon
+    case 9:
+      return '#78909c' // Moon large
+    case 10:
+      return '#90a4ae' // Moon - Terrestrial
     // Other
-    case 1: return '#455a64'   // Asteroid
-    case 14: return '#00bcd4'  // Comet — matches CIC cyan
-    default: return '#607d8b'
+    case 1:
+      return '#455a64' // Asteroid
+    case 14:
+      return '#00bcd4' // Comet — matches CIC cyan
+    default:
+      return '#607d8b'
   }
 }
 

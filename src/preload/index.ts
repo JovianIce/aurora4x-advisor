@@ -76,10 +76,12 @@ const api = {
     getTableInfo: (tableName: string) => ipcRenderer.invoke('bridge:getTableInfo', tableName),
     getAllTables: () => ipcRenderer.invoke('bridge:getAllTables'),
     getMemoryBodies: (systemId?: number) => ipcRenderer.invoke('bridge:getMemoryBodies', systemId),
-    subscribeBodies: (systemId: number | null) => ipcRenderer.invoke('bridge:subscribeBodies', systemId),
+    subscribeBodies: (systemId: number | null) =>
+      ipcRenderer.invoke('bridge:subscribeBodies', systemId),
     getMemorySystems: () => ipcRenderer.invoke('bridge:getMemorySystems'),
     globalSearch: (values: number[]) => ipcRenderer.invoke('bridge:globalSearch', values),
-    getMemoryBodies2: (systemId?: number) => ipcRenderer.invoke('bridge:getMemoryBodies2', systemId),
+    getMemoryBodies2: (systemId?: number) =>
+      ipcRenderer.invoke('bridge:getMemoryBodies2', systemId),
     ping: () => ipcRenderer.invoke('bridge:ping'),
     executeAction: (action: unknown) => ipcRenderer.invoke('bridge:executeAction', action),
     inspectForm: (formName: string) => ipcRenderer.invoke('bridge:inspectForm', formName),
