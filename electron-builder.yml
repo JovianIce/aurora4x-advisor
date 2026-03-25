@@ -16,7 +16,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: aurora4x-advisor
+  executableName: aurora4x-companion
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

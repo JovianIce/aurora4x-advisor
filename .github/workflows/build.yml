@@ -118,7 +118,7 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           gh release create "$TAG" release/* \
-            --title "Aurora 4X Advisor $TAG" \
+            --title "Aurora 4X Companion $TAG" \
             --generate-notes \
             --notes "$(cat <<EOF
 
@@ -126,10 +126,10 @@ jobs:
 
           | Platform | File |
           |----------|------|
-          | Windows (installer) | \`aurora4x-advisor-${VERSION}-setup.exe\` |
-          | Linux (AppImage) | \`aurora4x-advisor-${VERSION}.AppImage\` |
-          | Linux (deb) | \`aurora4x-advisor-${VERSION}.deb\` |
-          | Linux (snap) | \`aurora4x-advisor-${VERSION}.snap\` |
+          | Windows (installer) | \`aurora4x-companion-${VERSION}-setup.exe\` |
+          | Linux (AppImage) | \`aurora4x-companion-${VERSION}.AppImage\` |
+          | Linux (deb) | \`aurora4x-companion-${VERSION}.deb\` |
+          | Linux (snap) | \`aurora4x-companion-${VERSION}.snap\` |
 
           ---
           Built from workflow run: ${RUN_URL}
