@@ -42,7 +42,7 @@ export function DashboardLayout(): React.JSX.Element {
               className="cic-label"
               style={{ color: 'var(--cic-amber)', letterSpacing: '0.2em', fontSize: '10px' }}
             >
-              AURORA CIC
+              AURORA 4X COMPANION
             </div>
             <div
               style={{

@@ -205,7 +205,7 @@ namespace AdvisorBridge
             switch (request.Type?.ToLowerInvariant())
             {
                 case "ping":
-                    response = BridgeResponse.Ok(request.Id, "pong", null);
+                    response = BridgeResponse.Ok(request.Id, "pong", new { protocolVersion = BridgeProtocol.Version });
                     break;
 
                 case "query":

@@ -2,6 +2,9 @@ import WebSocket from 'ws'
 import { BrowserWindow } from 'electron'
 import type { BridgeStatus, ActionRequest } from '@shared/types'
 
+// Must match BridgeProtocol.Version in C# AdvisorBridge/Protocol.cs
+const EXPECTED_PROTOCOL_VERSION = 1
+
 interface PendingRequest {
   resolve: (value: unknown) => void
   reject: (reason: unknown) => void
@@ -167,6 +170,34 @@ class AuroraBridge {
         this._isConnected = true
         this._lastError = null
         this.reconnectDelay = 1000
+
+        // Check bridge protocol version
+        console.log('[AuroraBridge] Sending ping to check protocol version...')
+        this.send('ping', null)
+          .then((payload) => {
+            console.log('[AuroraBridge] Ping response:', payload)
+            const version = (payload as { protocolVersion?: number })?.protocolVersion ?? 0
+            if (version !== EXPECTED_PROTOCOL_VERSION) {
+              console.log(
+                `[AuroraBridge] Protocol mismatch: bridge=${version}, app=${EXPECTED_PROTOCOL_VERSION}`
+              )
+              // Delay to ensure renderer has mounted listeners
+              setTimeout(() => {
+                this.broadcastToRenderers('bridge:versionMismatch', {
+                  bridgeVersion: version,
+                  appVersion: EXPECTED_PROTOCOL_VERSION
+                })
+              }, 2000)
+            }
+          })
+          .catch(() => {
+            // Old bridge without version support - that's a mismatch too
+            this.broadcastToRenderers('bridge:versionMismatch', {
+              bridgeVersion: 0,
+              appVersion: EXPECTED_PROTOCOL_VERSION
+            })
+          })
+
         if (!wasConnected) {
           this.broadcastToRenderers('bridge:connected', null)
         }

@@ -84,6 +84,18 @@ const api = {
         ipcRenderer.removeListener('bridge:disconnected', subscription)
       }
     },
+    onVersionMismatch: (
+      callback: (data: { bridgeVersion: number; appVersion: number }) => void
+    ): (() => void) => {
+      const subscription = (
+        _event: IpcRendererEvent,
+        data: { bridgeVersion: number; appVersion: number }
+      ): void => callback(data)
+      ipcRenderer.on('bridge:versionMismatch', subscription)
+      return (): void => {
+        ipcRenderer.removeListener('bridge:versionMismatch', subscription)
+      }
+    },
     // Real-time memory data
     subscribeBodies: (systemId: number | null) =>
       ipcRenderer.invoke('bridge:subscribeBodies', systemId),

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useMemo, useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 import type { BridgeStatus } from '@shared/types'
 
 interface TableInfo {
@@ -47,9 +48,31 @@ export function AuroraDataProvider({
       queryClient.invalidateQueries({ queryKey: ['bridgeStatus'] })
     })
 
+    const unsubVersion = window.api.bridge.onVersionMismatch((data) => {
+      console.warn('[AuroraData] Bridge version mismatch:', data)
+      toast.warning('Bridge update required', {
+        description: (
+          <div>
+            Your AdvisorBridge (v{data.bridgeVersion}) is outdated. The app expects v{data.appVersion}.
+            <br />
+            <a
+              href="https://github.com/ZionLG/aurora4x-advisor/releases/latest"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--cic-cyan)', textDecoration: 'underline' }}
+            >
+              Download latest bridge
+            </a>
+          </div>
+        ),
+        duration: Infinity
+      })
+    })
+
     return () => {
       unsubConnect()
       unsubDisconnect()
+      unsubVersion()
     }
   }, [queryClient])
 

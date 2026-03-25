@@ -1,4 +1,4 @@
-# Aurora 4X Advisor
+# Aurora 4X Companion
 
 A tactical companion and visualization tool for [Aurora 4X](https://aurora4x.com/). Connects to a running Aurora instance via a C# Harmony patch, providing real-time system maps, fleet overlays, context-aware data panels, and an advisor persona system — all while Aurora remains your primary interface.
 
@@ -61,6 +61,11 @@ Aurora's types and fields are obfuscated (e.g., type `kc` = SystemBody, field `v
 - Data explorer for querying Aurora's game state without digging through menus
 - Memory inspector for advanced users exploring game internals
 
+### Live Game Date
+
+- Real-time game date display from Aurora's TacticalMap title bar
+- Pushes on every game tick and on initial connection
+
 ### Advisor Personas
 
 - 8 built-in advisor archetypes (Nationalist, Technocrat, Communist, Monarchist, Military, Corporate, Diplomatic, Religious)
@@ -71,15 +76,23 @@ Aurora's types and fields are obfuscated (e.g., type `kc` = SystemBody, field `v
 ### Game Bridge
 
 - WebSocket server embedded in the Aurora process via Harmony patching
+- Uses [Fleck](https://github.com/statianzo/Fleck) for raw TCP WebSocket support (compatible with Wine/Proton for Linux users)
 - Direct memory reads of game objects (systems, bodies, stars, fleets, ships) — no file polling
 - In-memory SQLite mirror of Aurora's database, refreshed on demand (the refresh invokes Aurora's save routines on the UI thread, which can lag — so it only runs when explicitly requested, not on a timer)
 - Push notifications on game tick (time advancement) for subscribed systems
 - Quick commands that trigger visible Aurora UI actions (opening forms, clicking toolbar buttons)
+- Protocol version handshake — the app warns users when the bridge DLL is outdated
+
+### Auto-Updater
+
+- Built-in auto-update via GitHub Releases (`electron-updater`)
+- Automatic version bumping and release creation on push to main via GitHub Actions
+- Builds for Windows and Linux (AppImage, deb, snap)
 
 ## Project Structure
 
 ```
-aurora4x-advisor/
+aurora4x-companion/
 ├── src/                          # Electron + React companion app
 │   ├── main/                     # Electron main process
 │   │   ├── advisor/              # Advisor persona system
@@ -94,7 +107,7 @@ aurora4x-advisor/
 ├── AuroraPatch-master/           # C# codebase (.NET Framework 4.8)
 │   ├── AuroraPatch/              # Harmony patch loader and launcher
 │   ├── Lib/                      # Core library (type resolution, DB, UI helpers)
-│   ├── AdvisorBridge/            # WebSocket bridge plugin
+│   ├── AdvisorBridge/            # WebSocket bridge plugin (Fleck)
 │   ├── Automation/               # Example automation patch
 │   └── Example/                  # Dev tool for discovering Aurora's obfuscated types
 └── resources/config/             # Advisor personality profiles (JSON)
@@ -107,15 +120,15 @@ If you just want to **use** the tool with your Aurora installation:
 ### Prerequisites
 
 - **Aurora 4X** C# version installed
-- **Node.js 18+** with pnpm (for the companion app)
 
 ### Setup
 
-1. Download the latest release of the C# bridge
-2. Place `AuroraPatch.exe`, `0Harmony.dll`, and other root-level dependencies into your Aurora 4X installation directory (next to `Aurora.exe`)
-3. Place the `Lib` and `AdvisorBridge` patch folders into the `Patches/` directory
-4. Launch Aurora through `AuroraPatch.exe` instead of `Aurora.exe`
-5. Start the Electron companion app — it connects to the bridge automatically
+1. Download the latest [companion app release](https://github.com/ZionLG/aurora4x-advisor/releases/latest) for your platform (Windows installer or Linux AppImage/deb)
+2. Download the latest C# bridge release
+3. Place `AuroraPatch.exe`, `0Harmony.dll`, and other root-level dependencies into your Aurora 4X installation directory (next to `Aurora.exe`)
+4. Place the `Lib` and `AdvisorBridge` patch folders into the `Patches/` directory
+5. Launch Aurora through `AuroraPatch.exe` instead of `Aurora.exe`
+6. Start the companion app — it connects to the bridge automatically
 
 ```
 Your Aurora installation/
@@ -132,9 +145,14 @@ Your Aurora installation/
 │   │   ├── signatures.json     # Cached type fingerprints
 │   │   └── ... (SQLite/EF DLLs)
 │   └── AdvisorBridge/
-│       └── AdvisorBridge.dll   # WebSocket bridge plugin
+│       ├── AdvisorBridge.dll   # WebSocket bridge plugin
+│       └── Fleck.dll           # WebSocket library
 └── ... (Aurora's other files)
 ```
+
+### Linux (via Proton)
+
+Aurora runs through Steam Proton on Linux. The companion app runs natively. The bridge uses Fleck (raw TCP sockets) instead of Windows HttpListener, so WebSocket connections work correctly across the Wine/Proton boundary.
 
 ## Getting Started (Developer)
 
@@ -172,7 +190,8 @@ AuroraPatch-master/AuroraPatch/bin/Debug/
 │   │   ├── signatures.json
 │   │   └── ... (SQLite/EF DLLs)
 │   ├── AdvisorBridge/             # Copy AdvisorBridge build output here
-│   │   └── AdvisorBridge.dll
+│   │   ├── AdvisorBridge.dll
+│   │   └── Fleck.dll
 │   └── Example/                   # Copy Example build output here (optional)
 │       └── Example.dll
 ├── Flags/                         # Copied from Aurora installation
@@ -185,7 +204,7 @@ AuroraPatch-master/AuroraPatch/bin/Debug/
 ### Electron Companion App
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/ZionLG/aurora4x-advisor.git
 cd aurora4x-advisor
 pnpm install
 pnpm dev          # Start in development mode with hot reload
@@ -203,6 +222,7 @@ pnpm dev          # Start in development mode with hot reload
 | `pnpm lint`      | Lint with ESLint                    |
 | `pnpm format`    | Format with Prettier                |
 | `pnpm build:win` | Package for Windows                 |
+| `pnpm build:linux` | Package for Linux                 |
 
 ### WebSocket Protocol
 
@@ -223,7 +243,7 @@ The bridge uses a JSON request/response protocol over WebSocket:
 
 | Type                   | Description                                                     |
 | ---------------------- | --------------------------------------------------------------- |
-| `ping`                 | Health check, returns "pong"                                    |
+| `ping`                 | Health check, returns "pong" with `protocolVersion`             |
 | `query`                | Execute read-only SQL against the in-memory DB mirror           |
 | `getsystems`           | All star systems with resolved names                            |
 | `getknownsystems`      | Player-known systems (from TacticalMap ComboBox)                |
@@ -238,6 +258,14 @@ The bridge uses a JSON request/response protocol over WebSocket:
 | `readfield`            | Read a single field from GameState                              |
 | `action`               | Execute a UI action (click button, open form, read/set control) |
 | `inspect`              | Inspect all controls on an Aurora form                          |
+
+**Push types:**
+
+| Push Type   | Description                                          |
+| ----------- | ---------------------------------------------------- |
+| `gameDate`  | Current game date from TacticalMap title bar          |
+| `bodies`    | System bodies for the subscribed system               |
+| `fleets`    | All fleet positions and states                        |
 
 ### Aurora Version Support
 
@@ -258,7 +286,7 @@ To add support for a new version:
 
 **Companion App:** Electron 39, React 19, TypeScript 5.9, Tailwind CSS 4, Radix UI, TanStack Query, Vite 7
 
-**C# Bridge:** .NET Framework 4.8, Harmony 2.2, System.Data.SQLite, Newtonsoft.Json, EntityFramework 6
+**C# Bridge:** .NET Framework 4.8, Harmony 2.2, Fleck 1.2, System.Data.SQLite, Newtonsoft.Json, EntityFramework 6
 
 ## Contributing
 

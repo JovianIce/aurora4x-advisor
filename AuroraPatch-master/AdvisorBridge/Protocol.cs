@@ -1,6 +1,15 @@
 namespace AdvisorBridge
 {
     /// <summary>
+    /// Protocol version. Bump this when the bridge API changes in a breaking way.
+    /// The Electron app checks this on connect and warns the user if mismatched.
+    /// </summary>
+    public static class BridgeProtocol
+    {
+        public const int Version = 1;
+    }
+
+    /// <summary>
     /// Incoming message from the Electron frontend.
     /// Id is a client-generated correlation ID returned in the response.
     /// Type determines the handler (e.g. "query", "getbodies", "action", "subscribe").
