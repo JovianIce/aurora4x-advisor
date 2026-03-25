@@ -1,10 +1,9 @@
 import { watch, FSWatcher } from 'fs'
 import { copyFile, mkdir } from 'fs/promises'
-import { app, BrowserWindow } from 'electron'
+import { app } from 'electron'
 import path from 'path'
 import Database from 'better-sqlite3'
 import { loadGames } from './game-persistence'
-import { analyzeGameState, type AdvicePackage } from './game-state-analyzer'
 
 /**
  * Database Watcher Service
@@ -18,10 +17,8 @@ export class DatabaseWatcher {
   private watcher: FSWatcher | null = null
   private auroraDbPath: string | null = null
   private currentGameId: string | null = null
-  private currentProfileId: string | null = null
   private isProcessing = false
   private onSnapshotCreated?: (snapshotPath: string) => void
-  private onAdviceReady?: (advice: AdvicePackage) => void
 
   /**
    * Set the path to the Aurora database file to watch
@@ -45,13 +42,10 @@ export class DatabaseWatcher {
   /**
    * Set the current game - this determines which folder to save snapshots to
    * @param gameId - UUID for the game session
-   * @param profileId - Profile ID for generating advice
    */
-  setCurrentGame(gameId: string | null, profileId?: string | null): void {
+  setCurrentGame(gameId: string | null): void {
     console.log('[DB Watcher] Setting current game ID:', gameId)
-    console.log('[DB Watcher] Profile ID:', profileId)
     this.currentGameId = gameId
-    this.currentProfileId = profileId || null
 
     if (gameId) {
       console.log('[DB Watcher] Game selected - snapshots will be created on DB changes')
@@ -65,13 +59,6 @@ export class DatabaseWatcher {
    */
   onSnapshot(callback: (snapshotPath: string) => void): void {
     this.onSnapshotCreated = callback
-  }
-
-  /**
-   * Set callback for when advice is ready (after game state analysis)
-   */
-  onAdvice(callback: (advice: AdvicePackage) => void): void {
-    this.onAdviceReady = callback
   }
 
   /**
@@ -147,29 +134,7 @@ export class DatabaseWatcher {
       if (this.onSnapshotCreated) {
         this.onSnapshotCreated(snapshotPath)
       }
-
-      // Analyze game state and send advice to client
-      if (this.currentProfileId) {
-        console.log('[DB Watcher] Analyzing game state...')
-        const advice = await analyzeGameState(snapshotPath, this.currentProfileId)
-        console.log('[DB Watcher] ✅ Game state analyzed')
-        console.log('[DB Watcher] Tutorials found:', advice.tutorials.length)
-        console.log('[DB Watcher] Observations found:', advice.observations.length)
-
-        // Send to client
-        if (this.onAdviceReady) {
-          this.onAdviceReady(advice)
-        }
-
-        // Also send via IPC to all windows
-        const windows = BrowserWindow.getAllWindows()
-        for (const window of windows) {
-          window.webContents.send('advisor:adviceUpdate', advice)
-        }
-        console.log('[DB Watcher] ✅ Advice sent to client')
-      } else {
-        console.log('[DB Watcher] ⚠️  No profile ID set - skipping game state analysis')
-      }
+      console.log('[DB Watcher] ✅ Initial snapshot created (analysis is bridge-driven now)')
     } catch (error) {
       console.error('[DB Watcher] ❌ Failed to create initial snapshot:', error)
       if (error instanceof Error) {
@@ -220,28 +185,7 @@ export class DatabaseWatcher {
       if (this.onSnapshotCreated) {
         this.onSnapshotCreated(snapshotPath)
       }
-
-      // Analyze game state and send advice to client
-      if (this.currentProfileId) {
-        console.log('[DB Watcher] Analyzing game state...')
-        const advice = await analyzeGameState(snapshotPath, this.currentProfileId)
-        console.log('[DB Watcher] ✅ Game state analyzed')
-        console.log('[DB Watcher] Tutorials found:', advice.tutorials.length)
-
-        // Send to client
-        if (this.onAdviceReady) {
-          this.onAdviceReady(advice)
-        }
-
-        // Also send via IPC to all windows
-        const windows = BrowserWindow.getAllWindows()
-        for (const window of windows) {
-          window.webContents.send('advisor:adviceUpdate', advice)
-        }
-        console.log('[DB Watcher] ✅ Advice sent to client')
-      } else {
-        console.log('[DB Watcher] ⚠️  No profile ID set - skipping game state analysis')
-      }
+      console.log('[DB Watcher] ✅ Snapshot created (analysis is bridge-driven now)')
     } catch (error) {
       console.error('[DB Watcher] ❌ Failed to create snapshot:', error)
       if (error instanceof Error) {

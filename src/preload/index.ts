@@ -67,27 +67,34 @@ const api = {
   bridge: {
     connect: (port?: number) => ipcRenderer.invoke('bridge:connect', port),
     disconnect: () => ipcRenderer.invoke('bridge:disconnect'),
+    reconnectNow: () => ipcRenderer.invoke('bridge:reconnectNow'),
     getStatus: () => ipcRenderer.invoke('bridge:getStatus'),
-    query: (sql: string) => ipcRenderer.invoke('bridge:query', sql),
-    getSystemBodies: (systemId: number, gameId: number) =>
-      ipcRenderer.invoke('bridge:getSystemBodies', systemId, gameId),
-    getSystems: (gameId: number, raceId: number) =>
-      ipcRenderer.invoke('bridge:getSystems', gameId, raceId),
-    getTableInfo: (tableName: string) => ipcRenderer.invoke('bridge:getTableInfo', tableName),
-    getAllTables: () => ipcRenderer.invoke('bridge:getAllTables'),
-    getMemoryBodies: (systemId?: number) => ipcRenderer.invoke('bridge:getMemoryBodies', systemId),
+    onConnected: (callback: () => void): (() => void) => {
+      const subscription = (): void => callback()
+      ipcRenderer.on('bridge:connected', subscription)
+      return (): void => {
+        ipcRenderer.removeListener('bridge:connected', subscription)
+      }
+    },
+    onDisconnected: (callback: () => void): (() => void) => {
+      const subscription = (): void => callback()
+      ipcRenderer.on('bridge:disconnected', subscription)
+      return (): void => {
+        ipcRenderer.removeListener('bridge:disconnected', subscription)
+      }
+    },
+    // Real-time memory data
     subscribeBodies: (systemId: number | null) =>
       ipcRenderer.invoke('bridge:subscribeBodies', systemId),
-    getMemorySystems: () => ipcRenderer.invoke('bridge:getMemorySystems'),
-    globalSearch: (values: number[]) => ipcRenderer.invoke('bridge:globalSearch', values),
-    getMemoryBodies2: (systemId?: number) =>
-      ipcRenderer.invoke('bridge:getMemoryBodies2', systemId),
-    ping: () => ipcRenderer.invoke('bridge:ping'),
-    executeAction: (action: unknown) => ipcRenderer.invoke('bridge:executeAction', action),
-    inspectForm: (formName: string) => ipcRenderer.invoke('bridge:inspectForm', formName),
+    getBodies: (systemId?: number) => ipcRenderer.invoke('bridge:getBodies', systemId),
     getKnownSystems: () => ipcRenderer.invoke('bridge:getKnownSystems'),
     getFleets: () => ipcRenderer.invoke('bridge:getFleets'),
-    getShips: (fleetId?: number) => ipcRenderer.invoke('bridge:getShips', fleetId),
+    // SQL + actions
+    query: (sql: string) => ipcRenderer.invoke('bridge:query', sql),
+    getAllTables: () => ipcRenderer.invoke('bridge:getAllTables'),
+    getTableInfo: (tableName: string) => ipcRenderer.invoke('bridge:getTableInfo', tableName),
+    executeAction: (action: unknown) => ipcRenderer.invoke('bridge:executeAction', action),
+    // Dev tools
     dumpMemory: () => ipcRenderer.invoke('bridge:dumpMemory'),
     enumerateGameState: () => ipcRenderer.invoke('bridge:enumerateGameState'),
     enumerateCollections: () => ipcRenderer.invoke('bridge:enumerateCollections'),
@@ -100,7 +107,6 @@ const api = {
       FilterField?: string
       FilterValue?: string
     }) => ipcRenderer.invoke('bridge:readCollection', params),
-    readField: (fieldName: string) => ipcRenderer.invoke('bridge:readField', fieldName),
     onPush: (callback: (data: unknown) => void): (() => void) => {
       const subscription = (_event: IpcRendererEvent, data: unknown): void => callback(data)
       ipcRenderer.on('bridge:push', subscription)

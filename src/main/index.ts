@@ -26,7 +26,7 @@ import {
 } from './services/game-persistence'
 import { loadSettings, saveSettings, updateSetting } from './services/settings-persistence'
 import { dbWatcher } from './services/db-watcher'
-import { triggerImmediateAnalysis } from './services/game-state-analyzer'
+import { analyzeGameState } from './services/game-state-analyzer'
 import { auroraBridge } from './services/aurora-bridge'
 import { dumpMemoryToFiles } from './services/memory-dump'
 import { dialog } from 'electron'
@@ -208,21 +208,7 @@ app.whenReady().then(async () => {
   })
 
   ipcMain.handle('dbWatcher:setCurrentGame', async (_event, gameId: string | null) => {
-    // Get profile ID from the game session
-    let profileId: string | null = null
-    if (gameId) {
-      const games = await loadGames()
-      const game = games.find((g) => g.id === gameId)
-      if (game && game.personalityArchetype) {
-        // Use the first profile matching the archetype (for now)
-        // TODO: Store actual profile ID in game session
-        const allProfiles = loadAllProfiles()
-        const matchingProfile = allProfiles.find((p) => p.archetype === game.personalityArchetype)
-        profileId = matchingProfile?.id || null
-      }
-    }
-
-    dbWatcher.setCurrentGame(gameId, profileId)
+    dbWatcher.setCurrentGame(gameId)
     return dbWatcher.getStatus()
   })
 
@@ -242,17 +228,20 @@ app.whenReady().then(async () => {
     }
   })
 
-  // Trigger immediate analysis after setup completes (deprecated - use createInitialSnapshot instead)
+  // Trigger analysis using live bridge data
   ipcMain.handle(
     'advisor:triggerInitialAnalysis',
-    async (_event, dbPath: string, profileId: string) => {
-      console.log('[Main] Triggering initial analysis after setup')
-      console.log('[Main] DB path:', dbPath)
+    async (_event, _dbPath: string, profileId: string) => {
+      console.log('[Main] Triggering analysis from bridge data')
       console.log('[Main] Profile ID:', profileId)
 
       try {
-        const advice = await triggerImmediateAnalysis(dbPath, profileId)
-        console.log('[Main] ✅ Initial analysis complete')
+        const advice = await analyzeGameState(profileId)
+        if (!advice) {
+          console.log('[Main] Bridge not connected — no advice available')
+          return null
+        }
+        console.log('[Main] ✅ Analysis complete')
         console.log('[Main] Tutorials:', advice.tutorials.length)
         return advice
       } catch (error) {
@@ -287,24 +276,17 @@ app.whenReady().then(async () => {
     return auroraBridge.getStatus()
   })
 
+  ipcMain.handle('bridge:reconnectNow', () => {
+    auroraBridge.reconnectNow()
+    return auroraBridge.getStatus()
+  })
+
   ipcMain.handle('bridge:getStatus', () => {
     return auroraBridge.getStatus()
   })
 
   ipcMain.handle('bridge:query', async (_event, sql: string) => {
     return auroraBridge.query(sql)
-  })
-
-  ipcMain.handle('bridge:getSystemBodies', async (_event, systemId: number, gameId: number) => {
-    return auroraBridge.query(
-      `SELECT SystemBodyID, SystemID, Name, OrbitalDistance, Bearing, BodyClass, BodyTypeID, PlanetNumber, OrbitNumber, ParentBodyID, Radius, Xcor, Ycor, DistanceToParent FROM FCT_SystemBody WHERE SystemID = ${Number(systemId)} AND GameID = ${Number(gameId)}`
-    )
-  })
-
-  ipcMain.handle('bridge:getSystems', async (_event, gameId: number, raceId: number) => {
-    return auroraBridge.query(
-      `SELECT SystemID, Name FROM FCT_RaceSysSurvey WHERE GameID = ${Number(gameId)} AND RaceID = ${Number(raceId)} ORDER BY Name`
-    )
   })
 
   ipcMain.handle('bridge:getTableInfo', async (_event, tableName: string) => {
@@ -333,32 +315,8 @@ app.whenReady().then(async () => {
     return auroraBridge.subscribeBodies(systemId)
   })
 
-  ipcMain.handle('bridge:getMemorySystems', async () => {
-    return auroraBridge.getMemorySystems()
-  })
-
-  ipcMain.handle('bridge:globalSearch', async (_event, values: number[]) => {
-    return auroraBridge.globalSearch(values)
-  })
-
-  ipcMain.handle('bridge:getMemoryBodies2', async (_event, systemId?: number) => {
-    return auroraBridge.getMemoryBodies2(systemId)
-  })
-
-  ipcMain.handle('bridge:getMemoryBodies', async (_event, systemId?: number) => {
-    return auroraBridge.getMemoryBodies(systemId)
-  })
-
-  ipcMain.handle('bridge:ping', async () => {
-    return auroraBridge.ping()
-  })
-
-  ipcMain.handle('bridge:executeAction', async (_event, action) => {
-    return auroraBridge.executeAction(action)
-  })
-
-  ipcMain.handle('bridge:inspectForm', async (_event, formName: string) => {
-    return auroraBridge.inspectForm(formName)
+  ipcMain.handle('bridge:getBodies', async (_event, systemId?: number) => {
+    return auroraBridge.getBodies(systemId)
   })
 
   ipcMain.handle('bridge:getKnownSystems', async () => {
@@ -369,8 +327,8 @@ app.whenReady().then(async () => {
     return auroraBridge.getFleets()
   })
 
-  ipcMain.handle('bridge:getShips', async (_event, fleetId?: number) => {
-    return auroraBridge.getShips(fleetId)
+  ipcMain.handle('bridge:executeAction', async (_event, action) => {
+    return auroraBridge.executeAction(action)
   })
 
   ipcMain.handle('bridge:dumpMemory', async () => {
@@ -396,10 +354,6 @@ app.whenReady().then(async () => {
     return auroraBridge.readCollection(params)
   })
 
-  ipcMain.handle('bridge:readField', async (_event, fieldName: string) => {
-    return auroraBridge.readField(fieldName)
-  })
-
   // Initialize database watcher from settings
   loadSettings().then((settings) => {
     if (settings.auroraDbPath && settings.watchEnabled) {
@@ -410,6 +364,39 @@ app.whenReady().then(async () => {
     // Always try to connect the bridge
     auroraBridge.connect(settings.bridgePort || 47842)
     console.log('Aurora bridge connecting...')
+
+    // Re-analyze on bridge push (game tick) — throttled to at most once per 5 seconds
+    let lastAnalysis = 0
+    auroraBridge.onPush(async () => {
+      const now = Date.now()
+      if (now - lastAnalysis < 5000) return
+      lastAnalysis = now
+
+      // Find current game's profile
+      const games = await import('./services/game-persistence').then((m) => m.loadGames())
+      const currentGameId = dbWatcher.getStatus().currentGameId
+      if (!currentGameId) return
+
+      const game = games.find((g) => g.id === currentGameId)
+      if (!game?.personalityArchetype) return
+
+      const profiles = await import('./advisor').then((m) => m.loadAllProfiles())
+      const profile = profiles.find((p) => p.archetype === game.personalityArchetype)
+      if (!profile) return
+
+      try {
+        const advice = await analyzeGameState(profile.id)
+        if (advice) {
+          for (const win of BrowserWindow.getAllWindows()) {
+            if (!win.isDestroyed()) {
+              win.webContents.send('advisor:adviceUpdate', advice)
+            }
+          }
+        }
+      } catch (err) {
+        console.warn('[Main] Push-triggered analysis failed:', err)
+      }
+    })
   })
 
   createWindow()

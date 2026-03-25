@@ -2,11 +2,21 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, CardContent, CardHeader, CardTitle } from '@components/ui/card'
 import { Button } from '@components/ui/button'
+import { useSettings } from '@renderer/hooks/use-settings'
+import { toast } from 'sonner'
 
 export function WelcomeScreen(): React.JSX.Element {
   const navigate = useNavigate()
+  const { settings } = useSettings()
 
   const handleNewGame = (): void => {
+    if (!settings?.auroraDbPath) {
+      toast.info('Database not configured', {
+        description: 'Set your Aurora database path before starting a game'
+      })
+      navigate('/settings')
+      return
+    }
     navigate('/setup')
   }
 

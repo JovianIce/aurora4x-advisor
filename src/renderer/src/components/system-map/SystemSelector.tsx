@@ -1,5 +1,5 @@
 import React from 'react'
-import { useMemorySystems } from '../../contexts/aurora-data-context'
+import { useMemorySystems } from '@renderer/hooks/use-bridge'
 
 interface SystemSelectorProps {
   value: number | null

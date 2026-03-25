@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import type { MemorySystemBody } from '../../contexts/aurora-data-context'
+import type { MemorySystemBody } from '@renderer/types/aurora'
 
 function SectionHeader({ label }: { label: string }): React.JSX.Element {
   return (

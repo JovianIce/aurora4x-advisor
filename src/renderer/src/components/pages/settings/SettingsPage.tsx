@@ -74,7 +74,7 @@ export function SettingsPage(): React.JSX.Element {
   }
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="h-full overflow-y-auto p-8">
       <div className="max-w-4xl mx-auto space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Settings</h1>

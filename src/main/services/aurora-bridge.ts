@@ -27,17 +27,27 @@ class AuroraBridge {
   private _url = 'ws://localhost:47842'
   private _autoReconnect = false
   private messageIdCounter = 0
+  private pushListeners: Array<(payload: unknown) => void> = []
 
   get isConnected(): boolean {
     return this._isConnected
   }
 
+  // ---------------------------------------------------------------------------
+  // Connection lifecycle
+  // ---------------------------------------------------------------------------
+
   connect(port?: number): void {
     if (port) {
       this._url = `ws://localhost:${port}`
     }
-
     this._autoReconnect = true
+    this.reconnectDelay = 1000
+    this.doConnect()
+  }
+
+  reconnectNow(): void {
+    this.clearReconnectTimer()
     this.reconnectDelay = 1000
     this.doConnect()
   }
@@ -45,7 +55,6 @@ class AuroraBridge {
   disconnect(): void {
     this._autoReconnect = false
     this.clearReconnectTimer()
-
     if (this.ws) {
       this.ws.close()
       this.ws = null
@@ -53,95 +62,53 @@ class AuroraBridge {
     this._isConnected = false
   }
 
-  async query<T = unknown>(sql: string): Promise<T[]> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'query',
-      Payload: JSON.stringify({ Sql: sql })
+  getStatus(): BridgeStatus {
+    return {
+      isConnected: this._isConnected,
+      url: this._url,
+      lastError: this._lastError
     }
-
-    return this.sendRequest(id, request) as Promise<T[]>
   }
+
+  onPush(listener: (payload: unknown) => void): () => void {
+    this.pushListeners.push(listener)
+    return () => {
+      this.pushListeners = this.pushListeners.filter((l) => l !== listener)
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Real-time memory data (primary API)
+  // ---------------------------------------------------------------------------
 
   async subscribeBodies(systemId: number | null): Promise<unknown> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'subscribe',
-      Payload: systemId != null ? JSON.stringify({ SystemId: systemId }) : null
-    }
-    return this.sendRequest(id, request)
+    return this.send('subscribe', systemId != null ? { SystemId: systemId } : null)
   }
 
-  async getMemorySystems(): Promise<{ SystemID: number; Name: string }[]> {
-    const id = this.nextId()
-    const request = { Id: id, Type: 'getSystems', Payload: null }
-    return this.sendRequest(id, request) as Promise<{ SystemID: number; Name: string }[]>
-  }
-
-  async globalSearch(values: number[]): Promise<Record<string, unknown>[]> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'globalSearch',
-      Payload: JSON.stringify({ Values: values })
-    }
-    return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
-  }
-
-  async getMemoryBodies2(systemId?: number): Promise<Record<string, unknown>[]> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'getBodies',
-      Payload: systemId != null ? JSON.stringify({ SystemId: systemId }) : null
-    }
-    return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
-  }
-
-  async getMemoryBodies(systemId?: number): Promise<Record<string, unknown>[]> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'getSystemBodies',
-      Payload: systemId != null ? JSON.stringify({ SystemId: systemId }) : null
-    }
-    return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
+  async getBodies(systemId?: number): Promise<Record<string, unknown>[]> {
+    return this.send('getBodies', systemId != null ? { SystemId: systemId } : null) as Promise<
+      Record<string, unknown>[]
+    >
   }
 
   async getKnownSystems(): Promise<{ SystemID: number; Name: string }[]> {
-    const id = this.nextId()
-    const request = { Id: id, Type: 'getKnownSystems', Payload: null }
-    return this.sendRequest(id, request) as Promise<{ SystemID: number; Name: string }[]>
+    return this.send('getKnownSystems', null) as Promise<{ SystemID: number; Name: string }[]>
   }
 
   async getFleets(): Promise<Record<string, unknown>[]> {
-    const id = this.nextId()
-    const request = { Id: id, Type: 'getFleets', Payload: null }
-    return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
+    return this.send('getFleets', null) as Promise<Record<string, unknown>[]>
   }
 
-  async getShips(fleetId?: number): Promise<Record<string, unknown>[]> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'getShips',
-      Payload: fleetId != null ? JSON.stringify({ FleetId: fleetId }) : null
-    }
-    return this.sendRequest(id, request) as Promise<Record<string, unknown>[]>
-  }
+  // ---------------------------------------------------------------------------
+  // Memory introspection (dev tools)
+  // ---------------------------------------------------------------------------
 
   async enumerateGameState(): Promise<unknown[]> {
-    const id = this.nextId()
-    const request = { Id: id, Type: 'enumerateGameState', Payload: null }
-    return this.sendRequest(id, request) as Promise<unknown[]>
+    return this.send('enumerateGameState', null) as Promise<unknown[]>
   }
 
   async enumerateCollections(): Promise<unknown[]> {
-    const id = this.nextId()
-    const request = { Id: id, Type: 'enumerateCollections', Payload: null }
-    return this.sendRequest(id, request) as Promise<unknown[]>
+    return this.send('enumerateCollections', null) as Promise<unknown[]>
   }
 
   async readCollection(params: {
@@ -153,61 +120,33 @@ class AuroraBridge {
     FilterField?: string
     FilterValue?: string
   }): Promise<unknown[]> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'readCollection',
-      Payload: JSON.stringify(params)
-    }
-    return this.sendRequest(id, request) as Promise<unknown[]>
+    return this.send('readCollection', params) as Promise<unknown[]>
   }
 
-  async readField(fieldName: string): Promise<unknown> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'readField',
-      Payload: JSON.stringify({ Field: fieldName })
-    }
-    return this.sendRequest(id, request)
+  // ---------------------------------------------------------------------------
+  // SQL query + actions
+  // ---------------------------------------------------------------------------
+
+  async query<T = unknown>(sql: string): Promise<T[]> {
+    return this.send('query', { Sql: sql }) as Promise<T[]>
   }
 
   async executeAction(action: ActionRequest): Promise<unknown> {
+    return this.send('action', action)
+  }
+
+  // ---------------------------------------------------------------------------
+  // Private
+  // ---------------------------------------------------------------------------
+
+  private send(type: string, payload: unknown): Promise<unknown> {
     const id = this.nextId()
     const request = {
       Id: id,
-      Type: 'action',
-      Payload: JSON.stringify(action)
+      Type: type,
+      Payload: payload != null ? JSON.stringify(payload) : null
     }
     return this.sendRequest(id, request)
-  }
-
-  async inspectForm(formName: string): Promise<unknown> {
-    const id = this.nextId()
-    const request = {
-      Id: id,
-      Type: 'inspect',
-      Payload: JSON.stringify({ FormName: formName })
-    }
-    return this.sendRequest(id, request)
-  }
-
-  async ping(): Promise<boolean> {
-    try {
-      const id = this.nextId()
-      await this.sendRequest(id, { Id: id, Type: 'ping', Payload: null })
-      return true
-    } catch {
-      return false
-    }
-  }
-
-  getStatus(): BridgeStatus {
-    return {
-      isConnected: this._isConnected,
-      url: this._url,
-      lastError: this._lastError
-    }
   }
 
   private doConnect(): void {
@@ -224,9 +163,13 @@ class AuroraBridge {
 
       this.ws.on('open', () => {
         console.log('[AuroraBridge] Connected to', this._url)
+        const wasConnected = this._isConnected
         this._isConnected = true
         this._lastError = null
         this.reconnectDelay = 1000
+        if (!wasConnected) {
+          this.broadcastToRenderers('bridge:connected', null)
+        }
       })
 
       this.ws.on('message', (data) => {
@@ -235,9 +178,13 @@ class AuroraBridge {
 
       this.ws.on('close', () => {
         console.log('[AuroraBridge] Disconnected')
+        const wasConnected = this._isConnected
         this._isConnected = false
         this.rejectAllPending('Connection closed')
         this.scheduleReconnect()
+        if (wasConnected) {
+          this.broadcastToRenderers('bridge:disconnected', null)
+        }
       })
 
       this.ws.on('error', (err) => {
@@ -262,6 +209,13 @@ class AuroraBridge {
     // Push notification (no Id)
     if (msg.Type === 'push' && !msg.Id) {
       this.broadcastToRenderers('bridge:push', msg.Payload)
+      for (const listener of this.pushListeners) {
+        try {
+          listener(msg.Payload)
+        } catch {
+          // ignore listener errors
+        }
+      }
       return
     }
 

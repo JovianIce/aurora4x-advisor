@@ -78,6 +78,27 @@
         "conditions": {},
         "message": "New species detected in {{systemName}}. Evaluate response options."
       }
+    ],
+
+    "idle-fleets": [
+      {
+        "conditions": {},
+        "message": "{{count}} fleet(s) are stationary: {{fleetNames}}. Consider assigning orders."
+      }
+    ],
+
+    "scattered-ships": [
+      {
+        "conditions": {},
+        "message": "{{count}} single-ship fleets detected: {{fleetNames}}. Consider consolidating into task groups."
+      }
+    ],
+
+    "no-fleets": [
+      {
+        "conditions": { "hasBuiltFirstShip": false },
+        "message": "No fleets detected. Design and construct your first ships to begin exploration."
+      }
     ]
   }
 }

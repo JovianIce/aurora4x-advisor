@@ -73,6 +73,16 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
               + New Campaign
             </button>
 
+            <button
+              className="cic-btn w-full"
+              onClick={() => {
+                navigate('/settings')
+                setOpen(false)
+              }}
+            >
+              Config
+            </button>
+
             {savedGames.length === 0 ? (
               <div
                 className="cic-data text-center py-6"
@@ -180,18 +190,33 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
                               </button>
                             ) : null}
                           </div>
-                          <button
-                            className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity cic-data"
-                            style={{ color: 'var(--cic-red)', fontSize: '9px' }}
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              if (confirm(`Decommission "${game.gameInfo.gameName}"?`)) {
-                                removeGame(game.id)
-                              }
-                            }}
-                          >
-                            DEL
-                          </button>
+                          <div className="flex justify-end mt-1">
+                            <button
+                              className="cic-data"
+                              style={{
+                                color: 'rgba(255,255,255,0.2)',
+                                fontSize: '8px',
+                                background: 'none',
+                                border: 'none',
+                                padding: 0,
+                                cursor: 'pointer'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.color = 'var(--cic-red)'
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.color = 'rgba(255,255,255,0.2)'
+                              }}
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                if (confirm(`Decommission "${game.gameInfo.gameName}"?`)) {
+                                  removeGame(game.id)
+                                }
+                              }}
+                            >
+                              Decommission
+                            </button>
+                          </div>
                         </div>
                       </div>
                     )

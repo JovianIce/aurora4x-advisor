@@ -15,8 +15,13 @@ export function useSettings(): {
   })
 
   const { mutate: updateSetting } = useMutation({
-    mutationFn: ({ key, value }: { key: keyof AppSettings; value: AppSettings[keyof AppSettings] }) =>
-      window.api.settings.update(key, value as never),
+    mutationFn: ({
+      key,
+      value
+    }: {
+      key: keyof AppSettings
+      value: AppSettings[keyof AppSettings]
+    }) => window.api.settings.update(key, value as never),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['settings'] })
     }

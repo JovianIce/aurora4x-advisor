@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useGame } from '@renderer/hooks/use-game'
+import { useAuroraData } from '@renderer/contexts/aurora-data-context'
 import { AdviceSection } from './AdviceSection'
 
 function formatArchetype(archetype: string): string {
@@ -12,6 +13,7 @@ function formatArchetype(archetype: string): string {
 
 export function DashboardOverview(): React.JSX.Element {
   const { currentGame } = useGame()
+  const { isConnected } = useAuroraData()
   const queryClient = useQueryClient()
 
   // Load initial advice using React Query
@@ -27,15 +29,14 @@ export function DashboardOverview(): React.JSX.Element {
       if (!matchingProfile?.id) return null
 
       const settings = await window.api.settings.load()
-      if (!settings.auroraDbPath) return null
 
       const initialAdvice = await window.api.advisor.triggerInitialAnalysis(
-        settings.auroraDbPath,
+        settings.auroraDbPath || '',
         matchingProfile.id
       )
       return initialAdvice
     },
-    enabled: !!currentGame?.personalityArchetype,
+    enabled: !!currentGame?.personalityArchetype && isConnected,
     staleTime: 5 * 60 * 1000
   })
 
@@ -64,7 +65,7 @@ export function DashboardOverview(): React.JSX.Element {
     staleTime: Infinity
   })
 
-  // Listen for advice updates from DB watcher
+  // Listen for advice updates from bridge push
   useEffect(() => {
     if (!currentGame) return
 
@@ -74,6 +75,13 @@ export function DashboardOverview(): React.JSX.Element {
 
     return unsubscribe
   }, [currentGame, queryClient])
+
+  // Re-fetch advice when bridge connects
+  useEffect(() => {
+    if (isConnected && currentGame?.personalityArchetype) {
+      queryClient.invalidateQueries({ queryKey: ['advice', currentGame.id] })
+    }
+  }, [isConnected]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!currentGame) {
     return (
@@ -108,7 +116,7 @@ export function DashboardOverview(): React.JSX.Element {
               {currentGame.gameInfo.empireName} — Year {currentGame.gameInfo.startingYear}
             </div>
 
-            {/* Game state details */}
+            {/* Live data stats from bridge */}
             {gameState && (
               <div
                 className="grid grid-cols-2 gap-x-4 gap-y-1 pt-2 mt-2"
@@ -116,89 +124,81 @@ export function DashboardOverview(): React.JSX.Element {
               >
                 <div className="flex justify-between">
                   <span className="cic-label" style={{ fontSize: '9px' }}>
-                    Game Year
+                    Systems
                   </span>
                   <span
                     className="cic-data"
                     style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)' }}
                   >
-                    {String(gameState.gameYear ?? '—')}
+                    {String(gameState.systemCount ?? '—')}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="cic-label" style={{ fontSize: '9px' }}>
-                    TN Tech
+                    Bodies
                   </span>
                   <span
                     className="cic-data"
-                    style={{
-                      fontSize: '9px',
-                      color: gameState.hasTNTech ? 'var(--cic-green)' : 'var(--cic-red)'
-                    }}
+                    style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)' }}
                   >
-                    {gameState.hasTNTech ? 'YES' : 'NO'}
+                    {String(gameState.bodyCount ?? '—')}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="cic-label" style={{ fontSize: '9px' }}>
-                    Alien Contact
+                    Fleets
                   </span>
                   <span
                     className="cic-data"
-                    style={{
-                      fontSize: '9px',
-                      color: gameState.alienContact ? 'var(--cic-amber)' : 'rgba(255,255,255,0.3)'
-                    }}
+                    style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)' }}
                   >
-                    {gameState.alienContact ? 'YES' : 'NO'}
+                    {String(gameState.fleetCount ?? '—')}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="cic-label" style={{ fontSize: '9px' }}>
-                    At War
+                    Ships
                   </span>
                   <span
                     className="cic-data"
-                    style={{
-                      fontSize: '9px',
-                      color: gameState.atWar ? 'var(--cic-red)' : 'var(--cic-green)'
-                    }}
+                    style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)' }}
                   >
-                    {gameState.atWar ? 'YES' : 'NO'}
+                    {String(gameState.totalShipCount ?? '—')}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="cic-label" style={{ fontSize: '9px' }}>
-                    First Ship
+                    Military
                   </span>
                   <span
                     className="cic-data"
-                    style={{
-                      fontSize: '9px',
-                      color: gameState.hasBuiltFirstShip
-                        ? 'var(--cic-green)'
-                        : 'rgba(255,255,255,0.3)'
-                    }}
+                    style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)' }}
                   >
-                    {gameState.hasBuiltFirstShip ? 'BUILT' : 'NONE'}
+                    {String(gameState.militaryFleetCount ?? '—')}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="cic-label" style={{ fontSize: '9px' }}>
-                    Home Survey
+                    Civilian
                   </span>
                   <span
                     className="cic-data"
-                    style={{
-                      fontSize: '9px',
-                      color: gameState.hasSurveyedHomeSystem
-                        ? 'var(--cic-green)'
-                        : 'rgba(255,255,255,0.3)'
-                    }}
+                    style={{ fontSize: '9px', color: 'var(--cic-cyan-dim)' }}
                   >
-                    {gameState.hasSurveyedHomeSystem ? 'DONE' : 'PENDING'}
+                    {String(gameState.civilianFleetCount ?? '—')}
                   </span>
                 </div>
+              </div>
+            )}
+
+            {!isConnected && !gameState && (
+              <div className="pt-2 mt-2" style={{ borderTop: '1px solid var(--cic-panel-edge)' }}>
+                <span
+                  className="cic-data"
+                  style={{ color: 'var(--cic-amber-dim)', fontSize: '9px' }}
+                >
+                  Awaiting bridge connection for live data...
+                </span>
               </div>
             )}
 

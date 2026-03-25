@@ -12,7 +12,9 @@ export function TableExplorerTab(): React.JSX.Element {
   const { data: previewRows, isLoading: previewLoading } = useQuery<Record<string, unknown>[]>({
     queryKey: ['tablePreview', selectedTable, previewLimit],
     queryFn: async () => {
-      const rows = await window.api.bridge.query(`SELECT * FROM "${selectedTable}" LIMIT ${previewLimit}`)
+      const rows = await window.api.bridge.query(
+        `SELECT * FROM "${selectedTable}" LIMIT ${previewLimit}`
+      )
       return rows as Record<string, unknown>[]
     },
     enabled: isConnected && !!selectedTable

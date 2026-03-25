@@ -8,10 +8,7 @@ import type {
   GameSession,
   AppSettings,
   BridgeStatus,
-  SystemBody,
-  StarSystem,
-  ActionRequest,
-  ControlInfo
+  ActionRequest
 } from '@shared/types'
 
 interface Profile {
@@ -61,13 +58,6 @@ interface MemoryFleet {
   SystemID: number
   SystemName: string
   IsCivilian: boolean
-}
-
-interface MemoryShip {
-  ShipID: number
-  ShipName: string
-  Fuel: number
-  FleetID: number
 }
 
 interface GameStateFieldInfo {
@@ -147,25 +137,25 @@ interface DbWatcherAPI {
 }
 
 interface BridgeAPI {
+  // Connection
   connect: (port?: number) => Promise<BridgeStatus>
   disconnect: () => Promise<BridgeStatus>
+  reconnectNow: () => Promise<BridgeStatus>
   getStatus: () => Promise<BridgeStatus>
-  query: (sql: string) => Promise<unknown[]>
-  getSystemBodies: (systemId: number, gameId: number) => Promise<SystemBody[]>
-  getSystems: (gameId: number, raceId: number) => Promise<StarSystem[]>
-  getTableInfo: (tableName: string) => Promise<unknown[]>
-  getAllTables: () => Promise<{ name: string; rows: number }[]>
-  getMemoryBodies: (systemId?: number) => Promise<Record<string, unknown>[]>
+  onConnected: (callback: () => void) => () => void
+  onDisconnected: (callback: () => void) => () => void
+  onPush: (callback: (data: unknown) => void) => () => void
+  // Real-time memory data
   subscribeBodies: (systemId: number | null) => Promise<unknown>
-  getMemorySystems: () => Promise<{ SystemID: number; Name: string }[]>
-  globalSearch: (values: number[]) => Promise<Record<string, unknown>[]>
-  getMemoryBodies2: (systemId?: number) => Promise<Record<string, unknown>[]>
-  ping: () => Promise<boolean>
-  executeAction: (action: ActionRequest) => Promise<unknown>
-  inspectForm: (formName: string) => Promise<{ form: string; controls: ControlInfo[] }>
+  getBodies: (systemId?: number) => Promise<Record<string, unknown>[]>
   getKnownSystems: () => Promise<{ SystemID: number; Name: string }[]>
   getFleets: () => Promise<MemoryFleet[]>
-  getShips: (fleetId?: number) => Promise<MemoryShip[]>
+  // SQL + actions
+  query: (sql: string) => Promise<unknown[]>
+  getAllTables: () => Promise<{ name: string; rows: number }[]>
+  getTableInfo: (tableName: string) => Promise<unknown[]>
+  executeAction: (action: ActionRequest) => Promise<unknown>
+  // Dev tools
   dumpMemory: () => Promise<{
     outputDir: string
     collections: number
@@ -185,8 +175,6 @@ interface BridgeAPI {
     FilterField?: string
     FilterValue?: string
   }) => Promise<Record<string, unknown>[]>
-  readField: (fieldName: string) => Promise<{ field: string; type: string; value: unknown }>
-  onPush: (callback: (data: unknown) => void) => () => void
 }
 
 declare global {

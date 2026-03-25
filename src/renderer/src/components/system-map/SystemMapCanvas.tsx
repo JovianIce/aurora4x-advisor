@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback, useReducer } from 'react'
 import type { SystemBody } from '@shared/types'
-import type { MemoryFleet } from '../../contexts/aurora-data-context'
+import type { MemoryFleet } from '@renderer/types/aurora'
 
 interface EnrichedFleet extends MemoryFleet {
   order?: string

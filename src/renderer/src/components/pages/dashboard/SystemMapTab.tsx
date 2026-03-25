@@ -7,12 +7,8 @@ import {
   DEFAULT_DISPLAY_OPTIONS,
   type MapDisplayOptions
 } from '../../system-map/DisplayOptions'
-import {
-  useMemoryBodies,
-  useMemorySystems,
-  useFleets,
-  type MemorySystemBody
-} from '../../../contexts/aurora-data-context'
+import { useMemoryBodies, useMemorySystems, useFleets } from '@renderer/hooks/use-bridge'
+import type { MemorySystemBody } from '@renderer/types/aurora'
 import type { GameSession, SystemBody } from '@shared/types'
 
 interface SystemMapTabProps {
