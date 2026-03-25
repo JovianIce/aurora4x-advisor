@@ -14,7 +14,12 @@ export function SetupWizard(): React.JSX.Element {
   const [step, setStep] = useState<SetupStep>('pick-game')
   const [selectedGame, setSelectedGame] = useState<GameInfo | null>(null)
 
-  const { data: dbGames, isLoading, error, refetch } = useQuery({
+  const {
+    data: dbGames,
+    isLoading,
+    error,
+    refetch
+  } = useQuery({
     queryKey: ['auroraDbGames'],
     queryFn: () => window.api.game.listGames()
   })
@@ -24,10 +29,7 @@ export function SetupWizard(): React.JSX.Element {
   const availableGames = dbGames?.filter((g) => !trackedNames.has(g.gameName)) ?? []
   const alreadyTracked = dbGames?.filter((g) => trackedNames.has(g.gameName)) ?? []
 
-  const finishSetup = async (
-    archetype?: string,
-    personalityName?: string
-  ): Promise<void> => {
+  const finishSetup = async (archetype?: string, personalityName?: string): Promise<void> => {
     if (!selectedGame) return
 
     const newGame: GameSession = {
@@ -72,9 +74,7 @@ export function SetupWizard(): React.JSX.Element {
         >
           Campaign Init
         </span>
-        <div
-          style={{ width: '1px', height: '12px', background: 'var(--cic-panel-edge)' }}
-        />
+        <div style={{ width: '1px', height: '12px', background: 'var(--cic-panel-edge)' }} />
         <span
           className="cic-label"
           style={{
@@ -92,14 +92,20 @@ export function SetupWizard(): React.JSX.Element {
         {step === 'pick-game' && (
           <div className="h-full flex items-center justify-center p-8">
             <div className="w-full max-w-lg cic-stagger">
-              <div className="cic-label mb-4" style={{ color: 'var(--cic-cyan)', fontSize: '10px' }}>
+              <div
+                className="cic-label mb-4"
+                style={{ color: 'var(--cic-cyan)', fontSize: '10px' }}
+              >
                 Select Game from Aurora Database
               </div>
 
               <div className="cic-panel p-4 space-y-4">
                 {isLoading && (
                   <div className="py-6 text-center">
-                    <span className="cic-data cic-glow" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
+                    <span
+                      className="cic-data cic-glow"
+                      style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}
+                    >
                       Scanning Aurora database...
                     </span>
                   </div>
@@ -114,7 +120,10 @@ export function SetupWizard(): React.JSX.Element {
                         borderLeft: '2px solid var(--cic-red)'
                       }}
                     >
-                      <span className="cic-data" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px' }}>
+                      <span
+                        className="cic-data"
+                        style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px' }}
+                      >
                         Failed to read Aurora database. Check your database path in Config.
                       </span>
                     </div>
@@ -174,7 +183,10 @@ export function SetupWizard(): React.JSX.Element {
                               {game.techLevel}
                             </span>
                           </div>
-                          <div className="cic-data" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '9px' }}>
+                          <div
+                            className="cic-data"
+                            style={{ color: 'rgba(255,255,255,0.3)', fontSize: '9px' }}
+                          >
                             {game.empireName} — Year {game.startingYear}
                           </div>
                         </button>
@@ -186,7 +198,10 @@ export function SetupWizard(): React.JSX.Element {
                 {/* Already tracked (dimmed) */}
                 {alreadyTracked.length > 0 && (
                   <div className="pt-2" style={{ borderTop: '1px solid var(--cic-panel-edge)' }}>
-                    <span className="cic-label" style={{ fontSize: '8px', color: 'rgba(255,255,255,0.2)' }}>
+                    <span
+                      className="cic-label"
+                      style={{ fontSize: '8px', color: 'rgba(255,255,255,0.2)' }}
+                    >
                       Already tracked ({alreadyTracked.length})
                     </span>
                     {alreadyTracked.map((game) => (
@@ -250,9 +265,7 @@ export function SetupWizard(): React.JSX.Element {
                 </button>
               </div>
             </div>
-            <PersonalityMatcher
-              onComplete={(archetype, name) => finishSetup(archetype, name)}
-            />
+            <PersonalityMatcher onComplete={(archetype, name) => finishSetup(archetype, name)} />
           </div>
         )}
       </div>

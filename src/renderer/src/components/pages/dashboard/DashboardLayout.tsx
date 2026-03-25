@@ -29,7 +29,7 @@ export function DashboardLayout(): React.JSX.Element {
     <div className="fixed inset-0 flex flex-col" style={{ background: 'var(--cic-void)' }}>
       {/* Top Command Bar */}
       <div
-        className="flex items-center justify-between px-3 py-1 flex-shrink-0"
+        className="flex items-center justify-between px-3 py-1 shrink-0"
         style={{
           background: 'linear-gradient(180deg, var(--cic-panel) 0%, var(--cic-deep) 100%)',
           borderBottom: '1px solid var(--cic-panel-edge)'

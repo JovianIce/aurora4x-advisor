@@ -307,4 +307,5 @@ Please respect this. If this boundary is crossed publicly, Steve may add defense
 
 - Steve Walmsley for creating Aurora 4X
 - The [AuroraPatch](https://github.com/Aurora-Modders/AuroraPatch) project for the Harmony patching framework
+- The [SolarisTheme](https://github.com/simast/SolarisTheme) project for the toolbar icons
 - The Aurora 4X modding community

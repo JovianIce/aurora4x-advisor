@@ -64,7 +64,10 @@ export function SaveGamePrompt({
             </span>
           </div>
 
-          <div className="flex justify-between pt-1" style={{ borderTop: '1px solid var(--cic-panel-edge)' }}>
+          <div
+            className="flex justify-between pt-1"
+            style={{ borderTop: '1px solid var(--cic-panel-edge)' }}
+          >
             <button className="cic-btn" onClick={onBack}>
               ← Back
             </button>

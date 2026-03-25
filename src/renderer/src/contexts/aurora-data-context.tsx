@@ -19,11 +19,7 @@ export interface AuroraDataContextValue {
 
 const AuroraDataContext = createContext<AuroraDataContextValue | null>(null)
 
-export function AuroraDataProvider({
-  children
-}: {
-  children: React.ReactNode
-}): React.JSX.Element {
+export function AuroraDataProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
   const queryClient = useQueryClient()
 
   // Bridge status — polled as a heartbeat
@@ -53,7 +49,8 @@ export function AuroraDataProvider({
       toast.warning('Bridge update required', {
         description: (
           <div>
-            Your AdvisorBridge (v{data.bridgeVersion}) is outdated. The app expects v{data.appVersion}.
+            Your AdvisorBridge (v{data.bridgeVersion}) is outdated. The app expects v
+            {data.appVersion}.
             <br />
             <a
               href="https://github.com/ZionLG/aurora4x-advisor/releases/latest"
@@ -102,6 +99,7 @@ export function AuroraDataProvider({
   return <AuroraDataContext.Provider value={value}>{children}</AuroraDataContext.Provider>
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuroraData(): AuroraDataContextValue {
   const ctx = useContext(AuroraDataContext)
   if (!ctx) throw new Error('useAuroraData must be used within AuroraDataProvider')

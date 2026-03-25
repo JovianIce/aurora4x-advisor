@@ -145,7 +145,9 @@ interface BridgeAPI {
   getStatus: () => Promise<BridgeStatus>
   onConnected: (callback: () => void) => () => void
   onDisconnected: (callback: () => void) => () => void
-  onVersionMismatch: (callback: (data: { bridgeVersion: number; appVersion: number }) => void) => () => void
+  onVersionMismatch: (
+    callback: (data: { bridgeVersion: number; appVersion: number }) => void
+  ) => () => void
   onPush: (callback: (data: unknown) => void) => () => void
   // Real-time memory data
   subscribeBodies: (systemId: number | null) => Promise<unknown>

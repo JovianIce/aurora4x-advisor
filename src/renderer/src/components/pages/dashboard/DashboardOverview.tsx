@@ -115,7 +115,8 @@ export function DashboardOverview(): React.JSX.Element {
               </span>
             </div>
             <div className="cic-data" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px' }}>
-              {currentGame.gameInfo.empireName} — {gameDate || `Year ${currentGame.gameInfo.startingYear}`}
+              {currentGame.gameInfo.empireName} —{' '}
+              {gameDate || `Year ${currentGame.gameInfo.startingYear}`}
             </div>
 
             {/* Live data stats from bridge */}

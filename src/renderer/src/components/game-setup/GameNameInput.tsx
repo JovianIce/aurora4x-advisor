@@ -23,11 +23,7 @@ export function GameNameInput({ onNext, onBack }: GameNameInputProps): React.JSX
 
         <div className="cic-panel p-4 space-y-4">
           <div>
-            <label
-              className="cic-label block mb-2"
-              style={{ fontSize: '9px' }}
-              htmlFor="gameName"
-            >
+            <label className="cic-label block mb-2" style={{ fontSize: '9px' }} htmlFor="gameName">
               Game Name
             </label>
             <input
@@ -51,11 +47,17 @@ export function GameNameInput({ onNext, onBack }: GameNameInputProps): React.JSX
             />
           </div>
 
-          <p className="cic-data" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '9px', lineHeight: '1.5' }}>
+          <p
+            className="cic-data"
+            style={{ color: 'rgba(255,255,255,0.3)', fontSize: '9px', lineHeight: '1.5' }}
+          >
             Must match exactly with the name in Aurora 4X (case-sensitive).
           </p>
 
-          <div className="flex justify-between pt-1" style={{ borderTop: '1px solid var(--cic-panel-edge)' }}>
+          <div
+            className="flex justify-between pt-1"
+            style={{ borderTop: '1px solid var(--cic-panel-edge)' }}
+          >
             <button className="cic-btn" onClick={onBack}>
               ← Back
             </button>

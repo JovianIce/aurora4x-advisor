@@ -20,7 +20,9 @@ function BootLine({
   useEffect(() => {
     if (delay > 0) {
       const t = setTimeout(() => setVisible(true), delay)
-      return (): void => { clearTimeout(t) }
+      return (): void => {
+        clearTimeout(t)
+      }
     }
     return undefined
   }, [delay])
@@ -42,10 +44,7 @@ function BootLine({
   }
 
   return (
-    <div
-      className="flex items-center gap-3"
-      style={{ animation: 'cic-fade-in 0.15s ease-out' }}
-    >
+    <div className="flex items-center gap-3" style={{ animation: 'cic-fade-in 0.15s ease-out' }}>
       {status !== 'none' && (
         <span
           className="cic-data shrink-0"
@@ -150,7 +149,8 @@ export function WelcomeScreen(): React.JSX.Element {
               Core systems loaded
             </BootLine>
             <BootLine status={hasDbPath ? 'ok' : 'fail'} delay={250}>
-              Aurora database: {hasDbPath ? settings?.auroraDbPath?.split(/[\\/]/).pop() : 'NOT CONFIGURED'}
+              Aurora database:{' '}
+              {hasDbPath ? settings?.auroraDbPath?.split(/[\\/]/).pop() : 'NOT CONFIGURED'}
             </BootLine>
             <BootLine status={isConnected ? 'ok' : 'wait'} delay={400}>
               Bridge connection: {isConnected ? 'LINK ACTIVE' : 'Awaiting Aurora'}
@@ -159,7 +159,8 @@ export function WelcomeScreen(): React.JSX.Element {
               status={hasDbPath ? (dbGames && dbGames.length > 0 ? 'ok' : 'warn') : 'wait'}
               delay={550}
             >
-              Games in Aurora DB: {hasDbPath ? (dbGames ? String(dbGames.length) : 'scanning...') : 'N/A'}
+              Games in Aurora DB:{' '}
+              {hasDbPath ? (dbGames ? String(dbGames.length) : 'scanning...') : 'N/A'}
             </BootLine>
             <BootLine status={hasGames ? 'ok' : 'warn'} delay={700}>
               Tracked campaigns: {savedGames.length}
@@ -189,10 +190,14 @@ export function WelcomeScreen(): React.JSX.Element {
                     </div>
                     <p
                       className="cic-data mb-3"
-                      style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px', lineHeight: '1.6' }}
+                      style={{
+                        color: 'rgba(255,255,255,0.5)',
+                        fontSize: '10px',
+                        lineHeight: '1.6'
+                      }}
                     >
-                      Configure the path to your Aurora 4X database (AuroraDB.db) to begin.
-                      The advisor reads this file to track your game state.
+                      Configure the path to your Aurora 4X database (AuroraDB.db) to begin. The
+                      advisor reads this file to track your game state.
                     </p>
                     <button className="cic-btn cic-btn-amber" onClick={() => navigate('/settings')}>
                       Configure Database Path

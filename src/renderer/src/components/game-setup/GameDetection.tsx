@@ -64,14 +64,23 @@ export function GameDetection({
                   borderLeft: '2px solid var(--cic-red)'
                 }}
               >
-                <div className="cic-label mb-1" style={{ color: 'var(--cic-red)', fontSize: '9px' }}>
+                <div
+                  className="cic-label mb-1"
+                  style={{ color: 'var(--cic-red)', fontSize: '9px' }}
+                >
                   Scan Failed
                 </div>
-                <p className="cic-data" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px' }}>
+                <p
+                  className="cic-data"
+                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px' }}
+                >
                   {error instanceof Error ? error.message : 'Failed to detect game'}
                 </p>
               </div>
-              <div className="cic-data space-y-1" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '9px' }}>
+              <div
+                className="cic-data space-y-1"
+                style={{ color: 'rgba(255,255,255,0.3)', fontSize: '9px' }}
+              >
                 <p style={{ color: 'var(--cic-amber-dim)' }}>Troubleshooting:</p>
                 <p>— Verify game was saved in Aurora</p>
                 <p>— Check name matches exactly (case-sensitive)</p>
@@ -95,20 +104,35 @@ export function GameDetection({
                 style={{ background: 'var(--cic-void)', border: '1px solid var(--cic-panel-edge)' }}
               >
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>Year</span>
-                  <span className="cic-data" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    Year
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}
+                  >
                     {gameInfo.startingYear}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>Tech Level</span>
-                  <span className="cic-data" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    Tech Level
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}
+                  >
                     {gameInfo.techLevel}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="cic-label" style={{ fontSize: '9px' }}>Empire</span>
-                  <span className="cic-data" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
+                  <span className="cic-label" style={{ fontSize: '9px' }}>
+                    Empire
+                  </span>
+                  <span
+                    className="cic-data"
+                    style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}
+                  >
                     {gameInfo.empireName}
                   </span>
                 </div>
@@ -116,7 +140,10 @@ export function GameDetection({
             </div>
           )}
 
-          <div className="flex justify-between pt-1" style={{ borderTop: '1px solid var(--cic-panel-edge)' }}>
+          <div
+            className="flex justify-between pt-1"
+            style={{ borderTop: '1px solid var(--cic-panel-edge)' }}
+          >
             <button className="cic-btn" onClick={onBack}>
               ← Back
             </button>
@@ -126,10 +153,7 @@ export function GameDetection({
               </button>
             )}
             {gameInfo && (
-              <button
-                className="cic-btn cic-btn-amber"
-                onClick={() => onGameDetected(gameInfo)}
-              >
+              <button className="cic-btn cic-btn-amber" onClick={() => onGameDetected(gameInfo)}>
                 Proceed →
               </button>
             )}

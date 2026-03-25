@@ -146,7 +146,10 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
                               className="cic-data"
                               style={{ color: 'rgba(255,255,255,0.25)', fontSize: '9px' }}
                             >
-                              {game.id === currentGame?.id && gameDate ? gameDate : `Year ${game.gameInfo.startingYear}`} — {formatDate(game.lastAccessedAt)}
+                              {game.id === currentGame?.id && gameDate
+                                ? gameDate
+                                : `Year ${game.gameInfo.startingYear}`}{' '}
+                              — {formatDate(game.lastAccessedAt)}
                             </div>
                             {game.personalityName ? (
                               <button

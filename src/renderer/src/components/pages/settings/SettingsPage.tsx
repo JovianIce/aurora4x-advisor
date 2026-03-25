@@ -63,7 +63,10 @@ export function SettingsPage(): React.JSX.Element {
   if (isLoading) {
     return (
       <div className="h-full flex items-center justify-center">
-        <span className="cic-data cic-glow" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
+        <span
+          className="cic-data cic-glow"
+          style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}
+        >
           Loading configuration...
         </span>
       </div>
@@ -116,8 +119,12 @@ export function SettingsPage(): React.JSX.Element {
 
             {/* Status */}
             <div className="flex items-center gap-2">
-              <span className="cic-label" style={{ fontSize: '9px' }}>Status:</span>
-              <div className={`cic-status-dot ${watcherStatus?.isWatching ? 'online' : 'offline'}`} />
+              <span className="cic-label" style={{ fontSize: '9px' }}>
+                Status:
+              </span>
+              <div
+                className={`cic-status-dot ${watcherStatus?.isWatching ? 'online' : 'offline'}`}
+              />
               <span
                 className="cic-data"
                 style={{
@@ -178,20 +185,31 @@ export function SettingsPage(): React.JSX.Element {
                 borderLeft: '2px solid var(--cic-amber-dim)'
               }}
             >
-              <span className="cic-data" style={{ color: 'var(--cic-amber-dim)', fontSize: '9px', lineHeight: '1.5' }}>
+              <span
+                className="cic-data"
+                style={{ color: 'var(--cic-amber-dim)', fontSize: '9px', lineHeight: '1.5' }}
+              >
                 Ensure the correct campaign is selected in Fleet Command before saving in Aurora.
                 Snapshots are filed under the active campaign.
               </span>
             </div>
 
-            <div className="cic-data space-y-2" style={{ color: 'rgba(255,255,255,0.4)', fontSize: '9px', lineHeight: '1.5' }}>
+            <div
+              className="cic-data space-y-2"
+              style={{ color: 'rgba(255,255,255,0.4)', fontSize: '9px', lineHeight: '1.5' }}
+            >
               <p>
                 When you save in Aurora 4X, the advisor automatically snapshots your database.
                 Snapshots are organized by campaign name and in-game year.
               </p>
               <p>
                 Storage:{' '}
-                <span style={{ color: 'var(--cic-cyan-dim)', fontFamily: 'Consolas, SF Mono, Monaco, monospace' }}>
+                <span
+                  style={{
+                    color: 'var(--cic-cyan-dim)',
+                    fontFamily: 'Consolas, SF Mono, Monaco, monospace'
+                  }}
+                >
                   games/&lt;name&gt;/&lt;name&gt;-&lt;year&gt;.db
                 </span>
               </p>
