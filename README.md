@@ -1,6 +1,6 @@
 # Aurora 4X Advisor
 
-A tactical companion and visualization tool for [Aurora 4X](http://aurorawiki.pentarch.org/). Connects to a running Aurora instance via a C# Harmony patch, providing real-time system maps, fleet overlays, context-aware data panels, and an advisor persona system — all while Aurora remains your primary interface.
+A tactical companion and visualization tool for [Aurora 4X](https://aurora4x.com/). Connects to a running Aurora instance via a C# Harmony patch, providing real-time system maps, fleet overlays, context-aware data panels, and an advisor persona system — all while Aurora remains your primary interface.
 
 > **Status:** Actively developed. The Electron companion app, C# bridge, and real-time memory reader are functional. Advisor persona system is implemented. Dashboard with tactical map viewer, data explorer, and memory inspector are in progress.
 
