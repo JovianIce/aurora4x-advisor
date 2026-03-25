@@ -159,7 +159,7 @@ export function SetupWizard(): React.JSX.Element {
                           key={game.auroraGameId}
                           className="w-full text-left p-3 transition-colors"
                           style={{
-                            background: isSelected ? 'rgba(0, 229, 255, 0.06)' : 'var(--cic-void)',
+                            background: isSelected ? 'var(--cic-cyan-glow)' : 'var(--cic-void)',
                             border: `1px solid ${isSelected ? 'var(--cic-cyan)' : 'var(--cic-panel-edge)'}`,
                             boxShadow: isSelected ? '0 0 8px var(--cic-cyan-glow)' : 'none',
                             cursor: 'pointer'

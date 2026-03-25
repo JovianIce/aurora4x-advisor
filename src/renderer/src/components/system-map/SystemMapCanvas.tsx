@@ -164,19 +164,20 @@ export function SystemMapCanvas({
     canvas.height = height * dpr
   }, [width, height])
 
-  // Render loop at 60fps with smooth animation
+  // Draw once when state changes — no continuous loop needed
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    function draw(): void {
-      const ctx = canvas!.getContext('2d')
+    // Batch with rAF to coalesce rapid state changes (e.g. drag events)
+    cancelAnimationFrame(animFrameRef.current)
+    animFrameRef.current = requestAnimationFrame(() => {
+      const ctx = canvas.getContext('2d')
       if (!ctx) return
 
       const dpr = window.devicePixelRatio || 1
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      // Use real positions directly - no interpolation
       const posMap = positions.current
 
       // Background — CIC void
@@ -235,13 +236,9 @@ export function SystemMapCanvas({
           const semiMinorPx = b * viewport.scale
 
           if (semiMajorPx > 2 && semiMajorPx < width * 3) {
-            // EccentricityDirection is the angle of periapsis from the star
-            // The ellipse center is offset from the star (focus) by c along that direction
             const dirRad = ((body.EccentricityDirection || 0) * Math.PI) / 180
             const offsetPx = c * viewport.scale
 
-            // Ellipse center = star + offset along eccentricity direction
-            // Using same coordinate system as body positions (cos for x, y direct)
             const ellipseCx = starScreen.cx + Math.cos(dirRad) * offsetPx
             const ellipseCy = starScreen.cy + Math.sin(dirRad) * offsetPx
 
@@ -324,7 +321,12 @@ export function SystemMapCanvas({
         const pos = posMap.get(body.SystemBodyID)
         if (!pos) continue
         const screen = auToCanvas(pos, viewport)
-        if (screen.cx < -50 || screen.cx > width + 50 || screen.cy < -50 || screen.cy > height + 50)
+        if (
+          screen.cx < -50 ||
+          screen.cx > width + 50 ||
+          screen.cy < -50 ||
+          screen.cy > height + 50
+        )
           continue
 
         const moon = isMoon(body)
@@ -354,13 +356,17 @@ export function SystemMapCanvas({
       }
 
       // --- Combined label pass: fleet names stacked above, body name below ---
-      // Like Aurora: stationary fleets first, then moving, then body name at the bottom
       for (const body of bodies) {
         if (!shouldShowBody(body, displayOptions, viewport.scale)) continue
         const pos = posMap.get(body.SystemBodyID)
         if (!pos) continue
         const screen = auToCanvas(pos, viewport)
-        if (screen.cx < -50 || screen.cx > width + 50 || screen.cy < -50 || screen.cy > height + 50)
+        if (
+          screen.cx < -50 ||
+          screen.cx > width + 50 ||
+          screen.cy < -50 ||
+          screen.cy > height + 50
+        )
           continue
 
         const moon = isMoon(body)
@@ -378,7 +384,6 @@ export function SystemMapCanvas({
         if (nearGroup && displayOptions.showFleetNames) {
           const sorted = [...nearGroup.fleets].sort(fleetSortComparator)
 
-          // Start above: fleet labels go upward from the body position
           const fleetStartY = labelY - LINE_H * sorted.length
           let fy = fleetStartY
           ctx.font = '9px Consolas, monospace'
@@ -422,11 +427,8 @@ export function SystemMapCanvas({
       ctx.fillStyle = 'rgba(0, 229, 255, 0.25)'
       ctx.font = '9px Consolas, monospace'
       ctx.fillText(`SCALE ${formatScale(viewport.scale)}`, 10, height - 8)
+    })
 
-      animFrameRef.current = requestAnimationFrame(draw)
-    }
-
-    animFrameRef.current = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(animFrameRef.current)
   }, [bodies, fleets, viewport, width, height, displayOptions])
 

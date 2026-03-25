@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useGame } from '@renderer/hooks/use-game'
 import { toast } from 'sonner'
+import { ThemeSelector } from '@components/mode-toggle'
 
 export function SettingsPage(): React.JSX.Element {
   const navigate = useNavigate()
@@ -95,6 +96,14 @@ export function SettingsPage(): React.JSX.Element {
       </div>
 
       <div className="p-6 max-w-3xl mx-auto space-y-4 cic-stagger">
+        {/* Theme */}
+        <div className="cic-panel">
+          <div className="cic-panel-header">Interface Theme</div>
+          <div className="p-4">
+            <ThemeSelector />
+          </div>
+        </div>
+
         {/* Aurora Database */}
         <div className="cic-panel">
           <div className="cic-panel-header">Aurora Database</div>
@@ -181,7 +190,7 @@ export function SettingsPage(): React.JSX.Element {
             <div
               className="p-2"
               style={{
-                background: 'rgba(255, 179, 0, 0.04)',
+                background: 'var(--cic-amber-glow)',
                 borderLeft: '2px solid var(--cic-amber-dim)'
               }}
             >

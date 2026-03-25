@@ -177,7 +177,7 @@ export function WelcomeScreen(): React.JSX.Element {
                   <div
                     className="p-3"
                     style={{
-                      background: 'rgba(255, 179, 0, 0.05)',
+                      background: 'var(--cic-amber-glow)',
                       border: '1px solid var(--cic-amber-dim)',
                       borderLeft: '2px solid var(--cic-amber)'
                     }}

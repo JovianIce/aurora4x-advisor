@@ -55,7 +55,7 @@ export function SaveGamePrompt({
           <div
             className="p-2"
             style={{
-              background: 'rgba(255, 179, 0, 0.04)',
+              background: 'var(--cic-amber-glow)',
               borderLeft: '2px solid var(--cic-amber-dim)'
             }}
           >

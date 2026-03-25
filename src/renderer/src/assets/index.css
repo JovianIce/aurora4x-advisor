@@ -4,8 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
-   AURORA CIC — Combat Information Center Theme
-   Deep void blacks, tactical cyan, amber warnings
+   AURORA 4X ADVISOR — Multi-Theme System
+   All themes are dark. Accent colors vary by theme.
+   Active theme is set via data-theme attribute on <html>.
    ============================================================ */
 
 @font-face {
@@ -13,7 +14,26 @@
   src: local('Consolas'), local('SF Mono'), local('Monaco');
 }
 
+/* ============================================================
+   Base defaults (CIC fallback when no data-theme is set)
+   ============================================================ */
+
 :root {
+  --cic-void: #030810;
+  --cic-deep: #060e1a;
+  --cic-panel: #0a1628;
+  --cic-panel-edge: #122240;
+  --cic-cyan: #00e5ff;
+  --cic-cyan-dim: #0088aa;
+  --cic-cyan-glow: rgba(0, 229, 255, 0.15);
+  --cic-amber: #ffb300;
+  --cic-amber-dim: #996b00;
+  --cic-amber-glow: rgba(255, 179, 0, 0.1);
+  --cic-green: #00e676;
+  --cic-red: #ff1744;
+  --cic-grid: rgba(0, 229, 255, 0.04);
+  --cic-scanline: rgba(0, 229, 255, 0.015);
+
   --background: oklch(0.08 0.01 240);
   --foreground: oklch(0.85 0.02 200);
   --card: oklch(0.1 0.012 240);
@@ -29,26 +49,10 @@
   --accent: oklch(0.18 0.025 240);
   --accent-foreground: oklch(0.8 0.1 195);
   --destructive: oklch(0.55 0.22 30);
-  --destructive-foreground: oklch(0.65 0.25 30);
+  --destructive-foreground: oklch(0.95 0.01 30);
   --border: oklch(0.2 0.03 220);
   --input: oklch(0.15 0.02 230);
   --ring: oklch(0.65 0.12 195);
-
-  /* CIC-specific palette */
-  --cic-void: #030810;
-  --cic-deep: #060e1a;
-  --cic-panel: #0a1628;
-  --cic-panel-edge: #122240;
-  --cic-cyan: #00e5ff;
-  --cic-cyan-dim: #0088aa;
-  --cic-cyan-glow: rgba(0, 229, 255, 0.15);
-  --cic-amber: #ffb300;
-  --cic-amber-dim: #996b00;
-  --cic-amber-glow: rgba(255, 179, 0, 0.1);
-  --cic-green: #00e676;
-  --cic-red: #ff1744;
-  --cic-grid: rgba(0, 229, 255, 0.04);
-  --cic-scanline: rgba(0, 229, 255, 0.015);
 
   --chart-1: oklch(0.7 0.15 195);
   --chart-2: oklch(0.7 0.15 160);
@@ -66,7 +70,31 @@
   --sidebar-ring: oklch(0.6 0.1 195);
 }
 
-.dark {
+/* ============================================================
+   Theme: CIC — Military Command Center
+   Deep navy void, tactical cyan, amber warnings
+   ============================================================ */
+
+[data-theme="cic"] {
+  --cic-void: #030810;
+  --cic-deep: #060e1a;
+  --cic-panel: #0a1628;
+  --cic-panel-edge: #122240;
+
+  --cic-cyan: #00e5ff;
+  --cic-cyan-dim: #0088aa;
+  --cic-cyan-glow: rgba(0, 229, 255, 0.15);
+
+  --cic-amber: #ffb300;
+  --cic-amber-dim: #996b00;
+  --cic-amber-glow: rgba(255, 179, 0, 0.1);
+
+  --cic-green: #00e676;
+  --cic-red: #ff1744;
+
+  --cic-grid: rgba(0, 229, 255, 0.04);
+  --cic-scanline: rgba(0, 229, 255, 0.015);
+
   --background: oklch(0.08 0.01 240);
   --foreground: oklch(0.85 0.02 200);
   --card: oklch(0.1 0.012 240);
@@ -81,16 +109,18 @@
   --muted-foreground: oklch(0.55 0.03 200);
   --accent: oklch(0.18 0.025 240);
   --accent-foreground: oklch(0.8 0.1 195);
-  --destructive: oklch(0.45 0.2 30);
-  --destructive-foreground: oklch(0.65 0.25 30);
+  --destructive: oklch(0.55 0.22 30);
+  --destructive-foreground: oklch(0.95 0.01 30);
   --border: oklch(0.2 0.03 220);
   --input: oklch(0.15 0.02 230);
   --ring: oklch(0.65 0.12 195);
+
   --chart-1: oklch(0.7 0.15 195);
   --chart-2: oklch(0.7 0.15 160);
   --chart-3: oklch(0.75 0.18 80);
   --chart-4: oklch(0.6 0.2 300);
   --chart-5: oklch(0.65 0.22 30);
+
   --sidebar: oklch(0.09 0.015 240);
   --sidebar-foreground: oklch(0.75 0.05 200);
   --sidebar-primary: oklch(0.7 0.15 195);
@@ -100,6 +130,254 @@
   --sidebar-border: oklch(0.18 0.025 230);
   --sidebar-ring: oklch(0.6 0.1 195);
 }
+
+/* ============================================================
+   Theme: Solaris — Warm Stellar
+   Golden/amber primary on dark warm grays. Sun/star themed.
+   ============================================================ */
+
+[data-theme="solaris"] {
+  --cic-void: #0a0806;
+  --cic-deep: #141008;
+  --cic-panel: #1e1810;
+  --cic-panel-edge: #342a1a;
+
+  --cic-cyan: #ffca28;
+  --cic-cyan-dim: #b8911a;
+  --cic-cyan-glow: rgba(255, 202, 40, 0.14);
+
+  --cic-amber: #64b5f6;
+  --cic-amber-dim: #3a7fc4;
+  --cic-amber-glow: rgba(100, 181, 246, 0.1);
+
+  --cic-green: #66bb6a;
+  --cic-red: #ef5350;
+
+  --cic-grid: rgba(255, 202, 40, 0.035);
+  --cic-scanline: rgba(255, 202, 40, 0.012);
+
+  --background: oklch(0.09 0.01 70);
+  --foreground: oklch(0.85 0.03 80);
+  --card: oklch(0.11 0.012 65);
+  --card-foreground: oklch(0.85 0.03 80);
+  --popover: oklch(0.10 0.013 68);
+  --popover-foreground: oklch(0.85 0.03 80);
+  --primary: oklch(0.82 0.14 85);
+  --primary-foreground: oklch(0.12 0.02 70);
+  --secondary: oklch(0.16 0.015 65);
+  --secondary-foreground: oklch(0.75 0.04 80);
+  --muted: oklch(0.15 0.012 60);
+  --muted-foreground: oklch(0.55 0.03 75);
+  --accent: oklch(0.19 0.02 70);
+  --accent-foreground: oklch(0.82 0.1 85);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.95 0.01 25);
+  --border: oklch(0.22 0.025 60);
+  --input: oklch(0.16 0.018 65);
+  --ring: oklch(0.7 0.11 85);
+
+  --chart-1: oklch(0.8 0.14 85);
+  --chart-2: oklch(0.7 0.12 50);
+  --chart-3: oklch(0.65 0.13 150);
+  --chart-4: oklch(0.6 0.18 30);
+  --chart-5: oklch(0.7 0.1 220);
+
+  --sidebar: oklch(0.10 0.013 68);
+  --sidebar-foreground: oklch(0.75 0.04 80);
+  --sidebar-primary: oklch(0.8 0.14 85);
+  --sidebar-primary-foreground: oklch(0.95 0.01 85);
+  --sidebar-accent: oklch(0.16 0.018 65);
+  --sidebar-accent-foreground: oklch(0.82 0.08 85);
+  --sidebar-border: oklch(0.20 0.02 60);
+  --sidebar-ring: oklch(0.65 0.1 85);
+}
+
+/* ============================================================
+   Theme: Nebula — Cosmic Violet
+   Purple/violet primary on blue-black. Ethereal deep space.
+   ============================================================ */
+
+[data-theme="nebula"] {
+  --cic-void: #06040e;
+  --cic-deep: #0c0818;
+  --cic-panel: #140e28;
+  --cic-panel-edge: #251a45;
+
+  --cic-cyan: #bf7fff;
+  --cic-cyan-dim: #7e52b8;
+  --cic-cyan-glow: rgba(191, 127, 255, 0.14);
+
+  --cic-amber: #ff6eb4;
+  --cic-amber-dim: #b84d80;
+  --cic-amber-glow: rgba(255, 110, 180, 0.1);
+
+  --cic-green: #69f0ae;
+  --cic-red: #ff5252;
+
+  --cic-grid: rgba(191, 127, 255, 0.035);
+  --cic-scanline: rgba(191, 127, 255, 0.012);
+
+  --background: oklch(0.08 0.02 290);
+  --foreground: oklch(0.84 0.03 280);
+  --card: oklch(0.10 0.025 288);
+  --card-foreground: oklch(0.84 0.03 280);
+  --popover: oklch(0.09 0.022 290);
+  --popover-foreground: oklch(0.84 0.03 280);
+  --primary: oklch(0.68 0.2 300);
+  --primary-foreground: oklch(0.12 0.03 290);
+  --secondary: oklch(0.15 0.025 285);
+  --secondary-foreground: oklch(0.72 0.06 280);
+  --muted: oklch(0.14 0.02 288);
+  --muted-foreground: oklch(0.52 0.04 280);
+  --accent: oklch(0.18 0.03 290);
+  --accent-foreground: oklch(0.75 0.15 300);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.95 0.01 25);
+  --border: oklch(0.2 0.035 285);
+  --input: oklch(0.15 0.025 288);
+  --ring: oklch(0.6 0.16 300);
+
+  --chart-1: oklch(0.68 0.2 300);
+  --chart-2: oklch(0.65 0.18 340);
+  --chart-3: oklch(0.72 0.14 250);
+  --chart-4: oklch(0.7 0.16 200);
+  --chart-5: oklch(0.6 0.15 30);
+
+  --sidebar: oklch(0.09 0.022 290);
+  --sidebar-foreground: oklch(0.72 0.06 280);
+  --sidebar-primary: oklch(0.65 0.18 300);
+  --sidebar-primary-foreground: oklch(0.95 0.01 290);
+  --sidebar-accent: oklch(0.15 0.025 288);
+  --sidebar-accent-foreground: oklch(0.75 0.12 300);
+  --sidebar-border: oklch(0.18 0.03 285);
+  --sidebar-ring: oklch(0.58 0.14 300);
+}
+
+/* ============================================================
+   Theme: Terran — Earth Command
+   Green primary on dark olive/charcoal. Colony management.
+   ============================================================ */
+
+[data-theme="terran"] {
+  --cic-void: #060906;
+  --cic-deep: #0c140a;
+  --cic-panel: #141e12;
+  --cic-panel-edge: #243420;
+
+  --cic-cyan: #4cff82;
+  --cic-cyan-dim: #2eb35a;
+  --cic-cyan-glow: rgba(76, 255, 130, 0.13);
+
+  --cic-amber: #d4a056;
+  --cic-amber-dim: #9a7340;
+  --cic-amber-glow: rgba(212, 160, 86, 0.1);
+
+  --cic-green: #4cff82;
+  --cic-red: #ff6b6b;
+
+  --cic-grid: rgba(76, 255, 130, 0.03);
+  --cic-scanline: rgba(76, 255, 130, 0.01);
+
+  --background: oklch(0.09 0.015 140);
+  --foreground: oklch(0.83 0.03 135);
+  --card: oklch(0.11 0.018 138);
+  --card-foreground: oklch(0.83 0.03 135);
+  --popover: oklch(0.10 0.016 139);
+  --popover-foreground: oklch(0.83 0.03 135);
+  --primary: oklch(0.78 0.2 150);
+  --primary-foreground: oklch(0.12 0.02 145);
+  --secondary: oklch(0.16 0.018 140);
+  --secondary-foreground: oklch(0.73 0.04 135);
+  --muted: oklch(0.14 0.015 138);
+  --muted-foreground: oklch(0.52 0.03 135);
+  --accent: oklch(0.18 0.022 142);
+  --accent-foreground: oklch(0.78 0.12 150);
+  --destructive: oklch(0.55 0.2 28);
+  --destructive-foreground: oklch(0.95 0.01 28);
+  --border: oklch(0.21 0.025 138);
+  --input: oklch(0.15 0.02 140);
+  --ring: oklch(0.65 0.14 150);
+
+  --chart-1: oklch(0.75 0.18 150);
+  --chart-2: oklch(0.7 0.1 80);
+  --chart-3: oklch(0.65 0.15 200);
+  --chart-4: oklch(0.6 0.12 45);
+  --chart-5: oklch(0.68 0.2 340);
+
+  --sidebar: oklch(0.10 0.016 139);
+  --sidebar-foreground: oklch(0.73 0.04 135);
+  --sidebar-primary: oklch(0.75 0.18 150);
+  --sidebar-primary-foreground: oklch(0.95 0.01 145);
+  --sidebar-accent: oklch(0.15 0.02 140);
+  --sidebar-accent-foreground: oklch(0.78 0.1 150);
+  --sidebar-border: oklch(0.19 0.022 138);
+  --sidebar-ring: oklch(0.6 0.12 150);
+}
+
+/* ============================================================
+   Theme: Eclipse — Aggressive Crimson
+   Red/crimson primary on true blacks. Combat/war themed.
+   ============================================================ */
+
+[data-theme="eclipse"] {
+  --cic-void: #080404;
+  --cic-deep: #120808;
+  --cic-panel: #1c0e0e;
+  --cic-panel-edge: #381818;
+
+  --cic-cyan: #ff3d3d;
+  --cic-cyan-dim: #b32828;
+  --cic-cyan-glow: rgba(255, 61, 61, 0.14);
+
+  --cic-amber: #ff9100;
+  --cic-amber-dim: #b36600;
+  --cic-amber-glow: rgba(255, 145, 0, 0.1);
+
+  --cic-green: #76ff03;
+  --cic-red: #ff1744;
+
+  --cic-grid: rgba(255, 61, 61, 0.03);
+  --cic-scanline: rgba(255, 61, 61, 0.012);
+
+  --background: oklch(0.08 0.015 20);
+  --foreground: oklch(0.84 0.02 15);
+  --card: oklch(0.10 0.02 18);
+  --card-foreground: oklch(0.84 0.02 15);
+  --popover: oklch(0.09 0.018 19);
+  --popover-foreground: oklch(0.84 0.02 15);
+  --primary: oklch(0.62 0.25 25);
+  --primary-foreground: oklch(0.95 0.01 20);
+  --secondary: oklch(0.15 0.02 15);
+  --secondary-foreground: oklch(0.73 0.04 15);
+  --muted: oklch(0.14 0.018 18);
+  --muted-foreground: oklch(0.52 0.03 15);
+  --accent: oklch(0.18 0.025 20);
+  --accent-foreground: oklch(0.7 0.18 25);
+  --destructive: oklch(0.55 0.25 30);
+  --destructive-foreground: oklch(0.95 0.01 30);
+  --border: oklch(0.2 0.03 15);
+  --input: oklch(0.15 0.022 18);
+  --ring: oklch(0.55 0.2 25);
+
+  --chart-1: oklch(0.62 0.25 25);
+  --chart-2: oklch(0.7 0.18 60);
+  --chart-3: oklch(0.58 0.15 350);
+  --chart-4: oklch(0.65 0.12 200);
+  --chart-5: oklch(0.72 0.2 80);
+
+  --sidebar: oklch(0.09 0.018 19);
+  --sidebar-foreground: oklch(0.73 0.04 15);
+  --sidebar-primary: oklch(0.6 0.23 25);
+  --sidebar-primary-foreground: oklch(0.95 0.01 20);
+  --sidebar-accent: oklch(0.15 0.022 18);
+  --sidebar-accent-foreground: oklch(0.7 0.15 25);
+  --sidebar-border: oklch(0.19 0.025 15);
+  --sidebar-ring: oklch(0.52 0.18 25);
+}
+
+/* ============================================================
+   Tailwind v4 theme bridge
+   ============================================================ */
 
 @theme inline {
   --color-background: var(--background);
@@ -140,6 +418,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ============================================================
+   Base layer
+   ============================================================ */
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -155,7 +437,6 @@
     overflow: hidden;
   }
 
-  /* Hide number input spinner arrows */
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -166,7 +447,6 @@
     appearance: textfield;
   }
 
-  /* Custom scrollbar — tactical thin */
   ::-webkit-scrollbar {
     width: 4px;
     height: 4px;
@@ -250,19 +530,19 @@
 .cic-btn:hover {
   border-color: var(--cic-cyan);
   color: var(--cic-cyan);
-  background: rgba(0, 229, 255, 0.05);
+  background: var(--cic-cyan-glow);
   box-shadow:
-    0 0 8px rgba(0, 229, 255, 0.15),
-    inset 0 0 8px rgba(0, 229, 255, 0.05);
+    0 0 8px var(--cic-cyan-glow),
+    inset 0 0 8px rgba(255, 255, 255, 0.02);
 }
 
 .cic-btn.active {
   border-color: var(--cic-cyan);
   color: var(--cic-cyan);
-  background: rgba(0, 229, 255, 0.1);
+  background: var(--cic-cyan-glow);
   box-shadow:
-    0 0 12px rgba(0, 229, 255, 0.2),
-    inset 0 0 12px rgba(0, 229, 255, 0.08);
+    0 0 12px var(--cic-cyan-glow),
+    inset 0 0 12px rgba(255, 255, 255, 0.03);
 }
 
 .cic-btn-amber {
@@ -274,7 +554,7 @@
 .cic-btn-amber.active {
   border-color: var(--cic-amber);
   color: var(--cic-amber);
-  background: rgba(255, 179, 0, 0.08);
+  background: var(--cic-amber-glow);
   box-shadow: 0 0 8px var(--cic-amber-glow);
 }
 
@@ -296,7 +576,7 @@
 }
 
 .cic-toggle:hover {
-  background: rgba(0, 229, 255, 0.04);
+  background: var(--cic-grid);
 }
 
 .cic-toggle input[type='checkbox'] {
@@ -314,7 +594,7 @@
 .cic-toggle input[type='checkbox']:checked {
   background: var(--cic-cyan);
   border-color: var(--cic-cyan);
-  box-shadow: 0 0 4px rgba(0, 229, 255, 0.4);
+  box-shadow: 0 0 4px var(--cic-cyan-glow);
 }
 
 .cic-toggle input[type='checkbox']:checked::after {
@@ -335,7 +615,7 @@
 }
 
 .cic-toggle-label.checked {
-  color: rgba(0, 229, 255, 0.7);
+  color: var(--cic-cyan-dim);
 }
 
 /* ============================================================
@@ -438,7 +718,6 @@
   animation: cic-fade-in 0.2s ease-out;
 }
 
-/* Staggered reveal for child elements */
 .cic-stagger > * {
   opacity: 0;
   animation: cic-slide-up 0.4s ease-out forwards;
@@ -452,20 +731,17 @@
 .cic-stagger > *:nth-child(7) { animation-delay: 0.47s; }
 .cic-stagger > *:nth-child(8) { animation-delay: 0.54s; }
 
-/* Typing cursor blink */
 .cic-cursor {
   border-right: 2px solid var(--cic-cyan);
   animation: cic-type-cursor 0.8s step-end infinite;
 }
 
-/* Horizontal rule that draws itself */
 .cic-line-draw {
   height: 1px;
   background: var(--cic-panel-edge);
   animation: cic-line-draw 0.6s ease-out forwards;
 }
 
-/* Scanline overlay */
 .cic-scanline::after {
   content: '';
   position: absolute;
@@ -478,7 +754,6 @@
   opacity: 0.3;
 }
 
-/* Glow pulse for status text */
 .cic-glow {
   animation: cic-glow-pulse 2s ease-in-out infinite;
 }
@@ -488,6 +763,6 @@
    ============================================================ */
 
 ::selection {
-  background: rgba(0, 229, 255, 0.25);
+  background: var(--cic-cyan-glow);
   color: white;
 }

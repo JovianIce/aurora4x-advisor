@@ -1,44 +1,37 @@
 import { useEffect, useState } from 'react'
-import { ThemeProviderContext, type Theme } from '@renderer/contexts/theme-context'
+import { ThemeProviderContext, THEME_IDS, type ThemeId } from '@renderer/contexts/theme-context'
+
+const STORAGE_KEY = 'aurora4x-ui-theme'
 
 type ThemeProviderProps = {
   children: React.ReactNode
-  defaultTheme?: Theme
-  storageKey?: string
+  defaultTheme?: ThemeId
 }
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'system',
-  storageKey = 'vite-ui-theme',
+  defaultTheme = 'cic',
   ...props
 }: ThemeProviderProps): React.JSX.Element {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  )
+  const [theme, setThemeState] = useState<ThemeId>(() => {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    if (stored && THEME_IDS.includes(stored as ThemeId)) return stored as ThemeId
+    return defaultTheme
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
-
-    root.classList.remove('light', 'dark')
-
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light'
-
-      root.classList.add(systemTheme)
-      return
-    }
-
-    root.classList.add(theme)
+    // All themes are dark
+    root.classList.add('dark')
+    // Set the named theme via data attribute
+    root.setAttribute('data-theme', theme)
   }, [theme])
 
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+    setTheme: (t: ThemeId) => {
+      localStorage.setItem(STORAGE_KEY, t)
+      setThemeState(t)
     }
   }
 

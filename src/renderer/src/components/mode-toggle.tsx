@@ -1,31 +1,38 @@
-import { Moon, Sun } from 'lucide-react'
-
-import { Button } from '@components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@components/ui/dropdown-menu'
+import { THEMES, type ThemeId } from '@renderer/contexts/theme-context'
 import { useTheme } from '@renderer/hooks/use-theme'
+import { Button } from '@components/ui/button'
+import { cn } from '@renderer/lib/utils'
 
-export function ModeToggle(): React.JSX.Element {
-  const { setTheme } = useTheme()
+export function ThemeSelector(): React.JSX.Element {
+  const { theme, setTheme } = useTheme()
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="flex items-center gap-1 flex-wrap">
+      {THEMES.map((t) => {
+        const isActive = theme === t.id
+        return (
+          <Button
+            key={t.id}
+            variant="ghost"
+            size="sm"
+            className={cn(
+              'gap-1.5 px-2.5 font-mono text-[10px] uppercase tracking-wider',
+              isActive && 'border border-ring bg-accent text-accent-foreground'
+            )}
+            onClick={() => setTheme(t.id as ThemeId)}
+            title={t.description}
+          >
+            <span
+              className="size-2 shrink-0 rounded-full"
+              style={{
+                background: t.swatch,
+                boxShadow: isActive ? `0 0 6px ${t.swatch}` : 'none'
+              }}
+            />
+            {t.label}
+          </Button>
+        )
+      })}
+    </div>
   )
 }

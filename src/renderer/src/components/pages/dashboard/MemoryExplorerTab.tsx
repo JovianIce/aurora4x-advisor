@@ -169,7 +169,7 @@ export function MemoryExplorerTab(): React.JSX.Element {
                       className="w-full text-left px-2 py-1 flex items-center justify-between"
                       style={{
                         background:
-                          selectedCollection === c.field ? 'rgba(0, 229, 255, 0.1)' : 'transparent',
+                          selectedCollection === c.field ? 'var(--cic-cyan-glow)' : 'transparent',
                         borderLeft:
                           selectedCollection === c.field
                             ? '2px solid var(--cic-cyan)'
@@ -219,7 +219,7 @@ export function MemoryExplorerTab(): React.JSX.Element {
                       style={{
                         background:
                           selectedCollection === c.field
-                            ? 'rgba(0, 229, 255, 0.05)'
+                            ? 'var(--cic-cyan-glow)'
                             : 'transparent',
                         borderLeft:
                           selectedCollection === c.field
