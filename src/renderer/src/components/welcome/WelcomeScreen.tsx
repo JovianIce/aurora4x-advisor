@@ -122,7 +122,7 @@ export function WelcomeScreen(): React.JSX.Element {
             className="cic-label"
             style={{ color: 'var(--cic-cyan)', letterSpacing: '0.25em', fontSize: '10px' }}
           >
-            Aurora CIC — Strategic Advisor Terminal
+            Aurora 4X Companion
           </span>
           <span className="cic-data" style={{ color: 'rgba(255,255,255,0.2)', fontSize: '9px' }}>
             v0.2 alpha
@@ -144,7 +144,7 @@ export function WelcomeScreen(): React.JSX.Element {
           <div className="p-5 space-y-1 relative z-10">
             {/* Boot sequence lines */}
             <BootLine status="none" delay={0}>
-              Initializing Aurora Strategic Advisor...
+              Initializing Aurora 4X Companion...
             </BootLine>
             <BootLine status="ok" delay={100}>
               Core systems loaded
@@ -233,7 +233,7 @@ export function WelcomeScreen(): React.JSX.Element {
                     className="cic-data"
                     style={{ color: 'rgba(255,255,255,0.1)', fontSize: '8px' }}
                   >
-                    Aurora 4X Strategic Advisor
+                    Aurora 4X Companion
                   </span>
                 </div>
               </div>

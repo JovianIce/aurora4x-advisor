@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useGame } from '@renderer/hooks/use-game'
 import { useAuroraData } from '@renderer/contexts/aurora-data-context'
+import { useGameDate } from '@renderer/hooks/use-bridge'
 import { AdviceSection } from './AdviceSection'
 
 function formatArchetype(archetype: string): string {
@@ -15,6 +16,7 @@ export function DashboardOverview(): React.JSX.Element {
   const { currentGame } = useGame()
   const { isConnected } = useAuroraData()
   const queryClient = useQueryClient()
+  const gameDate = useGameDate()
 
   // Load initial advice using React Query
   const { data: advice } = useQuery({
@@ -113,7 +115,7 @@ export function DashboardOverview(): React.JSX.Element {
               </span>
             </div>
             <div className="cic-data" style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px' }}>
-              {currentGame.gameInfo.empireName} — Year {currentGame.gameInfo.startingYear}
+              {currentGame.gameInfo.empireName} — {gameDate || `Year ${currentGame.gameInfo.startingYear}`}
             </div>
 
             {/* Live data stats from bridge */}
