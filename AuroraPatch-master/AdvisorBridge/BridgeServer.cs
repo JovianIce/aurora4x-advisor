@@ -1,20 +1,16 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.WebSockets;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Fleck;
 using Newtonsoft.Json;
 
 namespace AdvisorBridge
 {
     /// <summary>
     /// WebSocket server that runs inside Aurora's process, bridging the Electron frontend
-    /// to live game state. Listens on ws://localhost:47842 (configurable).
+    /// to live game state. Uses Fleck (raw TCP sockets) for Wine/Proton compatibility.
     ///
     /// Communication model:
     ///   - Request/Response: client sends JSON BridgeRequest, gets BridgeResponse back
@@ -22,9 +18,6 @@ namespace AdvisorBridge
     ///
     /// Tick detection: hooks TacticalMap.TextChanged (Aurora updates the title bar text on every
     /// time increment), which triggers a broadcast of subscribed system bodies and fleet positions.
-    ///
-    /// Thread safety: the server runs on its own background thread. MemoryReader and ActionExecutor
-    /// handle their own thread marshalling to the UI thread when needed.
     /// </summary>
     public class BridgeServer
     {
@@ -32,9 +25,8 @@ namespace AdvisorBridge
         private readonly AuroraPatch.Patch _patch;
         private readonly MemoryReader _memoryReader;
         private readonly ActionExecutor _actionExecutor;
-        private HttpListener _listener;
-        private CancellationTokenSource _cts;
-        private readonly ConcurrentDictionary<string, WebSocket> _clients = new ConcurrentDictionary<string, WebSocket>();
+        private WebSocketServer _server;
+        private readonly ConcurrentDictionary<Guid, IWebSocketConnection> _clients = new ConcurrentDictionary<Guid, IWebSocketConnection>();
 
         public int Port { get; private set; }
         public bool IsRunning { get; private set; }
@@ -54,161 +46,148 @@ namespace AdvisorBridge
         public void Start(int port = 47842)
         {
             Port = port;
-            _cts = new CancellationTokenSource();
 
-            var thread = new Thread(() => RunServer(_cts.Token))
+            _server = new WebSocketServer($"ws://0.0.0.0:{port}");
+            _server.Start(socket =>
             {
-                IsBackground = true,
-                Name = "AdvisorBridge-Server"
-            };
-            thread.Start();
+                socket.OnOpen = () =>
+                {
+                    _clients[socket.ConnectionInfo.Id] = socket;
+                    _patch.LogInfo($"Client {socket.ConnectionInfo.Id.ToString("N").Substring(0, 8)} connected");
+
+                    // Install tick hook and send current game date on connect
+                    InstallTickHook();
+                    var map = _patch.TacticalMap;
+                    if (map != null)
+                    {
+                        try
+                        {
+                            var titleText = (string)map.Invoke((Func<string>)(() => map.Text));
+                            if (!string.IsNullOrEmpty(titleText))
+                            {
+                                Broadcast("gameDate", new { raw = titleText });
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _patch.LogError($"Failed to read TacticalMap title: {ex.Message}");
+                        }
+                    }
+                };
+
+                socket.OnClose = () =>
+                {
+                    IWebSocketConnection removed;
+                    _clients.TryRemove(socket.ConnectionInfo.Id, out removed);
+                    _patch.LogInfo($"Client {socket.ConnectionInfo.Id.ToString("N").Substring(0, 8)} disconnected");
+                };
+
+                socket.OnMessage = message =>
+                {
+                    var response = HandleMessage(message);
+                    socket.Send(response);
+                };
+
+                socket.OnError = ex =>
+                {
+                    _patch.LogError($"Client {socket.ConnectionInfo.Id.ToString("N").Substring(0, 8)} error: {ex.Message}");
+                    IWebSocketConnection removed;
+                    _clients.TryRemove(socket.ConnectionInfo.Id, out removed);
+                };
+            });
+
+            IsRunning = true;
+            _patch.LogInfo($"AdvisorBridge WebSocket server listening on ws://localhost:{port}/");
         }
 
         public void Stop()
         {
             IsRunning = false;
-            _cts?.Cancel();
 
             foreach (var kvp in _clients)
             {
                 try
                 {
-                    kvp.Value.CloseAsync(WebSocketCloseStatus.NormalClosure, "Server stopping", CancellationToken.None).Wait(1000);
+                    kvp.Value.Close();
                 }
                 catch { }
             }
             _clients.Clear();
 
-            try { _listener?.Stop(); } catch { }
+            try { _server?.Dispose(); } catch { }
         }
 
-        private void RunServer(CancellationToken ct)
+        private void InstallTickHook()
         {
-            try
-            {
-                _listener = new HttpListener();
-                _listener.Prefixes.Add($"http://localhost:{Port}/");
-                _listener.Start();
-                IsRunning = true;
+            if (_hookInstalled) return;
 
-                _patch.LogInfo($"AdvisorBridge WebSocket server listening on ws://localhost:{Port}/");
+            var map = _patch.TacticalMap;
+            if (map == null) return;
 
-                while (!ct.IsCancellationRequested)
-                {
-                    try
-                    {
-                        var context = _listener.GetContext();
-
-                        if (context.Request.IsWebSocketRequest)
-                        {
-                            Task.Run(() => HandleWebSocketClient(context, ct));
-                        }
-                        else
-                        {
-                            // Return a simple status for HTTP requests
-                            var response = context.Response;
-                            var body = Encoding.UTF8.GetBytes("{\"status\":\"ok\",\"bridge\":\"AdvisorBridge\"}");
-                            response.ContentType = "application/json";
-                            response.ContentLength64 = body.Length;
-                            response.OutputStream.Write(body, 0, body.Length);
-                            response.Close();
-                        }
-                    }
-                    catch (HttpListenerException) when (ct.IsCancellationRequested)
-                    {
-                        break;
-                    }
-                    catch (Exception ex)
-                    {
-                        _patch.LogError($"BridgeServer accept error: {ex.Message}");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _patch.LogError($"BridgeServer failed to start: {ex}");
-            }
-            finally
-            {
-                IsRunning = false;
-            }
+            map.TextChanged += OnGameTick;
+            _hookInstalled = true;
+            _patch.LogInfo("Installed TextChanged hook on TacticalMap for tick detection");
         }
 
-        private async Task HandleWebSocketClient(HttpListenerContext httpContext, CancellationToken ct)
+        private void OnGameTick(object sender, EventArgs e)
         {
-            var clientId = Guid.NewGuid().ToString("N").Substring(0, 8);
-            WebSocket ws = null;
+            if (_clients.IsEmpty) return;
 
             try
             {
-                var wsContext = await httpContext.AcceptWebSocketAsync(null);
-                ws = wsContext.WebSocket;
-                _clients[clientId] = ws;
-
-                _patch.LogInfo($"Client {clientId} connected");
-
-                // Install tick hook and send current game date on connect
-                InstallTickHook();
-                var map = _patch.TacticalMap;
-                if (map != null)
+                // Extract current game date from TacticalMap title bar
+                if (sender is Form form)
                 {
-                    var titleText = (string)map.Invoke((Func<string>)(() => map.Text));
+                    var titleText = form.Text;
                     if (!string.IsNullOrEmpty(titleText))
                     {
                         Broadcast("gameDate", new { raw = titleText });
                     }
                 }
 
-                var buffer = new byte[8192];
-
-                while (ws.State == WebSocketState.Open && !ct.IsCancellationRequested)
+                if (_subscribedSystemId.HasValue)
                 {
-                    var result = await ws.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
-
-                    if (result.MessageType == WebSocketMessageType.Close)
-                    {
-                        await ws.CloseAsync(WebSocketCloseStatus.NormalClosure, "Client disconnected", CancellationToken.None);
-                        break;
-                    }
-
-                    if (result.MessageType == WebSocketMessageType.Text)
-                    {
-                        var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                        var response = HandleMessage(message, clientId);
-                        var responseBytes = Encoding.UTF8.GetBytes(response);
-
-                        await ws.SendAsync(
-                            new ArraySegment<byte>(responseBytes),
-                            WebSocketMessageType.Text,
-                            true,
-                            ct
-                        );
-                    }
+                    var bodies = _memoryReader.ReadBodies(_subscribedSystemId);
+                    Broadcast("bodies", new { systemId = _subscribedSystemId.Value, bodies });
                 }
-            }
-            catch (OperationCanceledException) { }
-            catch (WebSocketException ex)
-            {
-                _patch.LogError($"Client {clientId} WebSocket error: {ex.Message}");
+
+                var fleets = _memoryReader.ReadFleets();
+                Broadcast("fleets", new { fleets });
             }
             catch (Exception ex)
             {
-                _patch.LogError($"Client {clientId} error: {ex.Message}");
-            }
-            finally
-            {
-                WebSocket removed;
-                _clients.TryRemove(clientId, out removed);
-                _patch.LogInfo($"Client {clientId} disconnected");
-
-                if (ws != null && ws.State != WebSocketState.Closed)
-                {
-                    try { ws.Dispose(); } catch { }
-                }
+                _patch.LogError($"OnGameTick broadcast error: {ex.Message}");
             }
         }
 
-        private string HandleMessage(string rawMessage, string clientId = null)
+        /// <summary>
+        /// Broadcast a push notification to all connected clients.
+        /// </summary>
+        public void Broadcast(string pushType, object data)
+        {
+            var msg = JsonConvert.SerializeObject(new BridgeResponse
+            {
+                Id = null,
+                Type = "push",
+                Payload = new { pushType, data },
+                Success = true,
+                Error = null
+            });
+
+            foreach (var kvp in _clients)
+            {
+                try
+                {
+                    if (kvp.Value.IsAvailable)
+                    {
+                        kvp.Value.Send(msg);
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private string HandleMessage(string rawMessage)
         {
             BridgeRequest request;
             try
@@ -250,7 +229,7 @@ namespace AdvisorBridge
                     break;
 
                 case "subscribe":
-                    response = HandleSubscribe(request, clientId);
+                    response = HandleSubscribe(request);
                     break;
 
                 case "globalsearch":
@@ -324,7 +303,7 @@ namespace AdvisorBridge
             }
         }
 
-        private BridgeResponse HandleSubscribe(BridgeRequest request, string clientId)
+        private BridgeResponse HandleSubscribe(BridgeRequest request)
         {
             try
             {
@@ -344,83 +323,6 @@ namespace AdvisorBridge
             catch (Exception ex)
             {
                 return BridgeResponse.Fail(request.Id, "error", ex.Message);
-            }
-        }
-
-        private void InstallTickHook()
-        {
-            if (_hookInstalled) return;
-
-            var map = _patch.TacticalMap;
-            if (map == null) return;
-
-            map.TextChanged += OnGameTick;
-            _hookInstalled = true;
-            _patch.LogInfo("Installed TextChanged hook on TacticalMap for tick detection");
-        }
-
-        private void OnGameTick(object sender, EventArgs e)
-        {
-            if (_clients.IsEmpty) return;
-
-            try
-            {
-                // Extract current game date from TacticalMap title bar
-                if (sender is Form form)
-                {
-                    var titleText = form.Text;
-                    if (!string.IsNullOrEmpty(titleText))
-                    {
-                        Broadcast("gameDate", new { raw = titleText });
-                    }
-                }
-
-                if (_subscribedSystemId.HasValue)
-                {
-                    var bodies = _memoryReader.ReadBodies(_subscribedSystemId);
-                    Broadcast("bodies", new { systemId = _subscribedSystemId.Value, bodies });
-                }
-
-                var fleets = _memoryReader.ReadFleets();
-                Broadcast("fleets", new { fleets });
-            }
-            catch (Exception ex)
-            {
-                _patch.LogError($"OnGameTick broadcast error: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Broadcast a push notification to all connected clients.
-        /// </summary>
-        public void Broadcast(string pushType, object data)
-        {
-            var msg = JsonConvert.SerializeObject(new BridgeResponse
-            {
-                Id = null,
-                Type = "push",
-                Payload = new { pushType, data },
-                Success = true,
-                Error = null
-            });
-
-            var bytes = Encoding.UTF8.GetBytes(msg);
-
-            foreach (var kvp in _clients)
-            {
-                try
-                {
-                    if (kvp.Value.State == WebSocketState.Open)
-                    {
-                        kvp.Value.SendAsync(
-                            new ArraySegment<byte>(bytes),
-                            WebSocketMessageType.Text,
-                            true,
-                            CancellationToken.None
-                        ).Wait(1000);
-                    }
-                }
-                catch { }
             }
         }
 
