@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components, react-hooks/set-state-in-effect */
 import React, {
   createContext,
   useContext,
@@ -66,7 +67,6 @@ export interface MemorySystemBody {
   FixedBody: boolean
   FixedBodyParentID: number
 }
-
 
 interface AuroraDataContextValue {
   // Connection
@@ -140,9 +140,10 @@ export function useMemoryBodies(systemId: number | null): {
   // Subscribe to system when it changes
   useEffect(() => {
     if (!isConnected || !systemId) {
-      setData(undefined)
       subscribedRef.current = null
-      return
+      return () => {
+        setData(undefined)
+      }
     }
 
     if (subscribedRef.current === systemId) return
@@ -213,10 +214,7 @@ export function useMemoryStars(systemId: number | null): {
 }
 
 // Surveyed systems list - single DB query, no auto-refresh
-export function useMemorySystems(
-  gameId?: number | null,
-  raceId?: number | null
-): {
+export function useMemorySystems(): {
   data: { SystemID: number; Name: string }[] | undefined
   isLoading: boolean
 } {

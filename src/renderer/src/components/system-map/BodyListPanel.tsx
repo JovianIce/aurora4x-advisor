@@ -1,6 +1,17 @@
 import React, { useMemo } from 'react'
 import type { MemorySystemBody } from '../../contexts/aurora-data-context'
 
+function SectionHeader({ label }: { label: string }): React.JSX.Element {
+  return (
+    <div
+      className="cic-label px-2.5 pt-3 pb-1"
+      style={{ fontSize: '8px', borderTop: '1px solid var(--cic-panel-edge)' }}
+    >
+      {label}
+    </div>
+  )
+}
+
 interface BodyListPanelProps {
   bodies: MemorySystemBody[]
   onSelectBody?: (body: MemorySystemBody) => void
@@ -148,15 +159,6 @@ export function BodyListPanel({ bodies, onSelectBody }: BodyListPanelProps): Rea
       </button>
     )
   }
-
-  const SectionHeader = ({ label }: { label: string }): React.JSX.Element => (
-    <div
-      className="cic-label px-2.5 pt-3 pb-1"
-      style={{ fontSize: '8px', borderTop: '1px solid var(--cic-panel-edge)' }}
-    >
-      {label}
-    </div>
-  )
 
   return (
     <div className="py-1">

@@ -11,8 +11,7 @@ import {
   useMemoryBodies,
   useMemorySystems,
   useFleets,
-  type MemorySystemBody,
-  type MemoryFleet
+  type MemorySystemBody
 } from '../../../contexts/aurora-data-context'
 import type { GameSession, SystemBody } from '@shared/types'
 
@@ -85,7 +84,7 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
   const [showBodyList, setShowBodyList] = useState(true)
   const { data: memoryBodies, isLoading } = useMemoryBodies(selectedSystemId)
   const { data: allFleets } = useFleets()
-  const { data: systems } = useMemorySystems(gameId, raceId)
+  const { data: systems } = useMemorySystems()
   const containerRef = useRef<HTMLDivElement>(null)
   const [dimensions, setDimensions] = useState({ width: 800, height: 500 })
 
@@ -215,12 +214,7 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
             {showBodyList ? '◂' : '▸'} Bodies
           </button>
 
-          <SystemSelector
-            value={selectedSystemId}
-            onChange={setSelectedSystemId}
-            gameId={gameId}
-            raceId={raceId}
-          />
+          <SystemSelector value={selectedSystemId} onChange={setSelectedSystemId} gameId={gameId} />
 
           <button
             className={`cic-btn ${showDisplayOptions ? 'active' : ''}`}

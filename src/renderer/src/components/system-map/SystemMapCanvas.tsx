@@ -372,7 +372,7 @@ export function SystemMapCanvas({
         )
 
         const labelX = screen.cx + 8
-        let labelY = screen.cy + (moon ? 4 : 6)
+        const labelY = screen.cy + (moon ? 4 : 6)
 
         // Fleet labels above body name (sorted: stationary first, then moving)
         if (nearGroup && displayOptions.showFleetNames) {

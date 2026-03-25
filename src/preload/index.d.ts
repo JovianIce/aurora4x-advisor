@@ -11,7 +11,6 @@ import type {
   SystemBody,
   StarSystem,
   ActionRequest,
-  ActionResult,
   ControlInfo
 } from '@shared/types'
 

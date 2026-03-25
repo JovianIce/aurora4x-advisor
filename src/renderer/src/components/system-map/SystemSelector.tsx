@@ -5,16 +5,14 @@ interface SystemSelectorProps {
   value: number | null
   onChange: (systemId: number) => void
   gameId: number | null
-  raceId: number | null
 }
 
 export function SystemSelector({
   value,
   onChange,
-  gameId,
-  raceId
+  gameId
 }: SystemSelectorProps): React.JSX.Element {
-  const { data: systems, isLoading } = useMemorySystems(gameId, raceId)
+  const { data: systems, isLoading } = useMemorySystems()
 
   if (!gameId) {
     return <span className="cic-label">No game linked</span>

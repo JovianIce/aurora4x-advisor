@@ -1,7 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import type { AppSettings } from '@shared/types'
 
-export function useSettings() {
+export function useSettings(): {
+  settings: AppSettings | undefined
+  isLoading: boolean
+  updateSetting: (vars: { key: string; value: unknown }) => void
+} {
   const queryClient = useQueryClient()
 
   const { data: settings, isLoading } = useQuery<AppSettings>({
