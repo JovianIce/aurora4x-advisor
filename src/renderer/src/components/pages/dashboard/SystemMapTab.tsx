@@ -280,7 +280,7 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
         >
           <span className="cic-label">{game.gameInfo.gameName}</span>
           <span className="cic-label" style={{ color: 'var(--cic-amber-dim)' }}>
-            AURORA CIC v0.1a
+            AURORA CIC v0.2a
           </span>
         </div>
       </div>

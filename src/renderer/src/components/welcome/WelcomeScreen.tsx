@@ -125,7 +125,7 @@ export function WelcomeScreen(): React.JSX.Element {
             Aurora CIC — Strategic Advisor Terminal
           </span>
           <span className="cic-data" style={{ color: 'rgba(255,255,255,0.2)', fontSize: '9px' }}>
-            v0.1 alpha
+            v0.2 alpha
           </span>
         </div>
 
