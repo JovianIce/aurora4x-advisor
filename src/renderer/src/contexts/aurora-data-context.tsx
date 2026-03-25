@@ -141,9 +141,8 @@ export function useMemoryBodies(systemId: number | null): {
   useEffect(() => {
     if (!isConnected || !systemId) {
       subscribedRef.current = null
-      return () => {
-        setData(undefined)
-      }
+      setData(undefined)
+      return
     }
 
     if (subscribedRef.current === systemId) return

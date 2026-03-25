@@ -131,7 +131,7 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
   const enrichedFleets = useMemo(() => {
     if (!systemFleets) return undefined
     return systemFleets.map((f) => {
-      const order = fleetOrders?.[f.FleetID] ?? ''
+      const order: string = fleetOrders?.[f.FleetID] ?? ''
       let distance = 0
       let eta = ''
 

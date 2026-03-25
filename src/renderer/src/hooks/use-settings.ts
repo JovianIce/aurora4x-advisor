@@ -4,7 +4,7 @@ import type { AppSettings } from '@shared/types'
 export function useSettings(): {
   settings: AppSettings | undefined
   isLoading: boolean
-  updateSetting: (vars: { key: string; value: unknown }) => void
+  updateSetting: (vars: { key: keyof AppSettings; value: AppSettings[keyof AppSettings] }) => void
 } {
   const queryClient = useQueryClient()
 
@@ -15,8 +15,8 @@ export function useSettings(): {
   })
 
   const { mutate: updateSetting } = useMutation({
-    mutationFn: ({ key, value }: { key: string; value: unknown }) =>
-      window.api.settings.update(key, value),
+    mutationFn: ({ key, value }: { key: keyof AppSettings; value: AppSettings[keyof AppSettings] }) =>
+      window.api.settings.update(key, value as never),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['settings'] })
     }
