@@ -2,6 +2,52 @@ import Database from 'better-sqlite3'
 import type { GameInfo } from '@shared/types'
 
 /**
+ * List all games found in the Aurora database
+ */
+export async function listGames(dbPath: string): Promise<GameInfo[]> {
+  console.log('[Game Detection] Listing all games from:', dbPath)
+
+  let db: Database.Database | null = null
+  try {
+    db = new Database(dbPath, { readonly: true })
+
+    const games = db
+      .prepare(
+        `SELECT g.GameID, g.GameName, g.StartYear, r.RaceID, r.RaceName, r.RaceStartingLevel
+         FROM FCT_Game g
+         LEFT JOIN FCT_Race r ON r.GameID = g.GameID AND r.NPR = 0
+         ORDER BY g.GameName`
+      )
+      .all() as {
+      GameID: number
+      GameName: string
+      StartYear: number
+      RaceID: number | null
+      RaceName: string | null
+      RaceStartingLevel: number | null
+    }[]
+
+    const results: GameInfo[] = []
+    for (const row of games) {
+      if (!row.RaceID || !row.RaceName) continue
+      results.push({
+        gameName: row.GameName,
+        auroraGameId: row.GameID,
+        auroraRaceId: row.RaceID,
+        startingYear: row.StartYear,
+        techLevel: row.RaceStartingLevel === 0 ? 'TN' : 'Industrial',
+        empireName: row.RaceName
+      })
+    }
+
+    console.log(`[Game Detection] Found ${results.length} game(s)`)
+    return results
+  } finally {
+    if (db) db.close()
+  }
+}
+
+/**
  * Detects game information from Aurora 4X database
  * @param gameName - The name of the game to detect
  * @param dbPath - Path to the Aurora database file

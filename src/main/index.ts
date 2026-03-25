@@ -1,6 +1,6 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
-
+import { autoUpdater } from 'electron-updater'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import {
@@ -14,7 +14,7 @@ import {
   getGreeting
 } from './advisor'
 import type { GameState, Observation } from './advisor'
-import { detectGame } from './services/game-detection'
+import { detectGame, listGames } from './services/game-detection'
 import {
   loadGames,
   saveGames,
@@ -132,6 +132,12 @@ app.whenReady().then(async () => {
   })
 
   // Game API handlers
+  ipcMain.handle('game:listGames', async () => {
+    const settings = await loadSettings()
+    if (!settings.auroraDbPath) return []
+    return listGames(settings.auroraDbPath)
+  })
+
   ipcMain.handle('game:detectGame', async (_event, gameName: string) => {
     console.log('[Main] game:detectGame handler called')
     console.log(`[Main] Game name: "${gameName}"`)
@@ -400,6 +406,15 @@ app.whenReady().then(async () => {
   })
 
   createWindow()
+
+  // Check for updates (non-blocking, logs only in dev)
+  if (!is.dev) {
+    autoUpdater.autoDownload = true
+    autoUpdater.autoInstallOnAppQuit = true
+    autoUpdater.checkForUpdatesAndNotify().catch((err) => {
+      console.log('[AutoUpdate] Check failed:', err?.message)
+    })
+  }
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

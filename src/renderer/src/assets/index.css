@@ -405,18 +405,82 @@
    ============================================================ */
 
 @keyframes cic-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cic-slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cic-type-cursor {
+  0%, 100% { border-color: var(--cic-cyan); }
+  50% { border-color: transparent; }
+}
+
+@keyframes cic-scan {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+@keyframes cic-glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes cic-line-draw {
+  from { width: 0; }
+  to { width: 100%; }
 }
 
 .cic-animate-in {
   animation: cic-fade-in 0.2s ease-out;
+}
+
+/* Staggered reveal for child elements */
+.cic-stagger > * {
+  opacity: 0;
+  animation: cic-slide-up 0.4s ease-out forwards;
+}
+.cic-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.cic-stagger > *:nth-child(2) { animation-delay: 0.12s; }
+.cic-stagger > *:nth-child(3) { animation-delay: 0.19s; }
+.cic-stagger > *:nth-child(4) { animation-delay: 0.26s; }
+.cic-stagger > *:nth-child(5) { animation-delay: 0.33s; }
+.cic-stagger > *:nth-child(6) { animation-delay: 0.40s; }
+.cic-stagger > *:nth-child(7) { animation-delay: 0.47s; }
+.cic-stagger > *:nth-child(8) { animation-delay: 0.54s; }
+
+/* Typing cursor blink */
+.cic-cursor {
+  border-right: 2px solid var(--cic-cyan);
+  animation: cic-type-cursor 0.8s step-end infinite;
+}
+
+/* Horizontal rule that draws itself */
+.cic-line-draw {
+  height: 1px;
+  background: var(--cic-panel-edge);
+  animation: cic-line-draw 0.6s ease-out forwards;
+}
+
+/* Scanline overlay */
+.cic-scanline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cic-cyan-glow), transparent);
+  animation: cic-scan 4s linear infinite;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Glow pulse for status text */
+.cic-glow {
+  animation: cic-glow-pulse 2s ease-in-out infinite;
 }
 
 /* ============================================================

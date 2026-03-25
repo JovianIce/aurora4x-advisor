@@ -1,54 +1,46 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card'
-import { Button } from '@components/ui/button'
-import { Badge } from '@components/ui/badge'
+import { useGame } from '@renderer/hooks/use-game'
 import { toast } from 'sonner'
 
 export function SettingsPage(): React.JSX.Element {
+  const navigate = useNavigate()
   const queryClient = useQueryClient()
+  const { currentGame } = useGame()
 
-  // Load settings
   const { data: settings, isLoading } = useQuery({
     queryKey: ['settings'],
     queryFn: () => window.api.settings.load()
   })
 
-  // Load watcher status
   const { data: watcherStatus } = useQuery({
     queryKey: ['dbWatcher', 'status'],
     queryFn: () => window.api.dbWatcher.getStatus(),
-    refetchInterval: 2000 // Poll every 2 seconds
+    refetchInterval: 2000
   })
 
-  // Mutation: Pick Aurora DB file
   const pickFileMutation = useMutation({
     mutationFn: async () => {
       const filePath = await window.api.dbWatcher.pickFile()
-      if (!filePath) {
-        throw new Error('No file selected')
-      }
+      if (!filePath) throw new Error('No file selected')
       return filePath
     },
     onSuccess: async (filePath) => {
-      // Update watcher with new path
       await window.api.dbWatcher.setPath(filePath)
       queryClient.invalidateQueries({ queryKey: ['settings'] })
       queryClient.invalidateQueries({ queryKey: ['dbWatcher', 'status'] })
-      toast.success('Aurora database path updated', {
+      toast.success('Database path updated', {
         description: 'File watcher is now monitoring your database'
       })
     },
     onError: (error) => {
       if (error.message !== 'No file selected') {
-        toast.error('Failed to set database path', {
-          description: error instanceof Error ? error.message : 'Unknown error'
-        })
+        toast.error('Failed to set database path')
       }
     }
   })
 
-  // Mutation: Clear database path
   const clearPathMutation = useMutation({
     mutationFn: async () => {
       await window.api.dbWatcher.setPath(null)
@@ -56,149 +48,156 @@ export function SettingsPage(): React.JSX.Element {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['settings'] })
       queryClient.invalidateQueries({ queryKey: ['dbWatcher', 'status'] })
-      toast.success('Aurora database path cleared', {
-        description: 'File watcher has been stopped'
-      })
+      toast.success('Database path cleared')
     }
   })
 
+  const handleBack = (): void => {
+    if (currentGame) {
+      navigate('/dashboard')
+    } else {
+      navigate('/')
+    }
+  }
+
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Loading settings...</p>
-        </div>
+      <div className="h-full flex items-center justify-center">
+        <span className="cic-data cic-glow" style={{ color: 'var(--cic-cyan-dim)', fontSize: '10px' }}>
+          Loading configuration...
+        </span>
       </div>
     )
   }
 
   return (
-    <div className="h-full overflow-y-auto p-8">
-      <div className="max-w-4xl mx-auto space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-          <p className="text-muted-foreground mt-2">Configure your Aurora 4X Advisor</p>
-        </div>
+    <div className="h-full overflow-y-auto">
+      {/* Header bar */}
+      <div
+        className="flex items-center gap-3 px-4 py-2 sticky top-0 z-10"
+        style={{
+          background: 'var(--cic-panel)',
+          borderBottom: '1px solid var(--cic-panel-edge)'
+        }}
+      >
+        <button className="cic-btn" onClick={handleBack}>
+          ← Back
+        </button>
+        <span
+          className="cic-label"
+          style={{ color: 'var(--cic-amber)', letterSpacing: '0.2em', fontSize: '10px' }}
+        >
+          System Configuration
+        </span>
+      </div>
 
-        {/* Aurora Database Path */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Aurora Database</CardTitle>
-            <CardDescription>
-              Configure the path to your Aurora 4X database file (AuroraDB.db)
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+      <div className="p-6 max-w-3xl mx-auto space-y-4 cic-stagger">
+        {/* Aurora Database */}
+        <div className="cic-panel">
+          <div className="cic-panel-header">Aurora Database</div>
+          <div className="p-4 space-y-4">
             {/* Current Path */}
             <div>
-              <label className="text-sm font-medium">Current Path</label>
-              <div className="mt-2 p-3 bg-muted rounded-md font-mono text-sm break-all">
-                {settings?.auroraDbPath || (
-                  <span className="text-muted-foreground italic">No database path configured</span>
-                )}
+              <div className="cic-label mb-2" style={{ fontSize: '9px' }}>
+                Database Path
+              </div>
+              <div
+                className="px-3 py-2 cic-data break-all"
+                style={{
+                  background: 'var(--cic-void)',
+                  border: '1px solid var(--cic-panel-edge)',
+                  color: settings?.auroraDbPath ? 'var(--cic-cyan-dim)' : 'rgba(255,255,255,0.2)',
+                  fontSize: '10px'
+                }}
+              >
+                {settings?.auroraDbPath || 'No database path configured'}
               </div>
             </div>
 
-            {/* Watcher Status */}
+            {/* Status */}
             <div className="flex items-center gap-2">
-              <label className="text-sm font-medium">Status:</label>
-              {watcherStatus?.isWatching ? (
-                <Badge className="bg-green-500 hover:bg-green-600">
-                  <span className="mr-1">●</span> Watching
-                </Badge>
-              ) : (
-                <Badge variant="secondary">
-                  <span className="mr-1">○</span> Not Watching
-                </Badge>
-              )}
-              {watcherStatus?.currentGameId && (
-                <Badge variant="outline" className="text-xs">
-                  Active Game
-                </Badge>
-              )}
+              <span className="cic-label" style={{ fontSize: '9px' }}>Status:</span>
+              <div className={`cic-status-dot ${watcherStatus?.isWatching ? 'online' : 'offline'}`} />
+              <span
+                className="cic-data"
+                style={{
+                  color: watcherStatus?.isWatching ? 'var(--cic-green)' : 'rgba(255,255,255,0.3)',
+                  fontSize: '10px'
+                }}
+              >
+                {watcherStatus?.isWatching ? 'Watching' : 'Not watching'}
+              </span>
             </div>
 
             {/* Actions */}
             <div className="flex gap-2">
-              <Button
+              <button
+                className="cic-btn cic-btn-amber"
                 onClick={() => pickFileMutation.mutate()}
                 disabled={pickFileMutation.isPending}
               >
                 {pickFileMutation.isPending ? 'Selecting...' : 'Select Database File'}
-              </Button>
+              </button>
               {settings?.auroraDbPath && (
-                <Button
-                  variant="outline"
+                <button
+                  className="cic-btn"
                   onClick={() => clearPathMutation.mutate()}
                   disabled={clearPathMutation.isPending}
                 >
                   Clear Path
-                </Button>
+                </button>
               )}
             </div>
 
-            {/* Help Text */}
-            <div className="text-xs text-muted-foreground space-y-1 pt-2">
-              <p>
-                <strong>How to find your Aurora database:</strong>
-              </p>
-              <ul className="list-disc list-inside space-y-0.5 ml-2">
-                <li>In your Aurora 4X installation folder</li>
-                <li>The file is named &quot;AuroraDB.db&quot;</li>
-                <li>The advisor will watch this file and create snapshots when it changes</li>
-              </ul>
+            {/* Help */}
+            <div
+              className="cic-data space-y-1 pt-2"
+              style={{
+                color: 'rgba(255,255,255,0.3)',
+                fontSize: '9px',
+                lineHeight: '1.5',
+                borderTop: '1px solid var(--cic-panel-edge)'
+              }}
+            >
+              <p style={{ color: 'var(--cic-amber-dim)' }}>Locating your database:</p>
+              <p>— Check your Aurora 4X installation folder</p>
+              <p>— The file is named &quot;AuroraDB.db&quot;</p>
+              <p>— The advisor watches this file and creates snapshots on changes</p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        {/* Database Watcher Info */}
-        <Card>
-          <CardHeader>
-            <CardTitle>How It Works</CardTitle>
-            <CardDescription>Understanding the database snapshot system</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3 text-sm">
-            <div className="bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-900 rounded-lg p-3">
-              <h4 className="font-semibold mb-1 text-yellow-900 dark:text-yellow-200">
-                ⚠️ Important
-              </h4>
-              <p className="text-yellow-800 dark:text-yellow-300 text-xs">
-                Make sure the correct game is selected in the sidebar before saving in Aurora 4X.
-                The advisor will create snapshots in the folder of the currently selected game. If
-                you switch games in Aurora without switching in the advisor, snapshots will be saved
-                to the wrong location.
+        {/* How it works */}
+        <div className="cic-panel">
+          <div className="cic-panel-header">Snapshot System</div>
+          <div className="p-4 space-y-3">
+            <div
+              className="p-2"
+              style={{
+                background: 'rgba(255, 179, 0, 0.04)',
+                borderLeft: '2px solid var(--cic-amber-dim)'
+              }}
+            >
+              <span className="cic-data" style={{ color: 'var(--cic-amber-dim)', fontSize: '9px', lineHeight: '1.5' }}>
+                Ensure the correct campaign is selected in Fleet Command before saving in Aurora.
+                Snapshots are filed under the active campaign.
+              </span>
+            </div>
+
+            <div className="cic-data space-y-2" style={{ color: 'rgba(255,255,255,0.4)', fontSize: '9px', lineHeight: '1.5' }}>
+              <p>
+                When you save in Aurora 4X, the advisor automatically snapshots your database.
+                Snapshots are organized by campaign name and in-game year.
+              </p>
+              <p>
+                Storage:{' '}
+                <span style={{ color: 'var(--cic-cyan-dim)', fontFamily: 'Consolas, SF Mono, Monaco, monospace' }}>
+                  games/&lt;name&gt;/&lt;name&gt;-&lt;year&gt;.db
+                </span>
               </p>
             </div>
-            <div>
-              <h4 className="font-semibold mb-1">Automatic Snapshots</h4>
-              <p className="text-muted-foreground">
-                When you save your game in Aurora 4X, the advisor automatically creates a snapshot
-                of your database. Snapshots are organized by game name and in-game year.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-1">Snapshot Location</h4>
-              <p className="text-muted-foreground font-mono text-xs break-all">
-                Snapshots are stored in your app data folder:
-                <br />
-                <code className="bg-muted px-1 py-0.5 rounded mt-1 inline-block">
-                  games/&lt;game-name&gt;/&lt;game-name&gt;-&lt;year&gt;.db
-                </code>
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-1">Example</h4>
-              <p className="text-muted-foreground">
-                For a game called &quot;Example Game&quot; at year 50, the snapshot would be:
-                <br />
-                <code className="bg-muted px-1 py-0.5 rounded mt-1 inline-block text-xs">
-                  games/Example Game/Example Game-50.db
-                </code>
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   )

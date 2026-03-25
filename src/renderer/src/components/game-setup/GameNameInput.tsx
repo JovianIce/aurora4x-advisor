@@ -1,8 +1,4 @@
 import React, { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card'
-import { Button } from '@components/ui/button'
-import { Input } from '@components/ui/input'
-import { Label } from '@components/ui/label'
 
 interface GameNameInputProps {
   onNext: (gameName: string) => void
@@ -19,44 +15,61 @@ export function GameNameInput({ onNext, onBack }: GameNameInputProps): React.JSX
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>New Game Setup</CardTitle>
-          <CardDescription>Enter your game name as it will appear in Aurora 4X</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="gameName" className="text-sm">
+    <div className="h-full flex items-center justify-center p-8">
+      <div className="w-full max-w-md cic-stagger">
+        <div className="cic-label mb-4" style={{ color: 'var(--cic-cyan)', fontSize: '10px' }}>
+          Step 1 — Campaign Designation
+        </div>
+
+        <div className="cic-panel p-4 space-y-4">
+          <div>
+            <label
+              className="cic-label block mb-2"
+              style={{ fontSize: '9px' }}
+              htmlFor="gameName"
+            >
               Game Name
-            </Label>
-            <Input
+            </label>
+            <input
               id="gameName"
               type="text"
-              placeholder="My Aurora Campaign"
+              placeholder="Enter exact Aurora game name..."
               value={gameName}
               onChange={(e) => setGameName(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') handleNext()
               }}
               autoFocus
-              className="h-10"
+              className="w-full px-3 py-2 cic-data"
+              style={{
+                background: 'var(--cic-void)',
+                border: '1px solid var(--cic-panel-edge)',
+                color: 'var(--cic-cyan)',
+                fontSize: '12px',
+                outline: 'none'
+              }}
             />
-            <p className="text-xs text-muted-foreground">
-              This must match exactly with the game name you use in Aurora 4X
-            </p>
           </div>
 
-          <div className="flex justify-between pt-2">
-            <Button variant="outline" onClick={onBack}>
-              Back
-            </Button>
-            <Button onClick={handleNext} disabled={!gameName.trim()}>
-              Next →
-            </Button>
+          <p className="cic-data" style={{ color: 'rgba(255,255,255,0.3)', fontSize: '9px', lineHeight: '1.5' }}>
+            Must match exactly with the name in Aurora 4X (case-sensitive).
+          </p>
+
+          <div className="flex justify-between pt-1" style={{ borderTop: '1px solid var(--cic-panel-edge)' }}>
+            <button className="cic-btn" onClick={onBack}>
+              ← Back
+            </button>
+            <button
+              className="cic-btn cic-btn-amber"
+              onClick={handleNext}
+              disabled={!gameName.trim()}
+              style={{ opacity: gameName.trim() ? 1 : 0.3 }}
+            >
+              Proceed →
+            </button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

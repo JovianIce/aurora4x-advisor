@@ -36,7 +36,17 @@ jobs:
 
       - run: pnpm install
 
-      - run: ${{ matrix.build_cmd }}
+      # On tags: build + publish to GitHub Release (electron-builder handles it)
+      - name: Build & Publish
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: ${{ matrix.build_cmd }} -- --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # On branches: just build artifacts
+      - name: Build
+        if: ${{ !startsWith(github.ref, 'refs/tags/v') }}
+        run: ${{ matrix.build_cmd }}
 
       - uses: actions/upload-artifact@v7
         with:
@@ -48,4 +58,6 @@ jobs:
             dist/*.deb
             dist/*.dmg
             dist/*.zip
+            dist/*.yml
+            dist/*.yaml
           if-no-files-found: ignore

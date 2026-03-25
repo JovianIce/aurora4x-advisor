@@ -1,6 +1,4 @@
 import React from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card'
-import { Button } from '@components/ui/button'
 
 interface SaveGamePromptProps {
   gameName: string
@@ -14,48 +12,68 @@ export function SaveGamePrompt({
   onBack
 }: SaveGamePromptProps): React.JSX.Element {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Save Your Game in Aurora</CardTitle>
-          <CardDescription>
-            This allows the advisor to detect your game settings automatically
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="bg-muted p-4 rounded-lg space-y-3 text-sm">
-            <div className="flex items-start gap-2">
-              <span className="text-base font-semibold">1.</span>
+    <div className="h-full flex items-center justify-center p-8">
+      <div className="w-full max-w-md cic-stagger">
+        <div className="cic-label mb-4" style={{ color: 'var(--cic-cyan)', fontSize: '10px' }}>
+          Step 2 — Synchronize with Aurora
+        </div>
+
+        <div className="cic-panel p-4 space-y-4">
+          <div
+            className="space-y-3 cic-data"
+            style={{ color: 'rgba(255,255,255,0.5)', fontSize: '10px', lineHeight: '1.6' }}
+          >
+            <div className="flex gap-3">
+              <span style={{ color: 'var(--cic-amber)', minWidth: '16px' }}>1.</span>
               <span>Switch to Aurora 4X</span>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="text-base font-semibold">2.</span>
+            <div className="flex gap-3">
+              <span style={{ color: 'var(--cic-amber)', minWidth: '16px' }}>2.</span>
               <div>
-                <span>Save your game with this exact name:</span>
-                <div className="mt-1 p-2 bg-background rounded border font-mono text-xs">
+                <span>Save your game with this exact designation:</span>
+                <div
+                  className="mt-2 px-3 py-2"
+                  style={{
+                    background: 'var(--cic-void)',
+                    border: '1px solid var(--cic-cyan-dim)',
+                    color: 'var(--cic-cyan)',
+                    fontFamily: 'Consolas, SF Mono, Monaco, monospace',
+                    fontSize: '12px',
+                    letterSpacing: '0.05em'
+                  }}
+                >
                   {gameName}
                 </div>
               </div>
             </div>
-            <div className="flex items-start gap-2">
-              <span className="text-base font-semibold">3.</span>
-              <span>Return here and click below</span>
+            <div className="flex gap-3">
+              <span style={{ color: 'var(--cic-amber)', minWidth: '16px' }}>3.</span>
+              <span>Return here and confirm</span>
             </div>
           </div>
 
-          <div className="text-xs text-muted-foreground p-3 border rounded-lg">
-            <strong>Important:</strong> The game name must match exactly (case-sensitive) for
-            auto-detection to work.
+          <div
+            className="p-2"
+            style={{
+              background: 'rgba(255, 179, 0, 0.04)',
+              borderLeft: '2px solid var(--cic-amber-dim)'
+            }}
+          >
+            <span className="cic-data" style={{ color: 'var(--cic-amber-dim)', fontSize: '9px' }}>
+              Name must match exactly — case-sensitive
+            </span>
           </div>
 
-          <div className="flex justify-between pt-2">
-            <Button variant="outline" onClick={onBack}>
-              Back
-            </Button>
-            <Button onClick={onSaved}>I&apos;ve Saved My Game →</Button>
+          <div className="flex justify-between pt-1" style={{ borderTop: '1px solid var(--cic-panel-edge)' }}>
+            <button className="cic-btn" onClick={onBack}>
+              ← Back
+            </button>
+            <button className="cic-btn cic-btn-amber" onClick={onSaved}>
+              Game Saved — Scan →
+            </button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

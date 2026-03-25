@@ -99,6 +99,7 @@ interface AdvisorAPI {
 }
 
 interface GameAPI {
+  listGames: () => Promise<GameInfo[]>
   detectGame: (gameName: string) => Promise<GameInfo>
 }
 

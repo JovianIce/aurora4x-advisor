@@ -39,6 +39,7 @@ const api = {
     }
   },
   game: {
+    listGames: () => ipcRenderer.invoke('game:listGames'),
     detectGame: (gameName: string) => ipcRenderer.invoke('game:detectGame', gameName)
   },
   games: {
