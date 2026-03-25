@@ -13,6 +13,7 @@ interface PushPayload {
     systemId?: number
     bodies?: Record<string, unknown>[]
     fleets?: MemoryFleet[]
+    raw?: string
   }
 }
 
@@ -120,4 +121,41 @@ export function useFleets(): {
   }, [queryClient])
 
   return { data, isLoading }
+}
+
+/**
+ * Parse the game date from Aurora's TacticalMap title bar.
+ * Format: "EmpireName   30 December 0041 22:04:05   Racial Wealth 133,756"
+ */
+function parseGameDate(raw: string): string | null {
+  const match = raw.match(/\d{1,2}\s+\w+\s+\d{4}\s+\d{2}:\d{2}:\d{2}/)
+  return match ? match[0] : null
+}
+
+/**
+ * Current game date from the TacticalMap title bar, pushed on every game tick.
+ */
+export function useGameDate(): string | undefined {
+  const queryClient = useQueryClient()
+
+  const { data } = useQuery<string>({
+    queryKey: ['gameDate'],
+    queryFn: () => Promise.resolve(''),
+    enabled: false,
+    staleTime: Infinity
+  })
+
+  useEffect(() => {
+    const unsub = onPushType('gameDate', (pushData) => {
+      if (pushData?.raw) {
+        const parsed = parseGameDate(pushData.raw as string)
+        if (parsed) {
+          queryClient.setQueryData(['gameDate'], parsed)
+        }
+      }
+    })
+    return unsub
+  }, [queryClient])
+
+  return data || undefined
 }

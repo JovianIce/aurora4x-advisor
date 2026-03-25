@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGame } from '@renderer/hooks/use-game'
+import { useGameDate } from '@renderer/hooks/use-bridge'
 import { PersonalityMatcher } from '@components/advisor'
 import { toast } from 'sonner'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@components/ui/sheet'
@@ -13,6 +14,7 @@ interface GameSidebarProps {
 export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.JSX.Element {
   const navigate = useNavigate()
   const { currentGame, savedGames, switchGame, removeGame, updateGamePersonality } = useGame()
+  const gameDate = useGameDate()
   const [localOpen, setLocalOpen] = useState(false)
   const [advisorOpen, setAdvisorOpen] = useState(false)
 
@@ -144,7 +146,7 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
                               className="cic-data"
                               style={{ color: 'rgba(255,255,255,0.25)', fontSize: '9px' }}
                             >
-                              Year {game.gameInfo.startingYear} — {formatDate(game.lastAccessedAt)}
+                              {game.id === currentGame?.id && gameDate ? gameDate : `Year ${game.gameInfo.startingYear}`} — {formatDate(game.lastAccessedAt)}
                             </div>
                             {game.personalityName ? (
                               <button

@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: aurora4x-advisor
+appId: com.aurora4x.companion
+productName: Aurora 4X Companion
 directories:
   buildResources: build
 files:

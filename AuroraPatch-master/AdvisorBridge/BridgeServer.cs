@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.WebSockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 
 namespace AdvisorBridge
@@ -144,6 +146,18 @@ namespace AdvisorBridge
                 _clients[clientId] = ws;
 
                 _patch.LogInfo($"Client {clientId} connected");
+
+                // Install tick hook and send current game date on connect
+                InstallTickHook();
+                var map = _patch.TacticalMap;
+                if (map != null)
+                {
+                    var titleText = (string)map.Invoke((Func<string>)(() => map.Text));
+                    if (!string.IsNullOrEmpty(titleText))
+                    {
+                        Broadcast("gameDate", new { raw = titleText });
+                    }
+                }
 
                 var buffer = new byte[8192];
 
@@ -351,6 +365,16 @@ namespace AdvisorBridge
 
             try
             {
+                // Extract current game date from TacticalMap title bar
+                if (sender is Form form)
+                {
+                    var titleText = form.Text;
+                    if (!string.IsNullOrEmpty(titleText))
+                    {
+                        Broadcast("gameDate", new { raw = titleText });
+                    }
+                }
+
                 if (_subscribedSystemId.HasValue)
                 {
                     var bodies = _memoryReader.ReadBodies(_subscribedSystemId);
