@@ -1,18 +1,52 @@
-name: Build
+name: Build & Release
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
-    tags:
-      - 'v*'
 
 permissions:
   contents: write
 
 jobs:
+  version:
+    runs-on: ubuntu-latest
+    # Skip if this commit was the auto version bump itself
+    if: "!contains(github.event.head_commit.message, 'chore: bump version')"
+    outputs:
+      version: ${{ steps.bump.outputs.version }}
+      tag: ${{ steps.bump.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Bump patch version
+        id: bump
+        run: |
+          current=$(node -p "require('./package.json').version")
+          IFS='.' read -r major minor patch <<< "$current"
+          new_version="$major.$minor.$((patch + 1))"
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            pkg.version = '$new_version';
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2) + '\n');
+          "
+          echo "version=$new_version" >> "$GITHUB_OUTPUT"
+          echo "tag=v$new_version" >> "$GITHUB_OUTPUT"
+          echo "Bumped $current -> $new_version"
+
+      - name: Commit and tag version bump
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore: bump version to ${{ steps.bump.outputs.version }}"
+          git tag "${{ steps.bump.outputs.tag }}"
+          git push origin main --tags
+
   build:
+    needs: version
     strategy:
       matrix:
         include:
@@ -20,13 +54,13 @@ jobs:
             build_cmd: pnpm build:linux
           - os: windows-latest
             build_cmd: pnpm build:win
-          - os: macos-latest
-            build_cmd: pnpm build:mac
 
     runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.version.outputs.tag }}
 
       - uses: pnpm/action-setup@v4
         with:
@@ -56,3 +90,48 @@ jobs:
             dist/*.yml
             dist/*.yaml
           if-no-files-found: ignore
+
+  release:
+    needs: [version, build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v7
+        with:
+          path: artifacts
+
+      - name: Gather release files
+        run: |
+          mkdir -p release
+          find artifacts -type f \( -name "*.exe" -o -name "*.AppImage" -o -name "*.snap" -o -name "*.deb" -o -name "*.yml" -o -name "*.yaml" \) -exec cp {} release/ \;
+          ls -lh release/
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ needs.version.outputs.tag }}
+          VERSION: ${{ needs.version.outputs.version }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh release create "$TAG" release/* \
+            --title "Aurora 4X Advisor $TAG" \
+            --generate-notes \
+            --notes "$(cat <<EOF
+
+          ## Download
+
+          | Platform | File |
+          |----------|------|
+          | Windows (installer) | \`aurora4x-advisor-${VERSION}-setup.exe\` |
+          | Linux (AppImage) | \`aurora4x-advisor-${VERSION}.AppImage\` |
+          | Linux (deb) | \`aurora4x-advisor-${VERSION}.deb\` |
+          | Linux (snap) | \`aurora4x-advisor-${VERSION}.snap\` |
+
+          ---
+          Built from workflow run: ${RUN_URL}
+          EOF
+          )"

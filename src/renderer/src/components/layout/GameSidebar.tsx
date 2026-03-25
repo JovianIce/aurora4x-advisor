@@ -66,7 +66,7 @@ export function GameSidebar({ isOpen, onOpenChange }: GameSidebarProps): React.J
             <button
               className="cic-btn cic-btn-amber w-full"
               onClick={() => {
-                navigate('/')
+                navigate('/setup')
                 setOpen(false)
               }}
             >
