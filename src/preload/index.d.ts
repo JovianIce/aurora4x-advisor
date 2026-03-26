@@ -156,6 +156,9 @@ interface BridgeAPI {
   getFleets: () => Promise<MemoryFleet[]>
   // SQL + actions
   query: (sql: string) => Promise<unknown[]>
+  queryFull: (sql: string) => Promise<unknown[]>
+  getTableMapping: () => Promise<unknown>
+  rediscoverMapping: () => Promise<unknown>
   getAllTables: () => Promise<{ name: string; rows: number }[]>
   getTableInfo: (tableName: string) => Promise<unknown[]>
   executeAction: (action: ActionRequest) => Promise<unknown>

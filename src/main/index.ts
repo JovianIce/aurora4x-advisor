@@ -295,6 +295,18 @@ app.whenReady().then(async () => {
     return auroraBridge.query(sql)
   })
 
+  ipcMain.handle('bridge:queryFull', async (_event, sql: string) => {
+    return auroraBridge.queryFull(sql)
+  })
+
+  ipcMain.handle('bridge:getTableMapping', async () => {
+    return auroraBridge.getTableMapping()
+  })
+
+  ipcMain.handle('bridge:rediscoverMapping', async () => {
+    return auroraBridge.rediscoverMapping()
+  })
+
   ipcMain.handle('bridge:getTableInfo', async (_event, tableName: string) => {
     return auroraBridge.query(`PRAGMA table_info(${tableName})`)
   })

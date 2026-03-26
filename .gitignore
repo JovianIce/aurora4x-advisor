@@ -12,3 +12,4 @@ docs
 *.md
 !README.md
 !ROADMAP.md
+!SAVE_METHOD_MAPPING.md

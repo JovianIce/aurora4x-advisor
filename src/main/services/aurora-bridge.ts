@@ -130,26 +130,42 @@ class AuroraBridge {
   // SQL query + actions
   // ---------------------------------------------------------------------------
 
-  async query<T = unknown>(sql: string): Promise<T[]> {
-    return this.send('query', { Sql: sql }) as Promise<T[]>
+  /** Smart SQL query — auto-detects FCT_* tables and selectively refreshes only those. */
+  async query<T = unknown>(sql: string, timeoutMs = 30000): Promise<T[]> {
+    return this.send('query', { Sql: sql }, timeoutMs) as Promise<T[]>
+  }
+
+  /** Full refresh query — refreshes ALL tables. Use for PRAGMA / sqlite_master. */
+  async queryFull<T = unknown>(sql: string, timeoutMs = 30000): Promise<T[]> {
+    return this.send('query.full', { Sql: sql }, timeoutMs) as Promise<T[]>
   }
 
   async executeAction(action: ActionRequest): Promise<unknown> {
     return this.send('action', action)
   }
 
+  /** Get the save-method-to-table mapping (available after first query triggers discovery). */
+  async getTableMapping(): Promise<unknown> {
+    return this.send('getTableMapping', null)
+  }
+
+  /** Force re-discovery of the table mapping. Run after progressing game time to catch UPDATEs. */
+  async rediscoverMapping(): Promise<unknown> {
+    return this.send('rediscoverMapping', null, 120000)
+  }
+
   // ---------------------------------------------------------------------------
   // Private
   // ---------------------------------------------------------------------------
 
-  private send(type: string, payload: unknown): Promise<unknown> {
+  private send(type: string, payload: unknown, timeoutMs = 10000): Promise<unknown> {
     const id = this.nextId()
     const request = {
       Id: id,
       Type: type,
       Payload: payload != null ? JSON.stringify(payload) : null
     }
-    return this.sendRequest(id, request)
+    return this.sendRequest(id, request, timeoutMs)
   }
 
   private doConnect(): void {
@@ -264,7 +280,7 @@ class AuroraBridge {
     }
   }
 
-  private sendRequest(id: string, message: unknown): Promise<unknown> {
+  private sendRequest(id: string, message: unknown, timeoutMs = 10000): Promise<unknown> {
     return new Promise((resolve, reject) => {
       if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
         reject(new Error('Bridge not connected'))
@@ -274,7 +290,7 @@ class AuroraBridge {
       const timeout = setTimeout(() => {
         this.pendingRequests.delete(id)
         reject(new Error('Bridge request timeout'))
-      }, 10000)
+      }, timeoutMs)
 
       this.pendingRequests.set(id, { resolve, reject, timeout })
 

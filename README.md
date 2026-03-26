@@ -78,7 +78,7 @@ Aurora's types and fields are obfuscated (e.g., type `kc` = SystemBody, field `v
 - WebSocket server embedded in the Aurora process via Harmony patching
 - Uses [Fleck](https://github.com/statianzo/Fleck) for raw TCP WebSocket support (compatible with Wine/Proton for Linux users)
 - Direct memory reads of game objects (systems, bodies, stars, fleets, ships) — no file polling
-- In-memory SQLite mirror of Aurora's database, refreshed on demand (the refresh invokes Aurora's save routines on the UI thread, which can lag — so it only runs when explicitly requested, not on a timer)
+- **Smart SQL queries with selective save** — the `query` endpoint auto-detects `FCT_*` table names in your SQL (including JOINs and subqueries), and only refreshes the save methods that write to those tables. A query touching `FCT_Fleet` + `FCT_Ship` calls 2 methods instead of all 88, reducing UI thread freeze from seconds to milliseconds. See [SAVE_METHOD_MAPPING.md](AuroraPatch-master/SAVE_METHOD_MAPPING.md) for the full mapping.
 - Push notifications on game tick (time advancement) for subscribed systems
 - Quick commands that trigger visible Aurora UI actions (opening forms, clicking toolbar buttons)
 - Protocol version handshake — the app warns users when the bridge DLL is outdated
@@ -107,9 +107,14 @@ aurora4x-companion/
 ├── AuroraPatch-master/           # C# codebase (.NET Framework 4.8)
 │   ├── AuroraPatch/              # Harmony patch loader and launcher
 │   ├── Lib/                      # Core library (type resolution, DB, UI helpers)
+│   │   └── DatabaseManager.cs    # In-memory SQLite with selective save
 │   ├── AdvisorBridge/            # WebSocket bridge plugin (Fleck)
+│   │   ├── BridgeServer.cs       # WebSocket message router
+│   │   ├── MemoryReader.cs       # Live game object reader (cached reflection)
+│   │   └── Providers/            # Domain providers (Fleet, System, GameState)
 │   ├── Automation/               # Example automation patch
-│   └── Example/                  # Dev tool for discovering Aurora's obfuscated types
+│   ├── Example/                  # Dev tool for discovering Aurora's obfuscated types
+│   └── SAVE_METHOD_MAPPING.md    # Complete save method -> table mapping
 └── resources/config/             # Advisor personality profiles (JSON)
 ```
 
@@ -171,7 +176,12 @@ Building the AuroraPatch project outputs `AuroraPatch.exe` into `AuroraPatch-mas
 1. Open `AuroraPatch-master/AuroraPatch.sln` in Visual Studio
 2. Copy your entire Aurora 4X installation into `AuroraPatch-master/AuroraPatch/bin/Debug/` (everything — `Aurora.exe`, `AuroraDB.db`, `Flags/`, `Medals/`, etc.)
 3. Create `Patches/` subfolders for each patch inside that same directory
-4. Build the solution — the AuroraPatch project outputs `AuroraPatch.exe` to `bin/Debug/`, but **each patch project (Lib, AdvisorBridge, etc.) builds to its own `bin/` folder**. You need to copy the built DLLs into the corresponding `Patches/` subfolder in `bin/Debug/`
+4. Build and deploy with the included script (close Aurora first):
+   ```
+   cd AuroraPatch-master
+   build-deploy.bat
+   ```
+   This builds the solution and copies Lib.dll + AdvisorBridge.dll into the Patches folders.
 5. Run/debug `AuroraPatch.exe` from Visual Studio — it launches `Aurora.exe` from the same directory and loads patches from `Patches/`
 
 ```
@@ -244,13 +254,14 @@ The bridge uses a JSON request/response protocol over WebSocket:
 | Type                   | Description                                                     |
 | ---------------------- | --------------------------------------------------------------- |
 | `ping`                 | Health check, returns "pong" with `protocolVersion`             |
-| `query`                | Execute read-only SQL against the in-memory DB mirror           |
-| `getsystems`           | All star systems with resolved names                            |
-| `getknownsystems`      | Player-known systems (from TacticalMap ComboBox)                |
-| `getsystembodies`      | Stars in a system (with StarDetails sub-object)                 |
-| `getbodies`            | Planets/moons/asteroids (optimized fast-read fields)            |
-| `getfleets`            | All fleets with positions and ship counts                       |
-| `getships`             | Ships, optionally filtered by fleet                             |
+| `query`                | Smart SQL — auto-detects FCT_* tables, selectively refreshes only those |
+| `query.full`           | Full-refresh SQL — refreshes all tables (for PRAGMA, sqlite_master) |
+| `getsystems`           | All star systems with resolved names (memory reader)            |
+| `getknownsystems`      | Player-known systems from TacticalMap ComboBox (memory reader)  |
+| `getsystembodies`      | Stars in a system with StarDetails (memory reader)              |
+| `getbodies`            | Planets/moons/asteroids (memory reader)                         |
+| `getfleets`            | All fleets with positions and ship counts (memory reader)       |
+| `getships`             | Ships, optionally filtered by fleet (memory reader)             |
 | `subscribe`            | Subscribe to push updates for a system on each game tick        |
 | `enumerategamestate`   | List all fields on the GameState object                         |
 | `enumeratecollections` | List all collection-type fields on GameState                    |
@@ -258,6 +269,8 @@ The bridge uses a JSON request/response protocol over WebSocket:
 | `readfield`            | Read a single field from GameState                              |
 | `action`               | Execute a UI action (click button, open form, read/set control) |
 | `inspect`              | Inspect all controls on an Aurora form                          |
+| `gettablemapping`      | View the save method -> table mapping (diagnostic)              |
+| `rediscovermapping`    | Re-run trigger-based mapping discovery (diagnostic)             |
 
 **Push types:**
 

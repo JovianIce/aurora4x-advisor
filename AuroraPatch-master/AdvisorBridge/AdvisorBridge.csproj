@@ -62,6 +62,9 @@
     <Compile Include="BridgeServer.cs" />
     <Compile Include="MemoryReader.cs" />
     <Compile Include="Protocol.cs" />
+    <Compile Include="Providers\FleetProvider.cs" />
+    <Compile Include="Providers\GameStateExplorer.cs" />
+    <Compile Include="Providers\SystemProvider.cs" />
     <Compile Include="QueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

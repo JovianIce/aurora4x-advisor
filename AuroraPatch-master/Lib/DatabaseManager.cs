@@ -6,35 +6,20 @@ using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Lib
 {
     /// <summary>
     /// Maintains an in-memory SQLite database that mirrors Aurora's game state.
     ///
-    /// Why in-memory: Aurora only writes to AuroraDB.db when the player manually saves,
-    /// and the save process takes several seconds. The on-disk DB is therefore stale during
-    /// gameplay — it reflects the last save, not the current game state. For real-time data
-    /// we need a different approach.
+    /// Two refresh modes:
+    ///   - Full: calls all save methods
+    ///   - Selective: calls only the methods that write to specific tables
     ///
-    /// How it works:
-    ///   1. Read AuroraDB.db's schema on first use (DDL only, no data)
-    ///   2. Create a shared in-memory SQLite database with the same schema
-    ///   3. On explicit request (Refresh()), invoke Aurora's own Save methods (via reflection)
-    ///      to serialize the live GameState object into our in-memory connection
-    ///
-    /// Performance warning: the Refresh() call invokes Aurora's save routines on the UI thread,
-    /// which can cause noticeable lag (several seconds depending on game size). It should only
-    /// be triggered when the user explicitly requests fresh data, not on a timer.
-    ///
-    /// The Save methods are found by scanning GameState for methods that take a single
-    /// SQLiteConnection parameter — these are Aurora's built-in serialization routines.
-    /// We call them with our in-memory connection instead of the file-backed one.
-    ///
-    /// Thread safety: all access is synchronized via lock(Connection). The Save call is
-    /// marshalled to the UI thread since Aurora's GameState is owned by the UI thread.
+    /// The table-to-method mapping is hardcoded from trigger-based discovery.
+    /// Re-discovery is available via RediscoverMapping() for verification or
+    /// if Aurora updates change the obfuscated method names.
     /// </summary>
     public class DatabaseManager
     {
@@ -42,21 +27,610 @@ namespace Lib
         private SQLiteConnection Connection { get; set; } = null;
         private bool _needsRefresh = true;
 
+        // Selective save: resolved from hardcoded mapping on first use
+        private Dictionary<string, List<MethodInfo>> _tableToMethods;
+        private Dictionary<string, List<string>> _methodToTables;
+        private bool _mappingReady;
+
+        // Freshness tracking
+        private readonly HashSet<string> _freshTables = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        // =====================================================================
+        // Hardcoded mapping: obfuscated method name -> tables it writes to.
+        // Keyed by Aurora.exe checksum since method names change between versions.
+        // Discovered via trigger-based analysis (INSERT/UPDATE/DELETE tracking).
+        //
+        // For unknown checksums, the system falls back to automatic trigger-based
+        // discovery (slower first query, but works for any version).
+        //
+        // To add a new version: run rediscoverMapping on the new build and add
+        // the output here. See SAVE_METHOD_MAPPING.md for details.
+        // =====================================================================
+        private static readonly Dictionary<string, Dictionary<string, string[]>> VersionedMappings =
+            new Dictionary<string, Dictionary<string, string[]>>
+        {
+            // Aurora checksum OdxONo (current development target)
+            { "OdxONo", new Dictionary<string, string[]>
+                {
+                    // Research
+                    { "kc", new[] { "FCT_ResearchProject" } },
+                    { "kk", new[] { "FCT_RaceTech" } },
+                    { "km", new[] { "FCT_TechSystem" } },
+                    { "i2", new[] { "FCT_TechProgressionRace" } },
+                    { "k0", new[] { "FCT_DesignPhilosophy", "FCT_DesignPhilosophyTechProgressionCategories" } },
+
+                    // Fleets & Orders
+                    { "jh", new[] { "FCT_Fleet", "FCT_FleetHistory", "FCT_FleetStandingOrder", "FCT_FleetConditionalOrder" } },
+                    { "jf", new[] { "FCT_SubFleets" } },
+                    { "i9", new[] { "FCT_MoveOrders" } },
+                    { "ja", new[] { "FCT_MoveOrderTemplate" } },
+                    { "jg", new[] { "FCT_StandingOrderTemplate", "FCT_StandingOrderTemplateOrder" } },
+                    { "iz", new[] { "FCT_OrderTemplate" } },
+                    { "ip", new[] { "FCT_Squadron" } },
+
+                    // Ships & Classes
+                    { "js", new[] { "FCT_Ship", "FCT_ShipWeapon", "FCT_DamagedComponent", "FCT_ShipHistory",
+                                    "FCT_WeaponAssignment", "FCT_DecoyAssignment", "FCT_FireControlAssignment",
+                                    "FCT_MissileAssignment", "FCT_ArmourDamage", "FCT_ShipMeasurement" } },
+                    { "jj", new[] { "FCT_ShipCargo" } },
+                    { "jz", new[] { "FCT_DamageControlQueue" } },
+                    { "jm", new[] { "FCT_ShipClass", "FCT_ClassMaterials", "FCT_ClassOrdnanceTemplate",
+                                    "FCT_ClassComponent", "FCT_ClassSC", "FCT_ClassGroundTemplates" } },
+                    { "kn", new[] { "FCT_ShipDesignComponents" } },
+                    { "kp", new[] { "FCT_ShipComponentTemplate" } },
+                    { "jx", new[] { "FCT_MissileType" } },
+                    { "j0", new[] { "FCT_HullDescription" } },
+
+                    // Systems & Stars
+                    { "im", new[] { "FCT_System" } },
+                    { "ix", new[] { "FCT_Star" } },
+                    { "iy", new[] { "FCT_JumpPoint" } },
+                    { "i5", new[] { "FCT_LagrangePoint" } },
+                    { "jn", new[] { "FCT_SystemBodyName" } },
+                    { "jy", new[] { "FCT_AtmosphericGas" } },
+
+                    // Minerals & Economy
+                    { "jl", new[] { "FCT_MineralDeposit" } },
+                    { "j5", new[] { "FCT_WealthData" } },
+                    { "j6", new[] { "FCT_RaceMineralData" } },
+                    { "i6", new[] { "FCT_PopTradeBalance" } },
+                    { "i4", new[] { "FCT_MassDriverPackets" } },
+
+                    // Population & Industry
+                    { "jk", new[] { "FCT_Population", "FCT_PopulationWeapon", "FCT_PopComponent", "FCT_PopMDChanges" } },
+                    { "ji", new[] { "FCT_PopulationInstallations" } },
+                    { "jv", new[] { "FCT_IndustrialProjects" } },
+                    { "j2", new[] { "FCT_Shipyard" } },
+
+                    // Commanders
+                    { "j1", new[] { "FCT_Commander", "FCT_CommanderHistory", "FCT_CommanderMedal",
+                                    "FCT_CommanderMeasurement", "FCT_CommanderBonuses", "FCT_CommanderTraits" } },
+
+                    // Race & Game
+                    { "a5", new[] { "FCT_Game" } },
+                    { "a6", new[] { "FCT_Race", "FCT_KnownRuinRace", "FCT_RaceNameThemes", "FCT_WindowPosition",
+                                    "FCT_GroundUnitSeries", "FCT_GroundUnitSeriesClass",
+                                    "FCT_RaceOperationalGroupElements", "FCT_HullNumber", "FCT_WealthHistory" } },
+                    { "j4", new[] { "FCT_Species", "FCT_KnownSpecies" } },
+
+                    // Surveys
+                    { "kz", new[] { "FCT_RaceSysSurvey", "FCT_RaceJumpPointSurvey" } },
+                    { "iw", new[] { "FCT_SurveyLocation", "FCT_RaceSurveyLocation" } },
+
+                    // Ground Units
+                    { "ir", new[] { "FCT_GroundUnitFormationElement", "FCT_GroundUnitFormationElementTemplates", "FCT_STODetected" } },
+                    { "is", new[] { "FCT_GroundUnitFormationTemplate" } },
+                    { "it", new[] { "FCT_GroundUnitFormation" } },
+                    { "iu", new[] { "FCT_GroundUnitClass", "FCT_GroundUnitCapability" } },
+
+                    // Aliens
+                    { "ke", new[] { "FCT_AlienRace", "FCT_AlienRaceSpecies", "FCT_AlienSystem" } },
+                    { "kf", new[] { "FCT_AlienClass", "FCT_AlienClassSensor", "FCT_AlienClassWeapon", "FCT_AlienClassTech" } },
+                    { "kg", new[] { "FCT_AlienRaceSensor" } },
+                    { "kh", new[] { "FCT_AlienShip" } },
+                    { "ki", new[] { "FCT_AlienGroundUnitClass" } },
+                    { "kj", new[] { "FCT_AlienPopulation" } },
+
+                    // Misc
+                    { "kd", new[] { "FCT_SectorCommand" } },
+                    { "ko", new[] { "FCT_Increments" } },
+                    { "ks", new[] { "FCT_GameLog" } },
+                    { "kt", new[] { "FCT_EventColour" } },
+                    { "kw", new[] { "FCT_OrganizationNode" } },
+                    { "kx", new[] { "FCT_Ranks" } },
+                    { "ky", new[] { "FCT_HideEvents" } },
+                    { "iq", new[] { "FCT_WindowPosition" } },
+                    { "in", new[] { "FCT_RaceMedals" } },
+                    { "io", new[] { "FCT_MedalConditionAssignment" } },
+                    { "jp", new[] { "FCT_AncientConstruct" } },
+                    { "jr", new[] { "FCT_RuinRace" } },
+                    { "ju", new[] { "FCT_Wrecks", "FCT_WreckTech", "FCT_WreckComponents" } },
+                    { "j8", new[] { "FCT_NavalAdminCommand" } },
+                }
+            },
+
+            // Aurora checksum chm1c7 — no mapping yet.
+            // Run rediscoverMapping on this version to populate.
+        };
+
         internal DatabaseManager(Lib lib)
         {
             Lib = lib;
         }
 
-        /// <summary>
-        /// Mark the in-memory DB as stale so the next query triggers a refresh.
-        /// Call this when the user explicitly requests fresh data.
-        /// </summary>
         public void Refresh()
         {
             _needsRefresh = true;
         }
 
+        public void MarkAllStale()
+        {
+            _freshTables.Clear();
+        }
+
+        public bool HasMapping => _mappingReady;
+
+        public Dictionary<string, List<string>> GetMethodTableMapping()
+        {
+            return _methodToTables;
+        }
+
+        /// <summary>
+        /// Force re-discovery of the table mapping using SQLite triggers.
+        /// Useful to verify the hardcoded mapping or after an Aurora update.
+        /// </summary>
+        public void RediscoverMapping()
+        {
+            _mappingReady = false;
+            _tableToMethods = null;
+            _methodToTables = null;
+            _needsRefresh = true;
+            _forceDiscovery = true;
+        }
+
+        private bool _forceDiscovery;
+
+        /// <summary>
+        /// Smart query: extracts FCT_* table names from the SQL, selectively
+        /// refreshes only those tables, then executes the query.
+        /// Handles joins, subqueries, etc. automatically.
+        /// </summary>
+        public DataTable SmartQuery(string sql)
+        {
+            EnsureDatabase();
+            EnsureMapping();
+
+            var tables = ExtractTableNames(sql);
+
+            lock (Connection)
+            {
+                if (tables.Length > 0)
+                    RefreshForTables(tables);
+
+                return RunQuery(sql);
+            }
+        }
+
+        /// <summary>
+        /// Full refresh query — calls all save methods. Use for PRAGMA, sqlite_master,
+        /// or when you need everything fresh regardless of cost.
+        /// </summary>
         public DataTable ExecuteQuery(string query)
+        {
+            EnsureDatabase();
+            EnsureMapping();
+
+            lock (Connection)
+            {
+                if (_needsRefresh)
+                {
+                    try
+                    {
+                        var sw = Stopwatch.StartNew();
+                        Lib.InvokeOnUIThread(new Action(() => SaveAll()));
+                        _needsRefresh = false;
+                        _freshTables.Clear();
+                        sw.Stop();
+                        Lib.LogInfo($"Full save took {sw.ElapsedMilliseconds} ms");
+                    }
+                    catch (Exception e)
+                    {
+                        Lib.LogError($"DatabaseManager failed to save. {e}");
+                    }
+                }
+
+                return RunQuery(query);
+            }
+        }
+
+        /// <summary>
+        /// Query with explicit table list for selective refresh.
+        /// </summary>
+        public DataTable QueryTables(string sql, params string[] tables)
+        {
+            EnsureDatabase();
+            EnsureMapping();
+
+            lock (Connection)
+            {
+                RefreshForTables(tables);
+                return RunQuery(sql);
+            }
+        }
+
+        /// <summary>
+        /// Extract FCT_* table names from a SQL string.
+        /// Works for SELECT, JOIN, subqueries — any mention of an Aurora table.
+        /// </summary>
+        public static string[] ExtractTableNames(string sql)
+        {
+            var tables = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (Match m in Regex.Matches(sql, @"""?(FCT_\w+)""?", RegexOptions.IgnoreCase))
+            {
+                tables.Add(m.Groups[1].Value);
+            }
+            return tables.ToArray();
+        }
+
+        private void EnsureMapping()
+        {
+            if (_mappingReady) return;
+
+            if (_forceDiscovery)
+            {
+                try
+                {
+                    Lib.InvokeOnUIThread(new Action(() => DiscoverMapping()));
+                    _forceDiscovery = false;
+                }
+                catch (Exception e)
+                {
+                    Lib.LogError($"Discovery failed, falling back to hardcoded. {e}");
+                    Dictionary<string, string[]> fallback;
+                    if (Lib.AuroraChecksum != null && VersionedMappings.TryGetValue(Lib.AuroraChecksum, out fallback))
+                        ResolveHardcodedMapping(fallback);
+                    else
+                        Lib.LogError("No hardcoded fallback available either.");
+                }
+                return;
+            }
+
+            // Check if we have a hardcoded mapping for this Aurora version
+            var checksum = Lib.AuroraChecksum;
+            Dictionary<string, string[]> versionMapping;
+            if (checksum != null && VersionedMappings.TryGetValue(checksum, out versionMapping))
+            {
+                Lib.LogInfo($"Using hardcoded save mapping for Aurora checksum {checksum}");
+                ResolveHardcodedMapping(versionMapping);
+            }
+            else
+            {
+                // Unknown version — auto-discover via triggers
+                Lib.LogInfo($"No hardcoded mapping for Aurora checksum '{checksum}' — running auto-discovery");
+                try
+                {
+                    Lib.InvokeOnUIThread(new Action(() => DiscoverMapping()));
+                    return; // DiscoverMapping does its own full save
+                }
+                catch (Exception e)
+                {
+                    Lib.LogError($"Auto-discovery failed for unknown version. {e}");
+                }
+            }
+
+            // First time with hardcoded mapping: do a full save to populate the DB
+            try
+            {
+                var sw = Stopwatch.StartNew();
+                Lib.InvokeOnUIThread(new Action(() => SaveAll()));
+                _needsRefresh = false;
+                _freshTables.Clear();
+                sw.Stop();
+                Lib.LogInfo($"Initial full save took {sw.ElapsedMilliseconds} ms");
+            }
+            catch (Exception e)
+            {
+                Lib.LogError($"Initial save failed. {e}");
+            }
+        }
+
+        // =====================================================================
+        // Hardcoded mapping resolution
+        // =====================================================================
+
+        private void ResolveHardcodedMapping(Dictionary<string, string[]> mapping)
+        {
+            var methods = Lib.KnowledgeBase.GetSaveMethods();
+            var methodByName = new Dictionary<string, MethodInfo>();
+            foreach (var m in methods)
+                methodByName[m.Name] = m;
+
+            _methodToTables = new Dictionary<string, List<string>>();
+            _tableToMethods = new Dictionary<string, List<MethodInfo>>(StringComparer.OrdinalIgnoreCase);
+
+            int resolved = 0;
+            foreach (var kvp in mapping)
+            {
+                MethodInfo mi;
+                if (!methodByName.TryGetValue(kvp.Key, out mi))
+                {
+                    Lib.LogError($"Hardcoded method '{kvp.Key}' not found in save methods — checksum mismatch?");
+                    continue;
+                }
+
+                _methodToTables[kvp.Key] = new List<string>(kvp.Value);
+                resolved++;
+
+                foreach (var table in kvp.Value)
+                {
+                    if (!_tableToMethods.ContainsKey(table))
+                        _tableToMethods[table] = new List<MethodInfo>();
+                    _tableToMethods[table].Add(mi);
+                }
+            }
+
+            // Include methods with no known tables
+            foreach (var m in methods)
+            {
+                if (!_methodToTables.ContainsKey(m.Name))
+                    _methodToTables[m.Name] = new List<string>();
+            }
+
+            _mappingReady = true;
+            Lib.LogInfo($"Hardcoded mapping resolved: {resolved}/{mapping.Count} methods matched, {_tableToMethods.Count} tables");
+        }
+
+        // =====================================================================
+        // Selective refresh
+        // =====================================================================
+
+        private void RefreshForTables(string[] tables)
+        {
+            var staleTables = tables.Where(t => !_freshTables.Contains(t)).ToArray();
+            if (staleTables.Length == 0) return;
+
+            var methodsNeeded = new HashSet<MethodInfo>();
+            foreach (var table in staleTables)
+            {
+                List<MethodInfo> methods;
+                if (_tableToMethods.TryGetValue(table, out methods))
+                    foreach (var m in methods)
+                        methodsNeeded.Add(m);
+            }
+
+            if (methodsNeeded.Count == 0)
+            {
+                foreach (var t in staleTables)
+                    _freshTables.Add(t);
+                return;
+            }
+
+            try
+            {
+                var sw = Stopwatch.StartNew();
+                var methodList = methodsNeeded.ToList();
+
+                Lib.InvokeOnUIThread(new Action(() => SaveMethods(methodList)));
+
+                foreach (var t in staleTables)
+                    _freshTables.Add(t);
+
+                sw.Stop();
+                Lib.LogInfo($"Selective save: {methodList.Count} methods for [{string.Join(", ", staleTables)}] took {sw.ElapsedMilliseconds} ms");
+            }
+            catch (Exception e)
+            {
+                Lib.LogError($"DatabaseManager selective save failed. {e}");
+            }
+        }
+
+        // =====================================================================
+        // Trigger-based discovery (diagnostic / re-discovery)
+        // =====================================================================
+
+        private void DiscoverMapping()
+        {
+            var map = Lib.TacticalMap;
+            if (map == null) return;
+
+            var game = Lib.KnowledgeBase.GetGameState(map);
+            if (game == null) return;
+
+            var methods = Lib.KnowledgeBase.GetSaveMethods();
+            if (methods.Count == 0) return;
+
+            // Full save first so UPDATEs have data to hit
+            Lib.LogInfo("Mapping discovery: populating DB with full save...");
+            var swFull = Stopwatch.StartNew();
+            SaveMethods(methods, game);
+            swFull.Stop();
+            Lib.LogInfo($"Mapping discovery: full save took {swFull.ElapsedMilliseconds} ms");
+
+            var allTables = GetManagedTableNames();
+            allTables.RemoveAll(t => t.StartsWith("_mapping_"));
+            Lib.LogInfo($"Mapping discovery: {allTables.Count} tables, {methods.Count} save methods");
+
+            var methodToTables = new Dictionary<string, List<string>>();
+            var tableToMethods = new Dictionary<string, List<MethodInfo>>(StringComparer.OrdinalIgnoreCase);
+
+            SetupTrackingTriggers(allTables);
+
+            try
+            {
+                object reflectionConn = OpenReflectionConnection(methods[0]);
+
+                foreach (var method in methods)
+                {
+                    ClearTracking();
+                    method.Invoke(game, new object[] { reflectionConn });
+                    var touched = GetTrackedTables();
+
+                    methodToTables[method.Name] = touched;
+
+                    foreach (var table in touched)
+                    {
+                        if (!tableToMethods.ContainsKey(table))
+                            tableToMethods[table] = new List<MethodInfo>();
+                        tableToMethods[table].Add(method);
+                    }
+
+                    if (touched.Count > 0)
+                        Lib.LogInfo($"SaveMethod {method.Name} -> [{string.Join(", ", touched)}]");
+                }
+
+                reflectionConn.GetType().GetMethod("Close").Invoke(reflectionConn, new object[0]);
+            }
+            finally
+            {
+                CleanupTracking(allTables);
+            }
+
+            _methodToTables = methodToTables;
+            _tableToMethods = tableToMethods;
+            _mappingReady = true;
+
+            var tablesWithMethods = tableToMethods.Count;
+            var methodsWithTables = methodToTables.Count(kvp => kvp.Value.Count > 0);
+            Lib.LogInfo($"Mapping discovered: {methodsWithTables}/{methodToTables.Count} methods write to {tablesWithMethods} tables");
+        }
+
+        private void SetupTrackingTriggers(List<string> tables)
+        {
+            using (var cmd = Connection.CreateCommand())
+            {
+                cmd.CommandText = "CREATE TABLE IF NOT EXISTS _mapping_tracking (table_name TEXT)";
+                cmd.ExecuteNonQuery();
+            }
+
+            foreach (var table in tables)
+            {
+                var escaped = table.Replace("'", "''");
+                var quoted = "\"" + table.Replace("\"", "\"\"") + "\"";
+
+                foreach (var op in new[] { "INSERT", "UPDATE", "DELETE" })
+                {
+                    try
+                    {
+                        using (var cmd = Connection.CreateCommand())
+                        {
+                            cmd.CommandText =
+                                $"CREATE TRIGGER IF NOT EXISTS \"_track_{table}_{op}\" " +
+                                $"AFTER {op} ON {quoted} " +
+                                $"BEGIN INSERT INTO _mapping_tracking VALUES ('{escaped}'); END";
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Lib.LogDebug($"Failed to create trigger for {table}/{op}: {e.Message}");
+                    }
+                }
+            }
+        }
+
+        private void ClearTracking()
+        {
+            using (var cmd = Connection.CreateCommand())
+            {
+                cmd.CommandText = "DELETE FROM _mapping_tracking";
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        private List<string> GetTrackedTables()
+        {
+            var tables = new List<string>();
+            using (var cmd = Connection.CreateCommand())
+            {
+                cmd.CommandText = "SELECT DISTINCT table_name FROM _mapping_tracking";
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                        tables.Add(reader.GetString(0));
+                }
+            }
+            return tables;
+        }
+
+        private void CleanupTracking(List<string> tables)
+        {
+            foreach (var table in tables)
+            {
+                foreach (var op in new[] { "INSERT", "UPDATE", "DELETE" })
+                {
+                    try
+                    {
+                        using (var cmd = Connection.CreateCommand())
+                        {
+                            cmd.CommandText = $"DROP TRIGGER IF EXISTS \"_track_{table}_{op}\"";
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch { }
+                }
+            }
+
+            try
+            {
+                using (var cmd = Connection.CreateCommand())
+                {
+                    cmd.CommandText = "DROP TABLE IF EXISTS _mapping_tracking";
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch { }
+        }
+
+        // =====================================================================
+        // Save methods
+        // =====================================================================
+
+        private void SaveAll()
+        {
+            var map = Lib.TacticalMap;
+            if (map == null) return;
+
+            var game = Lib.KnowledgeBase.GetGameState(map);
+            if (game == null) return;
+
+            var methods = Lib.KnowledgeBase.GetSaveMethods();
+            if (methods.Count == 0) return;
+
+            SaveMethods(methods, game);
+        }
+
+        private void SaveMethods(List<MethodInfo> methods)
+        {
+            var map = Lib.TacticalMap;
+            if (map == null) return;
+
+            var game = Lib.KnowledgeBase.GetGameState(map);
+            if (game == null) return;
+
+            SaveMethods(methods, game);
+        }
+
+        private void SaveMethods(List<MethodInfo> methods, object game)
+        {
+            if (methods.Count == 0) return;
+
+            var connection = OpenReflectionConnection(methods[0]);
+            var transaction = BeginReflectionTransaction(connection);
+
+            foreach (var method in methods)
+            {
+                method.Invoke(game, new object[] { connection });
+                Lib.LogDebug($"Called function {method.Name}");
+            }
+
+            CommitAndClose(transaction, connection);
+        }
+
+        // =====================================================================
+        // Helpers
+        // =====================================================================
+
+        private void EnsureDatabase()
         {
             lock (this)
             {
@@ -72,118 +646,72 @@ namespace Lib
                     }
                 }
             }
+        }
 
-            lock (Connection)
+        private DataTable RunQuery(string sql)
+        {
+            try
             {
-                if (_needsRefresh)
+                using (var connection = new SQLiteConnection(Connection.ConnectionString))
+                using (var adapter = new SQLiteDataAdapter(sql, connection))
                 {
-                    try
-                    {
-                        var sw = new Stopwatch();
-                        sw.Start();
-
-                        Lib.InvokeOnUIThread(new Action(() => Save()));
-                        _needsRefresh = false;
-
-                        sw.Stop();
-                        Lib.LogInfo($"In-memory save took {sw.ElapsedMilliseconds} ms");
-                    }
-                    catch (Exception e)
-                    {
-                        Lib.LogError($"DatabaseManager failed to save. {e}");
-                    }
-                }
-
-                try
-                {
-                    using (var connection = new SQLiteConnection(Connection.ConnectionString))
-                    using (var adapter = new SQLiteDataAdapter(query, connection))
-                    {
-                        connection.Open();
-
-                        var data = new DataSet();
-                        adapter.Fill(data, "RecordSet");
-
-                        connection.Close();
-
-                        return data.Tables["RecordSet"];
-                    }
-                }
-                catch (Exception e)
-                {
-                    Lib.LogError($"DatabaseManager failed to run query {query}. {e}");
+                    connection.Open();
+                    var data = new DataSet();
+                    adapter.Fill(data, "RecordSet");
+                    connection.Close();
+                    return data.Tables["RecordSet"];
                 }
             }
-
+            catch (Exception e)
+            {
+                Lib.LogError($"DatabaseManager failed to run query {sql}. {e}");
+            }
             return null;
         }
 
-        private void Save()
+        private object OpenReflectionConnection(MethodInfo anyMethod)
         {
-            var map = Lib.TacticalMap;
-            if (map == null)
-            {
-                return;
-            }
+            var type = anyMethod.GetParameters()[0].ParameterType;
+            var connection = Activator.CreateInstance(type, Connection.ConnectionString);
+            connection.GetType().GetMethod("Open").Invoke(connection, new object[0]);
+            return connection;
+        }
 
-            var game = Lib.KnowledgeBase.GetGameState(map);
-            if (game == null)
-            {
-                return;
-            }
+        private object BeginReflectionTransaction(object connection)
+        {
+            var beginTransaction = connection.GetType().GetMethods().Single(m =>
+                m.Name == "BeginTransaction"
+                && m.ReturnType.Name == "SQLiteTransaction"
+                && m.GetParameters().Count() == 0);
 
-            var methods = Lib.KnowledgeBase.GetSaveMethods();
-            if (methods.Count == 0)
-            {
-                return;
-            }
+            return beginTransaction.Invoke(connection, new object[0]);
+        }
 
-            object connection = null;
-            object transaction = null;
-            foreach (var method in methods)
-            {
-                if (connection == null)
-                {
-                    var type = method.GetParameters()[0].ParameterType;
-                    connection = Activator.CreateInstance(type, Connection.ConnectionString);
-                    connection.GetType().GetMethod("Open").Invoke(connection, new object[0]);
-
-                    var begintransaction = connection.GetType().GetMethods().Single(m =>
-                    {
-                        if (m.Name != "BeginTransaction")
-                        {
-                            return false;
-                        }
-
-                        if (m.ReturnType.Name != "SQLiteTransaction")
-                        {
-                            return false;
-                        }
-
-                        if (m.GetParameters().Count() != 0)
-                        {
-                            return false;
-                        }
-
-                        return true;
-                    });
-
-                    transaction = begintransaction.Invoke(connection, new object[0]);
-                }
-
-                method.Invoke(game, new object[] { connection });
-                Lib.LogDebug($"Called function {method.Name}");
-            }
-
+        private void CommitAndClose(object transaction, object connection)
+        {
             if (transaction != null)
-            {
                 transaction.GetType().GetMethod("Commit").Invoke(transaction, new object[0]);
-            }
-
             if (connection != null)
-            {
                 connection.GetType().GetMethod("Close").Invoke(connection, new object[0]);
+        }
+
+        private List<string> GetManagedTableNames()
+        {
+            var tables = new List<string>();
+            using (var cmd = Connection.CreateCommand())
+            {
+                cmd.CommandText = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name";
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var name = reader.GetString(0);
+                        if (!string.IsNullOrEmpty(name))
+                            tables.Add(name);
+                    }
+                }
             }
+            return tables;
         }
 
         private void GenerateDatabase()

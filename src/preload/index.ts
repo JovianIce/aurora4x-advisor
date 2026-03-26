@@ -104,6 +104,9 @@ const api = {
     getFleets: () => ipcRenderer.invoke('bridge:getFleets'),
     // SQL + actions
     query: (sql: string) => ipcRenderer.invoke('bridge:query', sql),
+    queryFull: (sql: string) => ipcRenderer.invoke('bridge:queryFull', sql),
+    getTableMapping: () => ipcRenderer.invoke('bridge:getTableMapping'),
+    rediscoverMapping: () => ipcRenderer.invoke('bridge:rediscoverMapping'),
     getAllTables: () => ipcRenderer.invoke('bridge:getAllTables'),
     getTableInfo: (tableName: string) => ipcRenderer.invoke('bridge:getTableInfo', tableName),
     executeAction: (action: unknown) => ipcRenderer.invoke('bridge:executeAction', action),
