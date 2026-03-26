@@ -181,6 +181,54 @@ interface BridgeAPI {
   }) => Promise<Record<string, unknown>[]>
 }
 
+interface OpsAPI {
+  getShips: () => Promise<{ ships: unknown[]; gameTime: number }>
+  getClasses: () => Promise<unknown[]>
+  getClassDetail: (classId: number) => Promise<{ class: unknown; components: unknown[] }>
+  computeRoute: (req: unknown) => Promise<unknown>
+  computeFleetRoute: (req: unknown) => Promise<unknown>
+  getWaypoints: () => Promise<unknown[]>
+  getFleets: () => Promise<unknown[]>
+  getMineralTotals: () => Promise<{ totals: Record<string, number>; byColony: unknown[] }>
+  getMineralHistory: (
+    resolution?: string,
+    populationId?: number | null
+  ) => Promise<{ resolution: string; populationId: number | null; series: unknown[] }>
+  getMineralBreakdown: (
+    mineralId: number,
+    resolution?: string
+  ) => Promise<{ mineralId: number; mineralName: string; resolution: string; series: unknown[] }>
+  getMineralColonies: () => Promise<unknown[]>
+  getGameDate: () => Promise<{
+    gameTime: number
+    startYear: number
+    year: number
+    month: number
+    day: number
+    hours: number
+    minutes: number
+    seconds: number
+    formatted: string
+  } | null>
+  getResearchOverview: () => Promise<{
+    techs: unknown[]
+    projects: unknown[]
+    categories: unknown[]
+  }>
+}
+
+interface FleetFiltersAPI {
+  load: () => Promise<unknown[]>
+  save: (filters: unknown) => Promise<void>
+}
+
+interface RoutesAPI {
+  load: () => Promise<unknown[]>
+  add: (route: unknown) => Promise<unknown[]>
+  remove: (routeId: string) => Promise<unknown[]>
+  update: (routeId: string, patch: unknown) => Promise<unknown[]>
+}
+
 declare global {
   interface Window {
     electron: ElectronAPI
@@ -191,6 +239,9 @@ declare global {
       settings: SettingsAPI
       dbWatcher: DbWatcherAPI
       bridge: BridgeAPI
+      ops: OpsAPI
+      fleetFilters: FleetFiltersAPI
+      routes: RoutesAPI
     }
   }
 }
