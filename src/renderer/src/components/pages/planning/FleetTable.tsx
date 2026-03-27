@@ -25,7 +25,10 @@ function DeployCell({ value, ship }: { value: number | null; ship: Ship }): Reac
   if (ship.fighter) return <span style={{ color: 'var(--cic-cyan-dim)' }}>Fighter</span>
   if (ship.commercial) return <span style={{ color: 'var(--cic-cyan-dim)' }}>—</span>
   if (value == null) return <span style={{ color: 'var(--cic-cyan-dim)' }}>—</span>
-  if (value < 0) return <span style={{ color: 'var(--cic-red)', fontWeight: 500 }}>{Math.abs(value)}mo OVER</span>
+  if (value < 0)
+    return (
+      <span style={{ color: 'var(--cic-red)', fontWeight: 500 }}>{Math.abs(value)}mo OVER</span>
+    )
   if (value < 6) return <span style={{ color: 'var(--cic-amber)' }}>{value}mo</span>
   return <span>{value}mo</span>
 }
@@ -127,10 +130,16 @@ function saveSettings(settings: Record<string, unknown>): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
 }
 
-export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTableProps): React.JSX.Element {
+export function FleetTable({
+  ships,
+  onSelectShip,
+  selectedShipId
+}: FleetTableProps): React.JSX.Element {
   const saved = loadSettings()
   const [sorting, setSorting] = useState<SortingState>((saved?.sorting as SortingState) || [])
-  const [grouping, setGrouping] = useState<GroupingState>((saved?.grouping as GroupingState) || ['fleet'])
+  const [grouping, setGrouping] = useState<GroupingState>(
+    (saved?.grouping as GroupingState) || ['fleet']
+  )
   const [expanded, setExpanded] = useState<ExpandedState>(true)
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [globalFilter, setGlobalFilter] = useState('')
@@ -154,7 +163,7 @@ export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTablePr
     let result = ships
     if (filterMode === 'military') result = result.filter((s) => s.military || s.fighter)
     else if (filterMode === 'commercial') result = result.filter((s) => s.commercial && !s.fighter)
-    result = applyGroupFilters(result, filterGroups)
+    result = applyGroupFilters(result as unknown as Record<string, unknown>[], filterGroups) as unknown as Ship[]
     return result
   }, [ships, filterMode, filterGroups])
 
@@ -189,10 +198,7 @@ export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTablePr
   const virtualizer = useVirtualizer({
     count: rows.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: useCallback(
-      (index: number) => (rows[index]?.getIsGrouped() ? 18 : 16),
-      [rows]
-    ),
+    estimateSize: useCallback((index: number) => (rows[index]?.getIsGrouped() ? 18 : 16), [rows]),
     overscan: 20
   })
 
@@ -309,7 +315,13 @@ export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTablePr
         <div className="flex-1" />
 
         <div className="flex items-center gap-1">
-          {([['all', 'All'], ['military', 'MIL'], ['commercial', 'COMM']] as const).map(([mode, label]) => (
+          {(
+            [
+              ['all', 'All'],
+              ['military', 'MIL'],
+              ['commercial', 'COMM']
+            ] as const
+          ).map(([mode, label]) => (
             <button
               key={mode}
               onClick={() => {
@@ -332,7 +344,14 @@ export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTablePr
           ))}
         </div>
 
-        <span style={{ fontSize: 10, color: 'var(--cic-cyan-dim)', marginLeft: 4, whiteSpace: 'nowrap' }}>
+        <span
+          style={{
+            fontSize: 10,
+            color: 'var(--cic-cyan-dim)',
+            marginLeft: 4,
+            whiteSpace: 'nowrap'
+          }}
+        >
           {filteredShips.length} ship{filteredShips.length !== 1 ? 's' : ''}
         </span>
       </div>
@@ -343,25 +362,26 @@ export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTablePr
       </div>
 
       {/* Active filter summary */}
-      {filterGroups.length > 0 && (() => {
-        const summary = summarizeGroups(filterGroups)
-        return summary ? (
-          <div
-            style={{
-              padding: '2px 8px',
-              borderBottom: '1px solid var(--cic-panel-edge)',
-              fontSize: 8,
-              color: 'var(--cic-cyan-dim)',
-              lineHeight: 1.4,
-              maxHeight: 28,
-              overflow: 'hidden',
-              fontFamily: 'monospace'
-            }}
-          >
-            {summary}
-          </div>
-        ) : null
-      })()}
+      {filterGroups.length > 0 &&
+        (() => {
+          const summary = summarizeGroups(filterGroups)
+          return summary ? (
+            <div
+              style={{
+                padding: '2px 8px',
+                borderBottom: '1px solid var(--cic-panel-edge)',
+                fontSize: 8,
+                color: 'var(--cic-cyan-dim)',
+                lineHeight: 1.4,
+                maxHeight: 28,
+                overflow: 'hidden',
+                fontFamily: 'monospace'
+              }}
+            >
+              {summary}
+            </div>
+          ) : null
+        })()}
 
       {/* Table */}
       <div ref={parentRef} className="flex-1 overflow-auto">
@@ -377,7 +397,9 @@ export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTablePr
                         ? header.column.getToggleSortingHandler()
                         : undefined
                     }
-                    className={header.column.getCanSort() ? 'cursor-pointer select-none' : 'select-none'}
+                    className={
+                      header.column.getCanSort() ? 'cursor-pointer select-none' : 'select-none'
+                    }
                     style={{ ...thStyle, width: header.getSize() }}
                   >
                     <div className="flex items-center gap-1">
@@ -434,13 +456,26 @@ export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTablePr
                           </span>
                         )}
                         {cell.column.id === 'system' && system && (
-                          <span style={{ fontSize: 8, color: system === 'Transit' ? 'var(--cic-amber)' : 'var(--cic-cyan-dim)', whiteSpace: 'nowrap' }}>
+                          <span
+                            style={{
+                              fontSize: 8,
+                              color:
+                                system === 'Transit' ? 'var(--cic-amber)' : 'var(--cic-cyan-dim)',
+                              whiteSpace: 'nowrap'
+                            }}
+                          >
                             {system}
                           </span>
                         )}
                         {cell.column.id === 'fuelPct' && <FuelBar pct={avgFuel} />}
                         {cell.column.id === 'deploymentRemaining' && (
-                          <span style={{ fontSize: 8, color: 'var(--cic-cyan-dim)', whiteSpace: 'nowrap' }}>
+                          <span
+                            style={{
+                              fontSize: 8,
+                              color: 'var(--cic-cyan-dim)',
+                              whiteSpace: 'nowrap'
+                            }}
+                          >
                             {ships.length} ship{ships.length !== 1 ? 's' : ''}
                           </span>
                         )}
@@ -459,7 +494,8 @@ export function FleetTable({ ships, onSelectShip, selectedShipId }: FleetTablePr
                     background: isSelected ? 'rgba(0,229,255,0.08)' : undefined
                   }}
                   onMouseEnter={(e) => {
-                    if (!isSelected) (e.currentTarget as HTMLElement).style.background = 'rgba(0,229,255,0.04)'
+                    if (!isSelected)
+                      (e.currentTarget as HTMLElement).style.background = 'rgba(0,229,255,0.04)'
                   }}
                   onMouseLeave={(e) => {
                     if (!isSelected) (e.currentTarget as HTMLElement).style.background = ''

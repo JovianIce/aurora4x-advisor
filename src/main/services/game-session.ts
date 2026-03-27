@@ -62,7 +62,9 @@ class GameSessionService extends EventEmitter {
    * Set the current game by UUID. Returns the resulting state.
    * Blocked if bridge is connected and game doesn't match.
    */
-  async setCurrentGame(gameId: string | null): Promise<{ accepted: boolean; reason?: string; state: GameSessionState }> {
+  async setCurrentGame(
+    gameId: string | null
+  ): Promise<{ accepted: boolean; reason?: string; state: GameSessionState }> {
     if (!gameId) {
       this._currentGame = null
       this.emit('gameChanged', null)
@@ -95,7 +97,9 @@ class GameSessionService extends EventEmitter {
     this._currentGame = game
     this.emit('gameChanged', game)
     await updateGameLastAccessed(gameId)
-    console.log(`[GameSession] Selected: "${game.gameInfo.gameName}" (GameID=${game.gameInfo.auroraGameId})`)
+    console.log(
+      `[GameSession] Selected: "${game.gameInfo.gameName}" (GameID=${game.gameInfo.auroraGameId})`
+    )
     this.broadcastState()
     return { accepted: true, state: this.getState() }
   }
@@ -116,9 +120,7 @@ class GameSessionService extends EventEmitter {
    * Detect which game Aurora is running and auto-lock.
    * Called when bridge connects or when the title bar empire name changes.
    */
-  async detectAndLockRunningGame(
-    queryFn: <T>(sql: string) => Promise<T[]>
-  ): Promise<void> {
+  async detectAndLockRunningGame(queryFn: <T>(sql: string) => Promise<T[]>): Promise<void> {
     try {
       const rows = await queryFn<{ GameID: number; GameName: string }>(
         'SELECT GameID, GameName FROM FCT_Game ORDER BY LastViewed DESC LIMIT 1'
@@ -129,7 +131,9 @@ class GameSessionService extends EventEmitter {
       this._runningGameId = auroraGame.GameID
       this._runningGameName = auroraGame.GameName
 
-      console.log(`[GameSession] Aurora running: "${auroraGame.GameName}" (ID=${auroraGame.GameID})`)
+      console.log(
+        `[GameSession] Aurora running: "${auroraGame.GameName}" (ID=${auroraGame.GameID})`
+      )
 
       // Find matching campaign (GameID + GameName to handle different DB installations)
       const games = await loadGames()
@@ -185,8 +189,13 @@ class GameSessionService extends EventEmitter {
     if (!bridgeDbPath || !configuredDbPath) return
     const normalize = (p: string): string => p.replace(/\\/g, '/').toLowerCase()
     if (normalize(bridgeDbPath) !== normalize(configuredDbPath)) {
-      console.warn(`[GameSession] DB path mismatch: bridge="${bridgeDbPath}" config="${configuredDbPath}"`)
-      this.broadcast('bridge:dbPathMismatch', { bridgePath: bridgeDbPath, configPath: configuredDbPath })
+      console.warn(
+        `[GameSession] DB path mismatch: bridge="${bridgeDbPath}" config="${configuredDbPath}"`
+      )
+      this.broadcast('bridge:dbPathMismatch', {
+        bridgePath: bridgeDbPath,
+        configPath: configuredDbPath
+      })
     }
   }
 

@@ -321,12 +321,7 @@ export function SystemMapCanvas({
         const pos = posMap.get(body.SystemBodyID)
         if (!pos) continue
         const screen = auToCanvas(pos, viewport)
-        if (
-          screen.cx < -50 ||
-          screen.cx > width + 50 ||
-          screen.cy < -50 ||
-          screen.cy > height + 50
-        )
+        if (screen.cx < -50 || screen.cx > width + 50 || screen.cy < -50 || screen.cy > height + 50)
           continue
 
         const moon = isMoon(body)
@@ -361,12 +356,7 @@ export function SystemMapCanvas({
         const pos = posMap.get(body.SystemBodyID)
         if (!pos) continue
         const screen = auToCanvas(pos, viewport)
-        if (
-          screen.cx < -50 ||
-          screen.cx > width + 50 ||
-          screen.cy < -50 ||
-          screen.cy > height + 50
-        )
+        if (screen.cx < -50 || screen.cx > width + 50 || screen.cy < -50 || screen.cy > height + 50)
           continue
 
         const moon = isMoon(body)

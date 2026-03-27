@@ -6,7 +6,6 @@ import type {
   RouteLeg,
   RouteResult,
   RouteRequest,
-  FleetRouteWaypoint,
   FleetRouteRequest,
   ShipFuelLeg,
   FleetRouteLeg,
@@ -191,7 +190,11 @@ async function buildRouteLegs(
   return { legs, network, sysName }
 }
 
-export async function computeRoute(query: QueryFn, ctx: GameCtx, req: RouteRequest): Promise<RouteResult> {
+export async function computeRoute(
+  query: QueryFn,
+  ctx: GameCtx,
+  req: RouteRequest
+): Promise<RouteResult> {
   const classRows = await query<{
     ClassName: string
     MaxSpeed: number
@@ -516,7 +519,17 @@ export async function getFleets(query: QueryFn, ctx: GameCtx): Promise<Fleet[]> 
   )
 
   // Build class → JD info map
-  const classJD = new Map<number, { name: string; isMilJD: boolean; isCommJD: boolean; maxTonnage: number; squadMax: number; radius: number }>()
+  const classJD = new Map<
+    number,
+    {
+      name: string
+      isMilJD: boolean
+      isCommJD: boolean
+      maxTonnage: number
+      squadMax: number
+      radius: number
+    }
+  >()
   for (const jd of jdRows) {
     const isMilJD = jd.JDName.includes('Military')
     const isCommJD = jd.JDName.includes('Commercial')
@@ -573,12 +586,30 @@ export async function getFleets(query: QueryFn, ctx: GameCtx): Promise<Fleet[]> 
 
 function analyzeFleetJump(
   ships: FleetShip[],
-  classJD: Map<number, { name: string; isMilJD: boolean; isCommJD: boolean; maxTonnage: number; squadMax: number; radius: number }>
+  classJD: Map<
+    number,
+    {
+      name: string
+      isMilJD: boolean
+      isCommJD: boolean
+      maxTonnage: number
+      squadMax: number
+      radius: number
+    }
+  >
 ): JumpAnalysis {
   const shipsWithoutJD = ships.filter((s) => !s.jumpCapable)
 
   if (shipsWithoutJD.length === 0) {
-    return { allJumpCapable: true, shipsWithoutJD: [], milTender: null, commTender: null, uncoveredShips: [], status: 'ok' }
+    return {
+      allJumpCapable: true,
+      shipsWithoutJD: [],
+      milTender: null,
+      commTender: null,
+      uncoveredShips: [],
+      squadCapWarning: null,
+      status: 'ok'
+    }
   }
 
   // Find best military and commercial tenders in fleet
@@ -593,11 +624,21 @@ function analyzeFleetJump(
     if (!jd) continue
 
     if (jd.isMilJD && (!milTender || jd.maxTonnage > milTender.maxTonnage)) {
-      milTender = { shipName: s.shipName, className: s.className, maxTonnage: jd.maxTonnage, squadMax: jd.squadMax }
+      milTender = {
+        shipName: s.shipName,
+        className: s.className,
+        maxTonnage: jd.maxTonnage,
+        squadMax: jd.squadMax
+      }
       milSquadMax = jd.squadMax
     }
     if (jd.isCommJD && (!commTender || jd.maxTonnage > commTender.maxTonnage)) {
-      commTender = { shipName: s.shipName, className: s.className, maxTonnage: jd.maxTonnage, squadMax: jd.squadMax }
+      commTender = {
+        shipName: s.shipName,
+        className: s.className,
+        maxTonnage: jd.maxTonnage,
+        squadMax: jd.squadMax
+      }
       commSquadMax = jd.squadMax
     }
   }
@@ -614,18 +655,29 @@ function analyzeFleetJump(
   // Check military ships
   if (milNeeding.length > 0) {
     if (!milTender) {
-      for (const s of milNeeding) uncoveredShips.push({ shipName: s.shipName, className: s.className, reason: 'No mil squad jump' })
+      for (const s of milNeeding)
+        uncoveredShips.push({
+          shipName: s.shipName,
+          className: s.className,
+          reason: 'No mil squad jump'
+        })
     } else {
       // Check tonnage per ship
       for (const s of milNeeding) {
         if (s.tonnage > milTender.maxTonnage) {
-          uncoveredShips.push({ shipName: s.shipName, className: s.className, reason: `Too heavy (${s.tonnage.toLocaleString()}t > ${milTender.maxTonnage.toLocaleString()}t)` })
+          uncoveredShips.push({
+            shipName: s.shipName,
+            className: s.className,
+            reason: `Too heavy (${s.tonnage.toLocaleString()}t > ${milTender.maxTonnage.toLocaleString()}t)`
+          })
         }
       }
       // Check squad count
       const fittingMil = milNeeding.filter((s) => s.tonnage <= milTender!.maxTonnage)
       if (milSquadMax > 0 && fittingMil.length > milSquadMax) {
-        squadWarnings.push(`${fittingMil.length} mil ships need jump, squad max ${milSquadMax} per jump`)
+        squadWarnings.push(
+          `${fittingMil.length} mil ships need jump, squad max ${milSquadMax} per jump`
+        )
       }
     }
   }
@@ -633,16 +685,27 @@ function analyzeFleetJump(
   // Check commercial ships
   if (commNeeding.length > 0) {
     if (!commTender) {
-      for (const s of commNeeding) uncoveredShips.push({ shipName: s.shipName, className: s.className, reason: 'No comm squad jump' })
+      for (const s of commNeeding)
+        uncoveredShips.push({
+          shipName: s.shipName,
+          className: s.className,
+          reason: 'No comm squad jump'
+        })
     } else {
       for (const s of commNeeding) {
         if (s.tonnage > commTender.maxTonnage) {
-          uncoveredShips.push({ shipName: s.shipName, className: s.className, reason: `Too heavy (${s.tonnage.toLocaleString()}t > ${commTender.maxTonnage.toLocaleString()}t)` })
+          uncoveredShips.push({
+            shipName: s.shipName,
+            className: s.className,
+            reason: `Too heavy (${s.tonnage.toLocaleString()}t > ${commTender.maxTonnage.toLocaleString()}t)`
+          })
         }
       }
       const fittingComm = commNeeding.filter((s) => s.tonnage <= commTender!.maxTonnage)
       if (commSquadMax > 0 && fittingComm.length > commSquadMax) {
-        squadWarnings.push(`${fittingComm.length} comm ships need jump, squad max ${commSquadMax} per jump`)
+        squadWarnings.push(
+          `${fittingComm.length} comm ships need jump, squad max ${commSquadMax} per jump`
+        )
       }
     }
   }
@@ -650,7 +713,10 @@ function analyzeFleetJump(
   return {
     allJumpCapable: false,
     shipsWithoutJD: shipsWithoutJD.map((s) => ({
-      shipName: s.shipName, className: s.className, isMilitary: s.isMilitary, isCommercial: s.isCommercial
+      shipName: s.shipName,
+      className: s.className,
+      isMilitary: s.isMilitary,
+      isCommercial: s.isCommercial
     })),
     milTender,
     commTender,

@@ -7,7 +7,13 @@ import type { Ship } from '@renderer/hooks/use-data'
 
 type PlanningView = 'fleet' | 'route' | 'minerals' | 'research'
 
-function TabPane({ visible, children }: { visible: boolean; children: React.ReactNode }): React.JSX.Element {
+function TabPane({
+  visible,
+  children
+}: {
+  visible: boolean
+  children: React.ReactNode
+}): React.JSX.Element {
   return (
     <div
       className="absolute inset-0"
@@ -76,7 +82,8 @@ export function PlanningLayout(): React.JSX.Element {
             className="cic-btn"
             style={{
               color: activeTab === t.key ? 'var(--cic-cyan)' : 'var(--cic-cyan-dim)',
-              borderBottom: activeTab === t.key ? '2px solid var(--cic-cyan)' : '2px solid transparent',
+              borderBottom:
+                activeTab === t.key ? '2px solid var(--cic-cyan)' : '2px solid transparent',
               fontWeight: activeTab === t.key ? 600 : 400
             }}
             onClick={() => setActiveTab(t.key)}

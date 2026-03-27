@@ -179,7 +179,13 @@ export interface FleetShip {
   tonnage: number
   isTanker: boolean
   jumpCapable: boolean
-  jumpDriveInfo: { name: string; type: string; maxTonnage: number; squadMax: number; radius: number } | null
+  jumpDriveInfo: {
+    name: string
+    type: string
+    maxTonnage: number
+    squadMax: number
+    radius: number
+  } | null
   isMilitary: boolean
   isCommercial: boolean
 }
@@ -241,6 +247,8 @@ export interface MineralBreakdownResponse {
 }
 
 // --- Hooks ---
+
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 export function useShips(enabled = true) {
   return useQuery({
@@ -332,7 +340,10 @@ export function useMineralBreakdown(mineralId: number | null, resolution: string
   return useQuery({
     queryKey: ['ops', 'mineralBreakdown', mineralId, resolution],
     queryFn: () =>
-      window.api.ops.getMineralBreakdown(mineralId!, resolution) as Promise<MineralBreakdownResponse>,
+      window.api.ops.getMineralBreakdown(
+        mineralId!,
+        resolution
+      ) as Promise<MineralBreakdownResponse>,
     enabled: enabled && mineralId != null && mineralId > 0,
     staleTime: 30_000
   })
@@ -350,8 +361,7 @@ export function useMineralColonies(enabled = true) {
 export function useResearchOverview(enabled = true) {
   return useQuery({
     queryKey: ['ops', 'researchOverview'],
-    queryFn: () =>
-      window.api.ops.getResearchOverview() as Promise<ResearchOverview>,
+    queryFn: () => window.api.ops.getResearchOverview() as Promise<ResearchOverview>,
     staleTime: 300_000,
     enabled
   })
@@ -365,8 +375,7 @@ export function useComputeRoute() {
 
 export function useComputeFleetRoute() {
   return useMutation({
-    mutationFn: (req: unknown) =>
-      window.api.ops.computeFleetRoute(req) as Promise<FleetRouteResult>
+    mutationFn: (req: unknown) => window.api.ops.computeFleetRoute(req) as Promise<FleetRouteResult>
   })
 }
 
@@ -414,4 +423,3 @@ export interface ResearchOverview {
   projects: ResearchProject[]
   categories: TechCategory[]
 }
-

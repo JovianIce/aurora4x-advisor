@@ -7,7 +7,11 @@ import {
   DEFAULT_DISPLAY_OPTIONS,
   type MapDisplayOptions
 } from '../../system-map/DisplayOptions'
-import { useRealtimeBodies, useRealtimeSystems, useRealtimeFleets } from '@renderer/hooks/use-realtime'
+import {
+  useRealtimeBodies,
+  useRealtimeSystems,
+  useRealtimeFleets
+} from '@renderer/hooks/use-realtime'
 import type { MemorySystemBody } from '@renderer/types/aurora'
 import type { GameSession, SystemBody } from '@shared/types'
 

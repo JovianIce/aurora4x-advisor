@@ -8,12 +8,8 @@ import { type ReactNode, useState } from 'react'
 // --- Fuel Bar ---
 
 export function FuelBar({ pct }: { pct: number | null }): React.JSX.Element {
-  if (pct == null)
-    return (
-      <span style={{ fontSize: 8, color: 'var(--cic-cyan-dim)' }}>—</span>
-    )
-  const color =
-    pct > 60 ? 'var(--cic-green)' : pct > 25 ? 'var(--cic-amber)' : 'var(--cic-red)'
+  if (pct == null) return <span style={{ fontSize: 8, color: 'var(--cic-cyan-dim)' }}>—</span>
+  const color = pct > 60 ? 'var(--cic-green)' : pct > 25 ? 'var(--cic-amber)' : 'var(--cic-red)'
   return (
     <div className="flex items-center gap-1">
       <div
@@ -142,9 +138,7 @@ export function InfoCard({
         {label}
       </div>
       <div style={{ fontSize: 12, fontWeight: 600, color: valueColor }}>{value}</div>
-      {sub && (
-        <div style={{ fontSize: 9, color: 'var(--cic-cyan-dim)', marginTop: 2 }}>{sub}</div>
-      )}
+      {sub && <div style={{ fontSize: 9, color: 'var(--cic-cyan-dim)', marginTop: 2 }}>{sub}</div>}
     </div>
   )
 }

@@ -110,13 +110,9 @@ const api = {
         ipcRenderer.removeListener('bridge:dbPathMismatch', subscription)
       }
     },
-    onNoMatchingCampaign: (
-      callback: (data: { gameName: string }) => void
-    ): (() => void) => {
-      const subscription = (
-        _event: IpcRendererEvent,
-        data: { gameName: string }
-      ): void => callback(data)
+    onNoMatchingCampaign: (callback: (data: { gameName: string }) => void): (() => void) => {
+      const subscription = (_event: IpcRendererEvent, data: { gameName: string }): void =>
+        callback(data)
       ipcRenderer.on('bridge:noMatchingCampaign', subscription)
       return (): void => {
         ipcRenderer.removeListener('bridge:noMatchingCampaign', subscription)

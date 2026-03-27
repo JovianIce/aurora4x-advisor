@@ -208,10 +208,7 @@ export async function getMineralBreakdown(
   )
 
   const bucket = bucketSize(resolution)
-  const buckets = new Map<
-    number,
-    { income: Map<string, number>; expense: Map<string, number> }
-  >()
+  const buckets = new Map<number, { income: Map<string, number>; expense: Map<string, number> }>()
 
   for (const r of rows) {
     const time = r.Time

@@ -153,9 +153,7 @@ interface BridgeAPI {
   onDbPathMismatch: (
     callback: (data: { bridgePath: string; configPath: string }) => void
   ) => () => void
-  onNoMatchingCampaign: (
-    callback: (data: { gameName: string }) => void
-  ) => () => void
+  onNoMatchingCampaign: (callback: (data: { gameName: string }) => void) => () => void
   onPush: (callback: (data: unknown) => void) => () => void
   // Game session (main process owns state)
   getSessionState: () => Promise<unknown>

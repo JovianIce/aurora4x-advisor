@@ -217,7 +217,11 @@ export function SavedRoutesPanel({
   if (!isOpen) {
     return (
       <button
-        onClick={() => { loadRoutes().then(setRoutes); setSearch(''); setIsOpen(true) }}
+        onClick={() => {
+          loadRoutes().then(setRoutes)
+          setSearch('')
+          setIsOpen(true)
+        }}
         className="cursor-pointer"
         style={{
           width: '100%',
@@ -262,7 +266,9 @@ export function SavedRoutesPanel({
             Saved Routes
           </span>
           <span style={{ fontSize: 9, color: 'var(--cic-cyan-dim)' }}>
-            {search ? `${filtered.length} of ${routes.length}` : `${routes.length} route${routes.length !== 1 ? 's' : ''}`}
+            {search
+              ? `${filtered.length} of ${routes.length}`
+              : `${routes.length} route${routes.length !== 1 ? 's' : ''}`}
           </span>
         </div>
 
@@ -289,13 +295,27 @@ export function SavedRoutesPanel({
         {/* Route list */}
         <div className="flex-1 overflow-auto" style={{ padding: '4px 0' }}>
           {routes.length === 0 && (
-            <div style={{ padding: 20, fontSize: 10, color: 'var(--cic-cyan-dim)', textAlign: 'center' }}>
-              No saved routes. Compute a route and click "Save Route".
+            <div
+              style={{
+                padding: 20,
+                fontSize: 10,
+                color: 'var(--cic-cyan-dim)',
+                textAlign: 'center'
+              }}
+            >
+              No saved routes. Compute a route and click &quot;Save Route&quot;.
             </div>
           )}
           {filtered.length === 0 && routes.length > 0 && (
-            <div style={{ padding: 20, fontSize: 10, color: 'var(--cic-cyan-dim)', textAlign: 'center' }}>
-              No routes match "{search}"
+            <div
+              style={{
+                padding: 20,
+                fontSize: 10,
+                color: 'var(--cic-cyan-dim)',
+                textAlign: 'center'
+              }}
+            >
+              No routes match &quot;{search}&quot;
             </div>
           )}
           {filtered.map((route) => (
@@ -355,9 +375,8 @@ function RouteCard({
 }): React.JSX.Element {
   const [showClassPicker, setShowClassPicker] = useState(false)
 
-  const wpSummary = route.waypoints.length > 0
-    ? ` via ${route.waypoints.map((w) => w.systemName).join(', ')}`
-    : ''
+  const wpSummary =
+    route.waypoints.length > 0 ? ` via ${route.waypoints.map((w) => w.systemName).join(', ')}` : ''
 
   return (
     <div
@@ -409,7 +428,8 @@ function RouteCard({
 
       {/* Route summary */}
       <div style={{ fontSize: 9, color: 'var(--cic-cyan-dim)', marginBottom: 3 }}>
-        {route.startSystemName} → {route.endSystemName}{wpSummary}
+        {route.startSystemName} → {route.endSystemName}
+        {wpSummary}
       </div>
 
       {/* Class assignment */}

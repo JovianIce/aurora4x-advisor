@@ -11,27 +11,45 @@ export function ResearchTab({ active = true }: { active?: boolean } = {}): React
   const { data, isLoading, error } = useResearchOverview(active)
 
   const savedResearch = (() => {
-    try { return JSON.parse(localStorage.getItem('aurora-planning-research') || '{}') }
-    catch { return {} }
+    try {
+      return JSON.parse(localStorage.getItem('aurora-planning-research') || '{}')
+    } catch {
+      return {}
+    }
   })()
   const saveResearch = (patch: Record<string, unknown>): void => {
     try {
       const prev = JSON.parse(localStorage.getItem('aurora-planning-research') || '{}')
       localStorage.setItem('aurora-planning-research', JSON.stringify({ ...prev, ...patch }))
-    } catch { /* ignore */ }
+    } catch {
+      /* ignore */
+    }
   }
 
-  const [selectedField, setSelectedFieldRaw] = useState<number | null>(savedResearch.selectedField ?? null)
+  const [selectedField, setSelectedFieldRaw] = useState<number | null>(
+    savedResearch.selectedField ?? null
+  )
   const [searchTerm, setSearchTerm] = useState('')
-  const [showFilter, setShowFilterRaw] = useState<'all' | 'researched' | 'available'>(savedResearch.showFilter || 'available')
+  const [showFilter, setShowFilterRaw] = useState<'all' | 'researched' | 'available'>(
+    savedResearch.showFilter || 'available'
+  )
   const [selectedTech, setSelectedTech] = useState<TechNode | null>(null)
 
-  const setSelectedCategory = (v: number | null): void => { setSelectedFieldRaw(v); saveResearch({ selectedField: v }) }
-  const setShowFilter = (v: 'all' | 'researched' | 'available'): void => { setShowFilterRaw(v); saveResearch({ showFilter: v }) }
+  const setSelectedCategory = (v: number | null): void => {
+    setSelectedFieldRaw(v)
+    saveResearch({ selectedField: v })
+  }
+  const setShowFilter = (v: 'all' | 'researched' | 'available'): void => {
+    setShowFilterRaw(v)
+    saveResearch({ showFilter: v })
+  }
 
   if (isLoading)
     return (
-      <div className="flex items-center justify-center h-full" style={{ color: 'var(--cic-cyan-dim)' }}>
+      <div
+        className="flex items-center justify-center h-full"
+        style={{ color: 'var(--cic-cyan-dim)' }}
+      >
         Loading tech tree...
       </div>
     )
@@ -180,9 +198,7 @@ export function ResearchTab({ active = true }: { active?: boolean } = {}): React
 
 function ProjectCard({ project }: { project: ResearchProject }): React.JSX.Element {
   const pct = project.percentComplete
-  const barColor = project.paused
-    ? 'var(--cic-amber)'
-    : 'var(--cic-cyan)'
+  const barColor = project.paused ? 'var(--cic-amber)' : 'var(--cic-cyan)'
 
   return (
     <div
@@ -372,7 +388,8 @@ function TechList({
                 </td>
                 <td style={{ ...tdStyle, color: 'var(--cic-cyan-dim)' }}>{tech.fieldName}</td>
                 <td style={{ ...tdStyle, color: 'var(--cic-cyan-dim)' }}>
-                  {tech.completedDate || (tech.isStarting ? 'Starting' : tech.researched ? 'Unknown' : '—')}
+                  {tech.completedDate ||
+                    (tech.isStarting ? 'Starting' : tech.researched ? 'Unknown' : '—')}
                 </td>
               </tr>
             )
@@ -380,7 +397,9 @@ function TechList({
         </tbody>
       </table>
       {filtered.length === 0 && (
-        <div style={{ padding: 12, fontSize: 10, color: 'var(--cic-cyan-dim)', textAlign: 'center' }}>
+        <div
+          style={{ padding: 12, fontSize: 10, color: 'var(--cic-cyan-dim)', textAlign: 'center' }}
+        >
           No techs match filters
         </div>
       )}
@@ -471,10 +490,7 @@ function TechDetail({
 
   // Find techs that require this one
   const unlockedBy = useMemo(
-    () =>
-      allTechs.filter(
-        (t) => t.prerequisite1 === tech.id || t.prerequisite2 === tech.id
-      ),
+    () => allTechs.filter((t) => t.prerequisite1 === tech.id || t.prerequisite2 === tech.id),
     [allTechs, tech.id]
   )
 
@@ -505,10 +521,7 @@ function TechDetail({
         </div>
       )}
 
-      <div
-        className="grid grid-cols-2 gap-2"
-        style={{ marginBottom: 10 }}
-      >
+      <div className="grid grid-cols-2 gap-2" style={{ marginBottom: 10 }}>
         <MiniCard label="Research Cost" value={`${tech.cost.toLocaleString()} RP`} />
         <MiniCard label="Tech ID" value={String(tech.id)} />
       </div>
@@ -589,7 +602,15 @@ function MiniCard({ label, value }: { label: string; value: string }): React.JSX
         padding: '4px 6px'
       }}
     >
-      <div style={{ fontSize: 7, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--cic-cyan-dim)', marginBottom: 1 }}>
+      <div
+        style={{
+          fontSize: 7,
+          textTransform: 'uppercase',
+          letterSpacing: '0.05em',
+          color: 'var(--cic-cyan-dim)',
+          marginBottom: 1
+        }}
+      >
         {label}
       </div>
       <div style={{ fontSize: 10, fontWeight: 600 }}>{value}</div>

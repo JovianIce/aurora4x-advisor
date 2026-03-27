@@ -288,9 +288,13 @@ class AuroraBridge {
         const match = payload.data.raw.match(/^(.+?)\s{2,}\d/)
         if (match) {
           this._activeEmpireName = match[1].trim()
-          console.log(`[AuroraBridge] Active empire: "${this._activeEmpireName}" (from: "${payload.data.raw.substring(0, 60)}")`)
+          console.log(
+            `[AuroraBridge] Active empire: "${this._activeEmpireName}" (from: "${payload.data.raw.substring(0, 60)}")`
+          )
         } else {
-          console.log(`[AuroraBridge] Could not parse empire name from title: "${payload.data.raw.substring(0, 60)}"`)
+          console.log(
+            `[AuroraBridge] Could not parse empire name from title: "${payload.data.raw.substring(0, 60)}"`
+          )
         }
       }
 

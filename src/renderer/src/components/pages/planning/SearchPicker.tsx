@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useEffect } from 'react'
+import React, { useState, useMemo, useRef, useCallback } from 'react'
 
 export interface PickerItem {
   id: string | number
@@ -32,13 +32,10 @@ export function SearchPicker({
   const selectedItem = items.find((i) => i.id === value)
   const displayLabel = selectedItem?.label || placeholder
 
-  useEffect(() => {
-    if (isOpen) {
-      setSearch('')
-      // Focus search input on next frame
-      requestAnimationFrame(() => inputRef.current?.focus())
-    }
-  }, [isOpen])
+  const openPicker = useCallback(() => {
+    setSearch('')
+    setIsOpen(true)
+  }, [])
 
   const filtered = useMemo(() => {
     if (!search) return items
@@ -73,10 +70,10 @@ export function SearchPicker({
 
   // Default trigger: styled like a select
   const trigger = children ? (
-    children({ label: displayLabel, open: () => setIsOpen(true) })
+    children({ label: displayLabel, open: openPicker })
   ) : (
     <button
-      onClick={() => setIsOpen(true)}
+      onClick={openPicker}
       className="cursor-pointer text-left w-full"
       style={{
         fontSize: 11,
@@ -137,6 +134,7 @@ export function SearchPicker({
                 placeholder="Search..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                autoFocus
                 className="focus:outline-none w-full"
                 style={{
                   fontSize: 11,
@@ -186,14 +184,11 @@ export function SearchPicker({
                               'rgba(0,229,255,0.05)'
                         }}
                         onMouseLeave={(e) => {
-                          if (!isSelected)
-                            (e.currentTarget as HTMLElement).style.background = ''
+                          if (!isSelected) (e.currentTarget as HTMLElement).style.background = ''
                         }}
                       >
                         <div className="flex items-center justify-between">
-                          <span style={{ fontWeight: isSelected ? 600 : 400 }}>
-                            {item.label}
-                          </span>
+                          <span style={{ fontWeight: isSelected ? 600 : 400 }}>{item.label}</span>
                           {item.sub && (
                             <span style={{ fontSize: 9, color: 'var(--cic-cyan-dim)' }}>
                               {item.sub}

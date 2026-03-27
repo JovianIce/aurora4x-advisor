@@ -52,9 +52,14 @@ export function GameProvider({ children }: GameProviderProps): React.JSX.Element
 
   // Listen for state broadcasts from main process
   useEffect(() => {
-    const unsub = window.api.bridge.onSessionState((state: SessionState) => {
-      console.log('[GameProvider] State from main:', state.currentGame?.gameInfo.gameName ?? 'none',
-        `running=${state.runningGameName}`, `locked=${state.lockedCampaignId ? 'yes' : 'no'}`)
+    const unsub = window.api.bridge.onSessionState((raw: unknown) => {
+      const state = raw as SessionState
+      console.log(
+        '[GameProvider] State from main:',
+        state.currentGame?.gameInfo.gameName ?? 'none',
+        `running=${state.runningGameName}`,
+        `locked=${state.lockedCampaignId ? 'yes' : 'no'}`
+      )
       setSession(state)
 
       // Dismiss stale toasts when state changes
@@ -64,8 +69,8 @@ export function GameProvider({ children }: GameProviderProps): React.JSX.Element
     })
 
     // Fetch initial state on mount
-    window.api.bridge.getSessionState().then((state) => {
-      if (state) setSession(state)
+    window.api.bridge.getSessionState().then((raw) => {
+      if (raw) setSession(raw as SessionState)
     })
 
     return unsub
@@ -86,7 +91,7 @@ export function GameProvider({ children }: GameProviderProps): React.JSX.Element
   // ── Actions (all go through main process) ──────────────────
 
   const switchGame = useCallback(async (gameId: string) => {
-    const result = await window.api.bridge.setSessionGame(gameId) as {
+    const result = (await window.api.bridge.setSessionGame(gameId)) as {
       accepted: boolean
       reason?: string
     } | null
@@ -138,22 +143,31 @@ export function GameProvider({ children }: GameProviderProps): React.JSX.Element
     }
   })
 
-  const addGame = useCallback(async (game: GameSession) => {
-    await addGameMutation.mutateAsync(game)
-  }, [addGameMutation])
+  const addGame = useCallback(
+    async (game: GameSession) => {
+      await addGameMutation.mutateAsync(game)
+    },
+    [addGameMutation]
+  )
 
-  const removeGame = useCallback((gameId: string) => {
-    removeGameMutation.mutate(gameId)
-  }, [removeGameMutation])
+  const removeGame = useCallback(
+    (gameId: string) => {
+      removeGameMutation.mutate(gameId)
+    },
+    [removeGameMutation]
+  )
 
-  const updateGamePersonality = useCallback(async (archetype: string, personalityName: string) => {
-    if (!session.currentGame) return
-    updatePersonalityMutation.mutate({
-      gameId: session.currentGame.id,
-      archetype,
-      personalityName
-    })
-  }, [session.currentGame, updatePersonalityMutation])
+  const updateGamePersonality = useCallback(
+    async (archetype: string, personalityName: string) => {
+      if (!session.currentGame) return
+      updatePersonalityMutation.mutate({
+        gameId: session.currentGame.id,
+        archetype,
+        personalityName
+      })
+    },
+    [session.currentGame, updatePersonalityMutation]
+  )
 
   const clearAll = useCallback(() => {
     clearAllMutation.mutate()

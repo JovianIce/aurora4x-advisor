@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useShips, type Ship } from '@renderer/hooks/use-data'
 import { FleetTable } from './FleetTable'
 import { ClassCard } from './ClassCard'
-import { FuelBar, InfoCard, SectionHeader, ActionButton, Tooltip } from './ui'
+import { InfoCard, SectionHeader, ActionButton, Tooltip } from './ui'
 
 function ShipDetail({
   ship,
@@ -35,17 +35,29 @@ function ShipDetail({
 
       <SectionHeader>Position</SectionHeader>
       <div className="grid grid-cols-2 gap-2" style={{ marginBottom: 12 }}>
-        <InfoCard label="Location" value={ship.system === 'Transit' ? 'In Transit' : ship.system} warn={ship.system === 'Transit'} />
+        <InfoCard
+          label="Location"
+          value={ship.system === 'Transit' ? 'In Transit' : ship.system}
+          warn={ship.system === 'Transit'}
+        />
         <InfoCard label="Fleet Speed" value={`${ship.speed} km/s`} />
         <InfoCard
           label="Distance to Sol"
-          value={ship.jumpsToSol != null ? `${ship.jumpsToSol} jump${ship.jumpsToSol !== 1 ? 's' : ''}` : '—'}
+          value={
+            ship.jumpsToSol != null
+              ? `${ship.jumpsToSol} jump${ship.jumpsToSol !== 1 ? 's' : ''}`
+              : '—'
+          }
           sub={ship.travelDaysToSol != null ? `~${ship.travelDaysToSol} days travel` : undefined}
         />
         <InfoCard
           label="Nearest Tanker"
           value={nt ? nt.name : 'None'}
-          sub={nt ? `${nt.sameSystem ? 'Same system' : nt.jumps + ' jump' + (nt.jumps !== 1 ? 's' : '')}, ${nt.fuel.toLocaleString()} L` : undefined}
+          sub={
+            nt
+              ? `${nt.sameSystem ? 'Same system' : nt.jumps + ' jump' + (nt.jumps !== 1 ? 's' : '')}, ${nt.fuel.toLocaleString()} L`
+              : undefined
+          }
           onClick={nt ? () => onSelectShip(nt.shipId) : undefined}
         />
       </div>
@@ -58,7 +70,11 @@ function ShipDetail({
           sub={`${ship.fuel.toLocaleString()} / ${ship.fuelCapacity.toLocaleString()} L`}
           warn={ship.fuelPct != null && ship.fuelPct < 25}
         />
-        <InfoCard label="Range" value={ship.rangeDays ? `${ship.rangeDays} days` : '—'} warn={ship.rangeDays != null && ship.rangeDays < 30} />
+        <InfoCard
+          label="Range"
+          value={ship.rangeDays ? `${ship.rangeDays} days` : '—'}
+          warn={ship.rangeDays != null && ship.rangeDays < 30}
+        />
       </div>
 
       {(ship.military || ship.fighter) && !ship.commercial && (
@@ -67,9 +83,19 @@ function ShipDetail({
           <div className="grid grid-cols-3 gap-2" style={{ marginBottom: 12 }}>
             <InfoCard
               label="Deploy Left"
-              value={ship.fighter ? 'Exempt' : ship.deploymentRemaining != null ? `${ship.deploymentRemaining}mo` : '—'}
-              warn={!ship.fighter && ship.deploymentRemaining != null && ship.deploymentRemaining < 6}
-              crit={!ship.fighter && ship.deploymentRemaining != null && ship.deploymentRemaining < 0}
+              value={
+                ship.fighter
+                  ? 'Exempt'
+                  : ship.deploymentRemaining != null
+                    ? `${ship.deploymentRemaining}mo`
+                    : '—'
+              }
+              warn={
+                !ship.fighter && ship.deploymentRemaining != null && ship.deploymentRemaining < 6
+              }
+              crit={
+                !ship.fighter && ship.deploymentRemaining != null && ship.deploymentRemaining < 0
+              }
             />
             <InfoCard
               label="Overhaul"
@@ -77,7 +103,11 @@ function ShipDetail({
               warn={!ship.fighter && ship.monthsSinceOverhaul > 30}
               crit={!ship.fighter && ship.monthsSinceOverhaul > 40}
             />
-            <InfoCard label="Maint" value={ship.maintenanceState > 0 ? `State ${ship.maintenanceState}` : 'OK'} crit={ship.maintenanceState > 0} />
+            <InfoCard
+              label="Maint"
+              value={ship.maintenanceState > 0 ? `State ${ship.maintenanceState}` : 'OK'}
+              crit={ship.maintenanceState > 0}
+            />
           </div>
         </>
       )}
@@ -93,13 +123,24 @@ function ShipDetail({
 
 const FLEET_STORAGE_KEY = 'aurora-planning-fleet'
 
-export function FleetTab({ active = true, onPlanRoute }: { active?: boolean; onPlanRoute?: (ship: Ship) => void }): React.JSX.Element {
+export function FleetTab({
+  active = true,
+  onPlanRoute
+}: {
+  active?: boolean
+  onPlanRoute?: (ship: Ship) => void
+}): React.JSX.Element {
   const { data, isLoading, error } = useShips(active)
   const savedFleet = (() => {
-    try { return JSON.parse(localStorage.getItem(FLEET_STORAGE_KEY) || '{}') }
-    catch { return {} }
+    try {
+      return JSON.parse(localStorage.getItem(FLEET_STORAGE_KEY) || '{}')
+    } catch {
+      return {}
+    }
   })()
-  const [selectedShipId, setSelectedShipIdRaw] = useState<number | null>(savedFleet.selectedShipId ?? null)
+  const [selectedShipId, setSelectedShipIdRaw] = useState<number | null>(
+    savedFleet.selectedShipId ?? null
+  )
   const [viewingClassId, setViewingClassId] = useState<number | null>(null)
 
   const setSelectedShipId = (v: number | null): void => {
@@ -108,19 +149,35 @@ export function FleetTab({ active = true, onPlanRoute }: { active?: boolean; onP
   }
 
   if (isLoading)
-    return <div className="flex items-center justify-center h-full" style={{ color: 'var(--cic-cyan-dim)' }}>Loading fleet data...</div>
+    return (
+      <div
+        className="flex items-center justify-center h-full"
+        style={{ color: 'var(--cic-cyan-dim)' }}
+      >
+        Loading fleet data...
+      </div>
+    )
   if (error)
-    return <div className="flex items-center justify-center h-full" style={{ color: 'var(--cic-red)' }}>Bridge error. Is Aurora running?</div>
+    return (
+      <div className="flex items-center justify-center h-full" style={{ color: 'var(--cic-red)' }}>
+        Bridge error. Is Aurora running?
+      </div>
+    )
   if (!data) return <div />
 
-  const selectedShip = selectedShipId ? data.ships.find((s) => s.shipId === selectedShipId) ?? null : null
+  const selectedShip = selectedShipId
+    ? (data.ships.find((s) => s.shipId === selectedShipId) ?? null)
+    : null
 
   return (
     <div className="flex h-full">
       <div className="flex-1 min-w-0 flex flex-col">
         <FleetTable
           ships={data.ships}
-          onSelectShip={(s) => { setSelectedShipId(s.shipId); setViewingClassId(null) }}
+          onSelectShip={(s) => {
+            setSelectedShipId(s.shipId)
+            setViewingClassId(null)
+          }}
           selectedShipId={selectedShipId}
         />
       </div>
@@ -134,11 +191,17 @@ export function FleetTab({ active = true, onPlanRoute }: { active?: boolean; onP
           <ShipDetail
             ship={selectedShip}
             onViewClass={setViewingClassId}
-            onSelectShip={(id) => { setSelectedShipId(id); setViewingClassId(null) }}
+            onSelectShip={(id) => {
+              setSelectedShipId(id)
+              setViewingClassId(null)
+            }}
             onPlanRoute={onPlanRoute || (() => {})}
           />
         ) : (
-          <div className="flex items-center justify-center h-full" style={{ fontSize: 11, color: 'var(--cic-cyan-dim)' }}>
+          <div
+            className="flex items-center justify-center h-full"
+            style={{ fontSize: 11, color: 'var(--cic-cyan-dim)' }}
+          >
             Select a ship to view details
           </div>
         )}

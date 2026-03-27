@@ -1,11 +1,10 @@
 import type { QueryFn, GameCtx, Ship } from './types'
-import {
-  buildJumpNetwork,
-  estimateTravelToSol,
-  findNearestTanker
-} from './distances'
+import { buildJumpNetwork, estimateTravelToSol, findNearestTanker } from './distances'
 
-export async function getShips(query: QueryFn, ctx: GameCtx): Promise<{ ships: Ship[]; gameTime: number }> {
+export async function getShips(
+  query: QueryFn,
+  ctx: GameCtx
+): Promise<{ ships: Ship[]; gameTime: number }> {
   const rows = await query<Record<string, unknown>>(
     `SELECT s.ShipID, s.ShipName, s.ShipClassID, s.Fuel, s.LastOverhaul, s.LastShoreLeave,
       s.MaintenanceState, s.CrewMorale,
@@ -53,9 +52,7 @@ export async function getShips(query: QueryFn, ctx: GameCtx): Promise<{ ships: S
     const monthsSinceShoreLeave =
       Math.abs(gameTime - ((s.LastShoreLeave as number) || 0)) / (30.44 * 24 * 3600)
     const plannedDeployment = s.PlannedDeployment as number
-    const deploymentRemaining = plannedDeployment
-      ? plannedDeployment - monthsSinceShoreLeave
-      : null
+    const deploymentRemaining = plannedDeployment ? plannedDeployment - monthsSinceShoreLeave : null
 
     const systemId = (s.FleetSystemID as number) || 0
     const fleetSpeed = (s.FleetSpeed as number) || (s.MaxSpeed as number) || 0
@@ -94,9 +91,7 @@ export async function getShips(query: QueryFn, ctx: GameCtx): Promise<{ ships: S
       fighter: !!(s.FighterClass as number),
       tanker: (s.FuelTanker as number) > 0,
       freighter: ((s.CargoCapacity as number) || 0) > ((s.Size as number) || 1) * 50 * 0.25,
-      deploymentRemaining: deploymentRemaining
-        ? Math.round(deploymentRemaining * 10) / 10
-        : null,
+      deploymentRemaining: deploymentRemaining ? Math.round(deploymentRemaining * 10) / 10 : null,
       monthsSinceOverhaul: Math.round(monthsSinceOverhaul * 10) / 10,
       maintenanceState: (s.MaintenanceState as number) || 0,
       jumpsToSol: solDistance.jumpsToSol,

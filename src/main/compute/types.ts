@@ -124,14 +124,25 @@ export interface FleetShip {
   tonnage: number
   isTanker: boolean
   jumpCapable: boolean
-  jumpDriveInfo: { name: string; type: string; maxTonnage: number; squadMax: number; radius: number } | null
+  jumpDriveInfo: {
+    name: string
+    type: string
+    maxTonnage: number
+    squadMax: number
+    radius: number
+  } | null
   isMilitary: boolean
   isCommercial: boolean
 }
 
 export interface JumpAnalysis {
   allJumpCapable: boolean
-  shipsWithoutJD: { shipName: string; className: string; isMilitary: boolean; isCommercial: boolean }[]
+  shipsWithoutJD: {
+    shipName: string
+    className: string
+    isMilitary: boolean
+    isCommercial: boolean
+  }[]
   milTender: { shipName: string; className: string; maxTonnage: number; squadMax: number } | null
   commTender: { shipName: string; className: string; maxTonnage: number; squadMax: number } | null
   uncoveredShips: { shipName: string; className: string; reason: string }[]

@@ -14,7 +14,9 @@ export function DashboardLayout(): React.JSX.Element {
   const navigate = useNavigate()
   const { currentGame } = useGame()
   const { settings } = useSettings()
-  const [activeView, setActiveView] = useState<'map' | 'tables' | 'memory' | 'advisor' | 'operations'>('map')
+  const [activeView, setActiveView] = useState<
+    'map' | 'tables' | 'memory' | 'advisor' | 'operations'
+  >('map')
 
   useEffect(() => {
     if (!currentGame) {

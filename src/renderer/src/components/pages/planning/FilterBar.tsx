@@ -45,7 +45,12 @@ const FIELDS = [
   { value: 'commercial', label: 'Commercial', type: 'boolean', desc: 'Classification' },
   { value: 'fighter', label: 'Fighter', type: 'boolean', desc: 'Classification' },
   { value: 'tanker', label: 'Tanker', type: 'boolean', desc: 'Fuel tanker flag (class design)' },
-  { value: 'freighter', label: 'Freighter', type: 'boolean', desc: 'Cargo > 25% of tonnage (derived)' }
+  {
+    value: 'freighter',
+    label: 'Freighter',
+    type: 'boolean',
+    desc: 'Cargo > 25% of tonnage (derived)'
+  }
 ] as const
 
 const NUM_OPS = [
@@ -163,11 +168,11 @@ export function FilterBar({ groups, onChange }: FilterBarProps): React.JSX.Eleme
   const [showModal, setShowModal] = useState(false)
   const [activeName, setActiveName] = useState<string | null>(null)
   const [savedPresets, setSavedPresets] = useState<FilterPreset[]>([])
-  useEffect(() => { loadSaved().then(setSavedPresets) }, [])
+  useEffect(() => {
+    loadSaved().then(setSavedPresets)
+  }, [])
   const allPresets = [...BUILT_IN_PRESETS, ...savedPresets]
-  const barPresets = allPresets
-    .filter((p) => p.builtIn || p.showOnBar)
-    .slice(0, MAX_BAR_ITEMS)
+  const barPresets = allPresets.filter((p) => p.builtIn || p.showOnBar).slice(0, MAX_BAR_ITEMS)
 
   const applyPreset = (p: FilterPreset): void => {
     onChange(
@@ -185,10 +190,7 @@ export function FilterBar({ groups, onChange }: FilterBarProps): React.JSX.Eleme
     setActiveName(null)
   }
 
-  const activeCount = groups.reduce(
-    (n, g) => n + g.conditions.filter((c) => c.enabled).length,
-    0
-  )
+  const activeCount = groups.reduce((n, g) => n + g.conditions.filter((c) => c.enabled).length, 0)
 
   return (
     <>
@@ -202,12 +204,17 @@ export function FilterBar({ groups, onChange }: FilterBarProps): React.JSX.Eleme
             marginRight: 2
           }}
         >
-          Filters
-          {' '}
+          Filters{' '}
           <span
             onClick={() => setShowModal(true)}
             className="cursor-pointer"
-            style={{ color: 'var(--cic-cyan)', fontWeight: 400, textTransform: 'none', letterSpacing: 'normal', textDecoration: 'underline' }}
+            style={{
+              color: 'var(--cic-cyan)',
+              fontWeight: 400,
+              textTransform: 'none',
+              letterSpacing: 'normal',
+              textDecoration: 'underline'
+            }}
           >
             (manage)
           </span>
@@ -246,7 +253,10 @@ export function FilterBar({ groups, onChange }: FilterBarProps): React.JSX.Eleme
             setShowModal(false)
             loadSaved().then(setSavedPresets)
           }}
-          onClose={() => { setShowModal(false); loadSaved().then(setSavedPresets) }}
+          onClose={() => {
+            setShowModal(false)
+            loadSaved().then(setSavedPresets)
+          }}
         />
       )}
     </>
@@ -293,7 +303,9 @@ function FilterModal({
   onClose: () => void
 }): React.JSX.Element {
   const [saved, setSaved] = useState<FilterPreset[]>([])
-  useEffect(() => { loadSaved().then(setSaved) }, [])
+  useEffect(() => {
+    loadSaved().then(setSaved)
+  }, [])
   const [groups, setGroups] = useState<FilterGroup[]>(
     initGroups.length > 0 ? initGroups : [newGroup()]
   )
@@ -307,10 +319,7 @@ function FilterModal({
   const removeGroup = (gid: string): void => setGroups(groups.filter((g) => g.id !== gid))
 
   const addCondition = (gid: string): void =>
-    updateGroup(gid, [
-      ...(groups.find((g) => g.id === gid)?.conditions || []),
-      newCondition()
-    ])
+    updateGroup(gid, [...(groups.find((g) => g.id === gid)?.conditions || []), newCondition()])
 
   const updateCondition = (gid: string, cid: string, patch: Partial<FilterCondition>): void =>
     updateGroup(
@@ -342,9 +351,7 @@ function FilterModal({
   }
 
   const toggleBar = (name: string): void => {
-    const up = saved.map((p) =>
-      p.name === name ? { ...p, showOnBar: !p.showOnBar } : p
-    )
+    const up = saved.map((p) => (p.name === name ? { ...p, showOnBar: !p.showOnBar } : p))
     setSaved(up)
     saveSaved(up)
   }
@@ -427,7 +434,7 @@ function FilterModal({
           {tab === 'build' && (
             <div>
               <div style={{ fontSize: 9, color: 'var(--cic-cyan-dim)', marginBottom: 6 }}>
-                Groups are OR'd together. Conditions within a group are AND'd.
+                Groups are OR&apos;d together. Conditions within a group are AND&apos;d.
               </div>
               {groups.map((g, gi) => (
                 <div key={g.id}>
@@ -453,10 +460,7 @@ function FilterModal({
                       background: 'var(--cic-panel)'
                     }}
                   >
-                    <div
-                      className="flex items-center justify-between"
-                      style={{ marginBottom: 4 }}
-                    >
+                    <div className="flex items-center justify-between" style={{ marginBottom: 4 }}>
                       <span
                         style={{
                           fontSize: 9,
@@ -504,9 +508,7 @@ function FilterModal({
                             style={{ accentColor: 'var(--cic-cyan)' }}
                           />
                           <button
-                            onClick={() =>
-                              updateCondition(g.id, c.id, { negate: !c.negate })
-                            }
+                            onClick={() => updateCondition(g.id, c.id, { negate: !c.negate })}
                             className="cursor-pointer hover:brightness-125"
                             title="Negate this condition"
                             style={{
@@ -527,22 +529,29 @@ function FilterModal({
                           </button>
                           <SearchPicker
                             title="Select Field"
-                            placeholder={FIELDS.find((f) => f.value === c.field)?.label || 'Field...'}
+                            placeholder={
+                              FIELDS.find((f) => f.value === c.field)?.label || 'Field...'
+                            }
                             value={c.field}
                             onSelect={(id) => {
                               const f = FIELDS.find((ff) => ff.value === id)
                               updateCondition(g.id, c.id, {
                                 field: String(id),
-                                operator: (
-                                  f?.type === 'number' ? 'lt' : 'contains'
-                                ) as FilterCondition['operator']
+                                operator: (f?.type === 'number'
+                                  ? 'lt'
+                                  : 'contains') as FilterCondition['operator']
                               })
                             }}
                             items={FIELDS.map((f) => ({
                               id: f.value,
                               label: f.label,
                               sub: f.desc || undefined,
-                              group: f.type === 'number' ? 'Numeric' : f.type === 'boolean' ? 'Flags' : 'Text'
+                              group:
+                                f.type === 'number'
+                                  ? 'Numeric'
+                                  : f.type === 'boolean'
+                                    ? 'Flags'
+                                    : 'Text'
                             }))}
                           />
                           <select
@@ -827,7 +836,10 @@ function PresetRow({
       </div>
       {onToggleBar && (
         <button
-          onClick={(e) => { e.stopPropagation(); onToggleBar() }}
+          onClick={(e) => {
+            e.stopPropagation()
+            onToggleBar()
+          }}
           className="cursor-pointer"
           title={preset.showOnBar ? 'Hide from bar' : 'Show on bar'}
           style={{
@@ -843,9 +855,7 @@ function PresetRow({
         </button>
       )}
       {preset.builtIn && (
-        <span style={{ fontSize: 9, color: 'var(--cic-cyan-dim)', opacity: 0.5 }}>
-          built-in
-        </span>
+        <span style={{ fontSize: 9, color: 'var(--cic-cyan-dim)', opacity: 0.5 }}>built-in</span>
       )}
       {onDelete && (
         <button
@@ -871,9 +881,15 @@ function PresetRow({
 // --- Summary ---
 
 const OP_LABELS: Record<string, string> = {
-  lt: '<', gt: '>', eq: '=', neq: '≠', contains: '∋', not_contains: '∌'
+  lt: '<',
+  gt: '>',
+  eq: '=',
+  neq: '≠',
+  contains: '∋',
+  not_contains: '∌'
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function summarizeGroups(groups: FilterGroup[]): string {
   const activeGroups = groups.filter((g) => g.conditions.some((c) => c.enabled))
   if (activeGroups.length === 0) return ''
@@ -894,6 +910,7 @@ export function summarizeGroups(groups: FilterGroup[]): string {
 
 // --- Evaluator ---
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function applyGroupFilters<T extends Record<string, unknown>>(
   items: T[],
   groups: FilterGroup[]

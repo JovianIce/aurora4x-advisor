@@ -218,9 +218,7 @@ export function MemoryExplorerTab(): React.JSX.Element {
                       className="w-full text-left px-2 py-1"
                       style={{
                         background:
-                          selectedCollection === c.field
-                            ? 'var(--cic-cyan-glow)'
-                            : 'transparent',
+                          selectedCollection === c.field ? 'var(--cic-cyan-glow)' : 'transparent',
                         borderLeft:
                           selectedCollection === c.field
                             ? '2px solid var(--cic-cyan)'
