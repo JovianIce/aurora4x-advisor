@@ -130,6 +130,33 @@ const api = {
         ipcRenderer.removeListener('bridge:push', subscription)
       }
     }
+  },
+  ops: {
+    getShips: () => ipcRenderer.invoke('ops:getShips'),
+    getClasses: () => ipcRenderer.invoke('ops:getClasses'),
+    getClassDetail: (classId: number) => ipcRenderer.invoke('ops:getClassDetail', classId),
+    computeRoute: (req: unknown) => ipcRenderer.invoke('ops:computeRoute', req),
+    computeFleetRoute: (req: unknown) => ipcRenderer.invoke('ops:computeFleetRoute', req),
+    getWaypoints: () => ipcRenderer.invoke('ops:getWaypoints'),
+    getFleets: () => ipcRenderer.invoke('ops:getFleets'),
+    getMineralTotals: () => ipcRenderer.invoke('ops:getMineralTotals'),
+    getMineralHistory: (resolution?: string, populationId?: number | null) =>
+      ipcRenderer.invoke('ops:getMineralHistory', resolution, populationId),
+    getMineralBreakdown: (mineralId: number, resolution?: string) =>
+      ipcRenderer.invoke('ops:getMineralBreakdown', mineralId, resolution),
+    getMineralColonies: () => ipcRenderer.invoke('ops:getMineralColonies'),
+    getGameDate: () => ipcRenderer.invoke('ops:getGameDate'),
+    getResearchOverview: () => ipcRenderer.invoke('ops:getResearchOverview')
+  },
+  fleetFilters: {
+    load: () => ipcRenderer.invoke('fleetFilters:load'),
+    save: (fleetFilters: unknown) => ipcRenderer.invoke('fleetFilters:save', fleetFilters)
+  },
+  routes: {
+    load: () => ipcRenderer.invoke('routes:load'),
+    add: (route: unknown) => ipcRenderer.invoke('routes:add', route),
+    remove: (routeId: string) => ipcRenderer.invoke('routes:remove', routeId),
+    update: (routeId: string, patch: unknown) => ipcRenderer.invoke('routes:update', routeId, patch)
   }
 }
 

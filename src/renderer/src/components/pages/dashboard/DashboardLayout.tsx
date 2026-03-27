@@ -8,12 +8,13 @@ import { DashboardOverview } from './DashboardOverview'
 import { MemoryExplorerTab } from './MemoryExplorerTab'
 import { FormToolbar } from './FormToolbar'
 import { BridgeStatusIndicator } from '../../system-map/BridgeStatusIndicator'
+import { PlanningLayout } from '../planning'
 
 export function DashboardLayout(): React.JSX.Element {
   const navigate = useNavigate()
   const { currentGame } = useGame()
   const { settings } = useSettings()
-  const [activeView, setActiveView] = useState<'map' | 'tables' | 'memory' | 'advisor'>('map')
+  const [activeView, setActiveView] = useState<'map' | 'tables' | 'memory' | 'advisor' | 'operations'>('map')
 
   useEffect(() => {
     if (!currentGame) {
@@ -82,6 +83,12 @@ export function DashboardLayout(): React.JSX.Element {
             </>
           )}
           <button
+            className={`cic-btn ${activeView === 'operations' ? 'active' : ''}`}
+            onClick={() => setActiveView('operations')}
+          >
+            Planning
+          </button>
+          <button
             className={`cic-btn ${activeView === 'advisor' ? 'active' : ''}`}
             onClick={() => setActiveView('advisor')}
           >
@@ -103,7 +110,9 @@ export function DashboardLayout(): React.JSX.Element {
 
       {/* Main Content — full remaining height */}
       <div className="flex-1 min-h-0">
-        {activeView === 'map' ? (
+        {activeView === 'operations' ? (
+          <PlanningLayout />
+        ) : activeView === 'map' ? (
           <SystemMapTab game={currentGame} />
         ) : activeView === 'memory' ? (
           <div className="p-3 h-full overflow-hidden">

@@ -29,7 +29,18 @@ import { dbWatcher } from './services/db-watcher'
 import { analyzeGameState } from './services/game-state-analyzer'
 import { auroraBridge } from './services/aurora-bridge'
 import { dumpMemoryToFiles } from './services/memory-dump'
+import {
+  loadSavedRoutes,
+  addSavedRoute,
+  removeSavedRoute,
+  updateSavedRoute
+} from './services/route-persistence'
+import type { SavedRoute } from './services/route-persistence'
+import { loadSavedFilters, saveSavedFilters } from './services/filter-persistence'
+import type { FilterPreset } from './services/filter-persistence'
 import { dialog } from 'electron'
+import * as compute from './compute'
+import { formatGameDate } from './compute/utils'
 
 function createWindow(): void {
   // Create the browser window.
@@ -370,6 +381,140 @@ app.whenReady().then(async () => {
 
   ipcMain.handle('bridge:readCollection', async (_event, params) => {
     return auroraBridge.readCollection(params)
+  })
+
+  // Operations compute handlers — resolve GameCtx from current game session
+  const bridgeQuery: compute.QueryFn = <T = Record<string, unknown>>(sql: string) =>
+    auroraBridge.query<T>(sql)
+
+  async function getGameCtx(): Promise<compute.GameCtx> {
+    const currentGameId = dbWatcher.getStatus().currentGameId
+    if (!currentGameId) throw new Error('No game selected')
+    const games = await loadGames()
+    const game = games.find((g) => g.id === currentGameId)
+    if (!game) throw new Error('Current game not found')
+    return { gameId: game.gameInfo.auroraGameId, raceId: game.gameInfo.auroraRaceId }
+  }
+
+  ipcMain.handle('ops:getShips', async () => {
+    const ctx = await getGameCtx()
+    return compute.getShips(bridgeQuery, ctx)
+  })
+
+  ipcMain.handle('ops:getClasses', async () => {
+    const ctx = await getGameCtx()
+    return compute.getShipClasses(bridgeQuery, ctx)
+  })
+
+  ipcMain.handle('ops:getClassDetail', async (_event, classId: number) => {
+    const ctx = await getGameCtx()
+    return compute.getShipClassDetail(bridgeQuery, ctx, classId)
+  })
+
+  ipcMain.handle('ops:computeRoute', async (_event, req: compute.RouteRequest) => {
+    const ctx = await getGameCtx()
+    return compute.computeRoute(bridgeQuery, ctx, req)
+  })
+
+  ipcMain.handle('ops:computeFleetRoute', async (_event, req: compute.FleetRouteRequest) => {
+    const ctx = await getGameCtx()
+    return compute.computeFleetRoute(bridgeQuery, ctx, req)
+  })
+
+  ipcMain.handle('ops:getWaypoints', async () => {
+    const ctx = await getGameCtx()
+    return compute.getWaypoints(bridgeQuery, ctx)
+  })
+
+  ipcMain.handle('ops:getFleets', async () => {
+    const ctx = await getGameCtx()
+    return compute.getFleets(bridgeQuery, ctx)
+  })
+
+  ipcMain.handle('ops:getMineralTotals', async () => {
+    const ctx = await getGameCtx()
+    return compute.getMineralTotals(bridgeQuery, ctx)
+  })
+
+  ipcMain.handle(
+    'ops:getMineralHistory',
+    async (_event, resolution?: compute.Resolution, populationId?: number | null) => {
+      const ctx = await getGameCtx()
+      return compute.getMineralHistory(bridgeQuery, ctx, resolution, populationId)
+    }
+  )
+
+  ipcMain.handle(
+    'ops:getMineralBreakdown',
+    async (_event, mineralId: number, resolution?: compute.Resolution) => {
+      const ctx = await getGameCtx()
+      return compute.getMineralBreakdown(bridgeQuery, ctx, mineralId, resolution)
+    }
+  )
+
+  ipcMain.handle('ops:getMineralColonies', async () => {
+    const ctx = await getGameCtx()
+    return compute.getMineralColonies(bridgeQuery, ctx)
+  })
+
+  ipcMain.handle('ops:getGameDate', async () => {
+    const ctx = await getGameCtx()
+    const rows = await bridgeQuery<{ GameTime: number; StartYear: number }>(
+      `SELECT GameTime, StartYear FROM FCT_Game WHERE GameID = ${ctx.gameId}`
+    )
+    if (rows.length === 0) return null
+    const { GameTime, StartYear } = rows[0]
+    const totalDays = GameTime / 86400
+    const yearsElapsed = Math.floor(totalDays / 365.25)
+    const remainingDays = totalDays - yearsElapsed * 365.25
+    const year = StartYear + yearsElapsed
+    const month = Math.floor(remainingDays / 30.44) + 1
+    const day = Math.floor(remainingDays % 30.44) + 1
+    const hours = Math.floor((GameTime % 86400) / 3600)
+    const minutes = Math.floor((GameTime % 3600) / 60)
+    const seconds = Math.floor(GameTime % 60)
+    return {
+      gameTime: GameTime,
+      startYear: StartYear,
+      year,
+      month,
+      day,
+      hours,
+      minutes,
+      seconds,
+      formatted: formatGameDate(GameTime, StartYear)
+    }
+  })
+
+  ipcMain.handle('ops:getResearchOverview', async () => {
+    const ctx = await getGameCtx()
+    return compute.getResearchOverview(bridgeQuery, ctx)
+  })
+
+  // Saved routes persistence
+  ipcMain.handle('routes:load', async () => {
+    return loadSavedRoutes()
+  })
+
+  ipcMain.handle('routes:add', async (_event, route: SavedRoute) => {
+    return addSavedRoute(route)
+  })
+
+  ipcMain.handle('routes:remove', async (_event, routeId: string) => {
+    return removeSavedRoute(routeId)
+  })
+
+  ipcMain.handle('routes:update', async (_event, routeId: string, patch: Partial<SavedRoute>) => {
+    return updateSavedRoute(routeId, patch)
+  })
+
+  // Saved filters persistence
+  ipcMain.handle('fleetFilters:load', async () => {
+    return loadSavedFilters()
+  })
+
+  ipcMain.handle('fleetFilters:save', async (_event, fleetFilters: FilterPreset[]) => {
+    return saveSavedFilters(fleetFilters)
   })
 
   // Initialize database watcher from settings
