@@ -1,99 +1,121 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { toast } from 'sonner'
 import { GameContext } from './game-context'
 import type { GameSession } from '@shared/types'
+
+/**
+ * Game session provider — the renderer is DISPLAY ONLY.
+ *
+ * The main process (GameSessionService) owns:
+ *   - Which game is selected
+ *   - Which game Aurora is running
+ *   - Lock enforcement
+ *
+ * This provider:
+ *   - Listens to `gameSession:state` events from main
+ *   - Sends `gameSession:setCurrent` requests to main
+ *   - Never manages currentGameId as local state
+ */
 
 interface GameProviderProps {
   children: React.ReactNode
 }
 
+interface SessionState {
+  currentGame: GameSession | null
+  runningGameId: number | null
+  runningGameName: string | null
+  lockedCampaignId: string | null
+}
+
 export function GameProvider({ children }: GameProviderProps): React.JSX.Element {
   const queryClient = useQueryClient()
-  const [currentGameId, setCurrentGameId] = useState<string | null>(null)
 
-  // Query: Load all games
+  // Session state — mirrors main process, never set locally
+  const [session, setSession] = useState<SessionState>({
+    currentGame: null,
+    runningGameId: null,
+    runningGameName: null,
+    lockedCampaignId: null
+  })
+
+  // Query: Load all saved games (just the list, not selection)
   const {
     data: savedGames = [],
     isLoading,
     error
   } = useQuery({
     queryKey: ['games'],
-    queryFn: async () => {
-      const games = await window.api.games.load()
-      // Auto-select the most recently accessed game on first load
-      if (games.length > 0 && !currentGameId) {
-        const mostRecent = games.reduce((prev, current) =>
-          current.lastAccessedAt > prev.lastAccessedAt ? current : prev
-        )
-        setCurrentGameId(mostRecent.id)
+    queryFn: () => window.api.games.load()
+  })
+
+  // Listen for state broadcasts from main process
+  useEffect(() => {
+    const unsub = window.api.bridge.onSessionState((state: SessionState) => {
+      console.log('[GameProvider] State from main:', state.currentGame?.gameInfo.gameName ?? 'none',
+        `running=${state.runningGameName}`, `locked=${state.lockedCampaignId ? 'yes' : 'no'}`)
+      setSession(state)
+
+      // Dismiss stale toasts when state changes
+      if (state.currentGame) {
+        toast.dismiss('no-matching-campaign')
       }
-      return games
+    })
+
+    // Fetch initial state on mount
+    window.api.bridge.getSessionState().then((state) => {
+      if (state) setSession(state)
+    })
+
+    return unsub
+  }, [])
+
+  // Listen for no-matching-campaign warnings
+  useEffect(() => {
+    const unsub = window.api.bridge.onNoMatchingCampaign((data) => {
+      toast.warning('No matching campaign', {
+        id: 'no-matching-campaign',
+        description: `Aurora is running "${data.gameName}" but you don't have a campaign for it. Create a new campaign to use companion features.`,
+        duration: Infinity
+      })
+    })
+    return unsub
+  }, [])
+
+  // ── Actions (all go through main process) ──────────────────
+
+  const switchGame = useCallback(async (gameId: string) => {
+    const result = await window.api.bridge.setSessionGame(gameId) as {
+      accepted: boolean
+      reason?: string
+    } | null
+    if (result && !result.accepted && result.reason) {
+      toast.error('Cannot switch campaigns', {
+        description: result.reason,
+        duration: 5000
+      })
+    }
+  }, [])
+
+  const addGameMutation = useMutation({
+    mutationFn: async (game: GameSession) => {
+      await window.api.games.addOrUpdate(game)
+      // After adding, tell main to select it
+      await window.api.bridge.setSessionGame(game.id)
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['games'] })
     }
   })
 
-  // Mutation: Update last accessed
-  const updateLastAccessedMutation = useMutation({
-    mutationFn: (gameId: string) => window.api.games.updateLastAccessed(gameId),
+  const removeGameMutation = useMutation({
+    mutationFn: (gameId: string) => window.api.games.remove(gameId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['games'] })
     }
   })
 
-  // Mutation: Add or update game
-  const addGameMutation = useMutation({
-    mutationFn: (game: GameSession) => window.api.games.addOrUpdate(game),
-    onMutate: async (game) => {
-      // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
-      await queryClient.cancelQueries({ queryKey: ['games'] })
-
-      // Snapshot the previous value
-      const previousGames = queryClient.getQueryData<GameSession[]>(['games'])
-
-      // Optimistically update to the new value
-      queryClient.setQueryData<GameSession[]>(['games'], (oldGames = []) => {
-        const existingIndex = oldGames.findIndex((g) => g.id === game.id)
-        if (existingIndex >= 0) {
-          // Update existing game
-          const newGames = [...oldGames]
-          newGames[existingIndex] = game
-          return newGames
-        } else {
-          // Add new game
-          return [...oldGames, game]
-        }
-      })
-
-      // Set as current game
-      setCurrentGameId(game.id)
-
-      // Return context with previous value for rollback
-      return { previousGames }
-    },
-    onError: (_, __, context) => {
-      // Rollback on error
-      if (context?.previousGames) {
-        queryClient.setQueryData(['games'], context.previousGames)
-      }
-    },
-    onSettled: () => {
-      // Always refetch after error or success to ensure cache is in sync
-      queryClient.invalidateQueries({ queryKey: ['games'] })
-    }
-  })
-
-  // Mutation: Remove game
-  const removeGameMutation = useMutation({
-    mutationFn: (gameId: string) => window.api.games.remove(gameId),
-    onSuccess: (_, removedGameId) => {
-      queryClient.invalidateQueries({ queryKey: ['games'] })
-      // If removing current game, select another or set to null
-      if (currentGameId === removedGameId) {
-        setCurrentGameId(null)
-      }
-    }
-  })
-
-  // Mutation: Update personality
   const updatePersonalityMutation = useMutation({
     mutationFn: ({
       gameId,
@@ -109,64 +131,33 @@ export function GameProvider({ children }: GameProviderProps): React.JSX.Element
     }
   })
 
-  // Mutation: Clear all games
   const clearAllMutation = useMutation({
     mutationFn: () => window.api.games.clearAll(),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['games'] })
-      setCurrentGameId(null)
     }
   })
 
-  // Get current game from savedGames
-  const currentGame = savedGames.find((g) => g.id === currentGameId) || null
-
-  // Sync current game ID with database watcher
-  useEffect(() => {
-    window.api.dbWatcher.setCurrentGame(currentGameId)
-  }, [currentGameId])
-
-  // Context methods
-  const setCurrentGame = async (game: GameSession | null): Promise<void> => {
-    if (game) {
-      setCurrentGameId(game.id)
-      updateLastAccessedMutation.mutate(game.id)
-    } else {
-      setCurrentGameId(null)
-    }
-  }
-
-  const addGame = async (game: GameSession): Promise<void> => {
+  const addGame = useCallback(async (game: GameSession) => {
     await addGameMutation.mutateAsync(game)
-  }
+  }, [addGameMutation])
 
-  const removeGame = async (gameId: string): Promise<void> => {
+  const removeGame = useCallback((gameId: string) => {
     removeGameMutation.mutate(gameId)
-  }
+  }, [removeGameMutation])
 
-  const switchGame = (gameId: string): void => {
-    const game = savedGames.find((g) => g.id === gameId)
-    if (game) {
-      setCurrentGameId(game.id)
-      updateLastAccessedMutation.mutate(gameId)
-    }
-  }
-
-  const updateGamePersonality = async (
-    archetype: string,
-    personalityName: string
-  ): Promise<void> => {
-    if (!currentGame) return
+  const updateGamePersonality = useCallback(async (archetype: string, personalityName: string) => {
+    if (!session.currentGame) return
     updatePersonalityMutation.mutate({
-      gameId: currentGame.id,
+      gameId: session.currentGame.id,
       archetype,
       personalityName
     })
-  }
+  }, [session.currentGame, updatePersonalityMutation])
 
-  const clearAll = async (): Promise<void> => {
+  const clearAll = useCallback(() => {
     clearAllMutation.mutate()
-  }
+  }, [clearAllMutation])
 
   if (isLoading) {
     return (
@@ -193,12 +184,14 @@ export function GameProvider({ children }: GameProviderProps): React.JSX.Element
   return (
     <GameContext.Provider
       value={{
-        currentGame,
+        currentGame: session.currentGame,
         savedGames,
-        setCurrentGame,
+        runningGameId: session.runningGameId,
+        runningGameName: session.runningGameName,
+        lockedCampaignId: session.lockedCampaignId,
+        switchGame,
         addGame,
         removeGame,
-        switchGame,
         updateGamePersonality,
         clearAll
       }}

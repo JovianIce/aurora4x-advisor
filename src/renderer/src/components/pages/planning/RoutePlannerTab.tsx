@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import {
   useWaypoints,
   useClasses,
-  useFleets,
-  useGameDate,
+  useComputedFleets,
+  useComputedGameDate,
   useComputeRoute,
   useComputeFleetRoute,
   type RouteResult,
   type FleetRouteResult,
   type FleetRouteLeg,
   type GameDate
-} from '@renderer/hooks/use-ops'
+} from '@renderer/hooks/use-data'
 import { InfoCard, SectionHeader, DualFuelBar, Tooltip } from './ui'
 import { SearchPicker, type PickerItem } from './SearchPicker'
 import { SaveRouteButton, SavedRoutesPanel, type SavedRoute } from './SavedRoutes'
@@ -38,8 +38,8 @@ function saveRouteState(patch: Record<string, unknown>): void {
 export function RoutePlannerTab({ active = true, initialFleetId, initialClassId, initialFromSystem }: RoutePlannerProps & { active?: boolean } = {}): React.JSX.Element {
   const { data: wpData } = useWaypoints(active)
   const { data: classData } = useClasses(active)
-  const { data: fleetData } = useFleets(active)
-  const { data: dateData } = useGameDate(active)
+  const { data: fleetData } = useComputedFleets(active)
+  const { data: dateData } = useComputedGameDate(active)
   const computeRouteMut = useComputeRoute()
   const computeFleetRouteMut = useComputeFleetRoute()
 

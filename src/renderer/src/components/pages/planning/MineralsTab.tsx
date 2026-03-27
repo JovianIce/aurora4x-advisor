@@ -5,7 +5,7 @@ import {
   useMineralBreakdown,
   useMineralColonies,
   type MineralBreakdownResponse
-} from '@renderer/hooks/use-ops'
+} from '@renderer/hooks/use-data'
 import { SectionHeader } from './ui'
 import { SearchPicker, type PickerItem } from './SearchPicker'
 import {

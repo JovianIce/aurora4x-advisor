@@ -31,11 +31,13 @@ export function AuroraDataProvider({ children }: { children: React.ReactNode }):
 
   const isConnected = bridgeStatus?.isConnected ?? false
 
-  // On connect/disconnect events from main process, invalidate everything so
-  // hooks re-fetch and re-subscribe automatically.
+  // On connect/disconnect/mismatch events from main process
   useEffect(() => {
     const unsubConnect = window.api.bridge.onConnected(() => {
       console.log('[AuroraData] Bridge connected — invalidating queries')
+      // Dismiss stale mismatch warnings — they'll re-fire if still wrong
+      toast.dismiss('game-mismatch')
+      toast.dismiss('db-path-mismatch')
       queryClient.invalidateQueries()
     })
 
@@ -66,14 +68,25 @@ export function AuroraDataProvider({ children }: { children: React.ReactNode }):
       })
     })
 
+    // DB path mismatch — watcher configured for a different Aurora installation
+    const unsubDbPath = window.api.bridge.onDbPathMismatch((data) => {
+      console.warn('[AuroraData] DB path mismatch:', data)
+      toast.warning('Database path mismatch', {
+        id: 'db-path-mismatch',
+        description: `The app is watching a different database than Aurora is using. Update your Aurora DB path in settings.`,
+        duration: Infinity
+      })
+    })
+
     return () => {
       unsubConnect()
       unsubDisconnect()
       unsubVersion()
+      unsubDbPath()
     }
   }, [queryClient])
 
-  // Tables — manual refresh only (DB queries can trigger Save() which crashes)
+  // Tables — manual refresh only
   const {
     data: tables,
     isLoading: tablesLoading,

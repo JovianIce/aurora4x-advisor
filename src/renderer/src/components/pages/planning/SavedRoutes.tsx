@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { SearchPicker, type PickerItem } from './SearchPicker'
-import type { ShipClassSummary } from '@renderer/hooks/use-ops'
+import type { ShipClassSummary } from '@renderer/hooks/use-data'
 
 // --- Types ---
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useGame } from '@renderer/hooks/use-game'
-import { useGameDate } from '@renderer/hooks/use-bridge'
+import { useGameDate } from '@renderer/hooks/use-realtime'
 import { PersonalityMatcher } from '@components/advisor'
 import { toast } from 'sonner'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@components/ui/sheet'

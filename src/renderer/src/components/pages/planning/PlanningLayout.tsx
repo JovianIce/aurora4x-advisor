@@ -3,7 +3,7 @@ import { FleetTab } from './FleetTab'
 import { RoutePlannerTab, type RoutePlannerProps } from './RoutePlannerTab'
 import { MineralsTab } from './MineralsTab'
 import { ResearchTab } from './ResearchTab'
-import type { Ship } from '@renderer/hooks/use-ops'
+import type { Ship } from '@renderer/hooks/use-data'
 
 type PlanningView = 'fleet' | 'route' | 'minerals' | 'research'
 

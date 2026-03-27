@@ -143,12 +143,24 @@ interface BridgeAPI {
   disconnect: () => Promise<BridgeStatus>
   reconnectNow: () => Promise<BridgeStatus>
   getStatus: () => Promise<BridgeStatus>
+  getLastTitleBar: () => Promise<string | null>
+  getActiveEmpire: () => Promise<string | null>
   onConnected: (callback: () => void) => () => void
   onDisconnected: (callback: () => void) => () => void
   onVersionMismatch: (
     callback: (data: { bridgeVersion: number; appVersion: number }) => void
   ) => () => void
+  onDbPathMismatch: (
+    callback: (data: { bridgePath: string; configPath: string }) => void
+  ) => () => void
+  onNoMatchingCampaign: (
+    callback: (data: { gameName: string }) => void
+  ) => () => void
   onPush: (callback: (data: unknown) => void) => () => void
+  // Game session (main process owns state)
+  getSessionState: () => Promise<unknown>
+  setSessionGame: (gameId: string | null) => Promise<unknown>
+  onSessionState: (callback: (state: unknown) => void) => () => void
   // Real-time memory data
   subscribeBodies: (systemId: number | null) => Promise<unknown>
   getBodies: (systemId?: number) => Promise<Record<string, unknown>[]>

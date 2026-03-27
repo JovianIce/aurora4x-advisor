@@ -4,7 +4,7 @@ import {
   type TechNode,
   type ResearchProject,
   type TechCategory
-} from '@renderer/hooks/use-ops'
+} from '@renderer/hooks/use-data'
 import { SectionHeader } from './ui'
 
 export function ResearchTab({ active = true }: { active?: boolean } = {}): React.JSX.Element {

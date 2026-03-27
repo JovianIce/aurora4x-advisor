@@ -26,6 +26,7 @@ import {
 } from './services/game-persistence'
 import { loadSettings, saveSettings, updateSetting } from './services/settings-persistence'
 import { dbWatcher } from './services/db-watcher'
+import { gameSession } from './services/game-session'
 import { analyzeGameState } from './services/game-state-analyzer'
 import { auroraBridge } from './services/aurora-bridge'
 import { dumpMemoryToFiles } from './services/memory-dump'
@@ -225,8 +226,17 @@ app.whenReady().then(async () => {
   })
 
   ipcMain.handle('dbWatcher:setCurrentGame', async (_event, gameId: string | null) => {
-    dbWatcher.setCurrentGame(gameId)
+    // Delegate to GameSessionService — single source of truth
+    await gameSession.setCurrentGame(gameId)
     return dbWatcher.getStatus()
+  })
+
+  ipcMain.handle('gameSession:getState', () => {
+    return gameSession.getState()
+  })
+
+  ipcMain.handle('gameSession:setCurrent', async (_event, gameId: string | null) => {
+    return gameSession.setCurrentGame(gameId)
   })
 
   ipcMain.handle('dbWatcher:getStatus', () => {
@@ -298,6 +308,14 @@ app.whenReady().then(async () => {
     return auroraBridge.getStatus()
   })
 
+  ipcMain.handle('bridge:getLastTitleBar', () => {
+    return auroraBridge.lastTitleBarText
+  })
+
+  ipcMain.handle('bridge:getActiveEmpire', () => {
+    return auroraBridge.activeEmpireName
+  })
+
   ipcMain.handle('bridge:getStatus', () => {
     return auroraBridge.getStatus()
   })
@@ -319,17 +337,17 @@ app.whenReady().then(async () => {
   })
 
   ipcMain.handle('bridge:getTableInfo', async (_event, tableName: string) => {
-    return auroraBridge.query(`PRAGMA table_info(${tableName})`)
+    return auroraBridge.queryFull(`PRAGMA table_info(${tableName})`)
   })
 
   ipcMain.handle('bridge:getAllTables', async () => {
-    const tables = await auroraBridge.query<{ name: string }>(
+    const tables = await auroraBridge.queryFull<{ name: string }>(
       "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
     )
     const results: { name: string; rows: number }[] = []
     for (const t of tables) {
       try {
-        const count = await auroraBridge.query<{ cnt: number }>(
+        const count = await auroraBridge.queryFull<{ cnt: number }>(
           `SELECT COUNT(*) as cnt FROM "${t.name}"`
         )
         results.push({ name: t.name, rows: count[0]?.cnt ?? 0 })
@@ -383,17 +401,14 @@ app.whenReady().then(async () => {
     return auroraBridge.readCollection(params)
   })
 
-  // Operations compute handlers — resolve GameCtx from current game session
+  // Operations compute handlers — resolve GameCtx from GameSessionService
   const bridgeQuery: compute.QueryFn = <T = Record<string, unknown>>(sql: string) =>
     auroraBridge.query<T>(sql)
 
-  async function getGameCtx(): Promise<compute.GameCtx> {
-    const currentGameId = dbWatcher.getStatus().currentGameId
-    if (!currentGameId) throw new Error('No game selected')
-    const games = await loadGames()
-    const game = games.find((g) => g.id === currentGameId)
-    if (!game) throw new Error('Current game not found')
-    return { gameId: game.gameInfo.auroraGameId, raceId: game.gameInfo.auroraRaceId }
+  function getGameCtx(): compute.GameCtx {
+    const ctx = gameSession.getGameCtx()
+    if (!ctx) throw new Error('No game selected')
+    return ctx
   }
 
   ipcMain.handle('ops:getShips', async () => {
@@ -518,15 +533,73 @@ app.whenReady().then(async () => {
   })
 
   // Initialize database watcher from settings
-  loadSettings().then((settings) => {
+  loadSettings().then(async (settings) => {
     if (settings.auroraDbPath && settings.watchEnabled) {
       dbWatcher.setAuroraDbPath(settings.auroraDbPath)
       console.log('Database watcher initialized from settings')
     }
 
+    // Propagate game changes to dbWatcher
+    gameSession.on('gameChanged', (game) => {
+      dbWatcher.setCurrentGame(game?.id ?? null)
+    })
+
+    // Auto-select most recent game on startup
+    await gameSession.autoSelectGame()
+
     // Always try to connect the bridge
     auroraBridge.connect(settings.bridgePort || 47842)
     console.log('Aurora bridge connecting...')
+
+    // Detect Aurora's running game and auto-lock after bridge connects.
+    // Re-validates when the empire name changes (player switched games in Aurora).
+    let lastEmpireName: string | null = null
+    let validationPending = false
+
+    const runValidation = (): void => {
+      if (validationPending || !auroraBridge.isConnected) return
+      validationPending = true
+
+      setTimeout(async () => {
+        validationPending = false
+
+        // Check DB path mismatch (only on first connect)
+        if (!lastEmpireName) {
+          gameSession.validateDbPath(auroraBridge.auroraDbPath, settings.auroraDbPath)
+        }
+
+        // Detect running game, auto-select matching campaign, lock selection
+        await gameSession.detectAndLockRunningGame((sql) => auroraBridge.query(sql))
+      }, 2000)
+    }
+
+    auroraBridge.onPush(() => {
+      if (!auroraBridge.isConnected) return
+
+      const currentEmpire = auroraBridge.activeEmpireName
+      if (!currentEmpire) return
+
+      if (lastEmpireName && currentEmpire !== lastEmpireName) {
+        // Empire actually changed (user switched games in Aurora)
+        console.log(`[Main] Empire changed: "${lastEmpireName}" → "${currentEmpire}"`)
+        lastEmpireName = currentEmpire
+        gameSession.clearRunningGame()
+        runValidation()
+      } else if (!lastEmpireName) {
+        // First push after connect/reconnect — just validate, don't clear
+        console.log(`[Main] Bridge connected, empire: "${currentEmpire}"`)
+        lastEmpireName = currentEmpire
+        runValidation()
+      }
+    })
+
+    // Clear lock on disconnect so user can freely browse campaigns while offline
+    auroraBridge.onPush(() => {
+      if (!auroraBridge.isConnected && lastEmpireName) {
+        lastEmpireName = null
+        gameSession.clearRunningGame()
+      }
+    })
 
     // Re-analyze on bridge push (game tick) — throttled to at most once per 5 seconds
     let lastAnalysis = 0
@@ -535,12 +608,7 @@ app.whenReady().then(async () => {
       if (now - lastAnalysis < 5000) return
       lastAnalysis = now
 
-      // Find current game's profile
-      const games = await import('./services/game-persistence').then((m) => m.loadGames())
-      const currentGameId = dbWatcher.getStatus().currentGameId
-      if (!currentGameId) return
-
-      const game = games.find((g) => g.id === currentGameId)
+      const game = gameSession.currentGame
       if (!game?.personalityArchetype) return
 
       const profiles = await import('./advisor').then((m) => m.loadAllProfiles())

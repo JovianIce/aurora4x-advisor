@@ -1,5 +1,5 @@
 import React from 'react'
-import { useMemorySystems } from '@renderer/hooks/use-bridge'
+import { useRealtimeSystems } from '@renderer/hooks/use-realtime'
 
 interface SystemSelectorProps {
   value: number | null
@@ -12,7 +12,7 @@ export function SystemSelector({
   onChange,
   gameId
 }: SystemSelectorProps): React.JSX.Element {
-  const { data: systems, isLoading } = useMemorySystems()
+  const { data: systems, isLoading } = useRealtimeSystems()
 
   if (!gameId) {
     return <span className="cic-label">No game linked</span>

@@ -283,7 +283,7 @@ export function useWaypoints(enabled = true) {
   })
 }
 
-export function useFleets(enabled = true) {
+export function useComputedFleets(enabled = true) {
   return useQuery({
     queryKey: ['ops', 'fleets'],
     queryFn: () => window.api.ops.getFleets() as Promise<Fleet[]>,
@@ -292,7 +292,7 @@ export function useFleets(enabled = true) {
   })
 }
 
-export function useGameDate(enabled = true) {
+export function useComputedGameDate(enabled = true) {
   return useQuery({
     queryKey: ['ops', 'gameDate'],
     queryFn: () => window.api.ops.getGameDate() as Promise<GameDate | null>,

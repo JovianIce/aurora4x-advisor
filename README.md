@@ -312,9 +312,11 @@ Areas where help is needed:
 
 ## License
 
-Source-available. Free to use, modify, and distribute. One restriction: don't publicly distribute this as a replacement client for Aurora 4X. Private/personal use is unrestricted.
+This project is source-available and free to use, modify, and distribute.
 
-Please respect this. If this boundary is crossed publicly, Steve may add defenses to Aurora that block runtime access to game state entirely — which would kill this project and every other Aurora modding tool with it.
+Please note: this is intended as a companion tool and not a replacement client for Aurora 4X.
+
+We aim to respect the original developer’s work and boundaries, and ask that public distributions follow that spirit.
 
 ## Acknowledgments
 

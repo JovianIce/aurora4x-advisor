@@ -1,5 +1,5 @@
 import React from 'react'
-import { useClassDetail, type ShipClassData, type ClassComponent } from '@renderer/hooks/use-ops'
+import { useClassDetail, type ShipClassData, type ClassComponent } from '@renderer/hooks/use-data'
 
 interface ClassCardProps {
   classId: number

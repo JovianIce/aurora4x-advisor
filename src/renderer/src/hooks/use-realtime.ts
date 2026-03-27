@@ -36,7 +36,7 @@ function onPushType(pushType: string, handler: (data: PushPayload['data']) => vo
  * The subscribe call tells the C# server which system to push updates for.
  * On reconnect, React Query refetches (via invalidation) and re-subscribes.
  */
-export function useMemoryBodies(systemId: number | null): {
+export function useRealtimeBodies(systemId: number | null): {
   data: MemorySystemBody[] | undefined
   isLoading: boolean
 } {
@@ -73,7 +73,7 @@ export function useMemoryBodies(systemId: number | null): {
  * Known star systems from the TacticalMap ComboBox.
  * Cached for 5 minutes, refreshed on reconnect via invalidation.
  */
-export function useMemorySystems(): {
+export function useRealtimeSystems(): {
   data: { SystemID: number; Name: string }[] | undefined
   isLoading: boolean
 } {
@@ -94,7 +94,7 @@ export function useMemorySystems(): {
 /**
  * Fleets from live memory — fetches once, then updates via push on each game tick.
  */
-export function useFleets(): {
+export function useRealtimeFleets(): {
   data: MemoryFleet[] | undefined
   isLoading: boolean
 } {
@@ -134,14 +134,25 @@ function parseGameDate(raw: string): string | null {
 
 /**
  * Current game date from the TacticalMap title bar, pushed on every game tick.
+ * Also invalidates ops queries so SQL-backed data refreshes after time advances.
+ *
+ * On mount, fetches the cached title bar text from main process so the game date
+ * is available immediately (without waiting for the first game tick).
  */
 export function useGameDate(): string | undefined {
   const queryClient = useQueryClient()
 
   const { data } = useQuery<string>({
     queryKey: ['gameDate'],
-    queryFn: () => Promise.resolve(''),
-    enabled: false,
+    queryFn: async () => {
+      // Fetch cached title bar from main process (set on bridge connect)
+      const raw = await window.api.bridge.getLastTitleBar()
+      if (raw) {
+        const parsed = parseGameDate(raw)
+        if (parsed) return parsed
+      }
+      return ''
+    },
     staleTime: Infinity
   })
 
@@ -151,6 +162,10 @@ export function useGameDate(): string | undefined {
         const parsed = parseGameDate(pushData.raw as string)
         if (parsed) {
           queryClient.setQueryData(['gameDate'], parsed)
+          // Invalidate all ops queries — the bridge has already marked
+          // tables stale via MarkAllStale(), so the next fetch will
+          // selectively refresh only the tables each query touches.
+          queryClient.invalidateQueries({ queryKey: ['ops'] })
         }
       }
     })

@@ -7,7 +7,7 @@ import {
   DEFAULT_DISPLAY_OPTIONS,
   type MapDisplayOptions
 } from '../../system-map/DisplayOptions'
-import { useMemoryBodies, useMemorySystems, useFleets } from '@renderer/hooks/use-bridge'
+import { useRealtimeBodies, useRealtimeSystems, useRealtimeFleets } from '@renderer/hooks/use-realtime'
 import type { MemorySystemBody } from '@renderer/types/aurora'
 import type { GameSession, SystemBody } from '@shared/types'
 
@@ -78,9 +78,9 @@ export function SystemMapTab({ game }: SystemMapTabProps): React.JSX.Element {
   const [displayOptions, setDisplayOptions] = useState<MapDisplayOptions>(DEFAULT_DISPLAY_OPTIONS)
   const [showDisplayOptions, setShowDisplayOptions] = useState(false)
   const [showBodyList, setShowBodyList] = useState(true)
-  const { data: memoryBodies, isLoading } = useMemoryBodies(selectedSystemId)
-  const { data: allFleets } = useFleets()
-  const { data: systems } = useMemorySystems()
+  const { data: memoryBodies, isLoading } = useRealtimeBodies(selectedSystemId)
+  const { data: allFleets } = useRealtimeFleets()
+  const { data: systems } = useRealtimeSystems()
   const containerRef = useRef<HTMLDivElement>(null)
   const [dimensions, setDimensions] = useState({ width: 800, height: 500 })
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useShips, type Ship } from '@renderer/hooks/use-ops'
+import { useShips, type Ship } from '@renderer/hooks/use-data'
 import { FleetTable } from './FleetTable'
 import { ClassCard } from './ClassCard'
 import { FuelBar, InfoCard, SectionHeader, ActionButton, Tooltip } from './ui'

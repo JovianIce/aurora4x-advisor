@@ -2,12 +2,17 @@ import { createContext } from 'react'
 import type { GameSession } from '../../../shared/types'
 
 export interface GameContextState {
+  // State (read-only, owned by main process)
   currentGame: GameSession | null
   savedGames: GameSession[]
-  setCurrentGame: (game: GameSession | null) => void
+  runningGameId: number | null
+  runningGameName: string | null
+  lockedCampaignId: string | null
+
+  // Actions (send to main process, which validates and broadcasts result)
+  switchGame: (gameId: string) => void | Promise<void>
   addGame: (game: GameSession) => void
   removeGame: (gameId: string) => void
-  switchGame: (gameId: string) => void
   updateGamePersonality: (archetype: string, personalityName: string) => void
   clearAll: () => void
 }
@@ -15,10 +20,12 @@ export interface GameContextState {
 const initialState: GameContextState = {
   currentGame: null,
   savedGames: [],
-  setCurrentGame: () => {},
+  runningGameId: null,
+  runningGameName: null,
+  lockedCampaignId: null,
+  switchGame: () => {},
   addGame: () => {},
   removeGame: () => {},
-  switchGame: () => {},
   updateGamePersonality: () => {},
   clearAll: () => {}
 }

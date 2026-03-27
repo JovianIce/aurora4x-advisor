@@ -31,9 +31,27 @@ class AuroraBridge {
   private _autoReconnect = false
   private messageIdCounter = 0
   private pushListeners: Array<(payload: unknown) => void> = []
+  private _activeEmpireName: string | null = null
+  private _lastTitleBarText: string | null = null
+  private _auroraDbPath: string | null = null
 
   get isConnected(): boolean {
     return this._isConnected
+  }
+
+  /** The empire name parsed from Aurora's TacticalMap title bar (updated on every tick). */
+  get activeEmpireName(): string | null {
+    return this._activeEmpireName
+  }
+
+  /** The full path to AuroraDB.db as seen by the running Aurora instance. */
+  get auroraDbPath(): string | null {
+    return this._auroraDbPath
+  }
+
+  /** The last raw title bar text from Aurora (for replay on renderer mount). */
+  get lastTitleBarText(): string | null {
+    return this._lastTitleBarText
   }
 
   // ---------------------------------------------------------------------------
@@ -192,7 +210,14 @@ class AuroraBridge {
         this.send('ping', null)
           .then((payload) => {
             console.log('[AuroraBridge] Ping response:', payload)
-            const version = (payload as { protocolVersion?: number })?.protocolVersion ?? 0
+            const pingData = payload as { protocolVersion?: number; auroraDbPath?: string }
+            const version = pingData?.protocolVersion ?? 0
+
+            // Capture Aurora's database path
+            if (pingData?.auroraDbPath) {
+              this._auroraDbPath = pingData.auroraDbPath
+              console.log(`[AuroraBridge] Aurora DB path: ${this._auroraDbPath}`)
+            }
             if (version !== EXPECTED_PROTOCOL_VERSION) {
               console.log(
                 `[AuroraBridge] Protocol mismatch: bridge=${version}, app=${EXPECTED_PROTOCOL_VERSION}`
@@ -255,6 +280,20 @@ class AuroraBridge {
 
     // Push notification (no Id)
     if (msg.Type === 'push' && !msg.Id) {
+      // Extract empire name from gameDate push
+      // Title format: "EmpireName   30 December 0041 22:04:05   Racial Wealth 133,756"
+      const payload = msg.Payload as { pushType?: string; data?: { raw?: string } }
+      if (payload?.pushType === 'gameDate' && payload.data?.raw) {
+        this._lastTitleBarText = payload.data.raw as string
+        const match = payload.data.raw.match(/^(.+?)\s{2,}\d/)
+        if (match) {
+          this._activeEmpireName = match[1].trim()
+          console.log(`[AuroraBridge] Active empire: "${this._activeEmpireName}" (from: "${payload.data.raw.substring(0, 60)}")`)
+        } else {
+          console.log(`[AuroraBridge] Could not parse empire name from title: "${payload.data.raw.substring(0, 60)}"`)
+        }
+      }
+
       this.broadcastToRenderers('bridge:push', msg.Payload)
       for (const listener of this.pushListeners) {
         try {

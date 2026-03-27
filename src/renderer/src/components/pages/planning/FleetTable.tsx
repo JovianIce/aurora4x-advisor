@@ -15,7 +15,7 @@ import {
   type Row
 } from '@tanstack/react-table'
 import { useVirtualizer } from '@tanstack/react-virtual'
-import type { Ship } from '@renderer/hooks/use-ops'
+import type { Ship } from '@renderer/hooks/use-data'
 import { FuelBar, ShipTag } from './ui'
 import { FilterBar, applyGroupFilters, summarizeGroups, type FilterGroup } from './FilterBar'
 

@@ -70,6 +70,8 @@ const api = {
     disconnect: () => ipcRenderer.invoke('bridge:disconnect'),
     reconnectNow: () => ipcRenderer.invoke('bridge:reconnectNow'),
     getStatus: () => ipcRenderer.invoke('bridge:getStatus'),
+    getLastTitleBar: () => ipcRenderer.invoke('bridge:getLastTitleBar') as Promise<string | null>,
+    getActiveEmpire: () => ipcRenderer.invoke('bridge:getActiveEmpire') as Promise<string | null>,
     onConnected: (callback: () => void): (() => void) => {
       const subscription = (): void => callback()
       ipcRenderer.on('bridge:connected', subscription)
@@ -94,6 +96,40 @@ const api = {
       ipcRenderer.on('bridge:versionMismatch', subscription)
       return (): void => {
         ipcRenderer.removeListener('bridge:versionMismatch', subscription)
+      }
+    },
+    onDbPathMismatch: (
+      callback: (data: { bridgePath: string; configPath: string }) => void
+    ): (() => void) => {
+      const subscription = (
+        _event: IpcRendererEvent,
+        data: { bridgePath: string; configPath: string }
+      ): void => callback(data)
+      ipcRenderer.on('bridge:dbPathMismatch', subscription)
+      return (): void => {
+        ipcRenderer.removeListener('bridge:dbPathMismatch', subscription)
+      }
+    },
+    onNoMatchingCampaign: (
+      callback: (data: { gameName: string }) => void
+    ): (() => void) => {
+      const subscription = (
+        _event: IpcRendererEvent,
+        data: { gameName: string }
+      ): void => callback(data)
+      ipcRenderer.on('bridge:noMatchingCampaign', subscription)
+      return (): void => {
+        ipcRenderer.removeListener('bridge:noMatchingCampaign', subscription)
+      }
+    },
+    // Game session (main process owns state, renderer reads)
+    getSessionState: () => ipcRenderer.invoke('gameSession:getState'),
+    setSessionGame: (gameId: string | null) => ipcRenderer.invoke('gameSession:setCurrent', gameId),
+    onSessionState: (callback: (state: unknown) => void): (() => void) => {
+      const subscription = (_event: IpcRendererEvent, state: unknown): void => callback(state)
+      ipcRenderer.on('gameSession:state', subscription)
+      return (): void => {
+        ipcRenderer.removeListener('gameSession:state', subscription)
       }
     },
     // Real-time memory data

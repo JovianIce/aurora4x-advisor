@@ -47,6 +47,7 @@ namespace AdvisorBridge
         // Change detection for push notifications
         private int? _subscribedSystemId;
         private bool _hookInstalled;
+        private DateTime _lastStaleTime = DateTime.MinValue;
 
         public BridgeServer(Lib.DatabaseManager db, AuroraPatch.Patch patch, Lib.Lib lib)
         {
@@ -155,8 +156,14 @@ namespace AdvisorBridge
         {
             if (_clients.IsEmpty) return;
 
-            // Mark SQL tables stale on each tick so selective refresh picks up changes
-            _db.MarkAllStale();
+            // Throttle SQL staleness to once per second — during auto-increment,
+            // this prevents selective saves from firing on every tick and blocking Aurora.
+            var now = DateTime.UtcNow;
+            if ((now - _lastStaleTime).TotalMilliseconds >= 1000)
+            {
+                _lastStaleTime = now;
+                _db.MarkAllStale();
+            }
 
             try
             {
@@ -235,7 +242,10 @@ namespace AdvisorBridge
             {
                 // Infrastructure
                 case "ping":
-                    response = BridgeResponse.Ok(request.Id, "pong", new { protocolVersion = BridgeProtocol.Version });
+                    response = BridgeResponse.Ok(request.Id, "pong", new {
+                        protocolVersion = BridgeProtocol.Version,
+                        auroraDbPath = System.IO.Path.GetFullPath("AuroraDB.db")
+                    });
                     break;
 
                 case "subscribe":

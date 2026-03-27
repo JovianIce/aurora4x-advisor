@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useGame } from '@renderer/hooks/use-game'
 import { useAuroraData } from '@renderer/contexts/aurora-data-context'
-import { useGameDate } from '@renderer/hooks/use-bridge'
+import { useGameDate } from '@renderer/hooks/use-realtime'
 import { AdviceSection } from './AdviceSection'
 
 function formatArchetype(archetype: string): string {

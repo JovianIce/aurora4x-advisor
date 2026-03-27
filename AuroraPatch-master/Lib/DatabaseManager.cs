@@ -35,6 +35,13 @@ namespace Lib
         // Freshness tracking
         private readonly HashSet<string> _freshTables = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
+        // Static tables: populated once on first full save, never re-saved on tick.
+        // These contain game definitions that don't change during gameplay.
+        private static readonly HashSet<string> StaticTables = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "FCT_TechSystem",               // Tech tree definitions (what techs exist)
+        };
+
         // =====================================================================
         // Hardcoded mapping: obfuscated method name -> tables it writes to.
         // Keyed by Aurora.exe checksum since method names change between versions.
@@ -386,7 +393,8 @@ namespace Lib
 
         private void RefreshForTables(string[] tables)
         {
-            var staleTables = tables.Where(t => !_freshTables.Contains(t)).ToArray();
+            // Skip static tables — they're populated on first full save and never change
+            var staleTables = tables.Where(t => !_freshTables.Contains(t) && !StaticTables.Contains(t)).ToArray();
             if (staleTables.Length == 0) return;
 
             var methodsNeeded = new HashSet<MethodInfo>();
@@ -447,6 +455,7 @@ namespace Lib
             Lib.LogInfo($"Mapping discovery: full save took {swFull.ElapsedMilliseconds} ms");
 
             var allTables = GetManagedTableNames();
+            allTables.RemoveAll(t => t.StartsWith("sqlite_") || t.StartsWith("_mapping_"));
             allTables.RemoveAll(t => t.StartsWith("_mapping_"));
             Lib.LogInfo($"Mapping discovery: {allTables.Count} tables, {methods.Count} save methods");
 
@@ -758,6 +767,59 @@ namespace Lib
                 command.CommandText = sql;
                 command.ExecuteNonQuery();
             }
+
+            // Add composite indexes for the most common query patterns.
+            // Most queries filter by (GameID, RaceID) — without these, SQLite does full table scans.
+            var indexes = new[]
+            {
+                // Population: WHERE GameID = ? AND RaceID = ?
+                "CREATE INDEX IF NOT EXISTS idx_Population_Game_Race ON FCT_Population(GameID, RaceID)",
+
+                // Mineral data: WHERE GameID = ? AND RaceID = ?
+                "CREATE INDEX IF NOT EXISTS idx_RaceMineralData_Game_Race ON FCT_RaceMineralData(GameID, RaceID)",
+                "CREATE INDEX IF NOT EXISTS idx_RaceMineralData_PopID ON FCT_RaceMineralData(PopulationID)",
+
+                // Ships: WHERE GameID = ? AND RaceID = ? / JOIN ON FleetID
+                "CREATE INDEX IF NOT EXISTS idx_Ship_Game_Race ON FCT_Ship(GameID, RaceID)",
+                "CREATE INDEX IF NOT EXISTS idx_Ship_FleetID ON FCT_Ship(FleetID)",
+
+                // Fleets: WHERE GameID = ? AND RaceID = ?
+                "CREATE INDEX IF NOT EXISTS idx_Fleet_Game_Race ON FCT_Fleet(GameID, RaceID)",
+
+                // Ship classes: WHERE GameID = ? AND RaceID = ?
+                "CREATE INDEX IF NOT EXISTS idx_ShipClass_Game_Race ON FCT_ShipClass(GameID, RaceID)",
+
+                // Research: WHERE GameID = ? AND RaceID = ? / JOIN ON TechID
+                "CREATE INDEX IF NOT EXISTS idx_RaceTech_Game_Race ON FCT_RaceTech(GameID, RaceID)",
+                "CREATE INDEX IF NOT EXISTS idx_RaceTech_TechID ON FCT_RaceTech(TechID)",
+                "CREATE INDEX IF NOT EXISTS idx_ResearchProject_Game_Race ON FCT_ResearchProject(GameID, RaceID)",
+
+                // Game log: WHERE GameID = ? AND RaceID = ? AND EventType = ?
+                "CREATE INDEX IF NOT EXISTS idx_GameLog_Game_Race_Event ON FCT_GameLog(GameID, RaceID, EventType)",
+
+                // Surveys: WHERE GameID = ? AND RaceID = ?
+                "CREATE INDEX IF NOT EXISTS idx_RaceSysSurvey_Game_Race ON FCT_RaceSysSurvey(GameID, RaceID)",
+
+                // Class components: WHERE GameID = ? / JOIN ON ClassID
+                "CREATE INDEX IF NOT EXISTS idx_ClassComponent_Game ON FCT_ClassComponent(GameID)",
+                "CREATE INDEX IF NOT EXISTS idx_ClassComponent_ClassID ON FCT_ClassComponent(ClassID)",
+
+                // Jump points: WHERE GameID = ?
+                "CREATE INDEX IF NOT EXISTS idx_JumpPoint_GameID ON FCT_JumpPoint(GameID)",
+            };
+
+            foreach (var idx in indexes)
+            {
+                try
+                {
+                    var cmd = Connection.CreateCommand();
+                    cmd.CommandText = idx;
+                    cmd.ExecuteNonQuery();
+                }
+                catch { }
+            }
+
+            Lib.LogInfo($"In-memory DB ready: {commands.Count} schema objects, {indexes.Length} indexes added");
         }
     }
 }
