@@ -6,7 +6,7 @@ namespace AdvisorBridge
     /// </summary>
     public static class BridgeProtocol
     {
-        public const int Version = 1;
+        public const int Version = 2;
     }
 
     /// <summary>
