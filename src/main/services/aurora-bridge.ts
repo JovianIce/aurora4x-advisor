@@ -3,7 +3,7 @@ import { BrowserWindow } from 'electron'
 import type { BridgeStatus, ActionRequest } from '@shared/types'
 
 // Must match BridgeProtocol.Version in C# AdvisorBridge/Protocol.cs
-const EXPECTED_PROTOCOL_VERSION = 1
+const EXPECTED_PROTOCOL_VERSION = 2
 
 interface PendingRequest {
   resolve: (value: unknown) => void
