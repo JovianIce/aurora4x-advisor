@@ -98,13 +98,7 @@ const BUILT_IN_PRESETS: FilterPreset[] = [
         id: 'g1',
         conditions: [
           { id: '1', field: 'fuelPct', operator: 'lt', value: 50, enabled: true },
-          {
-            id: '2',
-            field: 'className',
-            operator: 'not_contains',
-            value: 'Calabria',
-            enabled: true
-          }
+          { id: '2', field: 'tanker', operator: 'neq', value: 'true', enabled: true }
         ]
       }
     ]

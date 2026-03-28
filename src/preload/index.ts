@@ -1,5 +1,17 @@
-import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron'
+import { contextBridge, ipcRenderer, IpcRendererEvent, webFrame } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+
+// Ctrl+scroll zoom
+window.addEventListener('wheel', (e) => {
+  if (e.ctrlKey) {
+    e.preventDefault()
+    const delta = e.deltaY > 0 ? -0.5 : 0.5
+    webFrame.setZoomLevel(webFrame.getZoomLevel() + delta)
+    const pct = Math.round(Math.pow(1.2, webFrame.getZoomLevel()) * 100)
+    window.dispatchEvent(new CustomEvent('zoom-changed', { detail: pct }))
+    ipcRenderer.send('zoom:scrollChanged', webFrame.getZoomLevel())
+  }
+}, { passive: false })
 
 // Custom APIs for renderer
 const api = {
@@ -189,6 +201,21 @@ const api = {
     add: (route: unknown) => ipcRenderer.invoke('routes:add', route),
     remove: (routeId: string) => ipcRenderer.invoke('routes:remove', routeId),
     update: (routeId: string, patch: unknown) => ipcRenderer.invoke('routes:update', routeId, patch)
+  },
+  zoom: {
+    reset: () => ipcRenderer.invoke('zoom:reset'),
+    onChanged: (callback: (pct: number) => void): (() => void) => {
+      // From main process (Ctrl+/-)
+      const ipcSub = (_event: IpcRendererEvent, pct: number): void => callback(pct)
+      ipcRenderer.on('zoom-changed', ipcSub)
+      // From preload (Ctrl+scroll)
+      const domSub = (e: Event): void => callback((e as CustomEvent).detail)
+      window.addEventListener('zoom-changed', domSub)
+      return (): void => {
+        ipcRenderer.removeListener('zoom-changed', ipcSub)
+        window.removeEventListener('zoom-changed', domSub)
+      }
+    }
   }
 }
 

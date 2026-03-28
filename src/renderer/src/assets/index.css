@@ -463,6 +463,13 @@
   }
 }
 
+/* Sonner toast theme override */
+[data-sonner-toaster] {
+  --normal-bg: var(--secondary) !important;
+  --normal-border: var(--border) !important;
+  --normal-text: var(--card-foreground) !important;
+}
+
 /* ============================================================
    CIC Panel System
    ============================================================ */

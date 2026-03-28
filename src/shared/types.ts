@@ -96,6 +96,7 @@ export interface AppSettings {
   bridgePort: number
   enableTimeControls: boolean
   enableDevTools: boolean
+  zoomLevel: number
 }
 
 // Aurora Bridge types

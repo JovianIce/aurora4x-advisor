@@ -242,6 +242,11 @@ interface RoutesAPI {
   update: (routeId: string, patch: unknown) => Promise<unknown[]>
 }
 
+interface ZoomAPI {
+  reset: () => Promise<void>
+  onChanged: (callback: (pct: number) => void) => () => void
+}
+
 declare global {
   interface Window {
     electron: ElectronAPI
@@ -255,6 +260,7 @@ declare global {
       ops: OpsAPI
       fleetFilters: FleetFiltersAPI
       routes: RoutesAPI
+      zoom: ZoomAPI
     }
   }
 }

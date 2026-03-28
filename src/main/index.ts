@@ -66,6 +66,45 @@ function createWindow(): void {
     return { action: 'deny' }
   })
 
+  // Zoom: Ctrl+/-, Ctrl+0, Ctrl+scroll, persist, restore
+  let zoomSaveTimer: ReturnType<typeof setTimeout> | null = null
+  const persistZoom = (level: number): void => {
+    if (zoomSaveTimer) clearTimeout(zoomSaveTimer)
+    zoomSaveTimer = setTimeout(() => updateSetting('zoomLevel', level), 500)
+  }
+  const notifyZoom = (): void => {
+    const wc = mainWindow.webContents
+    const level = wc.getZoomLevel()
+    wc.send('zoom-changed', Math.round(Math.pow(1.2, level) * 100))
+    persistZoom(level)
+  }
+  loadSettings().then((s) => {
+    if (s.zoomLevel) mainWindow.webContents.setZoomLevel(s.zoomLevel)
+  })
+  mainWindow.webContents.on('before-input-event', (_event, input) => {
+    if (input.control && input.type === 'keyDown') {
+      const wc = mainWindow.webContents
+      if (input.key === '=' || input.key === '+') {
+        wc.setZoomLevel(wc.getZoomLevel() + 0.5)
+        notifyZoom()
+      } else if (input.key === '-') {
+        wc.setZoomLevel(wc.getZoomLevel() - 0.5)
+        notifyZoom()
+      } else if (input.key === '0') {
+        wc.setZoomLevel(0)
+        notifyZoom()
+      }
+    }
+  })
+  ipcMain.handle('zoom:reset', () => {
+    mainWindow.webContents.setZoomLevel(0)
+    notifyZoom()
+  })
+  ipcMain.on('zoom:scrollChanged', (_event, level: number) => {
+    mainWindow.webContents.setZoomLevel(level)
+    persistZoom(level)
+  })
+
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {

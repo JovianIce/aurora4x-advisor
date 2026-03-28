@@ -11,7 +11,8 @@ const DEFAULT_SETTINGS: AppSettings = {
   bridgeEnabled: false,
   bridgePort: 47842,
   enableTimeControls: false,
-  enableDevTools: false
+  enableDevTools: false,
+  zoomLevel: 0
 }
 
 /**
