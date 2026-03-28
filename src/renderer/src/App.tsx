@@ -21,9 +21,7 @@ function useZoomToast(): void {
       toast(`Zoom: ${pct}%`, {
         id: 'zoom-level',
         duration: 2000,
-        action: pct !== 100
-          ? { label: 'Reset', onClick: () => window.api.zoom.reset() }
-          : undefined
+        action: pct !== 100 ? { label: 'Reset', onClick: () => window.api.zoom.reset() } : undefined
       })
     })
   }, [])

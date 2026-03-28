@@ -2,16 +2,20 @@ import { contextBridge, ipcRenderer, IpcRendererEvent, webFrame } from 'electron
 import { electronAPI } from '@electron-toolkit/preload'
 
 // Ctrl+scroll zoom
-window.addEventListener('wheel', (e) => {
-  if (e.ctrlKey) {
-    e.preventDefault()
-    const delta = e.deltaY > 0 ? -0.5 : 0.5
-    webFrame.setZoomLevel(webFrame.getZoomLevel() + delta)
-    const pct = Math.round(Math.pow(1.2, webFrame.getZoomLevel()) * 100)
-    window.dispatchEvent(new CustomEvent('zoom-changed', { detail: pct }))
-    ipcRenderer.send('zoom:scrollChanged', webFrame.getZoomLevel())
-  }
-}, { passive: false })
+window.addEventListener(
+  'wheel',
+  (e) => {
+    if (e.ctrlKey) {
+      e.preventDefault()
+      const delta = e.deltaY > 0 ? -0.5 : 0.5
+      webFrame.setZoomLevel(webFrame.getZoomLevel() + delta)
+      const pct = Math.round(Math.pow(1.2, webFrame.getZoomLevel()) * 100)
+      window.dispatchEvent(new CustomEvent('zoom-changed', { detail: pct }))
+      ipcRenderer.send('zoom:scrollChanged', webFrame.getZoomLevel())
+    }
+  },
+  { passive: false }
+)
 
 // Custom APIs for renderer
 const api = {
